@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="smallSpacing">8dp</dimen>
+    <dimen name="defaultSpacing">16dp</dimen>
+    <dimen name="largeSpacing">24dp</dimen>
+
+    <dimen name="buttonWidth">200dp</dimen>
+    <dimen name="buttonCornersSize">50dp</dimen>
+
+    <dimen name="onboardingImageWidth">300dp</dimen>
+    <dimen name="onboardingImageHeight">400dp</dimen>
+</resources>

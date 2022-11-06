@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">android-hindara-booking-app</string>
+    <string name="text_onboarding_first_title">Travel With No Worry</string>
+    <string name="text_onboarding_first_description">You can now experience the next level travel experience for hotel bookings.</string>
+    <string name="image_description_getting_start_first">Getting Started Image</string>
+    <string name="button_text_next">Next</string>
+    <string name="button_text_get_started">Get Started</string>
+    <string name="dot_icon_image_description">Dot icon image description</string>
+    <string name="text_onboarding_second_title">Find Hundreds of hotels</string>
+    <string name="text_onboarding_second_description">Discover hundreds of hotels that spread across the world for you</string>
+    <string name="text_onboarding_third_title">Let’s discover the world</string>
+    <string name="text_onboarding_third_description">Book your hotel now for the next level travel experience, Enjoy your trip!</string>
+</resources>
