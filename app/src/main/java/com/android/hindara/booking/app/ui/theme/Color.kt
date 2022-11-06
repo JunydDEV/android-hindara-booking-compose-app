@@ -8,7 +8,7 @@ val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
 val PrimaryColor = Color(0xFF00A76E)
-val ScreenBackgroundColor = Color(0xFFA9A9A9)
+val ScreenBackgroundColor = Color(0xFFF8F8F8)
 val SuccessColor = Color(0xFF18AF7C)
 val FailureColor = Color(0xFFFE2D3F)
 val WhiteColor = Color(0xFFFFFFFF)

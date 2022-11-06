@@ -10,4 +10,7 @@
     <string name="text_onboarding_second_description">Discover hundreds of hotels that spread across the world for you</string>
     <string name="text_onboarding_third_title">Let’s discover the world</string>
     <string name="text_onboarding_third_description">Book your hotel now for the next level travel experience, Enjoy your trip!</string>
+    <string name="hindara_logo_description">Hindara Logo Description</string>
+    <string name="tab_title_login">Log In</string>
+    <string name="tab_title_signup">Sign Up</string>
 </resources>

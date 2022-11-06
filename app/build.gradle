@@ -65,6 +65,9 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$androidx_hilt_version"
     implementation "androidx.hilt:hilt-navigation-compose:$androidx_hilt_version"
 
+    // Pager
+    implementation "com.google.accompanist:accompanist-pager:0.21.2-beta"
+    implementation "com.google.accompanist:accompanist-pager-indicators:0.21.2-beta"
 
     // Test Dependencies
     testImplementation 'junit:junit:4.13.2'

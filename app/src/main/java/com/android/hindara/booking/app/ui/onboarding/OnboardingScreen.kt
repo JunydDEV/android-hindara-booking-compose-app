@@ -22,6 +22,7 @@ import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.OnboardingImage
 import com.android.hindara.booking.app.getOnBoardingImageSizeInDp
+import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 
@@ -37,70 +38,91 @@ fun OnboardingScreen(
     val selectedImage = onboardingImagesList[imageSelectionState.value]
 
     Column(modifier = Modifier.fillMaxSize()) {
-        val topSpacerModifier = Modifier
-            .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.largeSpacing))
-        Spacer(modifier = topSpacerModifier)
-        /************************ Added Top Spacing ***************************/
-
-        val onBoardingImageModifier = Modifier.size(
-            width = getOnBoardingImageSizeInDp().first,
-            height = getOnBoardingImageSizeInDp().second
-        )
-        Image(
-            modifier = onBoardingImageModifier,
-            painter = painterResource(id = selectedImage.imageDrawable),
-            contentDescription = stringResource(R.string.image_description_getting_start_first)
-        )
-
-        /************************* Added Onboarding Image **************************/
-
-        val onBoardingTitleModifier = Modifier.padding(
-            top = dimensionResource(id = R.dimen.largeSpacing),
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
-        )
-        Text(
-            modifier = onBoardingTitleModifier,
-            text = stringResource(id = selectedImage.title),
-            style = MaterialTheme.typography.h1,
-            color = DarkTextColor
-        )
-
-        /************************* Added Onboarding Title **************************/
-
-        val onBoardingDescriptionModifier = Modifier.padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
-        )
-        Text(
-            modifier = onBoardingDescriptionModifier,
-            text = stringResource(id = selectedImage.description),
-            style = MaterialTheme.typography.body2,
-            color = DarkTextColor
-        )
-
-        /************************* Added Onboarding Description **************************/
-
-        val onBoardingNavigationModifier = Modifier
-            .fillMaxSize()
-            .padding(
-                start = dimensionResource(id = R.dimen.defaultSpacing),
-                end = dimensionResource(id = R.dimen.defaultSpacing),
-            )
-        OnBoardingNavigationView(
-            onBoardingNavigationModifier,
+        SpacerComposable()
+        OnboardingImageComposable(selectedImage)
+        OnboardingTitleComposable(selectedImage)
+        OnboardingDescriptionComposable(selectedImage)
+        OnboardingBottomNavigationComposable(
             navHostController,
             onboardingImagesList,
             imageSelectionState
         )
-
-        /************************* Added Onboarding Navigation **************************/
     }
 }
 
 @Composable
-private fun OnBoardingNavigationView(
+private fun SpacerComposable() {
+    val topSpacerModifier = Modifier
+        .fillMaxWidth()
+        .height(dimensionResource(id = R.dimen.largeSpacing))
+    Spacer(modifier = topSpacerModifier)
+}
+
+
+@Composable
+private fun OnboardingImageComposable(selectedImage: OnboardingImage) {
+    val onBoardingImageModifier = Modifier.size(
+        width = getOnBoardingImageSizeInDp().first,
+        height = getOnBoardingImageSizeInDp().second
+    )
+    Image(
+        modifier = onBoardingImageModifier,
+        painter = painterResource(id = selectedImage.imageDrawable),
+        contentDescription = stringResource(R.string.image_description_getting_start_first)
+    )
+}
+
+@Composable
+private fun OnboardingTitleComposable(selectedImage: OnboardingImage) {
+    val onBoardingTitleModifier = Modifier.padding(
+        top = dimensionResource(id = R.dimen.largeSpacing),
+        start = dimensionResource(id = R.dimen.defaultSpacing),
+        end = dimensionResource(id = R.dimen.defaultSpacing),
+    )
+    Text(
+        modifier = onBoardingTitleModifier,
+        text = stringResource(id = selectedImage.title),
+        style = MaterialTheme.typography.h1,
+        color = DarkTextColor
+    )
+}
+
+@Composable
+private fun OnboardingDescriptionComposable(selectedImage: OnboardingImage) {
+    val onBoardingDescriptionModifier = Modifier.padding(
+        start = dimensionResource(id = R.dimen.defaultSpacing),
+        end = dimensionResource(id = R.dimen.defaultSpacing),
+    )
+    Text(
+        modifier = onBoardingDescriptionModifier,
+        text = stringResource(id = selectedImage.description),
+        style = MaterialTheme.typography.body2,
+        color = DarkTextColor
+    )
+}
+
+@Composable
+private fun OnboardingBottomNavigationComposable(
+    navHostController: NavHostController,
+    onboardingImagesList: List<OnboardingImage>,
+    imageSelectionState: MutableState<Int>
+) {
+    val onboardingNavigationModifier = Modifier
+        .fillMaxSize()
+        .padding(
+            start = dimensionResource(id = R.dimen.defaultSpacing),
+            end = dimensionResource(id = R.dimen.defaultSpacing),
+        )
+    OnboardingNavigationComposable(
+        onboardingNavigationModifier,
+        navHostController,
+        onboardingImagesList,
+        imageSelectionState
+    )
+}
+
+@Composable
+private fun OnboardingNavigationComposable(
     modifier: Modifier,
     navHostController: NavHostController,
     onboardingImagesList: List<OnboardingImage>,
@@ -112,32 +134,50 @@ private fun OnBoardingNavigationView(
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        ImageIndicatorsView(imageSelectionState, onboardingImagesList)
+        ImageIndicatorsComposable(imageSelectionState, onboardingImagesList)
+        NextButtonComposable(imageSelectionState, onboardingImagesList, navHostController)
+    }
+}
 
-        /************************* Added Dots View **************************/
-
-        val buttonNextModifier = Modifier
-            .width(dimensionResource(id = R.dimen.buttonWidth))
-            .padding(
-                start = dimensionResource(id = R.dimen.defaultSpacing),
-            )
-
-        val clickListener = if (imageSelectionState.value < onboardingImagesList.size - 1) {
-            onNextClickListener(positionState = imageSelectionState)
-        } else {
-            onGetStartedListener(navHostController)
+@Composable
+private fun ImageIndicatorsComposable(
+    imageSelectionState: MutableState<Int>,
+    onboardingImagesList: List<OnboardingImage>
+) {
+    onboardingImagesList.mapIndexed { index, item ->
+        item.isSelected = (index == imageSelectionState.value)
+    }
+    LazyRow(content = {
+        items(onboardingImagesList) {
+            DotView(it)
         }
+    })
+}
 
-        Button(
-            modifier = buttonNextModifier,
-            shape = RoundedCornerShape(dimensionResource(id = R.dimen.buttonCornersSize)),
-            onClick = clickListener
-        ) {
-            OnboardingButtonContent(imageSelectionState, onboardingImagesList)
-        }
+@Composable
+private fun NextButtonComposable(
+    imageSelectionState: MutableState<Int>,
+    onboardingImagesList: List<OnboardingImage>,
+    navHostController: NavHostController
+) {
+    val buttonNextModifier = Modifier
+        .width(dimensionResource(id = R.dimen.buttonWidth))
+        .padding(
+            start = dimensionResource(id = R.dimen.defaultSpacing),
+        )
 
-        /************************* Added Next/Get-Started Button **************************/
+    val clickListener = if (imageSelectionState.value < onboardingImagesList.size - 1) {
+        onNextClickListener(positionState = imageSelectionState)
+    } else {
+        onGetStartedListener(navHostController)
+    }
 
+    Button(
+        modifier = buttonNextModifier,
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.buttonCornersSize)),
+        onClick = clickListener
+    ) {
+        OnboardingButtonContent(imageSelectionState, onboardingImagesList)
     }
 }
 
@@ -152,21 +192,6 @@ private fun OnboardingButtonContent(
         stringResource(R.string.button_text_get_started)
     }
     Text(text = buttonText)
-}
-
-@Composable
-private fun ImageIndicatorsView(
-    imageSelectionState: MutableState<Int>,
-    onboardingImagesList: List<OnboardingImage>
-) {
-    onboardingImagesList.mapIndexed { index, item ->
-        item.isSelected = (index == imageSelectionState.value)
-    }
-    LazyRow(content = {
-        items(onboardingImagesList) {
-            DotView(it)
-        }
-    })
 }
 
 @Composable
@@ -190,5 +215,9 @@ private fun onNextClickListener(positionState: MutableState<Int>): () -> Unit = 
 
 @Composable
 fun onGetStartedListener(navHostController: NavHostController): () -> Unit = {
-    navHostController.navigate("next_screen")
+    navHostController.navigate(authenticationRoute) {
+        popUpTo(onboardingRoute) {
+            inclusive = true
+        }
+    }
 }
