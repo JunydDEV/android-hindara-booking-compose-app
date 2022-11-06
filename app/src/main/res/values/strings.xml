@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">android-hindara-booking-app</string>
+    <string name="app_name">Hindara</string>
     <string name="text_onboarding_first_title">Travel With No Worry</string>
     <string name="text_onboarding_first_description">You can now experience the next level travel experience for hotel bookings.</string>
     <string name="image_description_getting_start_first">Getting Started Image</string>

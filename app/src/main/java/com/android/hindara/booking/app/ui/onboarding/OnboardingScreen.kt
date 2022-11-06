@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.getstarted
+package com.android.hindara.booking.app.ui.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -17,14 +17,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.data.OnboardingImage
 import com.android.hindara.booking.app.getOnBoardingImageSizeInDp
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 
 @Composable
-fun GettingStartedScreen() {
-    val onboardingImagesList = listOfOnboardingImages()
+fun OnboardingScreen(
+    navHostController: NavHostController,
+    viewModel: OnboardingViewModel = hiltViewModel()
+) {
+    val onboardingImagesList = viewModel.getOnboardingImagesList()
     val imageSelectionState = remember {
         mutableStateOf(0)
     }
@@ -56,7 +62,7 @@ fun GettingStartedScreen() {
         )
         Text(
             modifier = onBoardingTitleModifier,
-            text = selectedImage.title,
+            text = stringResource(id = selectedImage.title),
             style = MaterialTheme.typography.h1,
             color = DarkTextColor
         )
@@ -69,7 +75,7 @@ fun GettingStartedScreen() {
         )
         Text(
             modifier = onBoardingDescriptionModifier,
-            text = selectedImage.description,
+            text = stringResource(id = selectedImage.description),
             style = MaterialTheme.typography.body2,
             color = DarkTextColor
         )
@@ -84,6 +90,7 @@ fun GettingStartedScreen() {
             )
         OnBoardingNavigationView(
             onBoardingNavigationModifier,
+            navHostController,
             onboardingImagesList,
             imageSelectionState
         )
@@ -95,6 +102,7 @@ fun GettingStartedScreen() {
 @Composable
 private fun OnBoardingNavigationView(
     modifier: Modifier,
+    navHostController: NavHostController,
     onboardingImagesList: List<OnboardingImage>,
     imageSelectionState: MutableState<Int>
 ) {
@@ -117,7 +125,7 @@ private fun OnBoardingNavigationView(
         val clickListener = if (imageSelectionState.value < onboardingImagesList.size - 1) {
             onNextClickListener(positionState = imageSelectionState)
         } else {
-            onGetStartedListener()
+            onGetStartedListener(navHostController)
         }
 
         Button(
@@ -181,47 +189,6 @@ private fun onNextClickListener(positionState: MutableState<Int>): () -> Unit = 
 }
 
 @Composable
-fun onGetStartedListener(): () -> Unit = {
-
+fun onGetStartedListener(navHostController: NavHostController): () -> Unit = {
+    navHostController.navigate("next_screen")
 }
-
-@Composable
-private fun listOfOnboardingImages(): List<OnboardingImage> {
-    return mutableListOf<OnboardingImage>().apply {
-        add(
-            OnboardingImage(
-                imageDrawable = R.drawable.ic_onboarding_first_image,
-                isSelected = true,
-                position = 0,
-                title = stringResource(id = R.string.text_onboarding_first_title),
-                description = stringResource(id = R.string.text_onboarding_first_description)
-            )
-        )
-        add(
-            OnboardingImage(
-                imageDrawable = R.drawable.ic_onboarding_second_image,
-                isSelected = false,
-                position = 1,
-                title = stringResource(R.string.text_onboarding_second_title),
-                description = stringResource(R.string.text_onboarding_second_description)
-            )
-        )
-        add(
-            OnboardingImage(
-                imageDrawable = R.drawable.ic_onboarding_third_image,
-                isSelected = false,
-                position = 2,
-                title = stringResource(R.string.text_onboarding_third_title),
-                description = stringResource(R.string.text_onboarding_third_description)
-            )
-        )
-    }
-}
-
-internal data class OnboardingImage(
-    val imageDrawable: Int,
-    var isSelected: Boolean = false,
-    val position: Int,
-    val title: String,
-    val description: String
-)
