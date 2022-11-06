@@ -18,6 +18,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.getOnBoardingImageSizeInDp
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 
@@ -37,8 +38,8 @@ fun GettingStartedScreen() {
         /************************ Added Top Spacing ***************************/
 
         val onBoardingImageModifier = Modifier.size(
-            width = dimensionResource(id = R.dimen.onboardingImageWidth),
-            height = dimensionResource(id = R.dimen.onboardingImageHeight)
+            width = getOnBoardingImageSizeInDp().first,
+            height = getOnBoardingImageSizeInDp().second
         )
         Image(
             modifier = onBoardingImageModifier,
@@ -189,7 +190,7 @@ private fun listOfOnboardingImages(): List<OnboardingImage> {
     return mutableListOf<OnboardingImage>().apply {
         add(
             OnboardingImage(
-                imageDrawable = R.drawable.get_started_first_image,
+                imageDrawable = R.drawable.ic_onboarding_first_image,
                 isSelected = true,
                 position = 0,
                 title = stringResource(id = R.string.text_onboarding_first_title),
@@ -198,7 +199,7 @@ private fun listOfOnboardingImages(): List<OnboardingImage> {
         )
         add(
             OnboardingImage(
-                imageDrawable = R.drawable.get_started_second_image,
+                imageDrawable = R.drawable.ic_onboarding_second_image,
                 isSelected = false,
                 position = 1,
                 title = stringResource(R.string.text_onboarding_second_title),
@@ -207,7 +208,7 @@ private fun listOfOnboardingImages(): List<OnboardingImage> {
         )
         add(
             OnboardingImage(
-                imageDrawable = R.drawable.get_started_third_image,
+                imageDrawable = R.drawable.ic_onboarding_third_image,
                 isSelected = false,
                 position = 2,
                 title = stringResource(R.string.text_onboarding_third_title),
