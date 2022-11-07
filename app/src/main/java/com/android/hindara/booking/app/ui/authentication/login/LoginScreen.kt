@@ -7,25 +7,34 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.PrimaryColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
 
 @Composable
@@ -116,6 +125,7 @@ private fun PasswordTextFieldLabelComposable() {
 fun PasswordTextFieldComposable() {
     val focus = LocalFocusManager.current
     val textFieldPasswordState = remember { mutableStateOf("") }
+    val showPasswordState = remember { mutableStateOf(false) }
 
     val passwordTextFieldModifier = Modifier
         .fillMaxWidth()
@@ -135,7 +145,11 @@ fun PasswordTextFieldComposable() {
         keyboardOptions = getPasswordKeyboardOptions(),
         keyboardActions = onKeyboardAction(focus),
         placeholder = { PasswordPlaceholderContent(typography) },
-        visualTransformation = PasswordVisualTransformation()
+        visualTransformation = getPasswordTransformation(showPasswordState),
+        trailingIcon = {
+            val (icon, iconColor) = getVisibilitySelectionPair(showPasswordState)
+            PasswordVisibilityTrailingIcon(showPasswordState, icon, iconColor)
+        }
     )
 }
 
@@ -225,4 +239,27 @@ private fun getPasswordKeyboardOptions() = KeyboardOptions(
     imeAction = ImeAction.Next,
     keyboardType = KeyboardType.Password
 )
+
+@Composable
+private fun getPasswordTransformation(showPasswordState: MutableState<Boolean>) =
+    if (showPasswordState.value) VisualTransformation.None else PasswordVisualTransformation()
+
+@Composable
+private fun PasswordVisibilityTrailingIcon(
+    showPasswordState: MutableState<Boolean>,
+    icon: ImageVector,
+    iconColor: Color
+) {
+    IconButton(onClick = { showPasswordState.value = !showPasswordState.value }) {
+        Icon(icon, tint = iconColor, contentDescription = "Visibility")
+    }
+}
+
+@Composable
+private fun getVisibilitySelectionPair(showPasswordState: MutableState<Boolean>) =
+    if (showPasswordState.value) {
+        Pair(Icons.Filled.Visibility, PrimaryColor)
+    } else {
+        Pair(Icons.Filled.VisibilityOff, DarkTextColor)
+    }
 
