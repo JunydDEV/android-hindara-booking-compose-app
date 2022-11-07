@@ -43,7 +43,7 @@ fun AuthenticationScreen(
 private fun SpacerComposable() {
     val topSpacerModifier = Modifier
         .fillMaxWidth()
-        .height(dimensionResource(id = R.dimen.largeSpacing))
+        .height(dimensionResource(id = R.dimen.defaultSpacing))
     Spacer(modifier = topSpacerModifier)
 }
 

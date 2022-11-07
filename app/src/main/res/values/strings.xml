@@ -13,4 +13,10 @@
     <string name="hindara_logo_description">Hindara Logo Description</string>
     <string name="tab_title_login">Log In</string>
     <string name="tab_title_signup">Sign Up</string>
+    <string name="textfield_email_label">Email</string>
+    <string name="textfield_password_placeholder">Enter your password</string>
+    <string name="textfield_password_label">Password</string>
+    <string name="textfield_email_placeholder">Enter your email</string>
+    <string name="text_forgot_password_label">Forgot Password?</string>
+    <string name="button_login_text">Login</string>
 </resources>
