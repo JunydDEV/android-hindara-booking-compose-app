@@ -9,4 +9,7 @@
 
     <dimen name="onboardingImageWidth">300dp</dimen>
     <dimen name="onboardingImageHeight">400dp</dimen>
+
+    <dimen name="horizontalLineWidth">300dp</dimen>
+    <dimen name="horizontalLineHeight">1dp</dimen>
 </resources>

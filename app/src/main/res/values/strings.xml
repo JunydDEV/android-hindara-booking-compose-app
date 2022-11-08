@@ -19,4 +19,9 @@
     <string name="textfield_email_placeholder">Enter your email</string>
     <string name="text_forgot_password_label">Forgot Password?</string>
     <string name="button_login_text">Login</string>
+    <string name="text_alternate_login_with">Or login with</string>
+    <string name="description_password_visibility">Visibility</string>
+    <string name="button_facebook_text">Facebook</string>
+    <string name="facebook_image_description">Facebook Image Description</string>
+    <string name="google_image_description">Google Image Description</string>
 </resources>

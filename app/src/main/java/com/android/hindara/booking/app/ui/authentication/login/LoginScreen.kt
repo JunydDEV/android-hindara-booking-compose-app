@@ -1,28 +1,32 @@
 package com.android.hindara.booking.app.ui.authentication.login
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -33,16 +37,19 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.PrimaryColor
-import com.android.hindara.booking.app.ui.theme.WhiteColor
+import com.android.hindara.booking.app.getHalfScreenWidth
+import com.android.hindara.booking.app.ui.theme.*
 
 @Composable
 fun LoginScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
         SpacerComposable()
         EmailTextFieldLabelComposable()
         EmailTextFieldComposable()
@@ -54,6 +61,28 @@ fun LoginScreen(
         ForgotPasswordTextComposable()
         SpacerComposable()
         LoginButtonComposable()
+
+        HorizontalLineComposable()
+        SocialAuthLoginButtonsComposable()
+    }
+}
+
+@Composable
+fun SocialAuthLoginButtonsComposable() {
+    val rowContentModifier = Modifier
+        .fillMaxWidth()
+        .padding(
+            top = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.defaultSpacing),
+            end = dimensionResource(id = R.dimen.defaultSpacing),
+            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+        )
+    Row(
+        modifier = rowContentModifier,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        GoogleAuthButtonComposable()
+        FacebookAuthButtonComposable()
     }
 }
 
@@ -171,6 +200,44 @@ fun ForgotPasswordTextComposable() {
     )
 }
 
+@Composable
+fun HorizontalLineComposable() {
+    val horizontalLineModifier = Modifier
+        .width(dimensionResource(id = R.dimen.horizontalLineWidth))
+        .height(dimensionResource(id = R.dimen.horizontalLineHeight))
+        .background(Color.LightGray)
+
+    val alternateLoginWithTextModifier = Modifier
+        .wrapContentWidth()
+        .background(ScreenBackgroundColor)
+        .padding(
+            start = dimensionResource(id = R.dimen.largeSpacing),
+            end = dimensionResource(id = R.dimen.defaultSpacing),
+        )
+
+    val boxModifier = Modifier
+        .fillMaxWidth()
+        .padding(
+            top = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.largeSpacing),
+            end = dimensionResource(id = R.dimen.largeSpacing)
+        )
+
+    Box(
+        modifier = boxModifier,
+        contentAlignment = Alignment.Center
+    ) {
+        Spacer(modifier = horizontalLineModifier)
+        Text(
+            modifier = alternateLoginWithTextModifier,
+            text = stringResource(R.string.text_alternate_login_with),
+            style = typography.body1,
+            color = DarkTextColor,
+            textAlign = TextAlign.Center
+        )
+    }
+
+}
 
 @Composable
 private fun LoginButtonComposable() {
@@ -185,7 +252,80 @@ private fun LoginButtonComposable() {
         shape = RoundedCornerShape(CornerSize(100.dp)),
         onClick = { /*TODO*/ },
     ) {
-        Text(text = stringResource(R.string.button_login_text))
+        Text(stringResource(R.string.button_login_text))
+    }
+}
+
+
+@Composable
+private fun FacebookAuthButtonComposable() {
+    val facebookButtonModifier = Modifier
+        .width(getHalfScreenWidth())
+    Button(
+        modifier = facebookButtonModifier,
+        shape = RoundedCornerShape(CornerSize(100.dp)),
+        colors = ButtonDefaults.buttonColors(backgroundColor = FacebookColor),
+        onClick = { /*TODO*/ },
+    ) {
+        FacebookAuthButtonContentComposable()
+    }
+}
+
+@Composable
+private fun FacebookAuthButtonContentComposable() {
+    Row(modifier = Modifier.wrapContentWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_facebook),
+            contentDescription = stringResource(R.string.facebook_image_description),
+            modifier = Modifier.size(ButtonDefaults.IconSize)
+        )
+        Spacer(
+            modifier = Modifier
+                .width(10.dp)
+                .height(10.dp)
+        )
+        Text(
+            text = stringResource(R.string.button_facebook_text),
+            color = WhiteColor
+        )
+    }
+}
+
+@Composable
+private fun GoogleAuthButtonComposable() {
+    val googleButtonModifier = Modifier
+        .width(getHalfScreenWidth())
+    Button(
+        modifier = googleButtonModifier,
+        shape = RoundedCornerShape(CornerSize(100.dp)),
+        colors = ButtonDefaults.buttonColors(backgroundColor = WhiteColor),
+        onClick = { /*TODO*/ },
+    ) {
+        GoogleAuthButtonContentComposable()
+    }
+}
+
+@Composable
+private fun GoogleAuthButtonContentComposable() {
+    Row(
+        modifier = Modifier.wrapContentWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_google),
+            contentDescription = stringResource(R.string.google_image_description),
+            modifier = Modifier.size(ButtonDefaults.IconSize)
+        )
+        Spacer(
+            modifier = Modifier
+                .width(10.dp)
+                .height(10.dp)
+        )
+        Text(
+            text = stringResource(R.string.button_login_text),
+            color = DarkTextColor
+        )
     }
 }
 
@@ -236,7 +376,7 @@ private fun onKeyboardAction(focus: FocusManager) = KeyboardActions(
 
 @Composable
 private fun getPasswordKeyboardOptions() = KeyboardOptions(
-    imeAction = ImeAction.Next,
+    imeAction = ImeAction.Done,
     keyboardType = KeyboardType.Password
 )
 
@@ -251,7 +391,11 @@ private fun PasswordVisibilityTrailingIcon(
     iconColor: Color
 ) {
     IconButton(onClick = { showPasswordState.value = !showPasswordState.value }) {
-        Icon(icon, tint = iconColor, contentDescription = "Visibility")
+        Icon(
+            imageVector = icon,
+            tint = iconColor,
+            contentDescription = stringResource(R.string.description_password_visibility),
+        )
     }
 }
 

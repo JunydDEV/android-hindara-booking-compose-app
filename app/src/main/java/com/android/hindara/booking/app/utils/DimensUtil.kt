@@ -27,3 +27,8 @@ fun getOnBoardingImageSizeInDp(): Pair<Dp, Dp> {
     return pair ?: Pair(300.dp, 400.dp)
 }
 
+@Composable
+fun getHalfScreenWidth(): Dp {
+    val configuration = LocalConfiguration.current
+    return configuration.screenWidthDp.div(2.5).dp
+}
