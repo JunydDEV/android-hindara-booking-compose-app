@@ -162,9 +162,7 @@ private fun NextButtonComposable(
 ) {
     val buttonNextModifier = Modifier
         .width(dimensionResource(id = R.dimen.buttonWidth))
-        .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-        )
+        .padding(start = dimensionResource(id = R.dimen.defaultSpacing))
 
     val clickListener = if (imageSelectionState.value < onboardingImagesList.size - 1) {
         onNextClickListener(positionState = imageSelectionState)

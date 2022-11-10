@@ -1,23 +1,18 @@
 package com.android.hindara.booking.app.ui.authentication.login
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -39,15 +34,40 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.getHalfScreenWidth
 import com.android.hindara.booking.app.ui.theme.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun LoginScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
+    val forgotPasswordBottomSheetState = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        confirmStateChange = { it != ModalBottomSheetValue.Expanded }
+    )
+    val coroutineScope = rememberCoroutineScope()
+
+    BackHandler(forgotPasswordBottomSheetState.isVisible) {
+        coroutineScope.launch { forgotPasswordBottomSheetState.hide() }
+    }
+
+    ForgotPasswordBottomSheet(sheetState = forgotPasswordBottomSheetState) {
+        MainScreenContent(forgotPasswordBottomSheetState, coroutineScope)
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun MainScreenContent(
+    bottomSheetScaffoldState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(ScreenBackgroundColor)
             .verticalScroll(rememberScrollState())
     ) {
         SpacerComposable()
@@ -58,7 +78,7 @@ fun LoginScreen(
         PasswordTextFieldLabelComposable()
         PasswordTextFieldComposable()
 
-        ForgotPasswordTextComposable()
+        ForgotPasswordTextComposable(bottomSheetScaffoldState, coroutineScope)
         SpacerComposable()
         LoginButtonComposable()
 
@@ -120,7 +140,7 @@ fun EmailTextFieldComposable() {
     TextField(
         modifier = emailTextFieldModifier,
         value = textFieldEmailState.value,
-        shape = RoundedCornerShape(CornerSize(50.dp)),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
         singleLine = true,
         textStyle = typography.body1,
         onValueChange = { textFieldEmailState.value = it },
@@ -167,7 +187,7 @@ fun PasswordTextFieldComposable() {
         modifier = passwordTextFieldModifier,
         value = textFieldPasswordState.value,
         onValueChange = { textFieldPasswordState.value = it },
-        shape = RoundedCornerShape(CornerSize(50.dp)),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
         colors = getTextFieldColors(),
         singleLine = true,
         textStyle = typography.body1,
@@ -182,8 +202,12 @@ fun PasswordTextFieldComposable() {
     )
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ForgotPasswordTextComposable() {
+fun ForgotPasswordTextComposable(
+    bottomSheetScaffoldState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope
+) {
     val forgotPasswordTextModifier = Modifier
         .fillMaxWidth()
         .padding(
@@ -192,7 +216,11 @@ fun ForgotPasswordTextComposable() {
             end = dimensionResource(id = R.dimen.defaultSpacing),
         )
     Text(
-        modifier = forgotPasswordTextModifier,
+        modifier = forgotPasswordTextModifier.clickable {
+            coroutineScope.launch {
+                bottomSheetScaffoldState.animateTo(ModalBottomSheetValue.Expanded)
+            }
+        },
         text = stringResource(R.string.text_forgot_password_label),
         style = typography.body1,
         color = DarkTextColor,
@@ -205,7 +233,7 @@ fun HorizontalLineComposable() {
     val horizontalLineModifier = Modifier
         .width(dimensionResource(id = R.dimen.horizontalLineWidth))
         .height(dimensionResource(id = R.dimen.horizontalLineHeight))
-        .background(Color.LightGray)
+        .background(LineColor)
 
     val alternateLoginWithTextModifier = Modifier
         .wrapContentWidth()
@@ -343,7 +371,7 @@ private fun EmailPlaceholderContent(typography: Typography) {
     Text(
         text = stringResource(R.string.textfield_email_placeholder),
         style = typography.body1,
-        color = Color.Gray
+        color = FieldPlaceholderColor
     )
 }
 
@@ -358,20 +386,21 @@ private fun PasswordPlaceholderContent(typography: Typography) {
     Text(
         text = stringResource(R.string.textfield_password_placeholder),
         style = typography.body1,
-        color = Color.Gray
+        color = FieldPlaceholderColor
     )
 }
 
 @Composable
 private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
-    backgroundColor = WhiteColor,
+    backgroundColor = FieldBackgroundColor,
     focusedIndicatorColor = Color.Transparent,
     unfocusedIndicatorColor = Color.Transparent
 )
 
 @Composable
 private fun onKeyboardAction(focus: FocusManager) = KeyboardActions(
-    onNext = { focus.moveFocus(FocusDirection.Down) }
+    onNext = { focus.moveFocus(FocusDirection.Down) },
+    onDone = { focus.clearFocus() }
 )
 
 @Composable

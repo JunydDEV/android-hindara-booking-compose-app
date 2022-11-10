@@ -24,4 +24,7 @@
     <string name="button_facebook_text">Facebook</string>
     <string name="facebook_image_description">Facebook Image Description</string>
     <string name="google_image_description">Google Image Description</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_description">Enter your email for the verification proccess, we will send 4 digits code to your email.</string>
+    <string name="button_continue_text">Continue</string>
 </resources>

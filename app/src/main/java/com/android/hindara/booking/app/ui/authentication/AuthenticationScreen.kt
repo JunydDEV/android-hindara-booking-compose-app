@@ -15,9 +15,7 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.authentication.login.LoginScreen
 import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
-import com.android.hindara.booking.app.ui.theme.PrimaryColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
-import com.android.hindara.booking.app.ui.theme.WhiteColor
+import com.android.hindara.booking.app.ui.theme.*
 import com.google.accompanist.pager.*
 
 @Composable
@@ -59,14 +57,21 @@ private fun AppLogoComposable() {
 @Composable
 fun SwipePagerView(navController: NavController) {
     Column {
-        val tabIndex by remember { mutableStateOf(0) }
+        val tabIndexState = remember { mutableStateOf(0) }
         val tabTitles = listOf(
             stringResource(R.string.tab_title_login),
             stringResource(R.string.tab_title_signup)
         )
         val pagerState = rememberPagerState()
 
-        TabRowComposable(tabIndex, pagerState, tabTitles)
+        LaunchedEffect(pagerState) {
+            // Collect from the pager state a snapshotFlow reading the currentPage
+            snapshotFlow { pagerState.currentPage }.collect { page ->
+                tabIndexState.value = page
+            }
+        }
+
+        TabRowComposable(tabIndexState, pagerState, tabTitles)
         HorizontalPagerComposable(navController,tabTitles, pagerState)
     }
 }
@@ -74,22 +79,23 @@ fun SwipePagerView(navController: NavController) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun TabRowComposable(
-    tabIndex: Int,
+    tabPosition: MutableState<Int>,
     pagerState: PagerState,
     tabTitles: List<String>
 ) {
-    var tabPosition = tabIndex
     TabRow(
-        selectedTabIndex = tabPosition,
-        backgroundColor = WhiteColor,
+        selectedTabIndex = tabPosition.value,
+        backgroundColor = TabBackgroundColor,
         indicator = { tabPositions ->
             TabIndicatorComposable(pagerState, tabPositions)
         }
     ) {
         tabTitles.forEachIndexed { index, title ->
             Tab(
-                selected = tabPosition == index,
-                onClick = { tabPosition = index },
+                selected = tabPosition.value == index,
+                selectedContentColor = SelectedContentContentColor,
+                unselectedContentColor = UnSelectedTabContentColor,
+                onClick = { tabPosition.value = index },
                 text = { Text(text = title) },
             )
         }
@@ -101,7 +107,7 @@ private fun TabRowComposable(
 private fun TabIndicatorComposable(pagerState: PagerState, tabPositions: List<TabPosition>) {
     TabRowDefaults.Indicator(
         modifier = Modifier.pagerTabIndicatorOffset(pagerState, tabPositions),
-        color = PrimaryColor
+        color = TabIndicatorColor
     )
 }
 
@@ -110,8 +116,7 @@ private fun TabIndicatorComposable(pagerState: PagerState, tabPositions: List<Ta
 private fun HorizontalPagerComposable(
     navController: NavController,
     tabTitles: List<String>,
-    pagerState: PagerState
-) {
+    pagerState: PagerState) {
     HorizontalPager(
         count = tabTitles.size,
         state = pagerState,
