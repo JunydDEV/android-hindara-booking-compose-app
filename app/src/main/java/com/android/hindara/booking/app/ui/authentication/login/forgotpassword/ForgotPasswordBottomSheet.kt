@@ -16,16 +16,18 @@ import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.authentication.login.forgotpassword.ForgotPasswordViewModel
 import com.android.hindara.booking.app.ui.theme.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ForgotPasswordBottomSheet(
+    viewModel: ForgotPasswordViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
     MainScreenContent: @Composable () -> Unit
 ) {
