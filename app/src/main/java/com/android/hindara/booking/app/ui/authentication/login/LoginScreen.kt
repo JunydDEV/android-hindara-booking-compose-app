@@ -33,6 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.getHalfScreenWidth
+import com.android.hindara.booking.app.ui.authentication.login.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.theme.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -43,18 +44,53 @@ fun LoginScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    val forgotPasswordBottomSheetState = rememberModalBottomSheetState(
+    val bottomSheetsVisibilityState = remember {
+        mutableStateOf<LoginBottomSheet>(LoginBottomSheet.ForgotPassword)
+    }
+    val bottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         confirmStateChange = { it != ModalBottomSheetValue.Expanded }
     )
     val coroutineScope = rememberCoroutineScope()
 
-    BackHandler(forgotPasswordBottomSheetState.isVisible) {
-        coroutineScope.launch { forgotPasswordBottomSheetState.hide() }
+    SetupBottomSheetModelLayout(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun SetupBottomSheetModelLayout(
+    loginBottomSheetState: MutableState<LoginBottomSheet>,
+    bottomSheetState: ModalBottomSheetState,
+    scope: CoroutineScope
+) {
+    BackHandler(bottomSheetState.isVisible) {
+        scope.launch { bottomSheetState.hide() }
     }
 
-    ForgotPasswordBottomSheet(sheetState = forgotPasswordBottomSheetState) {
-        MainScreenContent(forgotPasswordBottomSheetState, coroutineScope)
+    LaunchedEffect(key1 = scope) {
+        scope.launch { bottomSheetState.hide() }
+    }
+
+    when (loginBottomSheetState.value) {
+        LoginBottomSheet.ForgotPassword -> {
+            ForgotPasswordBottomSheet(
+                sheetState = bottomSheetState,
+                loginBottomSheetState = loginBottomSheetState
+            ) {
+                MainScreenContent(
+                    bottomSheetScaffoldState = bottomSheetState,
+                    coroutineScope = scope
+                )
+            }
+        }
+        else -> {
+            EmailVerificationBottomSheet(sheetState = bottomSheetState) {
+                MainScreenContent(
+                    bottomSheetScaffoldState = bottomSheetState,
+                    coroutineScope = scope
+                )
+            }
+        }
     }
 }
 
@@ -117,7 +153,7 @@ private fun EmailTextFieldLabelComposable() {
         )
     Text(
         modifier = emailLabelModifier,
-        text = stringResource(R.string.textfield_email_label),
+        text = stringResource(R.string.textField_email_label),
         style = typography.body1,
         color = DarkTextColor
     )
@@ -164,7 +200,7 @@ private fun PasswordTextFieldLabelComposable() {
         )
     Text(
         modifier = passwordLabelModifier,
-        text = stringResource(R.string.textfield_password_label),
+        text = stringResource(R.string.textField_password_label),
         style = typography.body1,
         color = DarkTextColor
     )
@@ -369,7 +405,7 @@ private fun SpacerComposable() {
 @Composable
 private fun EmailPlaceholderContent(typography: Typography) {
     Text(
-        text = stringResource(R.string.textfield_email_placeholder),
+        text = stringResource(R.string.textField_email_placeholder),
         style = typography.body1,
         color = FieldPlaceholderColor
     )
@@ -384,7 +420,7 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
 @Composable
 private fun PasswordPlaceholderContent(typography: Typography) {
     Text(
-        text = stringResource(R.string.textfield_password_placeholder),
+        text = stringResource(R.string.textField_password_placeholder),
         style = typography.body1,
         color = FieldPlaceholderColor
     )

@@ -16,4 +16,8 @@
 
     <dimen name="bottomSheetCornerSize">15dp</dimen>
 
+    <dimen name="digitFieldWidth">50dp</dimen>
+    <dimen name="digitFieldHeight">60dp</dimen>
+    <dimen name="digitFieldCornerSize">10dp</dimen>
+
 </resources>

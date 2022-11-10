@@ -6,10 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
@@ -29,6 +26,7 @@ import com.android.hindara.booking.app.ui.theme.*
 fun ForgotPasswordBottomSheet(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
+    loginBottomSheetState: MutableState<LoginBottomSheet>,
     MainScreenContent: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -38,12 +36,12 @@ fun ForgotPasswordBottomSheet(
             topStart = dimensionResource(id = R.dimen.bottomSheetCornerSize),
             topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
         ),
-        sheetContent = { ForgotPasswordBottomSheetContent() },
+        sheetContent = { ForgotPasswordBottomSheetContent(loginBottomSheetState) },
     ) { MainScreenContent() }
 }
 
 @Composable
-fun ForgotPasswordBottomSheetContent() {
+fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheet>) {
     Column(
         modifier = Modifier
             .padding(dimensionResource(id = R.dimen.defaultSpacing))
@@ -65,7 +63,7 @@ fun ForgotPasswordBottomSheetContent() {
 
         ForgotPasswordEmailTextFieldLabelComposable()
         ForgotPasswordEmailTextFieldComposable()
-        ContinueButtonComposable()
+        ContinueButtonComposable(loginBottomSheetState)
     }
 }
 
@@ -76,7 +74,7 @@ private fun ForgotPasswordEmailTextFieldLabelComposable() {
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
     Text(
         modifier = emailLabelModifier,
-        text = stringResource(R.string.textfield_email_label),
+        text = stringResource(R.string.textField_email_label),
         style = MaterialTheme.typography.body1,
         color = DarkTextColor
     )
@@ -125,7 +123,7 @@ private fun onKeyboardAction(focus: FocusManager, fieldState: MutableState<Strin
 @Composable
 private fun EmailPlaceholderContent(typography: Typography) {
     Text(
-        text = stringResource(R.string.textfield_email_placeholder),
+        text = stringResource(R.string.textField_email_placeholder),
         style = typography.body1,
         color = FieldPlaceholderColor
     )
@@ -138,14 +136,16 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
 )
 
 @Composable
-private fun ContinueButtonComposable() {
+private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheet>) {
     val continueButtonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.smallSpacing))
     Button(
         modifier = continueButtonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
-        onClick = { },
+        onClick = {
+            loginBottomSheetState.value = LoginBottomSheet.VerifyEmail
+        },
     ) {
         Text(stringResource(R.string.button_continue_text))
     }
