@@ -244,24 +244,37 @@ fun ForgotPasswordTextComposable(
     bottomSheetScaffoldState: ModalBottomSheetState,
     coroutineScope: CoroutineScope
 ) {
-    val forgotPasswordTextModifier = Modifier
-        .fillMaxWidth()
-        .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.largeSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+    Box(
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.CenterEnd,
+    ) {
+        val forgotPasswordTextModifier = Modifier
+            .padding(
+                top = dimensionResource(id = R.dimen.defaultSpacing),
+                start = dimensionResource(id = R.dimen.largeSpacing),
+                end = dimensionResource(id = R.dimen.defaultSpacing),
+            )
+
+        Text(
+            modifier = forgotPasswordTextModifier.clickable {
+                showBottomSheet(bottomSheetScaffoldState, coroutineScope)
+            },
+            text = stringResource(R.string.text_forgot_password_label),
+            style = typography.body1,
+            color = DarkTextColor,
+            textAlign = TextAlign.End
         )
-    Text(
-        modifier = forgotPasswordTextModifier.clickable {
-            coroutineScope.launch {
-                bottomSheetScaffoldState.animateTo(ModalBottomSheetValue.Expanded)
-            }
-        },
-        text = stringResource(R.string.text_forgot_password_label),
-        style = typography.body1,
-        color = DarkTextColor,
-        textAlign = TextAlign.End
-    )
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+fun showBottomSheet(
+    bottomSheetScaffoldState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope
+) {
+    coroutineScope.launch {
+        bottomSheetScaffoldState.animateTo(ModalBottomSheetValue.Expanded)
+    }
 }
 
 @Composable
