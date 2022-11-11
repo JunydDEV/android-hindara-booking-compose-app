@@ -240,7 +240,7 @@ private fun ResetButtonComposable(loginBottomSheetState: MutableState<LoginBotto
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            loginBottomSheetState.value = LoginBottomSheet.ResetPasswordSuccess
+            loginBottomSheetState.value = LoginBottomSheet.ResetPasswordFailure
         },
     ) {
         Text(stringResource(R.string.button_reset_password_text))

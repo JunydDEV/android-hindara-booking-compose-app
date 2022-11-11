@@ -11,7 +11,7 @@ import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.Logi
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.ForgotPasswordBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.ResetPasswordBottomSheet
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpasswordsuccess.ResetPasswordSuccessBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpasswordresult.ResetPasswordResultBottomSheet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -56,9 +56,19 @@ fun BottomSheetsRouterComposable(
             }
         }
         LoginBottomSheet.ResetPasswordSuccess -> {
-            ResetPasswordSuccessBottomSheet(
+            ResetPasswordResultBottomSheet(
                 sheetState = bottomSheetState,
-                loginBottomSheetState = bottomSheetsVisibilityState
+                loginBottomSheetState = bottomSheetsVisibilityState,
+                result = LoginBottomSheet.ResetPasswordSuccess
+            ) {
+                function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
+            }
+        }
+        LoginBottomSheet.ResetPasswordFailure -> {
+            ResetPasswordResultBottomSheet(
+                sheetState = bottomSheetState,
+                loginBottomSheetState = bottomSheetsVisibilityState,
+                result = LoginBottomSheet.ResetPasswordFailure
             ) {
                 function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
             }
