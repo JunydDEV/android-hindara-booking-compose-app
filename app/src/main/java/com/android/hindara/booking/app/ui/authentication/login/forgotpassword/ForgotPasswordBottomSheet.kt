@@ -71,7 +71,10 @@ fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBo
 private fun ForgotPasswordEmailTextFieldLabelComposable() {
     val emailLabelModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(
+            top = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.smallSpacing)
+        )
     Text(
         modifier = emailLabelModifier,
         text = stringResource(R.string.textField_email_label),
@@ -95,7 +98,7 @@ fun ForgotPasswordEmailTextFieldComposable() {
         singleLine = true,
         textStyle = MaterialTheme.typography.body1,
         onValueChange = { textFieldEmailState.value = it },
-        keyboardActions = onKeyboardAction(focus,textFieldEmailState),
+        keyboardActions = onKeyboardAction(focus, textFieldEmailState),
         keyboardOptions = getEmailKeyboardOptions(),
         colors = getTextFieldColors(),
         placeholder = {
@@ -112,13 +115,14 @@ private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
 )
 
 @Composable
-private fun onKeyboardAction(focus: FocusManager, fieldState: MutableState<String>) = KeyboardActions(
-    onNext = { focus.moveFocus(FocusDirection.Down) },
-    onDone = {
-        focus.clearFocus()
-        fieldState.value = ""
-    }
-)
+private fun onKeyboardAction(focus: FocusManager, fieldState: MutableState<String>) =
+    KeyboardActions(
+        onNext = { focus.moveFocus(FocusDirection.Down) },
+        onDone = {
+            focus.clearFocus()
+            fieldState.value = ""
+        }
+    )
 
 @Composable
 private fun EmailPlaceholderContent(typography: Typography) {
@@ -139,7 +143,7 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
 private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheet>) {
     val continueButtonModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.smallSpacing))
+        .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
     Button(
         modifier = continueButtonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
