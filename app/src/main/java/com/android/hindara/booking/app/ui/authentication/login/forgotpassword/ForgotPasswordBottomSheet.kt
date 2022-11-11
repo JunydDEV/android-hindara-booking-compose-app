@@ -1,10 +1,12 @@
 package com.android.hindara.booking.app.ui.authentication.login
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -42,10 +44,12 @@ fun ForgotPasswordBottomSheet(
 
 @Composable
 fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+    val parentColumnModifier = Modifier
+        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .verticalScroll(rememberScrollState())
+        .fillMaxWidth()
     Column(
-        modifier = Modifier
-            .padding(dimensionResource(id = R.dimen.defaultSpacing))
-            .fillMaxWidth()
+        modifier = parentColumnModifier
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -141,11 +145,11 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
 
 @Composable
 private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheet>) {
-    val continueButtonModifier = Modifier
+    val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
     Button(
-        modifier = continueButtonModifier,
+        modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
             loginBottomSheetState.value = LoginBottomSheet.VerifyEmail

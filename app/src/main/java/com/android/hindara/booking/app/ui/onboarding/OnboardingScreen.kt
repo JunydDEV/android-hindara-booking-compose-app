@@ -4,7 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -37,7 +39,10 @@ fun OnboardingScreen(
     }
     val selectedImage = onboardingImagesList[imageSelectionState.value]
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    val parentColumnModifier = Modifier
+        .fillMaxSize()
+        .verticalScroll(rememberScrollState())
+    Column(modifier = parentColumnModifier) {
         SpacerComposable()
         OnboardingImageComposable(selectedImage)
         OnboardingTitleComposable(selectedImage)

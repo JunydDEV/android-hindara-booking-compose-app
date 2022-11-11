@@ -2,10 +2,12 @@ package com.android.hindara.booking.app.ui.authentication.login.emailverificatio
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -49,6 +51,7 @@ fun EmailVerificationBottomSheet(
 fun EmailVerificationBottomSheetContent() {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .verticalScroll(rememberScrollState())
         .fillMaxWidth()
     Column(
         modifier = parentColumnModifier
