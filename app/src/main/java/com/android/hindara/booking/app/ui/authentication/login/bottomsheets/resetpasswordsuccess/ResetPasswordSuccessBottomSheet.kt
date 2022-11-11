@@ -49,40 +49,58 @@ fun ResetPasswordSuccessBottomSheetContent(loginBottomSheetState: MutableState<L
         modifier = parentColumnModifier
     ) {
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.defaultSpacing)),
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_success),
-                contentDescription = stringResource(
-                    R.string.reset_password_sucess_image_description
-                )
-            )
-        }
-
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.defaultSpacing)))
-
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.reset_password_success_title),
-            style = MaterialTheme.typography.h1,
-            color = DarkTextColor
-        )
-
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.reset_password_success_description),
-            style = MaterialTheme.typography.body2,
-            color = DarkTextColor
-        )
-
+        SuccessImageComposable()
+        SpacerComposable()
+        ResetPasswordSuccessTitle()
+        ResetPasswordSuccessDescription()
         ContinueButtonComposable(loginBottomSheetState)
     }
+}
+
+@Composable
+private fun SuccessImageComposable() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = dimensionResource(id = R.dimen.largeSpacing)),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_success),
+            contentDescription = stringResource(
+                R.string.reset_password_sucess_image_description
+            )
+        )
+    }
+}
+
+@Composable
+private fun SpacerComposable() {
+    Spacer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(dimensionResource(id = R.dimen.largeSpacing))
+    )
+}
+
+@Composable
+private fun ResetPasswordSuccessTitle() {
+    Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = stringResource(R.string.reset_password_success_title),
+        style = MaterialTheme.typography.h1,
+        color = DarkTextColor
+    )
+}
+
+@Composable
+private fun ResetPasswordSuccessDescription() {
+    Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = stringResource(R.string.reset_password_success_description),
+        style = MaterialTheme.typography.body2,
+        color = DarkTextColor
+    )
 }
 
 @Composable

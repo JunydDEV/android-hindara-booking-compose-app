@@ -62,26 +62,34 @@ fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBot
     Column(
         modifier = parentColumnModifier
     ) {
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.reset_password_title),
-            style = MaterialTheme.typography.h1,
-            color = DarkTextColor
-        )
-
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.reset_password_description),
-            style = MaterialTheme.typography.body2,
-            color = DarkTextColor
-        )
-
+        ResetPasswordTitleComposable()
+        ResetPasswordDescriptionComposable()
         NewPasswordTextFieldLabelComposable()
         NewPasswordTextFieldComposable()
         ConfirmPasswordTextFieldLabelComposable()
         ConfirmPasswordTextFieldComposable()
         ResetButtonComposable(loginBottomSheetState)
     }
+}
+
+@Composable
+private fun ResetPasswordTitleComposable() {
+    Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = stringResource(R.string.reset_password_title),
+        style = MaterialTheme.typography.h1,
+        color = DarkTextColor
+    )
+}
+
+@Composable
+private fun ResetPasswordDescriptionComposable() {
+    Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = stringResource(R.string.reset_password_description),
+        style = MaterialTheme.typography.body2,
+        color = DarkTextColor
+    )
 }
 
 @Composable

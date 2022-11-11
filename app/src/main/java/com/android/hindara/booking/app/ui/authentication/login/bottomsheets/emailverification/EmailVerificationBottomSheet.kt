@@ -58,24 +58,31 @@ fun EmailVerificationBottomSheetContent(loginBottomSheetState: MutableState<Logi
     Column(
         modifier = parentColumnModifier
     ) {
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.enter_digits_title),
-            style = MaterialTheme.typography.h1,
-            color = DarkTextColor
-        )
-
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.enter_digits_description),
-            style = MaterialTheme.typography.body2,
-            color = DarkTextColor
-        )
-
+        VerifyEmailTitleComposable()
+        VerifyEmailDescriptionComposable()
         DigitsRowComposable()
-
         ContinueButtonComposable(loginBottomSheetState)
     }
+}
+
+@Composable
+private fun VerifyEmailTitleComposable() {
+    Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = stringResource(R.string.enter_digits_title),
+        style = MaterialTheme.typography.h1,
+        color = DarkTextColor
+    )
+}
+
+@Composable
+private fun VerifyEmailDescriptionComposable() {
+    Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = stringResource(R.string.enter_digits_description),
+        style = MaterialTheme.typography.body2,
+        color = DarkTextColor
+    )
 }
 
 @Composable
