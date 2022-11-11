@@ -16,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -26,6 +27,8 @@ import com.android.hindara.booking.app.data.OnboardingImage
 import com.android.hindara.booking.app.getOnBoardingImageSizeInDp
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.SelectedDotTintColor
+import com.android.hindara.booking.app.ui.theme.UnSelectedDotTintColor
 
 
 @Composable
@@ -189,27 +192,47 @@ private fun OnboardingButtonContent(
     imageSelectionState: MutableState<Int>,
     onboardingImagesList: List<OnboardingImage>
 ) {
-    val buttonText = if (imageSelectionState.value < onboardingImagesList.size - 1) {
-        stringResource(R.string.button_text_next)
-    } else {
-        stringResource(R.string.button_text_get_started)
-    }
+    val buttonText = getButtonText(imageSelectionState, onboardingImagesList)
     Text(text = buttonText)
 }
 
 @Composable
+private fun getButtonText(
+    imageSelectionState: MutableState<Int>,
+    onboardingImagesList: List<OnboardingImage>
+) = if (imageSelectionState.value < onboardingImagesList.size - 1) {
+    stringResource(R.string.button_text_next)
+} else {
+    stringResource(R.string.button_text_get_started)
+}
+
+@Composable
 private fun DotView(onboardingImage: OnboardingImage) {
-    val icon = if (onboardingImage.isSelected) {
+    val icon = getDotIcon(onboardingImage)
+    val tintColor = getTintColor(onboardingImage)
+    Image(
+        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.smallSpacing)),
+        painter = painterResource(id = icon),
+        colorFilter = ColorFilter.tint(tintColor),
+        contentDescription = stringResource(R.string.dot_icon_image_description)
+    )
+}
+
+fun getTintColor(onboardingImage: OnboardingImage) =
+    if(onboardingImage.isSelected) {
+        SelectedDotTintColor
+    } else {
+        UnSelectedDotTintColor
+    }
+
+
+@Composable
+private fun getDotIcon(onboardingImage: OnboardingImage) =
+    if (onboardingImage.isSelected) {
         R.drawable.ic_dot_selected
     } else {
         R.drawable.ic_dot_unselected
     }
-    Image(
-        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.smallSpacing)),
-        painter = painterResource(id = icon),
-        contentDescription = stringResource(R.string.dot_icon_image_description)
-    )
-}
 
 @Composable
 private fun onNextClickListener(positionState: MutableState<Int>): () -> Unit = {
