@@ -1,6 +1,5 @@
 package com.android.hindara.booking.app.ui.authentication.login
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
@@ -33,7 +32,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.getHalfScreenWidth
-import com.android.hindara.booking.app.ui.authentication.login.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.theme.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

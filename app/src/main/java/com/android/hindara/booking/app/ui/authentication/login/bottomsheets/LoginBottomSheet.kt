@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.authentication.login
+package com.android.hindara.booking.app.ui.authentication.login.bottomsheets
 
 sealed class LoginBottomSheet {
     object ForgotPassword : LoginBottomSheet()

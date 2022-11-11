@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.authentication.login.resetpassword
+package com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,12 +31,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.authentication.login.LoginBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheet
 import com.android.hindara.booking.app.ui.theme.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ResentBottomSheet(
+fun ResetPasswordBottomSheet(
     viewModel: ResetPasswordViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
     loginBottomSheetState: MutableState<LoginBottomSheet>,
@@ -232,7 +232,7 @@ private fun ResetButtonComposable(loginBottomSheetState: MutableState<LoginBotto
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            loginBottomSheetState.value = LoginBottomSheet.VerifyEmail
+            loginBottomSheetState.value = LoginBottomSheet.ResetPasswordSuccess
         },
     ) {
         Text(stringResource(R.string.button_reset_password_text))

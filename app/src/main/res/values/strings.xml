@@ -29,9 +29,13 @@
     <string name="forgot_password_title">Forgot Password</string>
     <string name="forgot_password_description">Enter your email for the verification proccess, we will send 4 digits code to your email.</string>
     <string name="button_continue_text">Continue</string>
+    <string name="button_login_now_text">Login Now</string>
     <string name="button_reset_password_text">Reset Password</string>
     <string name="enter_digits_title">Enter 4 Digits Code</string>
     <string name="enter_digits_description">Enter the 4 digits code that you received on your email.</string>
     <string name="reset_password_title">Reset Password</string>
     <string name="reset_password_description">Set the new password for your account so you can login and access all the features.</string>
+    <string name="reset_password_success_title">Reset Password Success</string>
+    <string name="reset_password_success_description">Now you can login with your new password and enjoy your next level experience!</string>
+    <string name="reset_password_sucess_image_description">Reset Password Success</string>
 </resources>

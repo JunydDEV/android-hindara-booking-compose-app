@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.authentication.login.forgotpassword
+package com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -20,7 +20,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.authentication.login.LoginBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheet
 import com.android.hindara.booking.app.ui.theme.*
 
 @OptIn(ExperimentalMaterialApi::class)
