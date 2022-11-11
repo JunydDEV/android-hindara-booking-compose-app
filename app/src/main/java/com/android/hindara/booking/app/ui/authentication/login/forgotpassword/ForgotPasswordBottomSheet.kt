@@ -102,7 +102,7 @@ fun ForgotPasswordEmailTextFieldComposable() {
         singleLine = true,
         textStyle = MaterialTheme.typography.body1,
         onValueChange = { textFieldEmailState.value = it },
-        keyboardActions = onKeyboardAction(focus, textFieldEmailState),
+        keyboardActions = onKeyboardAction(focus),
         keyboardOptions = getEmailKeyboardOptions(),
         colors = getTextFieldColors(),
         placeholder = {
@@ -119,12 +119,11 @@ private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
 )
 
 @Composable
-private fun onKeyboardAction(focus: FocusManager, fieldState: MutableState<String>) =
+private fun onKeyboardAction(focus: FocusManager) =
     KeyboardActions(
         onNext = { focus.moveFocus(FocusDirection.Down) },
         onDone = {
             focus.clearFocus()
-            fieldState.value = ""
         }
     )
 

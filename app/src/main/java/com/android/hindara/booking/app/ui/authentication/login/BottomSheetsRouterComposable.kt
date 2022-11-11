@@ -9,6 +9,7 @@ import androidx.compose.runtime.*
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.ui.authentication.login.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.forgotpassword.ForgotPasswordBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.resetpassword.ResentBottomSheet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

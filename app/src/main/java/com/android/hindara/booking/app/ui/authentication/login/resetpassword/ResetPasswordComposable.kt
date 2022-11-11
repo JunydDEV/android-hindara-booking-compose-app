@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.authentication.login
+package com.android.hindara.booking.app.ui.authentication.login.resetpassword
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +10,9 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -18,18 +21,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.authentication.login.resetpassword.ResetPasswordViewModel
-import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
-import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
+import com.android.hindara.booking.app.ui.authentication.login.LoginBottomSheet
+import com.android.hindara.booking.app.ui.theme.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -104,6 +107,7 @@ fun NewPasswordTextFieldComposable() {
     val textFieldPasswordState = remember {
         mutableStateOf("")
     }
+    val showPasswordState = remember { mutableStateOf(false) }
 
     TextField(
         modifier = Modifier.fillMaxWidth(),
@@ -114,11 +118,15 @@ fun NewPasswordTextFieldComposable() {
         onValueChange = { textFieldPasswordState.value = it },
         keyboardActions = onKeyboardAction(
             focus = focus,
-            focusDirection = FocusDirection.Next,
-            fieldState = textFieldPasswordState
+            focusDirection = FocusDirection.Next
         ),
         keyboardOptions = getPasswordKeyboardOptions(ImeAction.Next),
         colors = getTextFieldColors(),
+        visualTransformation = getPasswordTransformation(showPasswordState),
+        trailingIcon = {
+            val (icon, iconColor) = getVisibilitySelectionPair(showPasswordState)
+            PasswordVisibilityTrailingIcon(showPasswordState, icon, iconColor)
+        },
         placeholder = {
             PasswordPlaceholderContent(
                 typography =  MaterialTheme.typography,
@@ -151,6 +159,7 @@ fun ConfirmPasswordTextFieldComposable() {
     val textFieldPasswordState = remember {
         mutableStateOf("")
     }
+    val showPasswordState = remember { mutableStateOf(false) }
 
     TextField(
         modifier = Modifier.fillMaxWidth(),
@@ -161,11 +170,15 @@ fun ConfirmPasswordTextFieldComposable() {
         onValueChange = { textFieldPasswordState.value = it },
         keyboardActions = onKeyboardAction(
             focus = focus,
-            focusDirection = FocusDirection.Next,
-            fieldState = textFieldPasswordState
+            focusDirection = FocusDirection.Down
         ),
-        keyboardOptions = getPasswordKeyboardOptions(ImeAction.Next),
+        keyboardOptions = getPasswordKeyboardOptions(ImeAction.Done),
         colors = getTextFieldColors(),
+        visualTransformation = getPasswordTransformation(showPasswordState),
+        trailingIcon = {
+            val (icon, iconColor) = getVisibilitySelectionPair(showPasswordState)
+            PasswordVisibilityTrailingIcon(showPasswordState, icon, iconColor)
+        },
         placeholder = {
             PasswordPlaceholderContent(
                 typography =  MaterialTheme.typography,
@@ -186,14 +199,12 @@ private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
 @Composable
 private fun onKeyboardAction(
     focus: FocusManager,
-    fieldState: MutableState<String>,
     focusDirection: FocusDirection
 ) =
     KeyboardActions(
         onNext = { focus.moveFocus(focusDirection) },
         onDone = {
             focus.clearFocus()
-            fieldState.value = ""
         }
     )
 
@@ -227,4 +238,32 @@ private fun ResetButtonComposable(loginBottomSheetState: MutableState<LoginBotto
         Text(stringResource(R.string.button_reset_password_text))
     }
 }
+
+
+@Composable
+private fun getPasswordTransformation(showPasswordState: MutableState<Boolean>) =
+    if (showPasswordState.value) VisualTransformation.None else PasswordVisualTransformation()
+
+@Composable
+private fun PasswordVisibilityTrailingIcon(
+    showPasswordState: MutableState<Boolean>,
+    icon: ImageVector,
+    iconColor: Color
+) {
+    IconButton(onClick = { showPasswordState.value = !showPasswordState.value }) {
+        Icon(
+            imageVector = icon,
+            tint = iconColor,
+            contentDescription = stringResource(R.string.description_password_visibility),
+        )
+    }
+}
+
+@Composable
+private fun getVisibilitySelectionPair(showPasswordState: MutableState<Boolean>) =
+    if (showPasswordState.value) {
+        Pair(Icons.Filled.Visibility, PrimaryColor)
+    } else {
+        Pair(Icons.Filled.VisibilityOff, DarkTextColor)
+    }
 
