@@ -13,15 +13,31 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.authentication.login.LoginScreen
+import com.android.hindara.booking.app.ui.authentication.login.*
 import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
 import com.android.hindara.booking.app.ui.theme.*
 import com.google.accompanist.pager.*
+import kotlinx.coroutines.CoroutineScope
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AuthenticationScreen(
     navController: NavController,
     authenticationViewModel: AuthenticationViewModel = hiltViewModel()
+) {
+    BottomSheetsRouterComposable(
+        navController
+    ) { _, bottomSheetState, coroutineScope->
+        MainScreenContentComposable(navController, bottomSheetState, coroutineScope)
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun MainScreenContentComposable(
+    navController: NavController,
+    bottomSheetState: ModalBottomSheetState,
+    scope: CoroutineScope
 ) {
     val mainColumnModifier = Modifier
         .background(ScreenBackgroundColor)
@@ -33,7 +49,7 @@ fun AuthenticationScreen(
         SpacerComposable()
         AppLogoComposable()
         SpacerComposable()
-        SwipePagerView(navController)
+        SwipePagerView(navController, bottomSheetState, scope)
     }
 }
 
@@ -53,9 +69,13 @@ private fun AppLogoComposable() {
     )
 }
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class, ExperimentalMaterialApi::class)
 @Composable
-fun SwipePagerView(navController: NavController) {
+fun SwipePagerView(
+    navController: NavController,
+    bottomSheetState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope
+) {
     Column {
         val tabIndexState = remember { mutableStateOf(0) }
         val tabTitles = listOf(
@@ -65,14 +85,19 @@ fun SwipePagerView(navController: NavController) {
         val pagerState = rememberPagerState()
 
         LaunchedEffect(pagerState) {
-            // Collect from the pager state a snapshotFlow reading the currentPage
             snapshotFlow { pagerState.currentPage }.collect { page ->
                 tabIndexState.value = page
             }
         }
 
         TabRowComposable(tabIndexState, pagerState, tabTitles)
-        HorizontalPagerComposable(navController,tabTitles, pagerState)
+        HorizontalPagerComposable(
+            navController,
+            tabTitles,
+            pagerState,
+            bottomSheetState,
+            coroutineScope
+        )
     }
 }
 
@@ -111,18 +136,21 @@ private fun TabIndicatorComposable(pagerState: PagerState, tabPositions: List<Ta
     )
 }
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class, ExperimentalMaterialApi::class)
 @Composable
 private fun HorizontalPagerComposable(
     navController: NavController,
     tabTitles: List<String>,
-    pagerState: PagerState) {
+    pagerState: PagerState,
+    bottomSheetState: ModalBottomSheetState,
+    scope: CoroutineScope
+) {
     HorizontalPager(
         count = tabTitles.size,
         state = pagerState,
     ) { index ->
         if (index == 0) {
-            LoginScreen(navController)
+            LoginScreen(navController, bottomSheetState, scope)
         } else {
             SignupScreen(navController)
         }

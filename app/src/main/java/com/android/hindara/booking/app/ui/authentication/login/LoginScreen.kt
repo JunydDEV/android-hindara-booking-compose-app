@@ -42,56 +42,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginScreen(
     navController: NavController,
+    bottomSheetState: ModalBottomSheetState,
+    scope: CoroutineScope,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    val bottomSheetsVisibilityState = remember {
-        mutableStateOf<LoginBottomSheet>(LoginBottomSheet.ForgotPassword)
-    }
-    val bottomSheetState = rememberModalBottomSheetState(
-        initialValue = ModalBottomSheetValue.Hidden,
-        confirmStateChange = { it != ModalBottomSheetValue.Expanded }
+    MainScreenContent(
+        bottomSheetScaffoldState = bottomSheetState,
+        coroutineScope = scope
     )
-    val coroutineScope = rememberCoroutineScope()
-
-    SetupBottomSheetModelLayout(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
-}
-
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun SetupBottomSheetModelLayout(
-    loginBottomSheetState: MutableState<LoginBottomSheet>,
-    bottomSheetState: ModalBottomSheetState,
-    scope: CoroutineScope
-) {
-    BackHandler(bottomSheetState.isVisible) {
-        scope.launch { bottomSheetState.hide() }
-    }
-
-    LaunchedEffect(key1 = scope) {
-        scope.launch { bottomSheetState.hide() }
-    }
-
-    when (loginBottomSheetState.value) {
-        LoginBottomSheet.ForgotPassword -> {
-            ForgotPasswordBottomSheet(
-                sheetState = bottomSheetState,
-                loginBottomSheetState = loginBottomSheetState
-            ) {
-                MainScreenContent(
-                    bottomSheetScaffoldState = bottomSheetState,
-                    coroutineScope = scope
-                )
-            }
-        }
-        else -> {
-            EmailVerificationBottomSheet(sheetState = bottomSheetState) {
-                MainScreenContent(
-                    bottomSheetScaffoldState = bottomSheetState,
-                    coroutineScope = scope
-                )
-            }
-        }
-    }
 }
 
 @OptIn(ExperimentalMaterialApi::class)

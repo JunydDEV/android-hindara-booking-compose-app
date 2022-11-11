@@ -1,0 +1,230 @@
+package com.android.hindara.booking.app.ui.authentication.login
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.authentication.login.resetpassword.ResetPasswordViewModel
+import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
+import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
+import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun ResentBottomSheet(
+    viewModel: ResetPasswordViewModel = hiltViewModel(),
+    sheetState: ModalBottomSheetState,
+    loginBottomSheetState: MutableState<LoginBottomSheet>,
+    function: @Composable () -> Unit
+) {
+    ModalBottomSheetLayout(
+        sheetState = sheetState,
+        sheetBackgroundColor = BottomSheetBackgroundColor,
+        sheetShape = RoundedCornerShape(
+            topStart = dimensionResource(id = R.dimen.bottomSheetCornerSize),
+            topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
+        ),
+        sheetContent = { ResetPasswordBottomSheetContent(loginBottomSheetState) },
+    ) { function() }
+}
+
+@Composable
+fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+    val parentColumnModifier = Modifier
+        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .verticalScroll(rememberScrollState())
+        .fillMaxWidth()
+    Column(
+        modifier = parentColumnModifier
+    ) {
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = stringResource(R.string.reset_password_title),
+            style = MaterialTheme.typography.h1,
+            color = DarkTextColor
+        )
+
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = stringResource(R.string.reset_password_description),
+            style = MaterialTheme.typography.body2,
+            color = DarkTextColor
+        )
+
+        NewPasswordTextFieldLabelComposable()
+        NewPasswordTextFieldComposable()
+        ConfirmPasswordTextFieldLabelComposable()
+        ConfirmPasswordTextFieldComposable()
+        ResetButtonComposable(loginBottomSheetState)
+    }
+}
+
+@Composable
+private fun NewPasswordTextFieldLabelComposable() {
+    val passwordLabelModifier = Modifier
+        .fillMaxWidth()
+        .padding(
+            top = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.smallSpacing)
+        )
+    Text(
+        modifier = passwordLabelModifier,
+        text = stringResource(id = R.string.textField_password_label),
+        style = MaterialTheme.typography.body1,
+        color = DarkTextColor
+    )
+}
+
+
+@Composable
+fun NewPasswordTextFieldComposable() {
+    val focus = LocalFocusManager.current
+    val textFieldPasswordState = remember {
+        mutableStateOf("")
+    }
+
+    TextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textFieldPasswordState.value,
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.fieldCornersSize)),
+        singleLine = true,
+        textStyle = MaterialTheme.typography.body1,
+        onValueChange = { textFieldPasswordState.value = it },
+        keyboardActions = onKeyboardAction(
+            focus = focus,
+            focusDirection = FocusDirection.Next,
+            fieldState = textFieldPasswordState
+        ),
+        keyboardOptions = getPasswordKeyboardOptions(ImeAction.Next),
+        colors = getTextFieldColors(),
+        placeholder = {
+            PasswordPlaceholderContent(
+                typography =  MaterialTheme.typography,
+                placeholderId = R.string.textField_password_placeholder
+            )
+        },
+    )
+}
+
+@Composable
+private fun ConfirmPasswordTextFieldLabelComposable() {
+    val passwordLabelModifier = Modifier
+        .fillMaxWidth()
+        .padding(
+            top = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.smallSpacing)
+        )
+    Text(
+        modifier = passwordLabelModifier,
+        text = stringResource(R.string.textField_confirm_password_label),
+        style = MaterialTheme.typography.body1,
+        color = DarkTextColor
+    )
+}
+
+
+@Composable
+fun ConfirmPasswordTextFieldComposable() {
+    val focus = LocalFocusManager.current
+    val textFieldPasswordState = remember {
+        mutableStateOf("")
+    }
+
+    TextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textFieldPasswordState.value,
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.fieldCornersSize)),
+        singleLine = true,
+        textStyle = MaterialTheme.typography.body1,
+        onValueChange = { textFieldPasswordState.value = it },
+        keyboardActions = onKeyboardAction(
+            focus = focus,
+            focusDirection = FocusDirection.Next,
+            fieldState = textFieldPasswordState
+        ),
+        keyboardOptions = getPasswordKeyboardOptions(ImeAction.Next),
+        colors = getTextFieldColors(),
+        placeholder = {
+            PasswordPlaceholderContent(
+                typography =  MaterialTheme.typography,
+                placeholderId = R.string.textField_confirm_password_placeholder
+            )
+        },
+    )
+}
+
+
+@Composable
+private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
+    backgroundColor = FieldBackgroundColor,
+    focusedIndicatorColor = Color.Transparent,
+    unfocusedIndicatorColor = Color.Transparent
+)
+
+@Composable
+private fun onKeyboardAction(
+    focus: FocusManager,
+    fieldState: MutableState<String>,
+    focusDirection: FocusDirection
+) =
+    KeyboardActions(
+        onNext = { focus.moveFocus(focusDirection) },
+        onDone = {
+            focus.clearFocus()
+            fieldState.value = ""
+        }
+    )
+
+@Composable
+private fun PasswordPlaceholderContent(typography: Typography, placeholderId: Int) {
+    Text(
+        text = stringResource(placeholderId),
+        style = typography.body1,
+        color = FieldPlaceholderColor
+    )
+}
+
+@Composable
+private fun getPasswordKeyboardOptions(imeOptions: ImeAction) = KeyboardOptions(
+    imeAction = imeOptions,
+    keyboardType = KeyboardType.Password
+)
+
+@Composable
+private fun ResetButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+    val buttonModifier = Modifier
+        .fillMaxWidth()
+        .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+    Button(
+        modifier = buttonModifier,
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        onClick = {
+            loginBottomSheetState.value = LoginBottomSheet.VerifyEmail
+        },
+    ) {
+        Text(stringResource(R.string.button_reset_password_text))
+    }
+}
+
