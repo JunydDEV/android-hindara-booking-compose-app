@@ -19,6 +19,7 @@ import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
 import com.android.hindara.booking.app.ui.theme.*
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.CoroutineScope
+import kotlin.math.sign
 
 /**
  * Container screen hosting login and signup.
@@ -152,14 +153,17 @@ private fun HorizontalPagerComposable(
     bottomSheetState: ModalBottomSheetState,
     scope: CoroutineScope
 ) {
+    val loginPage = 0
+    val signupPage = 1
+
     HorizontalPager(
         count = tabTitles.size,
         state = pagerState,
     ) { index ->
-        if (index == 0) {
+        if (index == loginPage) {
             LoginScreen(navController, bottomSheetState, scope)
-        } else {
-            SignupScreen(navController)
+        } else if (index == signupPage) {
+            SignupScreen(navController = navController)
         }
     }
 }

@@ -91,12 +91,7 @@ private fun MainScreenContent(
 fun SocialAuthLoginButtonsComposable() {
     val rowContentModifier = Modifier
         .fillMaxWidth()
-        .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
-            bottom = dimensionResource(id = R.dimen.defaultSpacing)
-        )
+        .padding(dimensionResource(id = R.dimen.defaultSpacing))
     Row(
         modifier = rowContentModifier,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -375,7 +370,7 @@ private fun SpacerComposable() {
     Spacer(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.smallSpacing))
+            .height(dimensionResource(id = R.dimen.defaultSpacing))
     )
 }
 

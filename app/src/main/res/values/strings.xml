@@ -21,6 +21,7 @@
     <string name="textField_email_placeholder">Enter your email</string>
     <string name="text_forgot_password_label">Forgot Password?</string>
     <string name="button_login_text">Login</string>
+    <string name="button_signup_text">Sign Up</string>
     <string name="text_alternate_login_with">Or login with</string>
     <string name="description_password_visibility">Visibility</string>
     <string name="button_facebook_text">Facebook</string>
@@ -41,4 +42,6 @@
     <string name="reset_password_success_description">Now you can login with your new password and enjoy your next level experience!</string>
     <string name="reset_password_failure_description">Check your internet connection and try again to reset your password. Good luck!</string>
     <string name="reset_password_success_image_description">Reset Password Success</string>
+    <string name="textfield_username_label">Username</string>
+    <string name="textfield_username_placeholder">Enter your username</string>
 </resources>
