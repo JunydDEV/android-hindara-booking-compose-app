@@ -73,13 +73,21 @@ fun BottomSheetsRouterComposable(
                 function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
             }
         }
-        else -> {
+        LoginBottomSheetState.VerifyEmail -> {
             EmailVerificationBottomSheet(
                 sheetState = bottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState
             ) {
                 function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
             }
+        }
+        else -> {
+            LaunchedEffect(key1 = bottomSheetState) {
+                coroutineScope.launch {
+                    bottomSheetState.hide()
+                }
+            }
+            function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
         }
     }
 }

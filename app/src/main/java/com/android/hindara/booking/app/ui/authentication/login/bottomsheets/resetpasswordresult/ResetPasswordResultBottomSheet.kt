@@ -133,6 +133,8 @@ private fun ContinueButtonComposable(
         onClick = {
             if (result == LoginBottomSheetState.ResetPasswordFailure) {
                 loginBottomSheetState.value = LoginBottomSheetState.ResetPasswordSuccess
+            } else {
+                loginBottomSheetState.value = LoginBottomSheetState.ResetPasswordCompleted
             }
         },
     ) {

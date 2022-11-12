@@ -6,4 +6,5 @@ sealed class LoginBottomSheetState {
     object ResetPassword: LoginBottomSheetState()
     object ResetPasswordSuccess: LoginBottomSheetState()
     object ResetPasswordFailure: LoginBottomSheetState()
+    object ResetPasswordCompleted: LoginBottomSheetState()
 }
