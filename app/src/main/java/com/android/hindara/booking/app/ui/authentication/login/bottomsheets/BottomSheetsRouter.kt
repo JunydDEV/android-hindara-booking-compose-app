@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.authentication.login
+package com.android.hindara.booking.app.ui.authentication.login.bottomsheets
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.material.ExperimentalMaterialApi
@@ -7,7 +7,6 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.ForgotPasswordBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.ResetPasswordBottomSheet
@@ -92,4 +91,11 @@ fun BottomSheetsRouterComposable(
     }
 }
 
-
+sealed class LoginBottomSheetState {
+    object ForgotPassword : LoginBottomSheetState()
+    object VerifyEmail: LoginBottomSheetState()
+    object ResetPassword: LoginBottomSheetState()
+    object ResetPasswordSuccess: LoginBottomSheetState()
+    object ResetPasswordFailure: LoginBottomSheetState()
+    object ResetPasswordCompleted: LoginBottomSheetState()
+}
