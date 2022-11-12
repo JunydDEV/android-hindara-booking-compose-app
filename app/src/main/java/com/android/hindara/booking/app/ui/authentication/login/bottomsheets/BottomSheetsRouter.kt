@@ -7,7 +7,7 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.ForgotPasswordBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.ResetPasswordBottomSheet
@@ -19,10 +19,10 @@ import kotlinx.coroutines.launch
 @Composable
 fun BottomSheetsRouterComposable(
     navController: NavController,
-    function: @Composable (MutableState<LoginBottomSheet>, ModalBottomSheetState, CoroutineScope) -> Unit
+    function: @Composable (MutableState<LoginBottomSheetState>, ModalBottomSheetState, CoroutineScope) -> Unit
 ) {
     val bottomSheetsVisibilityState = remember {
-        mutableStateOf<LoginBottomSheet>(LoginBottomSheet.ForgotPassword)
+        mutableStateOf<LoginBottomSheetState>(LoginBottomSheetState.ForgotPassword)
     }
     val bottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
@@ -39,7 +39,7 @@ fun BottomSheetsRouterComposable(
     }
 
     when (bottomSheetsVisibilityState.value) {
-        LoginBottomSheet.ForgotPassword -> {
+        LoginBottomSheetState.ForgotPassword -> {
             ForgotPasswordBottomSheet(
                 sheetState = bottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState
@@ -47,7 +47,7 @@ fun BottomSheetsRouterComposable(
                 function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
             }
         }
-        LoginBottomSheet.ResetPassword -> {
+        LoginBottomSheetState.ResetPassword -> {
             ResetPasswordBottomSheet(
                 sheetState = bottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState
@@ -55,20 +55,20 @@ fun BottomSheetsRouterComposable(
                 function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
             }
         }
-        LoginBottomSheet.ResetPasswordSuccess -> {
+        LoginBottomSheetState.ResetPasswordSuccess -> {
             ResetPasswordResultBottomSheet(
                 sheetState = bottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState,
-                result = LoginBottomSheet.ResetPasswordSuccess
+                result = LoginBottomSheetState.ResetPasswordSuccess
             ) {
                 function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
             }
         }
-        LoginBottomSheet.ResetPasswordFailure -> {
+        LoginBottomSheetState.ResetPasswordFailure -> {
             ResetPasswordResultBottomSheet(
                 sheetState = bottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState,
-                result = LoginBottomSheet.ResetPasswordFailure
+                result = LoginBottomSheetState.ResetPasswordFailure
             ) {
                 function(bottomSheetsVisibilityState, bottomSheetState, coroutineScope)
             }

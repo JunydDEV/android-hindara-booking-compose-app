@@ -16,17 +16,26 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
+/**
+ * Bottom sheet UI to show the reset password result.
+ *
+ * @param viewModel establishes communication between UI & data component.
+ * @param sheetState state of the bottom sheet.
+ * @param loginBottomSheetState holds the state of current bottom sheet.
+ * @param result indicates success/failure of reset password.
+ * @param function indicates the main screen content.
+ * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ResetPasswordResultBottomSheet(
     viewModel: ResetPasswordResultViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<LoginBottomSheet>,
-    result: LoginBottomSheet,
+    loginBottomSheetState: MutableState<LoginBottomSheetState>,
+    result: LoginBottomSheetState,
     function: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -42,9 +51,9 @@ fun ResetPasswordResultBottomSheet(
 
 @Composable
 fun ResetPasswordSuccessBottomSheetContent(
-    loginBottomSheetState: MutableState<LoginBottomSheet>,
+    loginBottomSheetState: MutableState<LoginBottomSheetState>,
     viewModel: ResetPasswordResultViewModel,
-    result: LoginBottomSheet
+    result: LoginBottomSheetState
 ) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
@@ -111,9 +120,9 @@ private fun ResetPasswordSuccessDescription(description: Int) {
 
 @Composable
 private fun ContinueButtonComposable(
-    loginBottomSheetState: MutableState<LoginBottomSheet>,
+    loginBottomSheetState: MutableState<LoginBottomSheetState>,
     buttonText: Int,
-    result: LoginBottomSheet
+    result: LoginBottomSheetState
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
@@ -122,8 +131,8 @@ private fun ContinueButtonComposable(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            if (result == LoginBottomSheet.ResetPasswordFailure) {
-                loginBottomSheetState.value = LoginBottomSheet.ResetPasswordSuccess
+            if (result == LoginBottomSheetState.ResetPasswordFailure) {
+                loginBottomSheetState.value = LoginBottomSheetState.ResetPasswordSuccess
             }
         },
     ) {

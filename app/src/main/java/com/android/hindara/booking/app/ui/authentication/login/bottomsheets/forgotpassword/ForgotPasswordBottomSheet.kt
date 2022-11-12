@@ -20,15 +20,23 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.*
 
+/**
+ * Bottom sheet to get the email from user for resetting password.
+ *
+ * @param viewModel establishes communication between UI & data component.
+ * @param sheetState state of the bottom sheet.
+ * @param loginBottomSheetState holds the state of current bottom sheet.
+ * @param function indicates the main screen content.
+ * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ForgotPasswordBottomSheet(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<LoginBottomSheet>,
+    loginBottomSheetState: MutableState<LoginBottomSheetState>,
     function: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -43,7 +51,7 @@ fun ForgotPasswordBottomSheet(
 }
 
 @Composable
-fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
         .verticalScroll(rememberScrollState())
@@ -151,7 +159,7 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
 )
 
 @Composable
-private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
@@ -159,7 +167,7 @@ private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBo
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            loginBottomSheetState.value = LoginBottomSheet.VerifyEmail
+            loginBottomSheetState.value = LoginBottomSheetState.VerifyEmail
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

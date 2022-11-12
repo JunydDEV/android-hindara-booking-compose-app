@@ -31,15 +31,24 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.*
 
+
+/**
+ * Bottom sheet to show the new passwords setting UI.
+ *
+ * @param viewModel establishes communication between UI & data component.
+ * @param sheetState state of the bottom sheet.
+ * @param loginBottomSheetState holds the state of current bottom sheet.
+ * @param function indicates the main screen content.
+ * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ResetPasswordBottomSheet(
     viewModel: ResetPasswordViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<LoginBottomSheet>,
+    loginBottomSheetState: MutableState<LoginBottomSheetState>,
     function: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -54,7 +63,7 @@ fun ResetPasswordBottomSheet(
 }
 
 @Composable
-fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
         .verticalScroll(rememberScrollState())
@@ -232,7 +241,7 @@ private fun getPasswordKeyboardOptions(imeOptions: ImeAction) = KeyboardOptions(
 )
 
 @Composable
-private fun ResetButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+private fun ResetButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
@@ -240,7 +249,7 @@ private fun ResetButtonComposable(loginBottomSheetState: MutableState<LoginBotto
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            loginBottomSheetState.value = LoginBottomSheet.ResetPasswordFailure
+            loginBottomSheetState.value = LoginBottomSheetState.ResetPasswordFailure
         },
     ) {
         Text(stringResource(R.string.button_reset_password_text))

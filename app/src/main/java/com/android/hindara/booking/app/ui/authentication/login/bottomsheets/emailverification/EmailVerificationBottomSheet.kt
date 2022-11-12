@@ -25,17 +25,26 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 
+
+/**
+ * Bottom sheet to verify the OTP sent on email for resetting password.
+ *
+ * @param viewModel establishes communication between UI & data component.
+ * @param sheetState state of the bottom sheet.
+ * @param loginBottomSheetState holds the state of current bottom sheet.
+ * @param function indicates the main screen content.
+ * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun EmailVerificationBottomSheet(
     viewModel: EmailVerificationViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<LoginBottomSheet>,
+    loginBottomSheetState: MutableState<LoginBottomSheetState>,
     function: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -50,7 +59,7 @@ fun EmailVerificationBottomSheet(
 }
 
 @Composable
-fun EmailVerificationBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+fun EmailVerificationBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
         .verticalScroll(rememberScrollState())
@@ -211,14 +220,14 @@ private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
 )
 
 @Composable
-private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheet>) {
+private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.smallSpacing))
     Button(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
-        onClick = { loginBottomSheetState.value = LoginBottomSheet.ResetPassword },
+        onClick = { loginBottomSheetState.value = LoginBottomSheetState.ResetPassword },
     ) {
         Text(stringResource(R.string.button_continue_text))
     }

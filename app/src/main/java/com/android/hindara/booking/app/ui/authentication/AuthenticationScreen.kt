@@ -19,11 +19,17 @@ import com.android.hindara.booking.app.ui.theme.*
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.CoroutineScope
 
+/**
+ * Container screen hosting login and signup.
+ *
+ * @param navController helps in navigation to other screen.
+ * @param viewModel establishes communication between UI & data component.
+ * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AuthenticationScreen(
     navController: NavController,
-    authenticationViewModel: AuthenticationViewModel = hiltViewModel()
+    viewModel: AuthenticationViewModel = hiltViewModel()
 ) {
     BottomSheetsRouterComposable(
         navController

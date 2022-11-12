@@ -36,6 +36,14 @@ import com.android.hindara.booking.app.ui.theme.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+/**
+ * Bottom sheet UI to show the login screen to user.
+ *
+ * @param navController helps in navigation to other screens.
+ * @param bottomSheetState state of the bottom sheet.
+ * @param scope coroutine scope used for show/hide of bottom sheet.
+ * @param viewModel establishes communication between UI & data component.
+ * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun LoginScreen(
