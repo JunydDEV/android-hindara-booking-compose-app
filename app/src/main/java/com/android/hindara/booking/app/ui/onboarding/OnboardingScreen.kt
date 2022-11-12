@@ -1,6 +1,7 @@
 package com.android.hindara.booking.app.ui.onboarding
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -27,6 +28,7 @@ import com.android.hindara.booking.app.data.OnboardingImage
 import com.android.hindara.booking.app.getOnBoardingImageSizeInDp
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 import com.android.hindara.booking.app.ui.theme.SelectedDotTintColor
 import com.android.hindara.booking.app.ui.theme.UnSelectedDotTintColor
 
@@ -44,6 +46,7 @@ fun OnboardingScreen(
 
     val parentColumnModifier = Modifier
         .fillMaxSize()
+        .background(ScreenBackgroundColor)
         .verticalScroll(rememberScrollState())
     Column(modifier = parentColumnModifier) {
         SpacerComposable()

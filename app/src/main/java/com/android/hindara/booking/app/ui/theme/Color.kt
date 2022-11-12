@@ -21,3 +21,5 @@ val UnSelectedDotTintColor = Color(0xFFA9A9A9)
 val TabIndicatorColor = PrimaryColor
 val FieldPlaceholderColor = Color(0xFF8D8D8D)
 val FieldBackgroundColor = WhiteColor
+val BlackGradientColor = Color(0x410A0A0A)
+

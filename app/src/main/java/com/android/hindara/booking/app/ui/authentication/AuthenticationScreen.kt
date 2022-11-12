@@ -19,6 +19,7 @@ import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
 import com.android.hindara.booking.app.ui.theme.*
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import kotlin.math.sign
 
 /**
@@ -116,6 +117,8 @@ private fun TabRowComposable(
     pagerState: PagerState,
     tabTitles: List<String>
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
     TabRow(
         selectedTabIndex = tabPosition.value,
         backgroundColor = TabBackgroundColor,
@@ -128,7 +131,12 @@ private fun TabRowComposable(
                 selected = tabPosition.value == index,
                 selectedContentColor = SelectedContentContentColor,
                 unselectedContentColor = UnSelectedTabContentColor,
-                onClick = { tabPosition.value = index },
+                onClick = {
+                    tabPosition.value = index
+                    coroutineScope.launch {
+                        pagerState.animateScrollToPage(index)
+                    }
+                },
                 text = { Text(text = title) },
             )
         }

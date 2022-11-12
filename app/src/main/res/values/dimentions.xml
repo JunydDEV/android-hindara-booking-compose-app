@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="verySmallSpacing">5dp</dimen>
     <dimen name="smallSpacing">8dp</dimen>
     <dimen name="defaultSpacing">16dp</dimen>
     <dimen name="largeSpacing">24dp</dimen>
@@ -15,9 +16,15 @@
     <dimen name="horizontalLineHeight">1dp</dimen>
 
     <dimen name="bottomSheetCornerSize">15dp</dimen>
+    <dimen name="featuredImageCornerSize">20dp</dimen>
+    <dimen name="ratingViewCornerSize">20dp</dimen>
 
     <dimen name="digitFieldWidth">50dp</dimen>
     <dimen name="digitFieldHeight">60dp</dimen>
     <dimen name="digitFieldCornerSize">10dp</dimen>
 
+    <dimen name="textExtraLarge">28sp</dimen>
+
+    <dimen name="featuredHotelImageWith">252dp</dimen>
+    <dimen name="featuredHotelImageHeight">374dp</dimen>
 </resources>

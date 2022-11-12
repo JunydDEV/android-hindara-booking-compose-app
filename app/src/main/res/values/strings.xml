@@ -42,6 +42,13 @@
     <string name="reset_password_success_description">Now you can login with your new password and enjoy your next level experience!</string>
     <string name="reset_password_failure_description">Check your internet connection and try again to reset your password. Good luck!</string>
     <string name="reset_password_success_image_description">Reset Password Success</string>
-    <string name="textfield_username_label">Username</string>
-    <string name="textfield_username_placeholder">Enter your username</string>
+    <string name="textField_username_label">Username</string>
+    <string name="textField_username_placeholder">Enter your username</string>
+    <string name="menu_icon_description">Navigation Icon Description</string>
+    <string name="notification_icon_description">Notification Icon Description</string>
+    <string name="title_home_screen">Good Morning,\nStephanie!</string>
+    <string name="textField_find_hotels_placeholder">Find hundreds of hotels</string>
+    <string name="search_image_description">Search Icon Description</string>
+    <string name="start_icon_image_description">Start Icon Description</string>
+    <string name="hotel_image_discription">Hotel Image description</string>
 </resources>

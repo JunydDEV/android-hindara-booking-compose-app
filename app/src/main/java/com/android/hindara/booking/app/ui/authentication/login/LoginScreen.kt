@@ -32,6 +32,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.getHalfScreenWidth
+import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -53,6 +55,7 @@ fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel()
 ) {
     MainScreenContent(
+        navController = navController,
         bottomSheetScaffoldState = bottomSheetState,
         coroutineScope = scope
     )
@@ -61,6 +64,7 @@ fun LoginScreen(
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun MainScreenContent(
+    navController: NavController,
     bottomSheetScaffoldState: ModalBottomSheetState,
     coroutineScope: CoroutineScope
 ) {
@@ -80,7 +84,7 @@ private fun MainScreenContent(
 
         ForgotPasswordTextComposable(bottomSheetScaffoldState, coroutineScope)
         SpacerComposable()
-        LoginButtonComposable()
+        LoginButtonComposable(navController)
 
         HorizontalLineComposable()
         SocialAuthLoginButtonsComposable()
@@ -276,7 +280,7 @@ fun HorizontalLineComposable() {
 }
 
 @Composable
-private fun LoginButtonComposable() {
+private fun LoginButtonComposable(navController: NavController) {
     val loginButtonModifier = Modifier
         .fillMaxWidth()
         .padding(
@@ -286,12 +290,21 @@ private fun LoginButtonComposable() {
     Button(
         modifier = loginButtonModifier,
         shape = RoundedCornerShape(CornerSize(100.dp)),
-        onClick = { /*TODO*/ },
+        onClick = {
+            navigationToHomeScreen(navController)
+        },
     ) {
         Text(stringResource(R.string.button_login_text))
     }
 }
 
+private fun navigationToHomeScreen(navController: NavController) {
+    navController.navigate(homeRoute) {
+        popUpTo(authenticationRoute) {
+            inclusive = true
+        }
+    }
+}
 
 @Composable
 private fun FacebookAuthButtonComposable() {

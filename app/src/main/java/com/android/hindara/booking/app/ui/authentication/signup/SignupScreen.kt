@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
 
 @Composable
@@ -59,7 +61,7 @@ fun SignupScreen(
         PasswordTextFieldComposable()
 
         SpacerComposable()
-        SignupButtonComposable()
+        SignupButtonComposable(navController)
     }
 }
 
@@ -84,7 +86,7 @@ private fun UsernameTextFieldLabelComposable() {
         )
     Text(
         modifier = emailLabelModifier,
-        text = stringResource(R.string.textfield_username_label),
+        text = stringResource(R.string.textField_username_label),
         style = MaterialTheme.typography.body1,
         color = DarkTextColor
     )
@@ -122,7 +124,7 @@ fun UsernameFieldComposable() {
 
 @Composable
 private fun UsernamePlaceholderContent() = Text(
-    text = stringResource(R.string.textfield_username_placeholder),
+    text = stringResource(R.string.textField_username_placeholder),
     style = MaterialTheme.typography.body1,
     color = FieldPlaceholderColor
 )
@@ -240,7 +242,7 @@ private fun PasswordPlaceholderContent(typography: Typography) {
 }
 
 @Composable
-private fun SignupButtonComposable() {
+private fun SignupButtonComposable(navController: NavController) {
     val loginButtonModifier = Modifier
         .fillMaxWidth()
         .padding(
@@ -251,7 +253,9 @@ private fun SignupButtonComposable() {
     Button(
         modifier = loginButtonModifier,
         shape = RoundedCornerShape(CornerSize(100.dp)),
-        onClick = { /*TODO*/ },
+        onClick = {
+            navigationToHomeScreen(navController)
+        },
     ) {
         Text(stringResource(R.string.button_signup_text))
     }
@@ -306,5 +310,13 @@ private fun PasswordVisibilityTrailingIcon(
             tint = iconColor,
             contentDescription = stringResource(R.string.description_password_visibility),
         )
+    }
+}
+
+private fun navigationToHomeScreen(navController: NavController) {
+    navController.navigate(homeRoute) {
+        popUpTo(authenticationRoute) {
+            inclusive = true
+        }
     }
 }
