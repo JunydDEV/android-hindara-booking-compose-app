@@ -51,4 +51,11 @@
     <string name="search_image_description">Search Icon Description</string>
     <string name="start_icon_image_description">Start Icon Description</string>
     <string name="hotel_image_discription">Hotel Image description</string>
+    <string name="menu_item_home">Home</string>
+    <string name="menu_item_bookmarks">Bookmarks</string>
+    <string name="menu_item_my_bookings">My Bookings</string>
+    <string name="menu_item_settings">Settings</string>
+    <string name="menu_item_help">Help</string>
+    <string name="menu_item_logout">Logout</string>
+    <string name="profile_picture_description">Profile Picture Description</string>
 </resources>

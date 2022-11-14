@@ -28,6 +28,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
@@ -38,7 +39,8 @@ import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
 fun HomeScreenContent(
     viewModel: HomeViewModel = hiltViewModel(),
     modifier: Modifier,
-    navHostController: NavHostController) {
+    navController: NavController
+) {
     Column(
         modifier = modifier
     ) {
