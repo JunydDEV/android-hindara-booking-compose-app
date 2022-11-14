@@ -18,6 +18,7 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
+import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
 
 @Composable
 fun HotelDetailsScreen(
@@ -44,7 +45,7 @@ fun ConstraintLayoutScope.HeaderImageComposable(
             start.linkTo(parent.start)
             end.linkTo(parent.end)
         }
-        .height(400.dp)
+        .height(getHeaderImageHeightInDp())
     Image(
         modifier = headerImageModifier,
         painter = painterResource(id = hotel.image),

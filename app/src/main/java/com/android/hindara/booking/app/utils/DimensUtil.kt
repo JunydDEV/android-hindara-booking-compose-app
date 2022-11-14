@@ -1,6 +1,8 @@
-package com.android.hindara.booking.app
+package com.android.hindara.booking.app.utils
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -20,11 +22,29 @@ val onBoardingImageSizeMap = mutableMapOf(
     XXXHDPI to Pair(300.dp, 400.dp),
 )
 
+/**
+ *
+ * */
+val headerImageHeightMap = mutableMapOf(
+    MDPI to 200.dp,
+    HDPI to 250.dp,
+    XHDPI to 300.dp,
+    XXHDPI to 300.dp,
+    XXXHDPI to 350.dp,
+)
+
 @Composable
 fun getOnBoardingImageSizeInDp(): Pair<Dp, Dp> {
     val configuration = LocalConfiguration.current
     val pair = onBoardingImageSizeMap[configuration.densityDpi]
     return pair ?: Pair(300.dp, 400.dp)
+}
+
+@Composable
+fun getHeaderImageHeightInDp(): Dp {
+    val configuration = LocalConfiguration.current
+    val height = headerImageHeightMap[configuration.densityDpi]
+    return height ?: 400.dp
 }
 
 @Composable
