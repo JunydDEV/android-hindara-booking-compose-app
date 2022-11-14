@@ -35,4 +35,7 @@
 
     <dimen name="menuItemIconWidth">20dp</dimen>
     <dimen name="menuItemIconHeight">20dp</dimen>
+
+    <dimen name="sectionSeparatorSize">50dp</dimen>
+    <dimen name="lineThickness">1dp</dimen>
 </resources>

@@ -115,49 +115,78 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
 fun MenuItemsComposable(navController: NavController, viewModel: AppMenuViewModel) {
     Column {
         val items = viewModel.getMenuItems()
-        MenuItemRow(items[0])
-        MenuItemRow(items[1])
-        MenuItemRow(items[2])
+        MenuItemRow(items[MenuList.BOOKMARKS])
+        MenuItemRow(items[MenuList.MY_BOOKINGS])
+        MenuItemRow(items[MenuList.SETTINGS])
         SpacerComposable()
         SpacerComposable()
-        MenuItemRow(items[3])
-        MenuItemRow(items[4])
+        MenuItemRow(items[MenuList.HELP])
+        MenuItemRow(items[MenuList.LOGOUT])
     }
 }
 
 @Composable
 private fun MenuItemRow(item: MenuItem) {
+    val itemRowModifier = Modifier
+        .fillMaxWidth()
+        .height(dimensionResource(id = R.dimen.sectionSeparatorSize))
+        .background(WhiteColor)
+
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp)
-            .background(WhiteColor),
+        modifier = itemRowModifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
-            modifier = Modifier
-                .padding(
-                    start = dimensionResource(id = R.dimen.defaultSpacing),
-                    end = dimensionResource(id = R.dimen.defaultSpacing)
-                )
-                .size(
-                    width = dimensionResource(id = R.dimen.menuItemIconWidth),
-                    height = dimensionResource(id = R.dimen.menuItemIconHeight)
-                ),
-            painter = painterResource(id = item.icon),
-            contentDescription = null,
-            colorFilter = ColorFilter.tint(SelectedContentContentColor)
-        )
-        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.smallSpacing)))
+        MenuIconComposable(item)
+        RowItemsDividerComposable()
         Text(
             text = stringResource(id = item.title),
             style = MaterialTheme.typography.body1
         )
     }
+    HorizontalLineComposable()
+}
+
+@Composable
+private fun MenuIconComposable(item: MenuItem) {
+    val iconModifier = Modifier
+        .padding(
+            start = dimensionResource(id = R.dimen.defaultSpacing),
+            end = dimensionResource(id = R.dimen.defaultSpacing)
+        )
+        .size(
+            width = dimensionResource(id = R.dimen.menuItemIconWidth),
+            height = dimensionResource(id = R.dimen.menuItemIconHeight)
+        )
+
+    Image(
+        modifier = iconModifier,
+        painter = painterResource(id = item.icon),
+        contentDescription = null,
+        colorFilter = ColorFilter.tint(SelectedContentContentColor)
+    )
+}
+
+@Composable
+private fun RowItemsDividerComposable() {
+    Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.smallSpacing)))
+}
+
+@Composable
+private fun HorizontalLineComposable() {
     Spacer(
         modifier = Modifier
             .fillMaxWidth()
-            .height(1.dp)
+            .height(dimensionResource(id = R.dimen.lineThickness))
             .background(Color.LightGray)
     )
+}
+
+class MenuList {
+    companion object {
+        const val BOOKMARKS = 0
+        const val MY_BOOKINGS = 1
+        const val SETTINGS = 2
+        const val HELP = 3
+        const val LOGOUT = 4
+    }
 }
