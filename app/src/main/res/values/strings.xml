@@ -59,4 +59,5 @@
     <string name="menu_item_logout">Logout</string>
     <string name="profile_picture_description">Profile Picture Description</string>
     <string name="hotel_header_image_description">Hotel image description</string>
+    <string name="back_button_description">Back button description</string>
 </resources>

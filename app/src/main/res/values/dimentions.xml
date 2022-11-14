@@ -4,7 +4,7 @@
     <dimen name="smallSpacing">8dp</dimen>
     <dimen name="defaultSpacing">16dp</dimen>
     <dimen name="largeSpacing">24dp</dimen>
-    <dimen name="extraLargeSpacing">34dp</dimen>
+    <dimen name="extraLargeSpacing">45dp</dimen>
 
     <dimen name="buttonWidth">200dp</dimen>
     <dimen name="buttonCornersSize">50dp</dimen>
