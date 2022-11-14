@@ -2,6 +2,7 @@ package com.android.hindara.booking.app.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,33 +16,42 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.BlackGradientColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
 
 @Composable
-fun FeaturedHotelsPageScreen(category: FeaturedCategory) {
+fun FeaturedHotelsPageScreen(
+    homeViewModel: HomeViewModel,
+    navController: NavController,
+    category: FeaturedCategory
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
         LazyRow {
             items(category.hotelsList.size) {
-                HotelItemComposable(category.hotelsList[it])
+                HotelItemComposable(homeViewModel, navController, category.hotelsList[it])
             }
         }
     }
 }
 
 @Composable
-fun HotelItemComposable(hotel: Hotel) {
+fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavController, hotel: Hotel) {
     val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
     val largeSpacing = dimensionResource(id = R.dimen.largeSpacing)
 
     val constrainLayoutModifier = Modifier
         .wrapContentSize()
+        .clickable {
+            homeViewModel.onChooseHotel(hotel)
+            navController.navigate(hotelDetailsRoute)
+        }
         .padding(top = defaultSpacing, bottom = defaultSpacing)
 
     ConstraintLayout(modifier = constrainLayoutModifier) {

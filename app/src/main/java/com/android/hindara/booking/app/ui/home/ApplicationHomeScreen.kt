@@ -9,14 +9,18 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
 @Composable
-fun ApplicationHomeScreen(navController: NavController) {
+fun ApplicationHomeScreen(homeViewModel: HomeViewModel, navController: NavController) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         backgroundColor = ScreenBackgroundColor,
         topBar = { HomeScreenTopBar(navController) }
     ) {
         val modifier = Modifier.padding(it)
-        HomeScreenContent(modifier = modifier, navController = navController)
+        HomeScreenContent(
+            viewModel = homeViewModel,
+            modifier = modifier,
+            navController = navController
+        )
     }
 }
 

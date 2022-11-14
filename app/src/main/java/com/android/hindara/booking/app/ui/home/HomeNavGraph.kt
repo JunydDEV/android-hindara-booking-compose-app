@@ -6,8 +6,8 @@ import androidx.navigation.compose.composable
 
 const val homeRoute = "home_route"
 
-fun NavGraphBuilder.homeNavGraph(navHostController: NavHostController) {
+fun NavGraphBuilder.homeNavGraph(homeViewModel: HomeViewModel, navHostController: NavHostController) {
     composable(homeRoute) {
-        ApplicationHomeScreen(navHostController)
+        ApplicationHomeScreen(homeViewModel,navHostController)
     }
 }

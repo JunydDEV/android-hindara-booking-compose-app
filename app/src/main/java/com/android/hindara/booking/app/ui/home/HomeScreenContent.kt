@@ -37,7 +37,7 @@ import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
 
 @Composable
 fun HomeScreenContent(
-    viewModel: HomeViewModel = hiltViewModel(),
+    viewModel: HomeViewModel,
     modifier: Modifier,
     navController: NavController
 ) {
@@ -49,7 +49,7 @@ fun HomeScreenContent(
         SpacerComposable()
         SearchTextFieldComposable()
         SpacerComposable()
-        FeaturedOnHomeScreenListing(viewModel)
+        FeaturedOnHomeScreenListing(viewModel, navController)
     }
 }
 

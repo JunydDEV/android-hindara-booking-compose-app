@@ -6,6 +6,16 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(): ViewModel() {
 
+    private lateinit var chosenHotel: Hotel
+
+    fun onChooseHotel(hotel: Hotel) {
+        chosenHotel = hotel
+    }
+
+    fun getChosenHotel(): Hotel {
+        return chosenHotel
+    }
+
     fun getFeaturedCategories(): List<FeaturedCategory> {
         val list = mutableListOf<FeaturedCategory>()
 
