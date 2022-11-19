@@ -8,6 +8,7 @@ import com.android.hindara.booking.app.ui.appmenu.appMenuGraph
 import com.android.hindara.booking.app.ui.authentication.authenticationGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
+import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
 import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
@@ -16,7 +17,7 @@ import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
 fun HindaraAppNavHost(navController: NavHostController) {
     val homeViewModel: HomeViewModel = hiltViewModel()
 
-    NavHost(navController = navController, startDestination = onboardingRoute) {
+    NavHost(navController = navController, startDestination = homeRoute) {
         onboardingGraph(navController)
         authenticationGraph(navController)
         homeNavGraph(homeViewModel,navController)

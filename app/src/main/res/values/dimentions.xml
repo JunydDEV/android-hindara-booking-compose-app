@@ -30,8 +30,8 @@
     <dimen name="featuredHotelImageWith">252dp</dimen>
     <dimen name="featuredHotelImageHeight">374dp</dimen>
 
-    <dimen name="profileImageWidth">50dp</dimen>
-    <dimen name="profileImageHeight">50dp</dimen>
+    <dimen name="userImageWidth">50dp</dimen>
+    <dimen name="userImageHeight">50dp</dimen>
 
     <dimen name="profileContainerHeight">60dp</dimen>
 
@@ -41,4 +41,8 @@
     <dimen name="sectionSeparatorSize">50dp</dimen>
     <dimen name="lineThickness">1dp</dimen>
     <dimen name="cardElevation">2dp</dimen>
+
+    <dimen name="googleMapHeight">150dp</dimen>
+    <dimen name="hotelBannerHeight">150dp</dimen>
+    <dimen name="halfOfBannerHeight">75dp</dimen>
 </resources>

@@ -42,8 +42,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
                 reviewsList = listOf(
-                    Reviews("Junaid", "dfdf", 4.5f, "test"),
-                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                    Reviews("Brad John", R.drawable.ic_profile_picture, 4.5f, "The bed was nice and comfortable, the service was on point. Good job!"),
+                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
                 )
 
             )
@@ -57,8 +57,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 description = "Luxe Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
                 reviewsList = listOf(
-                    Reviews("Junaid", "dfdf", 4.5f, "test"),
-                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                    Reviews("Brad John", R.drawable.ic_profile_picture, 4.5f, "The bed was nice and comfortable, the service was on point. Good job!"),
+                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
                 )
             )
         )
@@ -72,8 +72,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
                 reviewsList = listOf(
-                    Reviews("Junaid", "dfdf", 4.5f, "test"),
-                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                    Reviews("Brad John", R.drawable.ic_profile_picture, 4.5f, "The bed was nice and comfortable, the service was on point. Good job!"),
+                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
                 )
             )
         )
@@ -99,7 +99,7 @@ data class Hotel(
 
 data class Reviews(
     val reviewerName: String,
-    val reviewImage: String,
+    val reviewImage: Int,
     val rating: Float,
     val comment: String
 )

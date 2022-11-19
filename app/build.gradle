@@ -71,6 +71,9 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:0.21.2-beta"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.21.2-beta"
 
+    //Maps
+    implementation 'com.google.maps.android:maps-compose:2.7.2'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     // Test Dependencies
     testImplementation 'junit:junit:4.13.2'

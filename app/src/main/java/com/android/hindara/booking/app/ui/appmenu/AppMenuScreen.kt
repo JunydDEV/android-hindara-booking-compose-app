@@ -16,7 +16,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -67,8 +66,8 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
         val profilePictureModifier = Modifier
             .clip(CircleShape)
             .size(
-                width = dimensionResource(id = R.dimen.profileImageWidth),
-                height = dimensionResource(id = R.dimen.profileImageHeight)
+                width = dimensionResource(id = R.dimen.userImageWidth),
+                height = dimensionResource(id = R.dimen.userImageHeight)
             )
             .constrainAs(profileImage) {
                 start.linkTo(parent.start, margin = defaultSpacing)
