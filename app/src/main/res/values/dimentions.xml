@@ -9,6 +9,7 @@
     <dimen name="buttonWidth">200dp</dimen>
     <dimen name="buttonCornersSize">50dp</dimen>
     <dimen name="fieldCornersSize">50dp</dimen>
+    <dimen name="detailsSheetCornersSize">20dp</dimen>
 
     <dimen name="onboardingImageWidth">300dp</dimen>
     <dimen name="onboardingImageHeight">400dp</dimen>
@@ -39,4 +40,5 @@
 
     <dimen name="sectionSeparatorSize">50dp</dimen>
     <dimen name="lineThickness">1dp</dimen>
+    <dimen name="cardElevation">2dp</dimen>
 </resources>

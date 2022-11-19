@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(): ViewModel() {
+class HomeViewModel @Inject constructor() : ViewModel() {
 
     private lateinit var chosenHotel: Hotel
 
@@ -41,7 +41,10 @@ class HomeViewModel @Inject constructor(): ViewModel() {
                 rating = 4.6f,
                 description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
-                reviewsList = null
+                reviewsList = listOf(
+                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                )
 
             )
         )
@@ -53,8 +56,10 @@ class HomeViewModel @Inject constructor(): ViewModel() {
                 rating = 4.6f,
                 description = "Luxe Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
-                reviewsList = null
-
+                reviewsList = listOf(
+                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                )
             )
         )
 
@@ -66,7 +71,10 @@ class HomeViewModel @Inject constructor(): ViewModel() {
                 rating = 4.6f,
                 description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
-                reviewsList = null
+                reviewsList = listOf(
+                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                    Reviews("Junaid", "dfdf", 4.5f, "test"),
+                )
             )
         )
 
