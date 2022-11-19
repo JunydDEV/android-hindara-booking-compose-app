@@ -1,5 +1,6 @@
 package com.android.hindara.booking.app.ui.hoteldetails
 
+import android.content.Context
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
@@ -12,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter.Companion.tint
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,8 +33,7 @@ import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposab
 import com.android.hindara.booking.app.ui.reviews.reviewsRoute
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.*
 import com.google.maps.android.compose.*
 
 @Composable
@@ -254,6 +255,7 @@ fun GoogleMapsComposable() {
             state = MarkerState(position = singapore),
             title = "Singapore",
             snippet = "Marker in Singapore",
+            icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)
         )
     }
 }
