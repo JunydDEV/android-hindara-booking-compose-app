@@ -44,6 +44,9 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 reviewsList = listOf(
                     Reviews("Brad John", R.drawable.ic_profile_picture, 4.5f, "The bed was nice and comfortable, the service was on point. Good job!"),
                     Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
+                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
+                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
+                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
                 )
 
             )
@@ -94,7 +97,7 @@ data class Hotel(
     val rating: Float,
     val description: String,
     val pricePerNight: Double,
-    val reviewsList: List<Reviews>?
+    val reviewsList: List<Reviews>
 )
 
 data class Reviews(

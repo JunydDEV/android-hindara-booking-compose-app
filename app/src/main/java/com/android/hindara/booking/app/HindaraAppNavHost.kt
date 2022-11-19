@@ -6,12 +6,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.android.hindara.booking.app.ui.appmenu.appMenuGraph
 import com.android.hindara.booking.app.ui.authentication.authenticationGraph
+import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
-import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
 
 @Composable
 fun HindaraAppNavHost(navController: NavHostController) {
@@ -23,5 +23,6 @@ fun HindaraAppNavHost(navController: NavHostController) {
         homeNavGraph(homeViewModel,navController)
         appMenuGraph(navController)
         hotelDetailsGraph(homeViewModel,navController)
+        moreDescriptionGraph(navController, homeViewModel)
     }
 }

@@ -1,12 +1,9 @@
 package com.android.hindara.booking.app.ui.hoteldetails
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,14 +15,18 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintLayoutScope
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.description.MoreDescriptionComposable
+import com.android.hindara.booking.app.ui.description.moreDescriptionRoute
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
+import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
@@ -52,9 +53,9 @@ fun HotelDetailsScreen(
             val (headerImage, backButton, bookMarkButton, hotelBoardCard, contentSection) = createRefs()
 
             HeaderImageComposable(headerImage, hotel)
-            BackButtonComposable(backButton)
+            BackButtonComposable(navController, backButton)
             BookmarkButtonComposable(bookMarkButton)
-            ContentfulSectionComposable(contentSection, hotel)
+            ContentfulSectionComposable(navController, contentSection, hotel)
             HotelBannerComposable(hotelBoardCard, hotel)
         }
     }
@@ -81,7 +82,10 @@ fun ConstraintLayoutScope.HeaderImageComposable(
 }
 
 @Composable
-fun ConstraintLayoutScope.BackButtonComposable(backButton: ConstrainedLayoutReference) {
+fun ConstraintLayoutScope.BackButtonComposable(
+    navController: NavController,
+    backButton: ConstrainedLayoutReference
+) {
     val extraLargeSpacing = dimensionResource(id = R.dimen.extraLargeSpacing)
     val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
     val backButtonBoxModifier = Modifier
@@ -98,6 +102,9 @@ fun ConstraintLayoutScope.BackButtonComposable(backButton: ConstrainedLayoutRefe
         contentAlignment = Alignment.Center
     ) {
         Image(
+            modifier = Modifier.clickable {
+                navController.popBackStack()
+            },
             painter = painterResource(id = R.drawable.ic_back),
             colorFilter = tint(WhiteColor),
             contentDescription = stringResource(R.string.back_button_description)
@@ -133,6 +140,7 @@ fun ConstraintLayoutScope.BookmarkButtonComposable(bookmarkButton: ConstrainedLa
 
 @Composable
 fun ConstraintLayoutScope.ContentfulSectionComposable(
+    navController: NavController,
     contentSection: ConstrainedLayoutReference,
     hotel: Hotel
 ) {
@@ -171,16 +179,23 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             text = hotel.description,
             style = MaterialTheme.typography.body1,
             maxLines = 3,
+            overflow = TextOverflow.Ellipsis,
             color = DarkTextColor
         )
         SmallSpacer()
-        Text(
-            modifier = Modifier.wrapContentWidth(),
-            text = stringResource(R.string.read_more_text),
-            style = MaterialTheme.typography.body1,
-            color = SuccessColor
-        )
-        SmallSpacer()
+        if (hotel.description.length > 150) {
+            Text(
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .clickable {
+                        navController.navigate(moreDescriptionRoute)
+                    },
+                text = stringResource(R.string.read_more_text),
+                style = MaterialTheme.typography.body1,
+                color = SuccessColor
+            )
+            SmallSpacer()
+        }
         GoogleMapsComposable()
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.largeSpacing)))
         Text(
@@ -190,17 +205,22 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             color = DarkTextColor
         )
         SmallSpacer()
-        Column {
-            repeat(hotel.reviewsList?.size!!) {
-                ReviewItemComposable(review = hotel.reviewsList[it])
-            }
+        repeat(2) {
+            ReviewItemComposable(review = hotel.reviewsList[it])
         }
-        Text(
-            modifier = Modifier.wrapContentWidth(),
-            text = stringResource(R.string.see_more_reviews_text),
-            style = MaterialTheme.typography.body1,
-            color = SuccessColor
-        )
+
+        if (hotel.reviewsList.size > 2) {
+            Text(
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .clickable {
+                        // Go to description screen
+                    },
+                text = stringResource(R.string.see_more_reviews_text),
+                style = MaterialTheme.typography.body1,
+                color = SuccessColor
+            )
+        }
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.largeSpacing)))
     }
 }
@@ -351,7 +371,7 @@ fun ReviewsCount(hotel: Hotel) {
 
     Text(
         modifier = modifier,
-        text = "(${hotel.reviewsList?.size.toString()} Reviews)",
+        text = "(${hotel.reviewsList?.size.toString()} ${stringResource(id = R.string.reviews_title_text)})",
         style = MaterialTheme.typography.body1,
         color = Color.LightGray
     )
@@ -375,7 +395,7 @@ fun BookingBottomBar(navController: NavController, hotel: Hotel) {
     ConstraintLayout(
         modifier = modifier
     ) {
-        val (priceLabel, price,bookButton) = createRefs()
+        val (priceLabel, price, bookButton) = createRefs()
         val priceLabelModifier = Modifier
             .wrapContentWidth()
             .constrainAs(priceLabel) {
@@ -414,7 +434,7 @@ fun BookingBottomBar(navController: NavController, hotel: Hotel) {
             modifier = bookNowButton,
             shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
             onClick = {
-                // navigationToHomeScreen(navController)
+
             },
         ) {
             Text(stringResource(R.string.book_now_button_text))

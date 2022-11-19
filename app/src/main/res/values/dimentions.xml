@@ -45,4 +45,7 @@
     <dimen name="googleMapHeight">150dp</dimen>
     <dimen name="hotelBannerHeight">150dp</dimen>
     <dimen name="halfOfBannerHeight">75dp</dimen>
+    <dimen name="hotelShortHeaderHeight">100dp</dimen>
+
+    <dimen name="topBarHeight">70dp</dimen>
 </resources>
