@@ -12,17 +12,20 @@ import com.android.hindara.booking.app.ui.home.homeNavGraph
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
+import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
+import com.android.hindara.booking.app.ui.reviews.reviewsGraph
 
 @Composable
 fun HindaraAppNavHost(navController: NavHostController) {
     val homeViewModel: HomeViewModel = hiltViewModel()
 
-    NavHost(navController = navController, startDestination = homeRoute) {
+    NavHost(navController = navController, startDestination = onboardingRoute) {
         onboardingGraph(navController)
         authenticationGraph(navController)
-        homeNavGraph(homeViewModel,navController)
+        homeNavGraph(homeViewModel, navController)
         appMenuGraph(navController)
-        hotelDetailsGraph(homeViewModel,navController)
+        hotelDetailsGraph(homeViewModel, navController)
         moreDescriptionGraph(navController, homeViewModel)
+        reviewsGraph(navController, homeViewModel)
     }
 }

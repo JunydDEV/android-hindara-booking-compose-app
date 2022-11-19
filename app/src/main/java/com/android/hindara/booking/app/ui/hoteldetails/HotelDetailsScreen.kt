@@ -28,6 +28,7 @@ import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
+import com.android.hindara.booking.app.ui.reviews.reviewsRoute
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
 import com.google.android.gms.maps.model.CameraPosition
@@ -214,7 +215,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                 modifier = Modifier
                     .wrapContentWidth()
                     .clickable {
-                        // Go to description screen
+                        navController.navigate(reviewsRoute)
                     },
                 text = stringResource(R.string.see_more_reviews_text),
                 style = MaterialTheme.typography.body1,
