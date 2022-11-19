@@ -4,11 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,15 +39,24 @@ fun HotelDetailsScreen(
     navController: NavController,
 ) {
     val hotel = homeViewModel.getChosenHotel()
+    Scaffold(
+        bottomBar = {
+            BookingBottomBar(navController, hotel)
+        }
+    ) {
+        ConstraintLayout(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(it)
+        ) {
+            val (headerImage, backButton, bookMarkButton, hotelBoardCard, contentSection) = createRefs()
 
-    ConstraintLayout(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        val (headerImage, backButton, bookMarkButton, transparentSpacer, hotelBoardCard, contentSection) = createRefs()
-
-        HeaderImageComposable(headerImage, hotel)
-        BackButtonComposable(backButton)
-        BookmarkButtonComposable(bookMarkButton)
-        ContentfulSectionComposable(contentSection, hotel)
-        HotelBannerComposable(hotelBoardCard, hotel)
+            HeaderImageComposable(headerImage, hotel)
+            BackButtonComposable(backButton)
+            BookmarkButtonComposable(bookMarkButton)
+            ContentfulSectionComposable(contentSection, hotel)
+            HotelBannerComposable(hotelBoardCard, hotel)
+        }
     }
 }
 
@@ -347,6 +355,71 @@ fun ReviewsCount(hotel: Hotel) {
         style = MaterialTheme.typography.body1,
         color = Color.LightGray
     )
+}
+
+
+@Composable
+fun BookingBottomBar(navController: NavController, hotel: Hotel) {
+    val modifier = Modifier
+        .wrapContentHeight()
+        .clip(
+            RoundedCornerShape(
+                topStart = dimensionResource(id = R.dimen.featuredImageCornerSize),
+                topEnd = dimensionResource(id = R.dimen.featuredImageCornerSize)
+            )
+        )
+        .fillMaxWidth()
+        .background(WhiteColor)
+        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+
+    ConstraintLayout(
+        modifier = modifier
+    ) {
+        val (priceLabel, price,bookButton) = createRefs()
+        val priceLabelModifier = Modifier
+            .wrapContentWidth()
+            .constrainAs(priceLabel) {
+                start.linkTo(parent.start)
+                top.linkTo(parent.top)
+            }
+        Text(
+            modifier = priceLabelModifier,
+            text = stringResource(R.string.per_night_price_text),
+            style = MaterialTheme.typography.body1,
+            maxLines = 1,
+            color = DarkTextColor
+        )
+
+        val priceModifier = Modifier
+            .wrapContentWidth()
+            .constrainAs(price) {
+                start.linkTo(parent.start)
+                top.linkTo(priceLabel.bottom)
+            }
+        Text(
+            modifier = priceModifier,
+            text = "$ ${hotel.pricePerNight}",
+            style = MaterialTheme.typography.h1,
+            maxLines = 1,
+            color = DarkTextColor
+        )
+
+        val bookNowButton = Modifier
+            .wrapContentWidth()
+            .constrainAs(bookButton) {
+                end.linkTo(parent.end)
+                top.linkTo(parent.top)
+            }
+        Button(
+            modifier = bookNowButton,
+            shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+            onClick = {
+                // navigationToHomeScreen(navController)
+            },
+        ) {
+            Text(stringResource(R.string.book_now_button_text))
+        }
+    }
 }
 
 
