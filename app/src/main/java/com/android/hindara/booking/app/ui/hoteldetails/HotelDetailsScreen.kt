@@ -198,7 +198,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             )
             SmallSpacer()
         }
-        GoogleMapsComposable()
+        GoogleMapsComposable(hotel)
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.largeSpacing)))
         Text(
             modifier = Modifier.wrapContentWidth(),
@@ -233,8 +233,9 @@ private fun SmallSpacer() {
 }
 
 @Composable
-fun GoogleMapsComposable() {
-    val singapore = LatLng(1.35, 103.87)
+fun GoogleMapsComposable(hotel: Hotel) {
+    val address = hotel.address
+    val singapore = LatLng(address.latitude, address.longitude)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(singapore, 10f)
     }
@@ -253,8 +254,7 @@ fun GoogleMapsComposable() {
     ) {
         Marker(
             state = MarkerState(position = singapore),
-            title = "Singapore",
-            snippet = "Marker in Singapore",
+            title = address.locationTitle,
             icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)
         )
     }
@@ -317,7 +317,7 @@ fun HotelAddressComposable(hotel: Hotel) {
 
     Text(
         modifier = modifier,
-        text = hotel.address,
+        text = hotel.address.locationTitle,
         style = MaterialTheme.typography.body1,
         color = DarkTextColor
     )
@@ -374,7 +374,7 @@ fun ReviewsCount(hotel: Hotel) {
 
     Text(
         modifier = modifier,
-        text = "(${hotel.reviewsList?.size.toString()} ${stringResource(id = R.string.reviews_title_text)})",
+        text = "(${hotel.reviewsList.size} ${stringResource(id = R.string.reviews_title_text)})",
         style = MaterialTheme.typography.body1,
         color = Color.LightGray
     )

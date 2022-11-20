@@ -110,7 +110,7 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
             }
         Text(
             modifier = hotelAddressTextModifier,
-            text = hotel.address,
+            text = hotel.address.locationTitle,
             style = MaterialTheme.typography.body2,
             color = WhiteColor
         )

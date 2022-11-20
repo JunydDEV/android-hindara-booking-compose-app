@@ -75,7 +75,7 @@ fun HotelAddressComposable(hotel: Hotel) {
 
     Text(
         modifier = modifier,
-        text = hotel.address,
+        text = hotel.address.locationTitle,
         style = MaterialTheme.typography.body1,
         color = DarkTextColor
     )

@@ -37,16 +37,45 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             Hotel(
                 name = "Tropicasa De Hotel",
                 image = R.drawable.ic_tropicasa_hotel,
-                address = "Amsterdam, Netherlands",
+                address = Address(
+                    latitude = 52.1326,
+                    longitude = 5.2913,
+                    locationTitle = "Amsterdam, Netherlands"
+                ),
                 rating = 4.6f,
                 description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
                 reviewsList = listOf(
-                    Reviews("Brad John", R.drawable.ic_profile_picture, 4.5f, "The bed was nice and comfortable, the service was on point. Good job!"),
-                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
-                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
-                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
-                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
+                    Reviews(
+                        "Brad John",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "The bed was nice and comfortable, the service was on point. Good job!"
+                    ),
+                    Reviews(
+                        "Kate Rose",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+                    ),
+                    Reviews(
+                        "Kate Rose",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+                    ),
+                    Reviews(
+                        "Kate Rose",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+                    ),
+                    Reviews(
+                        "Kate Rose",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+                    ),
                 )
 
             )
@@ -55,13 +84,27 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             Hotel(
                 name = "Luxe Hotel",
                 image = R.drawable.ic_luxe_hotel,
-                address = "Jakarta, Indonesia",
+                address = Address(
+                    latitude = 52.1326,
+                    longitude = 5.2913,
+                    locationTitle = "Amsterdam, Netherlands"
+                ),
                 rating = 4.6f,
                 description = "Luxe Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
                 reviewsList = listOf(
-                    Reviews("Brad John", R.drawable.ic_profile_picture, 4.5f, "The bed was nice and comfortable, the service was on point. Good job!"),
-                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
+                    Reviews(
+                        "Brad John",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "The bed was nice and comfortable, the service was on point. Good job!"
+                    ),
+                    Reviews(
+                        "Kate Rose",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+                    ),
                 )
             )
         )
@@ -70,13 +113,27 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             Hotel(
                 name = "Tropicasa De Hotel",
                 image = R.drawable.ic_cleans_hotel,
-                address = "Amsterdam, Netherlands",
+                address = Address(
+                    latitude = 52.1326,
+                    longitude = 5.2913,
+                    locationTitle = "Amsterdam, Netherlands"
+                ),
                 rating = 4.6f,
                 description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
                 reviewsList = listOf(
-                    Reviews("Brad John", R.drawable.ic_profile_picture, 4.5f, "The bed was nice and comfortable, the service was on point. Good job!"),
-                    Reviews("Kate Rose", R.drawable.ic_profile_picture, 4.5f, "9/10 for me personally, no complain at all because it’s perfect. Thanks!"),
+                    Reviews(
+                        "Brad John",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "The bed was nice and comfortable, the service was on point. Good job!"
+                    ),
+                    Reviews(
+                        "Kate Rose",
+                        R.drawable.ic_profile_picture,
+                        4.5f,
+                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+                    ),
                 )
             )
         )
@@ -93,7 +150,7 @@ data class FeaturedCategory(
 data class Hotel(
     val name: String,
     val image: Int,
-    val address: String,
+    val address: Address,
     val rating: Float,
     val description: String,
     val pricePerNight: Double,
@@ -105,4 +162,10 @@ data class Reviews(
     val reviewImage: Int,
     val rating: Float,
     val comment: String
+)
+
+data class Address(
+    val latitude: Double,
+    val longitude: Double,
+    val locationTitle: String,
 )
