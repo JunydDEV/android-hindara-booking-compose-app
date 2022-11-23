@@ -16,4 +16,10 @@
         <item name="postSplashScreenTheme">@style/Theme.HindaraBookingApp</item>
     </style>
 
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">
+        <item name="android:focusedMonthDateColor">@color/colorPrimary</item>
+        <item name="android:weekNumberColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/baloo_regular</item>
+    </style>
+
 </resources>

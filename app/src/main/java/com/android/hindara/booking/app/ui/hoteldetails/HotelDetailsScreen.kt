@@ -1,19 +1,18 @@
 package com.android.hindara.booking.app.ui.hoteldetails
 
-import android.content.Context
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter.Companion.tint
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -24,27 +23,48 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintLayoutScope
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.description.MoreDescriptionComposable
+import com.android.hindara.booking.app.ui.booking.BookingBottomSheet
 import com.android.hindara.booking.app.ui.description.moreDescriptionRoute
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
-import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
 import com.android.hindara.booking.app.ui.reviews.reviewsRoute
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
 import com.google.android.gms.maps.model.*
 import com.google.maps.android.compose.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HotelDetailsScreen(
     homeViewModel: HomeViewModel,
     navController: NavController,
 ) {
     val hotel = homeViewModel.getChosenHotel()
+    val bottomSheetState = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        confirmStateChange = { it != ModalBottomSheetValue.Expanded }
+    )
+    val coroutineScope = rememberCoroutineScope()
+
+    BookingBottomSheet(sheetState = bottomSheetState) {
+        HotelDetailsContent(navController, bottomSheetState, coroutineScope, hotel)
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun HotelDetailsContent(
+    navController: NavController,
+    modalBottomSheetState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope,
+    hotel: Hotel
+) {
     Scaffold(
         bottomBar = {
-            BookingBottomBar(navController, hotel)
+            BookingBottomBar(navController,modalBottomSheetState, coroutineScope, hotel)
         }
     ) {
         ConstraintLayout(
@@ -381,8 +401,14 @@ fun ReviewsCount(hotel: Hotel) {
 }
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun BookingBottomBar(navController: NavController, hotel: Hotel) {
+fun BookingBottomBar(
+    navController: NavController,
+    modalBottomSheetState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope,
+    hotel: Hotel
+) {
     val modifier = Modifier
         .wrapContentHeight()
         .clip(
@@ -437,7 +463,9 @@ fun BookingBottomBar(navController: NavController, hotel: Hotel) {
             modifier = bookNowButton,
             shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
             onClick = {
-
+                coroutineScope.launch {
+                    modalBottomSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                }
             },
         ) {
             Text(stringResource(R.string.book_now_button_text))
