@@ -17,12 +17,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.ui.theme.PrimaryColor
 import com.android.hindara.booking.app.ui.theme.RangeBackgroundColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
-import com.android.hindara.booking.app.ui.theme.YellowColor
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.core.CalendarDay
@@ -31,12 +33,14 @@ import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
+import com.kizitonwose.calendar.core.CalendarMonth
+import com.android.hindara.booking.app.R
+import java.util.*
 
 @Composable
 fun CalendarComposable() {
     CalendarContent()
 }
-
 @Composable
 fun CalendarContent() {
     val currentMonth = remember { YearMonth.now() }
@@ -57,26 +61,47 @@ fun CalendarContent() {
         Day(it, selectionState)
     }, monthHeader = { month ->
         val daysOfWeek = month.weekDays.first().map { it.date.dayOfWeek }
-        MonthHeader(daysOfWeek = daysOfWeek)
+        MonthHeader(daysOfWeek = daysOfWeek, month = month)
     })
 }
 
 @Composable
-fun MonthHeader(daysOfWeek: List<DayOfWeek>) {
-    Row(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        for (dayOfWeek in daysOfWeek) {
-            Text(
-                modifier = Modifier.weight(1f),
-                text = dayOfWeek.name[0].toString(),
-                style = MaterialTheme.typography.h1,
-                color = Color.LightGray,
-                textAlign = TextAlign.Center,
-            )
+fun MonthHeader(daysOfWeek: List<DayOfWeek>, month: CalendarMonth) {
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .padding(top = dimensionResource(id = R.dimen.largeSpacing))) {
+        CalendarTitle(month)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+        ) {
+            for (dayOfWeek in daysOfWeek) {
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = dayOfWeek.name[0].toString(),
+                    style = MaterialTheme.typography.h1,
+                    color = Color.LightGray,
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
     }
 }
+
+@Composable
+fun CalendarTitle(month: CalendarMonth) {
+    val monthName = month.yearMonth.month.name.lowercase(Locale.ROOT)
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
+    val year = month.yearMonth.year
+    Text(
+        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.defaultSpacing)),
+        text = "$monthName $year",
+        style = MaterialTheme.typography.h2,
+    )
+}
+
 
 @Composable
 fun Day(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
@@ -98,7 +123,7 @@ fun Day(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDat
     ) {
 
         val modifier = if (isSelectedDay(day, selectionState)) {
-            val shape = if(isStartSelectedDay(day, selectionState)) {
+            val shape = if (isStartSelectedDay(day, selectionState)) {
                 RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp)
             } else {
                 RoundedCornerShape(topEnd = 20.dp, bottomEnd = 20.dp)
