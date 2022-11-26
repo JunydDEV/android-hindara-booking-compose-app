@@ -9,7 +9,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,9 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.ui.theme.PrimaryColor
 import com.android.hindara.booking.app.ui.theme.RangeBackgroundColor
@@ -38,18 +35,16 @@ import com.android.hindara.booking.app.R
 import java.util.*
 
 @Composable
-fun CalendarComposable() {
-    CalendarContent()
+fun CalendarComposable(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
+    CalendarContent(selectionState)
 }
 @Composable
-fun CalendarContent() {
+fun CalendarContent(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
     val currentMonth = remember { YearMonth.now() }
     val startMonth = remember { currentMonth.minusMonths(100) }
     val endMonth = remember { currentMonth.plusMonths(100) }
     val firstDayOfWeek = remember { firstDayOfWeekFromLocale() }
-    val selectionState = remember {
-        mutableStateOf(Pair<LocalDate?, LocalDate?>(null, null))
-    }
+
     val state = rememberCalendarState(
         startMonth = startMonth,
         endMonth = endMonth,
@@ -195,7 +190,7 @@ private fun isSelectedDay(
     val startDate = currentSelectionState.first
     val endDate = currentSelectionState.second
 
-    return startDate?.dayOfMonth == day.date.dayOfMonth || endDate?.dayOfMonth == day.date.dayOfMonth
+    return startDate == day.date || endDate == day.date
 }
 
 private fun isStartSelectedDay(

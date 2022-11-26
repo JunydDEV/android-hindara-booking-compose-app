@@ -7,6 +7,9 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -15,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.*
+import java.time.LocalDate
 import java.util.*
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -24,6 +28,10 @@ fun BookingBottomSheet(
     sheetState: ModalBottomSheetState,
     function: @Composable () -> Unit
 ) {
+    val selectionState = remember {
+        mutableStateOf(Pair<LocalDate?, LocalDate?>(null, null))
+    }
+
     ModalBottomSheetLayout(
         sheetState = sheetState,
         sheetBackgroundColor = BottomSheetBackgroundColor,
@@ -37,8 +45,8 @@ fun BookingBottomSheet(
                     .background(WhiteColor)
                     .padding(dimensionResource(id = R.dimen.defaultSpacing))
             ) {
-                CalendarComposable()
-                SelectedDaysComposable()
+                CalendarComposable(selectionState)
+                SelectedDaysComposable(selectionState)
                 ContinueButtonComposable()
             }
         },
@@ -46,7 +54,15 @@ fun BookingBottomSheet(
 }
 
 @Composable
-fun SelectedDaysComposable() {
+fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
+    val currentSelectionState = selectionState.value
+    val checkInDate = currentSelectionState.first
+    val checkOutDate = currentSelectionState.second
+
+    if(checkInDate == null || checkOutDate == null)
+        return
+
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceAround,
@@ -62,7 +78,7 @@ fun SelectedDaysComposable() {
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = "May 17",
+                text = "${checkInDate.month?.name?.subSequence(0, 3)} ${checkInDate.dayOfMonth}",
                 style = MaterialTheme.typography.h1,
                 color = DarkTextColor
             )
@@ -80,7 +96,7 @@ fun SelectedDaysComposable() {
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = "May 21",
+                text = "${checkOutDate.month?.name?.subSequence(0, 3)} ${checkOutDate.dayOfMonth}",
                 style = MaterialTheme.typography.h1,
                 color = DarkTextColor
             )

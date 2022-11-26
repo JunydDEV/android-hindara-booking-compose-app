@@ -1,5 +1,6 @@
 package com.android.hindara.booking.app.ui.hoteldetails
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
@@ -48,6 +49,10 @@ fun HotelDetailsScreen(
         confirmStateChange = { it != ModalBottomSheetValue.Expanded }
     )
     val coroutineScope = rememberCoroutineScope()
+
+    BackHandler(bottomSheetState.isVisible) {
+        coroutineScope.launch { bottomSheetState.hide() }
+    }
 
     BookingBottomSheet(sheetState = bottomSheetState) {
         HotelDetailsContent(navController, bottomSheetState, coroutineScope, hotel)
