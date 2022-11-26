@@ -19,7 +19,7 @@ import com.android.hindara.booking.app.ui.reviews.reviewsGraph
 fun HindaraAppNavHost(navController: NavHostController) {
     val homeViewModel: HomeViewModel = hiltViewModel()
 
-    NavHost(navController = navController, startDestination = homeRoute) {
+    NavHost(navController = navController, startDestination = onboardingRoute) {
         onboardingGraph(navController)
         authenticationGraph(navController)
         homeNavGraph(homeViewModel, navController)

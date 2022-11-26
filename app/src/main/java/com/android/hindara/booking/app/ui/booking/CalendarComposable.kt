@@ -1,11 +1,10 @@
 package com.android.hindara.booking.app.ui.booking
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,8 +18,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.ui.theme.PrimaryColor
+import com.android.hindara.booking.app.ui.theme.RangeBackgroundColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
+import com.android.hindara.booking.app.ui.theme.YellowColor
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.core.CalendarDay
@@ -32,12 +34,9 @@ import java.time.YearMonth
 
 @Composable
 fun CalendarComposable() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        CalendarContent()
-    }
+    CalendarContent()
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CalendarContent() {
     val currentMonth = remember { YearMonth.now() }
@@ -79,19 +78,17 @@ fun MonthHeader(daysOfWeek: List<DayOfWeek>) {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Day(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
 
     val backgroundShape = getCalendarDayBackgroundShape(day, selectionState)
     val backgroundColor = getCalendarDayBackgroundColor(day, selectionState)
     val selectedTextColor = getSelectionTextColor(day, selectionState)
+    val rangeBackgroundColor = getRangeSelectionBackgroundColor(day, selectionState)
 
     Box(
         modifier = Modifier
             .aspectRatio(1f)
-            .clip(backgroundShape)
-            .background(backgroundColor)
             .clickable {
                 if (isSelectionInvalid(day)) {
                     return@clickable
@@ -99,24 +96,101 @@ fun Day(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDat
                 onDaySelection(day, selectionState)
             }, contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = day.date.dayOfMonth.toString(), color = selectedTextColor
+
+        val modifier = if (isSelectedDay(day, selectionState)) {
+            val shape = if(isStartSelectedDay(day, selectionState)) {
+                RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp)
+            } else {
+                RoundedCornerShape(topEnd = 20.dp, bottomEnd = 20.dp)
+
+            }
+            Modifier
+                .fillMaxWidth()
+                .clip(shape)
+                .height(30.dp)
+                .background(rangeBackgroundColor)
+        } else {
+            Modifier
+                .fillMaxWidth()
+                .height(30.dp)
+                .background(rangeBackgroundColor)
+        }
+
+        Spacer(
+            modifier = modifier
         )
+
+        Spacer(
+            modifier = Modifier
+                .clip(backgroundShape)
+                .background(backgroundColor)
+                .fillMaxSize()
+        )
+
+        Text(text = day.date.dayOfMonth.toString(), color = selectedTextColor)
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun getSelectionTextColor(
-    day: CalendarDay,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+fun getRangeSelectionBackgroundColor(
+    day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
 ): Color {
     val currentSelectionState = selectionState.value
-    return if(currentSelectionState.first?.dayOfMonth == day.date.dayOfMonth ||
-        currentSelectionState.second?.dayOfMonth == day.date.dayOfMonth) {
+    val startDate = currentSelectionState.first
+    val endDate = currentSelectionState.second
+
+    if (startDate == null || endDate == null) {
+        return WhiteColor
+    }
+
+    return if (
+        (day.date == startDate || day.date == endDate) ||
+        (day.date.isAfter(startDate) && day.date.isBefore(endDate))
+    ) {
+        RangeBackgroundColor
+    } else {
+        Color.Transparent
+    }
+}
+
+fun getSelectionTextColor(
+    day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+): Color {
+    return if (isSelectedDay(day, selectionState)) {
         WhiteColor
-    } else{
+    } else {
         getCalendarDayTextColor(day)
     }
+}
+
+private fun isSelectedDay(
+    day: CalendarDay,
+    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+): Boolean {
+    val currentSelectionState = selectionState.value
+    val startDate = currentSelectionState.first
+    val endDate = currentSelectionState.second
+
+    return startDate?.dayOfMonth == day.date.dayOfMonth || endDate?.dayOfMonth == day.date.dayOfMonth
+}
+
+private fun isStartSelectedDay(
+    day: CalendarDay,
+    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+): Boolean {
+    val currentSelectionState = selectionState.value
+    val startDate = currentSelectionState.first
+
+    return startDate?.dayOfMonth == day.date.dayOfMonth
+}
+
+private fun isEndSelectedDay(
+    day: CalendarDay,
+    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+): Boolean {
+    val currentSelectionState = selectionState.value
+    val endDate = currentSelectionState.second
+
+    return endDate?.dayOfMonth == day.date.dayOfMonth
 }
 
 private fun getCalendarDayTextColor(day: CalendarDay) = when (day.position) {
@@ -146,7 +220,7 @@ fun getCalendarDayBackgroundColor(
     return if (isCalendarDayEqualsSelectedDay(day, currentSelectionState)) {
         PrimaryColor
     } else {
-        WhiteColor
+        Color.Transparent
     }
 }
 
@@ -162,7 +236,6 @@ fun isSelectionInvalid(day: CalendarDay): Boolean {
     return dayPosition == DayPosition.InDate || dayPosition == DayPosition.OutDate
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun onDaySelection(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
     val previousPair = selectionState.value
 
@@ -179,7 +252,7 @@ fun onDaySelection(day: CalendarDay, selectionState: MutableState<Pair<LocalDate
         }
     } else {
         startDate = day.date // restart selection
-        endDate = null // reset endData
+        endDate = null // reset endDate
     }
 
     val newPair = Pair(startDate, endDate)

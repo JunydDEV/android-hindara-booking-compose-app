@@ -22,4 +22,5 @@ val TabIndicatorColor = PrimaryColor
 val FieldPlaceholderColor = Color(0xFF8D8D8D)
 val FieldBackgroundColor = WhiteColor
 val BlackGradientColor = Color(0x410A0A0A)
+val RangeBackgroundColor = Color(0x3300A76E)
 
