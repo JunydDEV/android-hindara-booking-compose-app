@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.booking
+package com.android.hindara.booking.app.ui.hoteldetails.bottomsheets.booking
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

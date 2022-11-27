@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.booking
+package com.android.hindara.booking.app.ui.hoteldetails.bottomsheets.booking
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -59,7 +59,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
     val checkInDate = currentSelectionState.first
     val checkOutDate = currentSelectionState.second
 
-    if(checkInDate == null || checkOutDate == null)
+    if (checkInDate == null || checkOutDate == null)
         return
 
     Row(
@@ -77,9 +77,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = "${
-                    checkInDate.month?.name?.toTitleCase().toString().subSequence(0, 3)
-                } ${checkInDate.dayOfMonth}",
+                text = getSelectedDateWithMonth(checkInDate),
                 style = MaterialTheme.typography.h1,
                 color = DarkTextColor
             )
@@ -97,12 +95,22 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = "${checkOutDate.month?.name?.subSequence(0, 3)} ${checkOutDate.dayOfMonth}",
+                text = getSelectedDateWithMonth(checkOutDate),
                 style = MaterialTheme.typography.h1,
                 color = DarkTextColor
             )
         }
     }
+}
+
+@Composable
+private fun getSelectedDateWithMonth(checkInDate: LocalDate): String {
+    checkInDate.month?.let {
+        val monthInTitleCase = it.name.toTitleCase()
+        val firstThreeCharsOfMonth = monthInTitleCase.subSequence(0, 3)
+        val selectedDay = checkInDate.dayOfMonth
+        return "$firstThreeCharsOfMonth $selectedDay"
+    } ?: return "null"
 }
 
 

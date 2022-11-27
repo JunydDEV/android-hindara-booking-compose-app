@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.authentication.login.bottomsheets
+package com.android.hindara.booking.app.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.material.ExperimentalMaterialApi

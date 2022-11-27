@@ -13,8 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.BottomSheetsRouterComposable
 import com.android.hindara.booking.app.ui.authentication.login.*
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.BottomSheetsRouterComposable
 import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
 import com.android.hindara.booking.app.ui.theme.*
 import com.google.accompanist.pager.*
