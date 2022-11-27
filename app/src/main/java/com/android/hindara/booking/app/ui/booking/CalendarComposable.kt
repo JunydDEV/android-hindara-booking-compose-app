@@ -32,7 +32,7 @@ import java.time.LocalDate
 import java.time.YearMonth
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.android.hindara.booking.app.R
-import java.util.*
+import com.android.hindara.booking.app.utils.toTitleCase
 
 @Composable
 fun CalendarComposable(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
@@ -62,16 +62,16 @@ fun CalendarContent(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) 
 
 @Composable
 fun MonthHeader(daysOfWeek: List<DayOfWeek>, month: CalendarMonth) {
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .padding(top = dimensionResource(id = R.dimen.largeSpacing))) {
+    val headerModifier = Modifier
+        .fillMaxWidth()
+        .padding(top = dimensionResource(id = R.dimen.largeSpacing))
+
+    Column(modifier = headerModifier) {
         CalendarTitle(month)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
-        ) {
+        val monthYearModifier = Modifier
+            .fillMaxWidth()
+            .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+        Row(modifier = monthYearModifier) {
             for (dayOfWeek in daysOfWeek) {
                 Text(
                     modifier = Modifier.weight(1f),
@@ -87,11 +87,11 @@ fun MonthHeader(daysOfWeek: List<DayOfWeek>, month: CalendarMonth) {
 
 @Composable
 fun CalendarTitle(month: CalendarMonth) {
-    val monthName = month.yearMonth.month.name.lowercase(Locale.ROOT)
-        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
     val year = month.yearMonth.year
+    val monthName = month.yearMonth.month.name.toTitleCase()
+    val titleModifier = Modifier.padding(start = dimensionResource(id = R.dimen.defaultSpacing))
     Text(
-        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.defaultSpacing)),
+        modifier = titleModifier,
         text = "$monthName $year",
         style = MaterialTheme.typography.h2,
     )
@@ -106,49 +106,51 @@ fun Day(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDat
     val selectedTextColor = getSelectionTextColor(day, selectionState)
     val rangeBackgroundColor = getRangeSelectionBackgroundColor(day, selectionState)
 
-    Box(
-        modifier = Modifier
-            .aspectRatio(1f)
-            .clickable {
-                if (isSelectionInvalid(day)) {
-                    return@clickable
-                }
-                onDaySelection(day, selectionState)
-            }, contentAlignment = Alignment.Center
-    ) {
-
-        val modifier = if (isSelectedDay(day, selectionState)) {
-            val shape = if (isStartSelectedDay(day, selectionState)) {
-                RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp)
-            } else {
-                RoundedCornerShape(topEnd = 20.dp, bottomEnd = 20.dp)
-
+    val calendarDayModifier = Modifier
+        .aspectRatio(1f)
+        .clickable {
+            if (isSelectionInvalid(day)) {
+                return@clickable
             }
-            Modifier
-                .fillMaxWidth()
-                .clip(shape)
-                .height(30.dp)
-                .background(rangeBackgroundColor)
-        } else {
-            Modifier
-                .fillMaxWidth()
-                .height(30.dp)
-                .background(rangeBackgroundColor)
+            onDaySelection(day, selectionState)
         }
+    Box(modifier = calendarDayModifier, contentAlignment = Alignment.Center) {
+        val rangeSelectionModifier =
+            getRangeSelectionModifier(day, selectionState, rangeBackgroundColor)
 
-        Spacer(
-            modifier = modifier
-        )
+        val daySelectionModifier = Modifier
+            .clip(backgroundShape)
+            .background(backgroundColor)
+            .fillMaxSize()
 
-        Spacer(
-            modifier = Modifier
-                .clip(backgroundShape)
-                .background(backgroundColor)
-                .fillMaxSize()
-        )
-
+        Spacer(modifier = rangeSelectionModifier)
+        Spacer(modifier = daySelectionModifier)
         Text(text = day.date.dayOfMonth.toString(), color = selectedTextColor)
     }
+}
+
+@Composable
+private fun getRangeSelectionModifier(
+    day: CalendarDay,
+    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>,
+    backgroundColor: Color
+) = if (isSelectedDay(day, selectionState)) {
+    val shape = if (isStartSelectedDay(day, selectionState)) {
+        RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp)
+    } else {
+        RoundedCornerShape(topEnd = 20.dp, bottomEnd = 20.dp)
+
+    }
+    Modifier
+        .fillMaxWidth()
+        .clip(shape)
+        .height(30.dp)
+        .background(backgroundColor)
+} else {
+    Modifier
+        .fillMaxWidth()
+        .height(30.dp)
+        .background(backgroundColor)
 }
 
 fun getRangeSelectionBackgroundColor(

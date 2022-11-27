@@ -72,11 +72,11 @@ private fun HotelDetailsContent(
             BookingBottomBar(navController,modalBottomSheetState, coroutineScope, hotel)
         }
     ) {
-        ConstraintLayout(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(it)
-        ) {
+        val mainModifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(it)
+
+        ConstraintLayout(modifier = mainModifier) {
             val (headerImage, backButton, bookMarkButton, hotelBoardCard, contentSection) = createRefs()
 
             HeaderImageComposable(headerImage, hotel)

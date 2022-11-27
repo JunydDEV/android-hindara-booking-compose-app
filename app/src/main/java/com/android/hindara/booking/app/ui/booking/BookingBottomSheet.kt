@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.utils.toTitleCase
 import java.time.LocalDate
 import java.util.*
 
@@ -40,11 +41,10 @@ fun BookingBottomSheet(
             topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
         ),
         sheetContent = {
-            Column(
-                Modifier
-                    .background(WhiteColor)
-                    .padding(dimensionResource(id = R.dimen.defaultSpacing))
-            ) {
+            val mainModifier = Modifier
+                .background(WhiteColor)
+                .padding(dimensionResource(id = R.dimen.defaultSpacing))
+            Column(modifier = mainModifier) {
                 CalendarComposable(selectionState)
                 SelectedDaysComposable(selectionState)
                 ContinueButtonComposable()
@@ -62,7 +62,6 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
     if(checkInDate == null || checkOutDate == null)
         return
 
-
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceAround,
@@ -78,7 +77,9 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = "${checkInDate.month?.name?.subSequence(0, 3)} ${checkInDate.dayOfMonth}",
+                text = "${
+                    checkInDate.month?.name?.toTitleCase().toString().subSequence(0, 3)
+                } ${checkInDate.dayOfMonth}",
                 style = MaterialTheme.typography.h1,
                 color = DarkTextColor
             )

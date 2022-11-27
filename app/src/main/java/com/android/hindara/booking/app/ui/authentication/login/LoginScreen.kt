@@ -68,12 +68,12 @@ private fun MainScreenContent(
     bottomSheetScaffoldState: ModalBottomSheetState,
     coroutineScope: CoroutineScope
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(ScreenBackgroundColor)
-            .verticalScroll(rememberScrollState())
-    ) {
+    val mainModifier = Modifier
+        .fillMaxSize()
+        .background(ScreenBackgroundColor)
+        .verticalScroll(rememberScrollState())
+
+    Column(modifier = mainModifier) {
         SpacerComposable()
         EmailTextFieldLabelComposable()
         EmailTextFieldComposable()
