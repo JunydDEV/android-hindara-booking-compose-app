@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpasswordresult
+package com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -16,36 +16,36 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
-import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.HindaraBottomSheet
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlowResultState
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 /**
- * Bottom sheet UI to show the reset password result.
+ * Bottom sheet UI to show the job flow result.
  *
  * @param viewModel provides data to UI from outside.
- * @param sheetState state of the bottom sheet.
- * @param loginBottomSheetState holds the state of current bottom sheet.
- * @param result indicates success/failure of reset password.
+ * @param modelBottomSheetState state of the bottom sheet.
+ * @param bottomSheetState holds the state of current bottom sheet.
+ * @param resultState indicates success/failure of job flow result.
  * @param mainScreenContent indicates the main screen content.
  * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ResetPasswordResultBottomSheet(
-    viewModel: ResetPasswordResultViewModel = hiltViewModel(),
-    sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<BottomSheetState>,
-    result: LoginBottomSheetState,
+fun JobFlowResultBottomSheet(
+    viewModel: JobFlowResultViewModel = hiltViewModel(),
+    modelBottomSheetState: ModalBottomSheetState,
+    bottomSheetState: MutableState<BottomSheetState>,
+    resultState: JobFlowResultState,
     mainScreenContent: @Composable () -> Unit
 ) {
     HindaraBottomSheet(
-        sheetState = sheetState,
+        sheetState = modelBottomSheetState,
         sheetContent = {
-            ResetPasswordSuccessBottomSheetContent(
-                loginBottomSheetState,
+            JobFlowResultBottomSheetContent(
+                bottomSheetState,
                 viewModel,
-                result
+                resultState
             )
         },
         content = { mainScreenContent() }
@@ -53,10 +53,10 @@ fun ResetPasswordResultBottomSheet(
 }
 
 @Composable
-fun ResetPasswordSuccessBottomSheetContent(
-    loginBottomSheetState: MutableState<BottomSheetState>,
-    viewModel: ResetPasswordResultViewModel,
-    result: LoginBottomSheetState
+fun JobFlowResultBottomSheetContent(
+    bottomSheetState: MutableState<BottomSheetState>,
+    viewModel: JobFlowResultViewModel,
+    result: JobFlowResultState
 ) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
@@ -65,12 +65,14 @@ fun ResetPasswordSuccessBottomSheetContent(
     Column(
         modifier = parentColumnModifier
     ) {
-
-        SuccessImageComposable(viewModel.getResultIcon(result))
-        SpacerComposable()
-        ResetPasswordSuccessTitle(viewModel.getTitle(result))
-        ResetPasswordSuccessDescription(viewModel.getDescription(result))
-        ContinueButtonComposable(loginBottomSheetState, viewModel.getButtonText(result), result)
+        val jobFlowResult = viewModel.getResult(bottomSheetState.value as JobFlowResultState)
+        jobFlowResult?.let {
+            SuccessImageComposable(it.icon)
+            SpacerComposable()
+            ResetPasswordSuccessTitle(it.title)
+            ResetPasswordSuccessDescription(it.description)
+            ContinueButtonComposable(bottomSheetState, it.buttonText, result)
+        }
     }
 }
 
@@ -82,7 +84,6 @@ private fun SuccessImageComposable(resultIcon: Int) {
             .padding(top = dimensionResource(id = R.dimen.largeSpacing)),
         contentAlignment = Alignment.Center
     ) {
-        val icon  =
         Image(
             painter = painterResource(id = resultIcon),
             contentDescription = stringResource(
@@ -125,7 +126,7 @@ private fun ResetPasswordSuccessDescription(description: Int) {
 private fun ContinueButtonComposable(
     loginBottomSheetState: MutableState<BottomSheetState>,
     buttonText: Int,
-    result: LoginBottomSheetState
+    result: JobFlowResultState
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
@@ -134,10 +135,22 @@ private fun ContinueButtonComposable(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            if (result == LoginBottomSheetState.ResetPasswordFailure) {
-                loginBottomSheetState.value = LoginBottomSheetState.ResetPasswordSuccess
-            } else {
-                loginBottomSheetState.value = LoginBottomSheetState.ResetPasswordCompleted
+            when(result) {
+                JobFlowResultState.PaymentResultSuccess -> {
+                    loginBottomSheetState.value = JobFlowResultState.BookingCompleted
+                }
+                JobFlowResultState.PaymentResultFailure -> {
+                    loginBottomSheetState.value = JobFlowResultState.PaymentResultSuccess
+                }
+                JobFlowResultState.ResetPasswordSuccess -> {
+                    loginBottomSheetState.value = JobFlowResultState.ResetPasswordCompleted
+                }
+                JobFlowResultState.ResetPasswordFailure -> {
+                    loginBottomSheetState.value = JobFlowResultState.ResetPasswordSuccess
+                }
+                else -> {
+                    loginBottomSheetState.value = JobFlowResultState.ResetPasswordSuccess
+                }
             }
         },
     ) {

@@ -19,17 +19,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
-import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BookingBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlowResultState
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getFormattedDate
-import java.time.LocalDate
 
 /**
  * Bottom sheet to select the booking dates.
@@ -246,7 +246,7 @@ private fun ContinueButtonComposable(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            bookingBottomSheetState.value = BookingBottomSheetState.PaymentMethodSelection
+            bookingBottomSheetState.value = JobFlowResultState.PaymentResultFailure
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

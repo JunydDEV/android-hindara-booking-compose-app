@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui
+package com.android.hindara.booking.app.ui.common.bottomsheets
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.material.ExperimentalMaterialApi
@@ -8,8 +8,8 @@ import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
-import com.android.hindara.booking.app.data.bottomsheets.JobFlow
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlow
 import com.android.hindara.booking.app.ui.authentication.AuthBottomSheetsRouter
 import com.android.hindara.booking.app.ui.booking.BookingBottomSheetsRouter
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
@@ -24,7 +24,7 @@ fun BottomSheetsRouterComposable(
     hotel: Hotel? = null,
     startBottomSheet: BottomSheetState,
     jobFlow: JobFlow,
-    function: @Composable (MutableState<BottomSheetState>, ModalBottomSheetState, CoroutineScope) -> Unit
+    mainScreenContent: @Composable (MutableState<BottomSheetState>, ModalBottomSheetState, CoroutineScope) -> Unit
 ) {
     val bottomSheetsVisibilityState = remember {
         mutableStateOf(startBottomSheet)
@@ -48,7 +48,7 @@ fun BottomSheetsRouterComposable(
             AuthBottomSheetsRouter(
                 bottomSheetsVisibilityState,
                 bottomSheetState,
-                function,
+                mainScreenContent,
                 coroutineScope
             )
         }
@@ -60,7 +60,7 @@ fun BottomSheetsRouterComposable(
                 bookingSharedViewModel,
                 bottomSheetsVisibilityState,
                 bottomSheetState,
-                function,
+                mainScreenContent,
                 coroutineScope
             )
         }

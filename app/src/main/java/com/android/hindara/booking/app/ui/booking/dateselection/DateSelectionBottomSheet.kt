@@ -16,13 +16,12 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
-import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BookingBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getFormattedDate
-import com.android.hindara.booking.app.utils.toTitleCase
 import java.time.LocalDate
 import java.util.*
 

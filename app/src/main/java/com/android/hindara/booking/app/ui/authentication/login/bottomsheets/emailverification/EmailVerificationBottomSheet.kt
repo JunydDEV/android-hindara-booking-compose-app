@@ -23,8 +23,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
-import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.theme.DarkTextColor

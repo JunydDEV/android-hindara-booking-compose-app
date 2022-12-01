@@ -22,9 +22,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintLayoutScope
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
-import com.android.hindara.booking.app.data.bottomsheets.JobFlow
-import com.android.hindara.booking.app.ui.BottomSheetsRouterComposable
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BookingBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlow
+import com.android.hindara.booking.app.ui.common.bottomsheets.BottomSheetsRouterComposable
 import com.android.hindara.booking.app.ui.description.moreDescriptionRoute
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel

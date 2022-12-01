@@ -5,12 +5,13 @@ import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
-import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.ForgotPasswordBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.ResetPasswordBottomSheet
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpasswordresult.ResetPasswordResultBottomSheet
+import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.JobFlowResultBottomSheet
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlowResultState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -19,17 +20,16 @@ import kotlinx.coroutines.launch
 fun AuthBottomSheetsRouter(
     bottomSheetsVisibilityState: MutableState<BottomSheetState>,
     modalBottomSheetState: ModalBottomSheetState,
-    function: @Composable (MutableState<BottomSheetState>, ModalBottomSheetState, CoroutineScope) -> Unit,
+    mainScreenContent: @Composable (MutableState<BottomSheetState>, ModalBottomSheetState, CoroutineScope) -> Unit,
     coroutineScope: CoroutineScope
 ) {
     when (bottomSheetsVisibilityState.value) {
-
         LoginBottomSheetState.ForgotPassword -> {
             ForgotPasswordBottomSheet(
                 sheetState = modalBottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState
             ) {
-                function(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
+                mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
         LoginBottomSheetState.ResetPassword -> {
@@ -37,25 +37,25 @@ fun AuthBottomSheetsRouter(
                 sheetState = modalBottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState
             ) {
-                function(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
+                mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        LoginBottomSheetState.ResetPasswordSuccess -> {
-            ResetPasswordResultBottomSheet(
-                sheetState = modalBottomSheetState,
-                loginBottomSheetState = bottomSheetsVisibilityState,
-                result = LoginBottomSheetState.ResetPasswordSuccess
+        JobFlowResultState.ResetPasswordSuccess -> {
+            JobFlowResultBottomSheet(
+                modelBottomSheetState = modalBottomSheetState,
+                bottomSheetState = bottomSheetsVisibilityState,
+                resultState = JobFlowResultState.ResetPasswordSuccess
             ) {
-                function(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
+                mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        LoginBottomSheetState.ResetPasswordFailure -> {
-            ResetPasswordResultBottomSheet(
-                sheetState = modalBottomSheetState,
-                loginBottomSheetState = bottomSheetsVisibilityState,
-                result = LoginBottomSheetState.ResetPasswordFailure
+        JobFlowResultState.ResetPasswordFailure -> {
+            JobFlowResultBottomSheet(
+                modelBottomSheetState = modalBottomSheetState,
+                bottomSheetState = bottomSheetsVisibilityState,
+                resultState = JobFlowResultState.ResetPasswordFailure
             ) {
-                function(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
+                mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
         LoginBottomSheetState.VerifyEmail -> {
@@ -63,7 +63,7 @@ fun AuthBottomSheetsRouter(
                 sheetState = modalBottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState
             ) {
-                function(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
+                mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
         else -> {
@@ -72,7 +72,7 @@ fun AuthBottomSheetsRouter(
                     modalBottomSheetState.hide()
                 }
             }
-            function(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
+            mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
         }
     }
 }
