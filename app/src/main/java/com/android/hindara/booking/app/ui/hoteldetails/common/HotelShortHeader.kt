@@ -24,7 +24,10 @@ import com.android.hindara.booking.app.ui.theme.YellowColor
 
 @Composable
 fun HotelShortHeader(hotel: Hotel) {
-    HindaraCard {
+    HindaraCard(
+        showBorders = false,
+        cornersSize = dimensionResource(id = R.dimen.bottomSheetCornerSize)
+    ) {
         Row(
             modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))
         ) {
