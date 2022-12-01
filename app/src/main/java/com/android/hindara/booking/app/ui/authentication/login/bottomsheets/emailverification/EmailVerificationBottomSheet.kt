@@ -25,7 +25,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.LoginBottomSheetState
+import com.android.hindara.booking.app.data.BottomSheetState
+import com.android.hindara.booking.app.data.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
@@ -44,7 +45,7 @@ import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 fun EmailVerificationBottomSheet(
     viewModel: EmailVerificationViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<LoginBottomSheetState>,
+    loginBottomSheetState: MutableState<BottomSheetState>,
     function: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -59,7 +60,7 @@ fun EmailVerificationBottomSheet(
 }
 
 @Composable
-fun EmailVerificationBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
+fun EmailVerificationBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
         .verticalScroll(rememberScrollState())
@@ -220,7 +221,7 @@ private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
 )
 
 @Composable
-private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
+private fun ContinueButtonComposable(loginBottomSheetState: MutableState<BottomSheetState>) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.smallSpacing))

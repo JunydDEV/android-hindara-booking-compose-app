@@ -16,7 +16,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.LoginBottomSheetState
+import com.android.hindara.booking.app.data.BottomSheetState
+import com.android.hindara.booking.app.data.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
@@ -34,7 +35,7 @@ import com.android.hindara.booking.app.ui.theme.DarkTextColor
 fun ResetPasswordResultBottomSheet(
     viewModel: ResetPasswordResultViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<LoginBottomSheetState>,
+    loginBottomSheetState: MutableState<BottomSheetState>,
     result: LoginBottomSheetState,
     function: @Composable () -> Unit
 ) {
@@ -51,7 +52,7 @@ fun ResetPasswordResultBottomSheet(
 
 @Composable
 fun ResetPasswordSuccessBottomSheetContent(
-    loginBottomSheetState: MutableState<LoginBottomSheetState>,
+    loginBottomSheetState: MutableState<BottomSheetState>,
     viewModel: ResetPasswordResultViewModel,
     result: LoginBottomSheetState
 ) {
@@ -120,7 +121,7 @@ private fun ResetPasswordSuccessDescription(description: Int) {
 
 @Composable
 private fun ContinueButtonComposable(
-    loginBottomSheetState: MutableState<LoginBottomSheetState>,
+    loginBottomSheetState: MutableState<BottomSheetState>,
     buttonText: Int,
     result: LoginBottomSheetState
 ) {

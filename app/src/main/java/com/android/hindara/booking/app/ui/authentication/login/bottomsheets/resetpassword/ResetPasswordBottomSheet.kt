@@ -31,7 +31,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.LoginBottomSheetState
+import com.android.hindara.booking.app.data.BottomSheetState
+import com.android.hindara.booking.app.data.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.*
 
 
@@ -48,7 +49,7 @@ import com.android.hindara.booking.app.ui.theme.*
 fun ResetPasswordBottomSheet(
     viewModel: ResetPasswordViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<LoginBottomSheetState>,
+    loginBottomSheetState: MutableState<BottomSheetState>,
     function: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -63,7 +64,7 @@ fun ResetPasswordBottomSheet(
 }
 
 @Composable
-fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
+fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
         .verticalScroll(rememberScrollState())
@@ -241,7 +242,7 @@ private fun getPasswordKeyboardOptions(imeOptions: ImeAction) = KeyboardOptions(
 )
 
 @Composable
-private fun ResetButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
+private fun ResetButtonComposable(loginBottomSheetState: MutableState<BottomSheetState>) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))

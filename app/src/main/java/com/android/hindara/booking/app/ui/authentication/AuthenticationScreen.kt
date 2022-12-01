@@ -13,6 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.data.JobFlow
+import com.android.hindara.booking.app.data.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetsRouterComposable
 import com.android.hindara.booking.app.ui.authentication.login.*
 import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
@@ -20,7 +22,6 @@ import com.android.hindara.booking.app.ui.theme.*
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 /**
  * Container screen hosting login and signup.
@@ -35,7 +36,9 @@ fun AuthenticationScreen(
     viewModel: AuthenticationViewModel = hiltViewModel()
 ) {
     BottomSheetsRouterComposable(
-        navController
+        navController,
+        LoginBottomSheetState.ForgotPassword,
+        JobFlow.Authentication
     ) { _, bottomSheetState, coroutineScope->
         MainScreenContentComposable(navController, bottomSheetState, coroutineScope)
     }

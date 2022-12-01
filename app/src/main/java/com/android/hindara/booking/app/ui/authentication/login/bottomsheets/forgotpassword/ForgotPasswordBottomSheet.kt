@@ -20,7 +20,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.LoginBottomSheetState
+import com.android.hindara.booking.app.data.BottomSheetState
+import com.android.hindara.booking.app.data.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.*
 
 /**
@@ -36,7 +37,7 @@ import com.android.hindara.booking.app.ui.theme.*
 fun ForgotPasswordBottomSheet(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<LoginBottomSheetState>,
+    loginBottomSheetState: MutableState<BottomSheetState>,
     function: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -51,7 +52,7 @@ fun ForgotPasswordBottomSheet(
 }
 
 @Composable
-fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
+fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
         .verticalScroll(rememberScrollState())
@@ -159,7 +160,7 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
 )
 
 @Composable
-private fun ContinueButtonComposable(loginBottomSheetState: MutableState<LoginBottomSheetState>) {
+private fun ContinueButtonComposable(loginBottomSheetState: MutableState<BottomSheetState>) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))

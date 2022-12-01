@@ -1,13 +1,11 @@
 package com.android.hindara.booking.app.ui.hoteldetails
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,7 +22,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintLayoutScope
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.hoteldetails.bottomsheets.booking.BookingBottomSheet
+import com.android.hindara.booking.app.data.BookingBottomSheetState
+import com.android.hindara.booking.app.data.JobFlow
+import com.android.hindara.booking.app.ui.BottomSheetsRouterComposable
 import com.android.hindara.booking.app.ui.description.moreDescriptionRoute
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
@@ -44,17 +44,11 @@ fun HotelDetailsScreen(
     navController: NavController,
 ) {
     val hotel = homeViewModel.getChosenHotel()
-    val bottomSheetState = rememberModalBottomSheetState(
-        initialValue = ModalBottomSheetValue.Hidden,
-        confirmStateChange = { it != ModalBottomSheetValue.Expanded }
-    )
-    val coroutineScope = rememberCoroutineScope()
+    BottomSheetsRouterComposable(
+        navController = navController,
+        start = BookingBottomSheetState.DateSelection,
+        jobFlow = JobFlow.Booking ){ _, bottomSheetState, coroutineScope->
 
-    BackHandler(bottomSheetState.isVisible) {
-        coroutineScope.launch { bottomSheetState.hide() }
-    }
-
-    BookingBottomSheet(sheetState = bottomSheetState) {
         HotelDetailsContent(navController, bottomSheetState, coroutineScope, hotel)
     }
 }

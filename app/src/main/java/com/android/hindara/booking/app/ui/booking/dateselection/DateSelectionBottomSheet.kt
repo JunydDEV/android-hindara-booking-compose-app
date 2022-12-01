@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.hoteldetails.bottomsheets.booking
+package com.android.hindara.booking.app.ui.booking.dateselection
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,8 +24,8 @@ import java.util.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun BookingBottomSheet(
-    viewModel: BookingBottomSheetViewModel = hiltViewModel(),
+fun DateSelectionBottomSheet(
+    viewModel: DateSelectionViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
     function: @Composable () -> Unit
 ) {
