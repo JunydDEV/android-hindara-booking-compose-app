@@ -7,8 +7,8 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
-import com.android.hindara.booking.app.data.BottomSheetState
-import com.android.hindara.booking.app.data.JobFlow
+import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
+import com.android.hindara.booking.app.data.bottomsheets.JobFlow
 import com.android.hindara.booking.app.ui.authentication.AuthBottomSheetsRouter
 import com.android.hindara.booking.app.ui.booking.BookingBottomSheetsRouter
 import kotlinx.coroutines.CoroutineScope

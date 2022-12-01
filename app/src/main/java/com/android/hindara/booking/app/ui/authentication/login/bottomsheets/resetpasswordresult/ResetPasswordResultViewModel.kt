@@ -2,7 +2,7 @@ package com.android.hindara.booking.app.ui.authentication.login.bottomsheets.res
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.LoginBottomSheetState
+import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
 import javax.inject.Inject
 
 class ResetPasswordResultViewModel @Inject constructor() : ViewModel() {

@@ -4,8 +4,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import com.android.hindara.booking.app.data.BookingBottomSheetState
-import com.android.hindara.booking.app.data.BottomSheetState
+import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
+import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.ui.booking.dateselection.DateSelectionBottomSheet
 import com.android.hindara.booking.app.ui.booking.paymentselection.PaymentSelectionBottomSheet
 import kotlinx.coroutines.CoroutineScope

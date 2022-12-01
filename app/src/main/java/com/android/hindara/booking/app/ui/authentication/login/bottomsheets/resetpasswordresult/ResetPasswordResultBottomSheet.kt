@@ -16,8 +16,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.BottomSheetState
-import com.android.hindara.booking.app.data.LoginBottomSheetState
+import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
+import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
