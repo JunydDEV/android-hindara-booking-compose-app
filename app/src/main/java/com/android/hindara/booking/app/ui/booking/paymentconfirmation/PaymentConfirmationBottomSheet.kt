@@ -3,8 +3,10 @@ package com.android.hindara.booking.app.ui.booking.paymentconfirmation
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -60,11 +62,13 @@ private fun PaymentConfirmationContentComposable(
     bookingBottomSheetState: MutableState<BottomSheetState>
 ) {
     BottomSheetContentWithTitle(title = stringResource(id = R.string.title_confirm_payment)) {
-        HotelInfoComposable(viewModel.chosenHotel)
-        BookingDatesComposable(viewModel)
-        BookingBillComposable(viewModel)
-        SelectedPaymentMethodComposable(viewModel.paymentMethod)
-        ContinueButtonComposable(bookingBottomSheetState = bookingBottomSheetState)
+        Column(Modifier.verticalScroll(rememberScrollState())) {
+            HotelInfoComposable(viewModel.chosenHotel)
+            BookingDatesComposable(viewModel)
+            BookingBillComposable(viewModel)
+            SelectedPaymentMethodComposable(viewModel.paymentMethod)
+            ContinueButtonComposable(bookingBottomSheetState)
+        }
     }
 }
 
