@@ -18,7 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
-import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
+import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 /**
@@ -28,7 +28,7 @@ import com.android.hindara.booking.app.ui.theme.DarkTextColor
  * @param sheetState state of the bottom sheet.
  * @param loginBottomSheetState holds the state of current bottom sheet.
  * @param result indicates success/failure of reset password.
- * @param function indicates the main screen content.
+ * @param mainScreenContent indicates the main screen content.
  * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -37,17 +37,19 @@ fun ResetPasswordResultBottomSheet(
     sheetState: ModalBottomSheetState,
     loginBottomSheetState: MutableState<BottomSheetState>,
     result: LoginBottomSheetState,
-    function: @Composable () -> Unit
+    mainScreenContent: @Composable () -> Unit
 ) {
-    ModalBottomSheetLayout(
+    HindaraBottomSheet(
         sheetState = sheetState,
-        sheetBackgroundColor = BottomSheetBackgroundColor,
-        sheetShape = RoundedCornerShape(
-            topStart = dimensionResource(id = R.dimen.bottomSheetCornerSize),
-            topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
-        ),
-        sheetContent = { ResetPasswordSuccessBottomSheetContent(loginBottomSheetState, viewModel,result) },
-    ) { function() }
+        sheetContent = {
+            ResetPasswordSuccessBottomSheetContent(
+                loginBottomSheetState,
+                viewModel,
+                result
+            )
+        },
+        content = { mainScreenContent() }
+    )
 }
 
 @Composable

@@ -2,12 +2,10 @@ package com.android.hindara.booking.app.ui.authentication.login.bottomsheets.ema
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -28,7 +26,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
+import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 
@@ -39,7 +37,7 @@ import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
  * @param viewModel provides data to UI from outside.
  * @param sheetState state of the bottom sheet.
  * @param loginBottomSheetState holds the state of current bottom sheet.
- * @param function indicates the main screen content.
+ * @param mainScreenContent indicates the main screen content.
  * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -47,17 +45,13 @@ fun EmailVerificationBottomSheet(
     viewModel: EmailVerificationViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
     loginBottomSheetState: MutableState<BottomSheetState>,
-    function: @Composable () -> Unit
+    mainScreenContent: @Composable () -> Unit
 ) {
-    ModalBottomSheetLayout(
+    HindaraBottomSheet(
         sheetState = sheetState,
-        sheetBackgroundColor = BottomSheetBackgroundColor,
-        sheetShape = RoundedCornerShape(
-            topStart = dimensionResource(id = R.dimen.bottomSheetCornerSize),
-            topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
-        ),
         sheetContent = { EmailVerificationBottomSheetContent(loginBottomSheetState) },
-    ) { function() }
+        content = { mainScreenContent() }
+    )
 }
 
 @Composable

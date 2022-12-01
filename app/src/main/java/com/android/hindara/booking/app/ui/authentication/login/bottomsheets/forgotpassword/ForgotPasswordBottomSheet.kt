@@ -1,12 +1,10 @@
 package com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -23,6 +21,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.theme.*
 
 /**
@@ -31,7 +30,7 @@ import com.android.hindara.booking.app.ui.theme.*
  * @param viewModel provides data to UI from outside.
  * @param sheetState state of the bottom sheet.
  * @param loginBottomSheetState holds the state of current bottom sheet.
- * @param function indicates the main screen content.
+ * @param mainScreenContent indicates the main screen content.
  * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -39,17 +38,13 @@ fun ForgotPasswordBottomSheet(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
     loginBottomSheetState: MutableState<BottomSheetState>,
-    function: @Composable () -> Unit
+    mainScreenContent: @Composable () -> Unit
 ) {
-    ModalBottomSheetLayout(
+    HindaraBottomSheet(
         sheetState = sheetState,
-        sheetBackgroundColor = BottomSheetBackgroundColor,
-        sheetShape = RoundedCornerShape(
-            topStart = dimensionResource(id = R.dimen.bottomSheetCornerSize),
-            topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
-        ),
         sheetContent = { ForgotPasswordBottomSheetContent(loginBottomSheetState) },
-    ) { function() }
+        content = { mainScreenContent() }
+    )
 }
 
 @Composable

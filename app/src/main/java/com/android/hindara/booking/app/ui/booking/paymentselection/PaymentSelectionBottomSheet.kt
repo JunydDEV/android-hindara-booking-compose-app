@@ -19,10 +19,10 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
-import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 
 /**
  * Bottom sheet to choose the payment method.
@@ -30,7 +30,7 @@ import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
  * @param viewModel provides data to UI from outside.
  * @param sheetState state of the bottom sheet.
  * @param bookingBottomSheetState holds the state of current bottom sheet.
- * @param function indicates the main screen content.
+ * @param mainScreenContent indicates the main screen content.
  * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -38,7 +38,7 @@ fun PaymentMethodsBottomSheet(
     viewModel: BookingSharedViewModel,
     sheetState: ModalBottomSheetState,
     bookingBottomSheetState: MutableState<BottomSheetState>,
-    function: @Composable () -> Unit
+    mainScreenContent: @Composable () -> Unit
 ) {
     val paymentMethods = viewModel.getPaymentMethodsList()
 
@@ -46,23 +46,34 @@ fun PaymentMethodsBottomSheet(
         mutableStateOf<PaymentMethod?>(null)
     }
 
-    ModalBottomSheetLayout(
+    HindaraBottomSheet(
         sheetState = sheetState,
-        sheetBackgroundColor = BottomSheetBackgroundColor,
-        sheetShape = RoundedCornerShape(
-            topStart = dimensionResource(id = R.dimen.bottomSheetCornerSize),
-            topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
-        ),
         sheetContent = {
-            BottomSheetContentWithTitle(stringResource(R.string.title_payment_methods)) {
-                PaymentMethodsListComposable(viewModel, paymentMethods, paymentMethodSelectionState)
-                if (paymentMethodSelectionState.value != null) {
-                    viewModel.paymentMethod = paymentMethodSelectionState.value!!
-                    ContinueButtonComposable(bookingBottomSheetState)
-                }
-            }
+            PaymentSelectionContentComposable(
+                viewModel,
+                paymentMethods,
+                paymentMethodSelectionState,
+                bookingBottomSheetState
+            )
         },
-    ) { function() }
+        content = { mainScreenContent() }
+    )
+}
+
+@Composable
+private fun PaymentSelectionContentComposable(
+    viewModel: BookingSharedViewModel,
+    paymentMethods: List<PaymentMethod>,
+    paymentMethodSelectionState: MutableState<PaymentMethod?>,
+    bookingBottomSheetState: MutableState<BottomSheetState>
+) {
+    BottomSheetContentWithTitle(stringResource(R.string.title_payment_methods)) {
+        PaymentMethodsListComposable(viewModel, paymentMethods, paymentMethodSelectionState)
+        if (paymentMethodSelectionState.value != null) {
+            viewModel.paymentMethod = paymentMethodSelectionState.value!!
+            ContinueButtonComposable(bookingBottomSheetState)
+        }
+    }
 }
 
 @Composable

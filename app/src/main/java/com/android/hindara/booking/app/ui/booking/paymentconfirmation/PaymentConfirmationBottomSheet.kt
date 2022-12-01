@@ -19,6 +19,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
@@ -35,7 +36,7 @@ import java.time.LocalDate
  * @param viewModel provides data to UI from outside.
  * @param sheetState state of the bottom sheet.
  * @param bookingBottomSheetState holds the state of current bottom sheet.
- * @param function indicates the main screen content.
+ * @param mainScreenContent indicates the main screen content.
  * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -43,28 +44,32 @@ fun PaymentConfirmationBottomSheet(
     viewModel: BookingSharedViewModel,
     sheetState: ModalBottomSheetState,
     bookingBottomSheetState: MutableState<BottomSheetState>,
-    function: @Composable () -> Unit
+    mainScreenContent: @Composable () -> Unit
 ) {
-    ModalBottomSheetLayout(
+    HindaraBottomSheet(
         sheetState = sheetState,
-        sheetBackgroundColor = BottomSheetBackgroundColor,
-        sheetShape = RoundedCornerShape(
-            topStart = dimensionResource(id = R.dimen.bottomSheetCornerSize),
-            topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
-        ),
         sheetContent = {
-            BottomSheetContentWithTitle(stringResource(id = R.string.title_confirm_payment)) {
-                HotelInfoComposable(viewModel.chosenHotel)
-                BookingDatesComposable(viewModel.checkInDate, viewModel.checkOutDate)
-                BookingBillComposable(viewModel.chosenHotel)
-                SelectedPaymentMethodComposable(viewModel.paymentMethod)
-                ContinueButtonComposable(
-                    viewModel = viewModel,
-                    bookingBottomSheetState = bookingBottomSheetState
-                )
-            }
+            PaymentConfirmationContentComposable(viewModel, bookingBottomSheetState)
         },
-    ) { function() }
+        content = { mainScreenContent() }
+    )
+}
+
+@Composable
+private fun PaymentConfirmationContentComposable(
+    viewModel: BookingSharedViewModel,
+    bookingBottomSheetState: MutableState<BottomSheetState>
+) {
+    BottomSheetContentWithTitle(stringResource(id = R.string.title_confirm_payment)) {
+        HotelInfoComposable(viewModel.chosenHotel)
+        BookingDatesComposable(viewModel.checkInDate, viewModel.checkOutDate)
+        BookingBillComposable(viewModel.chosenHotel)
+        SelectedPaymentMethodComposable(viewModel.paymentMethod)
+        ContinueButtonComposable(
+            viewModel = viewModel,
+            bookingBottomSheetState = bookingBottomSheetState
+        )
+    }
 }
 
 @Composable
