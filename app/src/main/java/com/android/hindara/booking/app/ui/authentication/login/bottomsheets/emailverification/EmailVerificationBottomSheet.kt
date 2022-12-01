@@ -27,6 +27,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
@@ -35,7 +36,7 @@ import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 /**
  * Bottom sheet to verify the OTP sent on email for resetting password.
  *
- * @param viewModel establishes communication between UI & data component.
+ * @param viewModel provides data to UI from outside.
  * @param sheetState state of the bottom sheet.
  * @param loginBottomSheetState holds the state of current bottom sheet.
  * @param function indicates the main screen content.
@@ -61,28 +62,11 @@ fun EmailVerificationBottomSheet(
 
 @Composable
 fun EmailVerificationBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
-    val parentColumnModifier = Modifier
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
-        .verticalScroll(rememberScrollState())
-        .fillMaxWidth()
-    Column(
-        modifier = parentColumnModifier
-    ) {
-        VerifyEmailTitleComposable()
+    BottomSheetContentWithTitle(stringResource(R.string.enter_digits_title)) {
         VerifyEmailDescriptionComposable()
         DigitsRowComposable()
         ContinueButtonComposable(loginBottomSheetState)
     }
-}
-
-@Composable
-private fun VerifyEmailTitleComposable() {
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = stringResource(R.string.enter_digits_title),
-        style = MaterialTheme.typography.h1,
-        color = DarkTextColor
-    )
 }
 
 @Composable

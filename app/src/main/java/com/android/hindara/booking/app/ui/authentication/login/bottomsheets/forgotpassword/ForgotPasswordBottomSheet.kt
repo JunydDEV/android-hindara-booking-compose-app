@@ -22,12 +22,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.theme.*
 
 /**
  * Bottom sheet to get the email from user for resetting password.
  *
- * @param viewModel establishes communication between UI & data component.
+ * @param viewModel provides data to UI from outside.
  * @param sheetState state of the bottom sheet.
  * @param loginBottomSheetState holds the state of current bottom sheet.
  * @param function indicates the main screen content.
@@ -53,29 +54,12 @@ fun ForgotPasswordBottomSheet(
 
 @Composable
 fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
-    val parentColumnModifier = Modifier
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
-        .verticalScroll(rememberScrollState())
-        .fillMaxWidth()
-    Column(
-        modifier = parentColumnModifier
-    ) {
-        ForgotPasswordTitleComposable()
+    BottomSheetContentWithTitle(stringResource(R.string.forgot_password_title)) {
         ForgotPasswordDescriptionComposable()
         ForgotPasswordEmailTextFieldLabelComposable()
         ForgotPasswordEmailTextFieldComposable()
         ContinueButtonComposable(loginBottomSheetState)
     }
-}
-
-@Composable
-private fun ForgotPasswordTitleComposable() {
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = stringResource(R.string.forgot_password_title),
-        style = MaterialTheme.typography.h1,
-        color = DarkTextColor
-    )
 }
 
 @Composable

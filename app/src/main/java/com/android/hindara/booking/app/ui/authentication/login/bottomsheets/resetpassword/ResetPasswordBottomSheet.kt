@@ -33,13 +33,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.theme.*
 
 
 /**
  * Bottom sheet to show the new passwords setting UI.
  *
- * @param viewModel establishes communication between UI & data component.
+ * @param viewModel provides data to UI from outside.
  * @param sheetState state of the bottom sheet.
  * @param loginBottomSheetState holds the state of current bottom sheet.
  * @param function indicates the main screen content.
@@ -65,14 +66,7 @@ fun ResetPasswordBottomSheet(
 
 @Composable
 fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
-    val parentColumnModifier = Modifier
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
-        .verticalScroll(rememberScrollState())
-        .fillMaxWidth()
-    Column(
-        modifier = parentColumnModifier
-    ) {
-        ResetPasswordTitleComposable()
+    BottomSheetContentWithTitle(stringResource(R.string.reset_password_title)) {
         ResetPasswordDescriptionComposable()
         NewPasswordTextFieldLabelComposable()
         NewPasswordTextFieldComposable()
@@ -80,16 +74,6 @@ fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<BottomSh
         ConfirmPasswordTextFieldComposable()
         ResetButtonComposable(loginBottomSheetState)
     }
-}
-
-@Composable
-private fun ResetPasswordTitleComposable() {
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = stringResource(R.string.reset_password_title),
-        style = MaterialTheme.typography.h1,
-        color = DarkTextColor
-    )
 }
 
 @Composable

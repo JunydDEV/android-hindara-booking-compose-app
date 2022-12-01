@@ -1,7 +1,6 @@
 package com.android.hindara.booking.app.ui.booking.paymentselection
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CornerSize
@@ -21,10 +20,18 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
+import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
 
+/**
+ * Bottom sheet to choose the payment method.
+ *
+ * @param viewModel provides data to UI from outside.
+ * @param sheetState state of the bottom sheet.
+ * @param bookingBottomSheetState holds the state of current bottom sheet.
+ * @param function indicates the main screen content.
+ * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PaymentMethodsBottomSheet(
@@ -41,31 +48,12 @@ fun PaymentMethodsBottomSheet(
             topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
         ),
         sheetContent = {
-            val mainModifier = Modifier
-                .background(BottomSheetBackgroundColor)
-                .padding(dimensionResource(id = R.dimen.defaultSpacing))
-            Column(modifier = mainModifier) {
-                PaymentMethodsTitleComposable()
+            BottomSheetContentWithTitle(stringResource(R.string.title_payment_methods)) {
                 PaymentMethodsListComposable(viewModel)
                 ContinueButtonComposable(bookingBottomSheetState)
             }
         },
     ) { function() }
-}
-
-@Composable
-fun PaymentMethodsTitleComposable() {
-    val smallSpacing = dimensionResource(id = R.dimen.smallSpacing)
-    val defaultSpacing  = dimensionResource(id = R.dimen.defaultSpacing)
-    val modifier = Modifier
-        .fillMaxWidth()
-        .padding(start = smallSpacing, end = smallSpacing, top = defaultSpacing)
-    Text(
-        modifier = modifier,
-        text = stringResource(R.string.title_payment_methods),
-        style = MaterialTheme.typography.h1,
-        color = DarkTextColor
-    )
 }
 
 @Composable
@@ -133,7 +121,7 @@ private fun ContinueButtonComposable(bookingBottomSheetState: MutableState<Botto
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            bookingBottomSheetState.value = BookingBottomSheetState.PaymentMethodSelection
+            bookingBottomSheetState.value = BookingBottomSheetState.BookingCompleted
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

@@ -19,11 +19,20 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
+import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.toTitleCase
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * Bottom sheet to select the booking dates.
+ *
+ * @param viewModel provides data to UI from outside.
+ * @param sheetState state of the bottom sheet.
+ * @param bookingBottomSheetState holds the state of current bottom sheet.
+ * @param function indicates the main screen content.
+ * */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DateSelectionBottomSheet(
@@ -44,16 +53,25 @@ fun DateSelectionBottomSheet(
             topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
         ),
         sheetContent = {
-            val mainModifier = Modifier
-                .background(WhiteColor)
-                .padding(dimensionResource(id = R.dimen.defaultSpacing))
-            Column(modifier = mainModifier) {
-                CalendarComposable(selectionState)
-                SelectedDaysComposable(selectionState)
-                ContinueButtonComposable(bookingBottomSheetState)
-            }
+            DateSelectionContentComposable(selectionState, bookingBottomSheetState)
         },
     ) { function() }
+}
+
+@Composable
+private fun DateSelectionContentComposable(
+    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>,
+    bookingBottomSheetState: MutableState<BottomSheetState>
+) {
+    val mainModifier = Modifier
+        .background(WhiteColor)
+        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+
+    Column(modifier = mainModifier) {
+        CalendarComposable(selectionState)
+        SelectedDaysComposable(selectionState)
+        ContinueButtonComposable(bookingBottomSheetState)
+    }
 }
 
 @Composable

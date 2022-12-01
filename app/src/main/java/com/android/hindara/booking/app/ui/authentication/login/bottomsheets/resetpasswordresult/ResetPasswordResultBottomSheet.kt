@@ -24,7 +24,7 @@ import com.android.hindara.booking.app.ui.theme.DarkTextColor
 /**
  * Bottom sheet UI to show the reset password result.
  *
- * @param viewModel establishes communication between UI & data component.
+ * @param viewModel provides data to UI from outside.
  * @param sheetState state of the bottom sheet.
  * @param loginBottomSheetState holds the state of current bottom sheet.
  * @param result indicates success/failure of reset password.
