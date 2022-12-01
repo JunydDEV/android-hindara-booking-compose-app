@@ -50,4 +50,6 @@
     <dimen name="topBarHeight">70dp</dimen>
     <dimen name="borderWidth">1dp</dimen>
     <dimen name="zeroBorderWidth">0dp</dimen>
+
+    <dimen name="cardCornerSize">10dp</dimen>
 </resources>

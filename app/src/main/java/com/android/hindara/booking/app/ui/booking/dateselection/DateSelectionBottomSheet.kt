@@ -97,7 +97,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
                 modifier = Modifier.wrapContentWidth(),
                 text = stringResource(R.string.check_in_label),
                 style = MaterialTheme.typography.body1,
-                color = DarkTextColor
+                color = LightTextColor
             )
 
             Text(
@@ -115,7 +115,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
                 modifier = Modifier.wrapContentWidth(),
                 text = stringResource(R.string.check_out_label),
                 style = MaterialTheme.typography.body1,
-                color = DarkTextColor
+                color = LightTextColor
             )
 
             Text(
@@ -126,16 +126,6 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
             )
         }
     }
-}
-
-@Composable
-private fun getSelectedDateWithMonth(checkInDate: LocalDate): String {
-    checkInDate.month?.let {
-        val monthInTitleCase = it.name.toTitleCase()
-        val firstThreeCharsOfMonth = monthInTitleCase.subSequence(0, 3)
-        val selectedDay = checkInDate.dayOfMonth
-        return "$firstThreeCharsOfMonth $selectedDay"
-    } ?: return "null"
 }
 
 @Composable

@@ -19,6 +19,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.LightTextColor
 import com.android.hindara.booking.app.ui.theme.YellowColor
 
 @Composable
@@ -69,7 +70,7 @@ fun HotelAddressComposable(hotel: Hotel) {
         modifier = Modifier.wrapContentWidth(),
         text = hotel.address.locationTitle,
         style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        color = LightTextColor
     )
 }
 

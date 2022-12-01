@@ -1,6 +1,7 @@
 package com.android.hindara.booking.app.ui.booking.paymentconfirmation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,9 +25,7 @@ import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
 import com.android.hindara.booking.app.ui.home.Hotel
-import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.SuccessColor
+import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getFormattedDate
 import java.time.LocalDate
 
@@ -60,43 +59,33 @@ private fun PaymentConfirmationContentComposable(
     viewModel: BookingSharedViewModel,
     bookingBottomSheetState: MutableState<BottomSheetState>
 ) {
-    BottomSheetContentWithTitle(stringResource(id = R.string.title_confirm_payment)) {
+    BottomSheetContentWithTitle(title = stringResource(id = R.string.title_confirm_payment)) {
         HotelInfoComposable(viewModel.chosenHotel)
-        BookingDatesComposable(viewModel.checkInDate, viewModel.checkOutDate)
-        BookingBillComposable(viewModel.chosenHotel)
+        BookingDatesComposable(viewModel)
+        BookingBillComposable(viewModel)
         SelectedPaymentMethodComposable(viewModel.paymentMethod)
-        ContinueButtonComposable(
-            viewModel = viewModel,
-            bookingBottomSheetState = bookingBottomSheetState
-        )
+        ContinueButtonComposable(bookingBottomSheetState = bookingBottomSheetState)
     }
 }
 
 @Composable
-fun BookingBillComposable(hotel: Hotel) {
-    HindaraCard {
-
-    }
-}
-
-@Composable
-fun BookingDatesComposable(checkInDate: LocalDate, checkOutDate: LocalDate) {
+fun BookingBillComposable(viewModel: BookingSharedViewModel) {
     HindaraCard {
         Column {
-            val modifier = Modifier
-                .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.defaultSpacing))
-            CheckInDateComposable(modifier, checkInDate)
-            CheckOutDateComposable(modifier, checkOutDate)
+            BookedNightsComposable(viewModel)
+            TaxesAndFeesComposable(viewModel)
+            HorizontalLineComposable()
+            TotalBillComposable(viewModel)
         }
     }
 }
 
 @Composable
-private fun CheckOutDateComposable(
-    modifier: Modifier,
-    checkOutDate: LocalDate
-) {
+fun TotalBillComposable(viewModel: BookingSharedViewModel) {
+    val modifier = Modifier
+        .fillMaxWidth()
+        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
@@ -104,13 +93,13 @@ private fun CheckOutDateComposable(
     ) {
         Text(
             modifier = Modifier.wrapContentWidth(),
-            text = stringResource(id = R.string.check_out_label),
-            style = MaterialTheme.typography.body1,
+            text = stringResource(R.string.total_label),
+            style = MaterialTheme.typography.h2,
             color = DarkTextColor
         )
         Text(
             modifier = Modifier.wrapContentWidth(),
-            text = checkOutDate.getFormattedDate(),
+            text = "$${viewModel.getTotalBill()}",
             style = MaterialTheme.typography.h2,
             color = DarkTextColor
         )
@@ -118,27 +107,46 @@ private fun CheckOutDateComposable(
 }
 
 @Composable
-private fun CheckInDateComposable(
-    modifier: Modifier,
-    checkInDate: LocalDate
-) {
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            modifier = Modifier.wrapContentWidth(),
-            text = stringResource(id = R.string.check_in_label),
-            style = MaterialTheme.typography.body1,
-            color = DarkTextColor
-        )
-        Text(
-            modifier = Modifier.wrapContentWidth(),
-            text = checkInDate.getFormattedDate(),
-            style = MaterialTheme.typography.h2,
-            color = DarkTextColor
-        )
+private fun HorizontalLineComposable() {
+    Spacer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(dimensionResource(id = R.dimen.lineThickness))
+            .background(BordersColor)
+    )
+}
+
+@Composable
+fun TaxesAndFeesComposable(viewModel: BookingSharedViewModel) {
+    val tax = viewModel.chosenHotel.tax
+    val taxTotal = viewModel.getTaxTotal()
+    HindaraCommonRow(label = "Taxes & Fees ($tax%)", value = "$$taxTotal")
+}
+
+@Composable
+fun BookedNightsComposable(viewModel: BookingSharedViewModel) {
+    val nightsCount = viewModel.getReservedNightsCount()
+    val totalOfReservedNights = viewModel.getTotalOfReservedNights()
+
+    HindaraCommonRow(label = "$nightsCount Nights", value = "$$totalOfReservedNights")
+}
+
+@Composable
+fun BookingDatesComposable(viewModel: BookingSharedViewModel) {
+    val checkInDate = viewModel.checkInDate
+    val checkOutDate = viewModel.checkOutDate
+
+    HindaraCard {
+        Column {
+            HindaraCommonRow(
+                label = stringResource(id = R.string.check_in_label),
+                value = checkInDate.getFormattedDate()
+            )
+            HindaraCommonRow(
+                label = stringResource(id = R.string.check_out_label),
+                value = checkOutDate.getFormattedDate()
+            )
+        }
     }
 }
 
@@ -164,9 +172,10 @@ fun HotelInfoComposable(hotel: Hotel) {
 @Composable
 fun HotelImageComposable(hotel: Hotel) {
     val modifier = Modifier
-        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.detailsSheetCornersSize)))
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.cardCornerSize)))
         .width(80.dp)
         .height(80.dp)
+
     Image(
         modifier = modifier,
         contentScale = ContentScale.Crop,
@@ -190,7 +199,7 @@ fun HotelAddressComposable(hotel: Hotel) {
         modifier = Modifier.wrapContentWidth(),
         text = hotel.address.locationTitle,
         style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        color = LightTextColor
     )
 }
 
@@ -221,7 +230,6 @@ fun SelectedPaymentMethodComposable(paymentMethod: PaymentMethod) {
 
 @Composable
 private fun ContinueButtonComposable(
-    viewModel: BookingSharedViewModel,
     bookingBottomSheetState: MutableState<BottomSheetState>
 ) {
     val buttonModifier = Modifier
@@ -238,5 +246,31 @@ private fun ContinueButtonComposable(
         },
     ) {
         Text(stringResource(R.string.button_continue_text))
+    }
+}
+
+@Composable
+private fun HindaraCommonRow(label: String, value: String) {
+    val modifier = Modifier
+        .fillMaxWidth()
+        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            modifier = Modifier.wrapContentWidth(),
+            text = label,
+            style = MaterialTheme.typography.body1,
+            color = LightTextColor
+        )
+        Text(
+            modifier = Modifier.wrapContentWidth(),
+            text = value,
+            style = MaterialTheme.typography.h2,
+            color = DarkTextColor
+        )
     }
 }

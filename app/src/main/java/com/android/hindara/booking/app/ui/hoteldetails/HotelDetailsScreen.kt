@@ -338,7 +338,7 @@ fun HotelAddressComposable(hotel: Hotel) {
         modifier = modifier,
         text = hotel.address.locationTitle,
         style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        color = LightTextColor
     )
 }
 
@@ -434,8 +434,7 @@ fun BookingBottomBar(
             modifier = priceLabelModifier,
             text = stringResource(R.string.per_night_price_text),
             style = MaterialTheme.typography.body1,
-            maxLines = 1,
-            color = DarkTextColor
+            color = LightTextColor
         )
 
         val priceModifier = Modifier

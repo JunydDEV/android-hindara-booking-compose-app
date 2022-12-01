@@ -43,6 +43,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                     locationTitle = "Amsterdam, Netherlands"
                 ),
                 rating = 4.6f,
+                tax = 10.0,
                 description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
                 reviewsList = listOf(
@@ -90,6 +91,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                     locationTitle = "Amsterdam, Netherlands"
                 ),
                 rating = 4.6f,
+                tax = 10.0,
                 description = "Luxe Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
                 reviewsList = listOf(
@@ -121,6 +123,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 rating = 4.6f,
                 description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
                 pricePerNight = 125.0,
+                tax = 10.0,
                 reviewsList = listOf(
                     Reviews(
                         "Brad John",
@@ -153,6 +156,7 @@ data class Hotel(
     val address: Address,
     val rating: Float,
     val description: String,
+    val tax: Double,
     val pricePerNight: Double,
     val reviewsList: List<Reviews>
 )

@@ -23,12 +23,12 @@ val Typography = Typography(
     body2 = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
+        fontSize = 14.sp,
     ),
     body1 = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Normal,
-        fontSize = 18.sp
+        fontSize = 18.sp,
     ),
     button = TextStyle(
         fontFamily = fonts,
@@ -38,11 +38,11 @@ val Typography = Typography(
     h1 = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Bold,
-        fontSize = 22.sp
+        fontSize = 22.sp,
     ),
     h2 = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp
+        fontSize = 20.sp,
     ),
 )

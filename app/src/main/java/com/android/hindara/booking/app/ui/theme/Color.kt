@@ -23,5 +23,7 @@ val FieldPlaceholderColor = Color(0xFF8D8D8D)
 val FieldBackgroundColor = WhiteColor
 val BlackGradientColor = Color(0x410A0A0A)
 val RangeBackgroundColor = Color(0x3300A76E)
-val BordersColor = Color(0xFFA9A9A9)
+val BordersColor = Color(0x66A9A9A9)
+val CardBackgroundColor = Color(0xFFFFFFFF)
+val LightTextColor = Color(0x993E3E3E)
 

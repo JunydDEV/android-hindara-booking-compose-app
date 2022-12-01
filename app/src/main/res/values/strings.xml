@@ -75,5 +75,6 @@
     <string name="visa">Visa</string>
     <string name="title_confirm_payment">Confirm Payment</string>
     <string name="change_payment_method_label">Change</string>
+    <string name="total_label">Total</string>
 
 </resources>
