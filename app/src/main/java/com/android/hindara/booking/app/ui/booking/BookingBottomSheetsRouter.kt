@@ -7,7 +7,7 @@ import androidx.compose.runtime.MutableState
 import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.ui.booking.dateselection.DateSelectionBottomSheet
-import com.android.hindara.booking.app.ui.booking.paymentselection.PaymentSelectionBottomSheet
+import com.android.hindara.booking.app.ui.booking.paymentselection.PaymentMethodsBottomSheet
 import kotlinx.coroutines.CoroutineScope
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -20,12 +20,18 @@ fun BookingBottomSheetsRouter(
 ) {
     when (bottomSheetsVisibilityState.value) {
         BookingBottomSheetState.DateSelection -> {
-            DateSelectionBottomSheet(sheetState = modelBottomSheetState) {
+            DateSelectionBottomSheet(
+                sheetState = modelBottomSheetState,
+                bookingBottomSheetState = bottomSheetsVisibilityState
+            ) {
                 function(bottomSheetsVisibilityState, modelBottomSheetState, coroutineScope)
             }
         }
-        BookingBottomSheetState.PaymentSelection -> {
-            PaymentSelectionBottomSheet(sheetState = modelBottomSheetState) {
+        BookingBottomSheetState.PaymentMethodSelection -> {
+            PaymentMethodsBottomSheet(
+                sheetState = modelBottomSheetState,
+                bookingBottomSheetState = bottomSheetsVisibilityState
+            ) {
                 function(bottomSheetsVisibilityState, modelBottomSheetState, coroutineScope)
             }
         }

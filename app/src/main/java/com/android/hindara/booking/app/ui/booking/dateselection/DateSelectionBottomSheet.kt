@@ -17,6 +17,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
+import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.toTitleCase
 import java.time.LocalDate
@@ -27,6 +29,7 @@ import java.util.*
 fun DateSelectionBottomSheet(
     viewModel: DateSelectionViewModel = hiltViewModel(),
     sheetState: ModalBottomSheetState,
+    bookingBottomSheetState: MutableState<BottomSheetState>,
     function: @Composable () -> Unit
 ) {
     val selectionState = remember {
@@ -47,7 +50,7 @@ fun DateSelectionBottomSheet(
             Column(modifier = mainModifier) {
                 CalendarComposable(selectionState)
                 SelectedDaysComposable(selectionState)
-                ContinueButtonComposable()
+                ContinueButtonComposable(bookingBottomSheetState)
             }
         },
     ) { function() }
@@ -113,9 +116,8 @@ private fun getSelectedDateWithMonth(checkInDate: LocalDate): String {
     } ?: return "null"
 }
 
-
 @Composable
-private fun ContinueButtonComposable() {
+private fun ContinueButtonComposable(bookingBottomSheetState: MutableState<BottomSheetState>) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(
@@ -126,6 +128,7 @@ private fun ContinueButtonComposable() {
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
+            bookingBottomSheetState.value = BookingBottomSheetState.PaymentMethodSelection
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

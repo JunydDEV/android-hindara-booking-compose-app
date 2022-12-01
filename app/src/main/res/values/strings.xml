@@ -61,12 +61,17 @@
     <string name="hotel_header_image_description">Hotel image description</string>
     <string name="back_button_description">Back button description</string>
     <string name="description_title">Description</string>
-    <string name="read_more_text">Read more ...</string>
+    <string name="read_more_text">Read more …</string>
     <string name="reviews_title_text">Reviews</string>
     <string name="reviewer_image_description">Reviewer image description</string>
-    <string name="see_more_reviews_text">See more reviews ...</string>
+    <string name="see_more_reviews_text">See more reviews …</string>
     <string name="book_now_button_text">Book Now</string>
     <string name="per_night_price_text">1 Night Price</string>
     <string name="check_in_label">Check In</string>
     <string name="check_out_label">Check Out</string>
+    <string name="title_payment_methods">Payment Methods</string>
+    <string name="mastercard">Mastercard</string>
+    <string name="paypal">Paypal</string>
+    <string name="visa">Visa</string>
+
 </resources>
