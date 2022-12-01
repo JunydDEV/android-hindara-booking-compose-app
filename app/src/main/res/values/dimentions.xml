@@ -48,4 +48,6 @@
     <dimen name="hotelShortHeaderHeight">100dp</dimen>
 
     <dimen name="topBarHeight">70dp</dimen>
+    <dimen name="borderWidth">1dp</dimen>
+    <dimen name="zeroBorderWidth">0dp</dimen>
 </resources>

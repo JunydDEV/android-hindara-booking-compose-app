@@ -3,7 +3,6 @@ package com.android.hindara.booking.app.ui.hoteldetails.common
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -17,26 +16,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.WhiteColor
 import com.android.hindara.booking.app.ui.theme.YellowColor
 
 @Composable
 fun HotelShortHeader(hotel: Hotel) {
-    val modifier = Modifier
-        .fillMaxWidth()
-
-    Card(
-        modifier = modifier,
-        backgroundColor = WhiteColor,
-        elevation = dimensionResource(id = R.dimen.cardElevation),
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.detailsSheetCornersSize))
-    ) {
-        Row(modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))
+    HindaraCard {
+        Row(
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))
         ) {
             HotelImageComposable(hotel)
-            Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.defaultSpacing))) {
+            Column(
+                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.defaultSpacing)),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
                 HotelNameComposable(hotel)
                 HotelAddressComposable(hotel)
                 HotelRatingAndReviewComposable(hotel)
@@ -70,11 +65,8 @@ private fun HotelNameComposable(hotel: Hotel) {
 
 @Composable
 fun HotelAddressComposable(hotel: Hotel) {
-    val modifier = Modifier
-        .wrapContentWidth()
-
     Text(
-        modifier = modifier,
+        modifier = Modifier.wrapContentWidth(),
         text = hotel.address.locationTitle,
         style = MaterialTheme.typography.body1,
         color = DarkTextColor
@@ -83,11 +75,8 @@ fun HotelAddressComposable(hotel: Hotel) {
 
 @Composable
 fun HotelRatingAndReviewComposable(hotel: Hotel) {
-    val modifier = Modifier
-        .fillMaxWidth()
-
     Row(
-        modifier = modifier,
+        modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         RatingImageComposable()

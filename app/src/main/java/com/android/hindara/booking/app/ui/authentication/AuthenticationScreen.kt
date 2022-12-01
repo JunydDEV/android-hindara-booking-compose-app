@@ -36,9 +36,9 @@ fun AuthenticationScreen(
     viewModel: AuthenticationViewModel = hiltViewModel()
 ) {
     BottomSheetsRouterComposable(
-        navController,
-        LoginBottomSheetState.ForgotPassword,
-        JobFlow.Authentication
+        navController = navController,
+        startBottomSheet = LoginBottomSheetState.ForgotPassword,
+        jobFlow = JobFlow.Authentication
     ) { _, bottomSheetState, coroutineScope->
         MainScreenContentComposable(navController, bottomSheetState, coroutineScope)
     }

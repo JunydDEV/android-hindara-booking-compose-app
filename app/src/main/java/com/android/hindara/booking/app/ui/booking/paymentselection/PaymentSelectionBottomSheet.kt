@@ -15,14 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.HindaraCard
+import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
+import com.android.hindara.booking.app.ui.booking.PaymentMethod
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
-import com.android.hindara.booking.app.ui.theme.WhiteColor
 
 /**
  * Bottom sheet to choose the payment method.
@@ -35,11 +35,17 @@ import com.android.hindara.booking.app.ui.theme.WhiteColor
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PaymentMethodsBottomSheet(
-    viewModel: PaymentSelectionViewModel = hiltViewModel(),
+    viewModel: BookingSharedViewModel,
     sheetState: ModalBottomSheetState,
     bookingBottomSheetState: MutableState<BottomSheetState>,
     function: @Composable () -> Unit
 ) {
+    val paymentMethods = viewModel.getPaymentMethodsList()
+
+    val paymentMethodSelectionState = remember {
+        mutableStateOf<PaymentMethod?>(null)
+    }
+
     ModalBottomSheetLayout(
         sheetState = sheetState,
         sheetBackgroundColor = BottomSheetBackgroundColor,
@@ -49,21 +55,22 @@ fun PaymentMethodsBottomSheet(
         ),
         sheetContent = {
             BottomSheetContentWithTitle(stringResource(R.string.title_payment_methods)) {
-                PaymentMethodsListComposable(viewModel)
-                ContinueButtonComposable(bookingBottomSheetState)
+                PaymentMethodsListComposable(viewModel, paymentMethods, paymentMethodSelectionState)
+                if (paymentMethodSelectionState.value != null) {
+                    viewModel.paymentMethod = paymentMethodSelectionState.value!!
+                    ContinueButtonComposable(bookingBottomSheetState)
+                }
             }
         },
     ) { function() }
 }
 
 @Composable
-fun PaymentMethodsListComposable(viewModel: PaymentSelectionViewModel) {
-    val paymentMethods = viewModel.getPaymentMethodsList()
-
-    val paymentMethodSelectionState = remember {
-        mutableStateOf(paymentMethods.first())
-    }
-
+fun PaymentMethodsListComposable(
+    viewModel: BookingSharedViewModel,
+    paymentMethods: List<PaymentMethod>,
+    paymentMethodSelectionState: MutableState<PaymentMethod?>
+) {
     val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
     LazyColumn(
         contentPadding = PaddingValues(top = defaultSpacing, bottom = defaultSpacing),
@@ -77,30 +84,19 @@ fun PaymentMethodsListComposable(viewModel: PaymentSelectionViewModel) {
 
 @Composable
 fun PaymentMethodComposable(
-    paymentMethod: PaymentMethod,
-    paymentMethodSelectionState: MutableState<PaymentMethod>
+    paymentMethod: PaymentMethod, paymentMethodSelectionState: MutableState<PaymentMethod?>
 ) {
-    val cardModifier = Modifier
-        .fillMaxWidth()
-        .padding(bottom = dimensionResource(id = R.dimen.defaultSpacing))
-
-    Card(
-        modifier = cardModifier,
-        backgroundColor = WhiteColor,
-        elevation = 0.dp,
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.bottomSheetCornerSize))
-    ) {
+    HindaraCard {
         Row(
             modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing)),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            val selectionState =
+                paymentMethodSelectionState.value != null && paymentMethodSelectionState.value!!.name == paymentMethod.name
+
             Image(painter = painterResource(id = paymentMethod.icon), contentDescription = null)
             Text(text = stringResource(id = paymentMethod.name))
-
-            val selectionState =
-                paymentMethod.name == paymentMethodSelectionState.value.name && paymentMethodSelectionState.value.isSelected
-
             RadioButton(selected = selectionState, enabled = true, onClick = {
                 val item = paymentMethod.copy(isSelected = !paymentMethod.isSelected)
                 paymentMethodSelectionState.value = item
@@ -110,7 +106,9 @@ fun PaymentMethodComposable(
 }
 
 @Composable
-private fun ContinueButtonComposable(bookingBottomSheetState: MutableState<BottomSheetState>) {
+private fun ContinueButtonComposable(
+    bookingBottomSheetState: MutableState<BottomSheetState>
+) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(
@@ -121,7 +119,8 @@ private fun ContinueButtonComposable(bookingBottomSheetState: MutableState<Botto
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            bookingBottomSheetState.value = BookingBottomSheetState.BookingCompleted
+
+            bookingBottomSheetState.value = BookingBottomSheetState.PaymentConfirmation
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

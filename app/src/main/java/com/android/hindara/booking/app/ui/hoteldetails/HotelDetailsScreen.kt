@@ -46,9 +46,10 @@ fun HotelDetailsScreen(
     val hotel = homeViewModel.getChosenHotel()
     BottomSheetsRouterComposable(
         navController = navController,
-        start = BookingBottomSheetState.DateSelection,
-        jobFlow = JobFlow.Booking ){ _, bottomSheetState, coroutineScope->
-
+        startBottomSheet = BookingBottomSheetState.DateSelection,
+        jobFlow = JobFlow.Booking,
+        hotel = hotel
+    ) { _, bottomSheetState, coroutineScope ->
         HotelDetailsContent(navController, bottomSheetState, coroutineScope, hotel)
     }
 }
@@ -72,7 +73,6 @@ private fun HotelDetailsContent(
 
         ConstraintLayout(modifier = mainModifier) {
             val (headerImage, backButton, bookMarkButton, hotelBoardCard, contentSection) = createRefs()
-
             HeaderImageComposable(headerImage, hotel)
             BackButtonComposable(navController, backButton)
             BookmarkButtonComposable(bookMarkButton)

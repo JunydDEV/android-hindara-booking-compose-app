@@ -6,11 +6,14 @@ import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.*
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.JobFlow
 import com.android.hindara.booking.app.ui.authentication.AuthBottomSheetsRouter
 import com.android.hindara.booking.app.ui.booking.BookingBottomSheetsRouter
+import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
+import com.android.hindara.booking.app.ui.home.Hotel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -18,12 +21,13 @@ import kotlinx.coroutines.launch
 @Composable
 fun BottomSheetsRouterComposable(
     navController: NavController,
-    start: BottomSheetState,
+    hotel: Hotel? = null,
+    startBottomSheet: BottomSheetState,
     jobFlow: JobFlow,
     function: @Composable (MutableState<BottomSheetState>, ModalBottomSheetState, CoroutineScope) -> Unit
 ) {
     val bottomSheetsVisibilityState = remember {
-        mutableStateOf(start)
+        mutableStateOf(startBottomSheet)
     }
     val bottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
@@ -49,7 +53,11 @@ fun BottomSheetsRouterComposable(
             )
         }
         JobFlow.Booking -> {
+            val bookingSharedViewModel: BookingSharedViewModel = hiltViewModel()
+            bookingSharedViewModel.chosenHotel = hotel!!
+
             BookingBottomSheetsRouter(
+                bookingSharedViewModel,
                 bottomSheetsVisibilityState,
                 bottomSheetState,
                 function,

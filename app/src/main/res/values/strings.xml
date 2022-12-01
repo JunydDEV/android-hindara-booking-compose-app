@@ -74,5 +74,6 @@
     <string name="paypal">Paypal</string>
     <string name="visa">Visa</string>
     <string name="title_confirm_payment">Confirm Payment</string>
+    <string name="change_payment_method_label">Change</string>
 
 </resources>

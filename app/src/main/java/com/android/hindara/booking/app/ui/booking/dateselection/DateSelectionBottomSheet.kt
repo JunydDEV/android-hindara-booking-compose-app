@@ -15,12 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.bottomsheets.BookingBottomSheetState
 import com.android.hindara.booking.app.data.bottomsheets.BottomSheetState
-import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.utils.getFormattedDate
 import com.android.hindara.booking.app.utils.toTitleCase
 import java.time.LocalDate
 import java.util.*
@@ -36,7 +36,7 @@ import java.util.*
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DateSelectionBottomSheet(
-    viewModel: DateSelectionViewModel = hiltViewModel(),
+    viewModel: BookingSharedViewModel,
     sheetState: ModalBottomSheetState,
     bookingBottomSheetState: MutableState<BottomSheetState>,
     function: @Composable () -> Unit
@@ -53,13 +53,14 @@ fun DateSelectionBottomSheet(
             topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
         ),
         sheetContent = {
-            DateSelectionContentComposable(selectionState, bookingBottomSheetState)
+            DateSelectionContentComposable(viewModel, selectionState, bookingBottomSheetState)
         },
     ) { function() }
 }
 
 @Composable
 private fun DateSelectionContentComposable(
+    viewModel: BookingSharedViewModel,
     selectionState: MutableState<Pair<LocalDate?, LocalDate?>>,
     bookingBottomSheetState: MutableState<BottomSheetState>
 ) {
@@ -70,9 +71,15 @@ private fun DateSelectionContentComposable(
     Column(modifier = mainModifier) {
         CalendarComposable(selectionState)
         SelectedDaysComposable(selectionState)
-        ContinueButtonComposable(bookingBottomSheetState)
+        if (hasBookingDatesChosen(selectionState)) {
+            ContinueButtonComposable(viewModel, bookingBottomSheetState, selectionState)
+        }
     }
 }
+
+@Composable
+private fun hasBookingDatesChosen(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) =
+    selectionState.value.first != null && selectionState.value.second != null
 
 @Composable
 fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
@@ -98,7 +105,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = getSelectedDateWithMonth(checkInDate),
+                text = checkInDate.getFormattedDate(),
                 style = MaterialTheme.typography.h1,
                 color = DarkTextColor
             )
@@ -116,7 +123,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = getSelectedDateWithMonth(checkOutDate),
+                text = checkOutDate.getFormattedDate(),
                 style = MaterialTheme.typography.h1,
                 color = DarkTextColor
             )
@@ -135,7 +142,11 @@ private fun getSelectedDateWithMonth(checkInDate: LocalDate): String {
 }
 
 @Composable
-private fun ContinueButtonComposable(bookingBottomSheetState: MutableState<BottomSheetState>) {
+private fun ContinueButtonComposable(
+    viewModel: BookingSharedViewModel,
+    bookingBottomSheetState: MutableState<BottomSheetState>,
+    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(
@@ -146,6 +157,11 @@ private fun ContinueButtonComposable(bookingBottomSheetState: MutableState<Botto
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
+            val checkInDate = selectionState.value.first!!
+            val checkOutDate = selectionState.value.second!!
+            viewModel.checkInDate = checkInDate
+            viewModel.checkOutDate = checkOutDate
+
             bookingBottomSheetState.value = BookingBottomSheetState.PaymentMethodSelection
         },
     ) {
