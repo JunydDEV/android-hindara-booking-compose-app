@@ -24,7 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
@@ -206,7 +206,7 @@ private fun ContinueButtonComposable(loginBottomSheetState: MutableState<BottomS
     Button(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
-        onClick = { loginBottomSheetState.value = LoginBottomSheetState.ResetPassword },
+        onClick = { loginBottomSheetState.value = AuthenticationBottomSheetState.ResetPassword },
     ) {
         Text(stringResource(R.string.button_continue_text))
     }

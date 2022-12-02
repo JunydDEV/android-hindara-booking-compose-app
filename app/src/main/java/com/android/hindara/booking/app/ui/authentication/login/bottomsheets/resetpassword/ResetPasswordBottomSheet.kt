@@ -29,10 +29,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.LoginBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.HindaraBottomSheet
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlowResultState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import com.android.hindara.booking.app.ui.theme.*
 
 
@@ -229,7 +228,7 @@ private fun ResetButtonComposable(loginBottomSheetState: MutableState<BottomShee
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            loginBottomSheetState.value = JobFlowResultState.ResetPasswordFailure
+            loginBottomSheetState.value = TransactionResultState.ResetPasswordFailure
         },
     ) {
         Text(stringResource(R.string.button_reset_password_text))

@@ -11,7 +11,7 @@ import com.android.hindara.booking.app.ui.booking.dateselection.DateSelectionBot
 import com.android.hindara.booking.app.ui.booking.paymentconfirmation.PaymentConfirmationBottomSheet
 import com.android.hindara.booking.app.ui.booking.paymentselection.PaymentMethodsBottomSheet
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.JobFlowResultBottomSheet
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlowResultState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -52,20 +52,20 @@ fun BookingBottomSheetsRouter(
                 mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        JobFlowResultState.PaymentResultSuccess -> {
+        TransactionResultState.PaymentResultSuccess -> {
             JobFlowResultBottomSheet(
                 modelBottomSheetState = modalBottomSheetState,
                 bottomSheetState = bottomSheetsVisibilityState,
-                resultState = JobFlowResultState.PaymentResultSuccess
+                resultState = TransactionResultState.PaymentResultSuccess
             ) {
                 mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        JobFlowResultState.PaymentResultFailure -> {
+        TransactionResultState.PaymentResultFailure -> {
             JobFlowResultBottomSheet(
                 modelBottomSheetState = modalBottomSheetState,
                 bottomSheetState = bottomSheetsVisibilityState,
-                resultState = JobFlowResultState.PaymentResultFailure
+                resultState = TransactionResultState.PaymentResultFailure
             ) {
                 mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }

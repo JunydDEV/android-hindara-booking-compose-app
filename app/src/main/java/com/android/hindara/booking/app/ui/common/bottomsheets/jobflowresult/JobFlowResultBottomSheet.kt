@@ -18,7 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.HindaraBottomSheet
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlowResultState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 /**
@@ -36,7 +36,7 @@ fun JobFlowResultBottomSheet(
     viewModel: JobFlowResultViewModel = hiltViewModel(),
     modelBottomSheetState: ModalBottomSheetState,
     bottomSheetState: MutableState<BottomSheetState>,
-    resultState: JobFlowResultState,
+    resultState: TransactionResultState,
     mainScreenContent: @Composable () -> Unit
 ) {
     HindaraBottomSheet(
@@ -56,7 +56,7 @@ fun JobFlowResultBottomSheet(
 fun JobFlowResultBottomSheetContent(
     bottomSheetState: MutableState<BottomSheetState>,
     viewModel: JobFlowResultViewModel,
-    result: JobFlowResultState
+    result: TransactionResultState
 ) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
@@ -65,7 +65,7 @@ fun JobFlowResultBottomSheetContent(
     Column(
         modifier = parentColumnModifier
     ) {
-        val jobFlowResult = viewModel.getResult(bottomSheetState.value as JobFlowResultState)
+        val jobFlowResult = viewModel.getResult(bottomSheetState.value as TransactionResultState)
         jobFlowResult?.let {
             SuccessImageComposable(it.icon)
             SpacerComposable()
@@ -126,7 +126,7 @@ private fun ResetPasswordSuccessDescription(description: Int) {
 private fun ContinueButtonComposable(
     loginBottomSheetState: MutableState<BottomSheetState>,
     buttonText: Int,
-    result: JobFlowResultState
+    result: TransactionResultState
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
@@ -136,20 +136,20 @@ private fun ContinueButtonComposable(
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
             when(result) {
-                JobFlowResultState.PaymentResultSuccess -> {
-                    loginBottomSheetState.value = JobFlowResultState.BookingCompleted
+                TransactionResultState.PaymentResultSuccess -> {
+                    loginBottomSheetState.value = TransactionResultState.BookingCompleted
                 }
-                JobFlowResultState.PaymentResultFailure -> {
-                    loginBottomSheetState.value = JobFlowResultState.PaymentResultSuccess
+                TransactionResultState.PaymentResultFailure -> {
+                    loginBottomSheetState.value = TransactionResultState.PaymentResultSuccess
                 }
-                JobFlowResultState.ResetPasswordSuccess -> {
-                    loginBottomSheetState.value = JobFlowResultState.ResetPasswordCompleted
+                TransactionResultState.ResetPasswordSuccess -> {
+                    loginBottomSheetState.value = TransactionResultState.ResetPasswordCompleted
                 }
-                JobFlowResultState.ResetPasswordFailure -> {
-                    loginBottomSheetState.value = JobFlowResultState.ResetPasswordSuccess
+                TransactionResultState.ResetPasswordFailure -> {
+                    loginBottomSheetState.value = TransactionResultState.ResetPasswordSuccess
                 }
                 else -> {
-                    loginBottomSheetState.value = JobFlowResultState.ResetPasswordSuccess
+                    loginBottomSheetState.value = TransactionResultState.ResetPasswordSuccess
                 }
             }
         },

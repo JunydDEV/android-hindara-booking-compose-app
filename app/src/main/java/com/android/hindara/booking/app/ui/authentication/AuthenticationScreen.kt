@@ -14,7 +14,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlow
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.common.bottomsheets.BottomSheetsRouterComposable
 import com.android.hindara.booking.app.ui.authentication.login.*
 import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
@@ -37,7 +37,7 @@ fun AuthenticationScreen(
 ) {
     BottomSheetsRouterComposable(
         navController = navController,
-        startBottomSheet = LoginBottomSheetState.ForgotPassword,
+        startBottomSheet = AuthenticationBottomSheetState.ForgotPassword,
         jobFlow = JobFlow.Authentication
     ) { _, bottomSheetState, coroutineScope->
         MainScreenContentComposable(navController, bottomSheetState, coroutineScope)

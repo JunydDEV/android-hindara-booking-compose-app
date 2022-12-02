@@ -6,12 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.ForgotPasswordBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.ResetPasswordBottomSheet
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.JobFlowResultBottomSheet
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlowResultState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -24,7 +24,7 @@ fun AuthBottomSheetsRouter(
     coroutineScope: CoroutineScope
 ) {
     when (bottomSheetsVisibilityState.value) {
-        LoginBottomSheetState.ForgotPassword -> {
+        AuthenticationBottomSheetState.ForgotPassword -> {
             ForgotPasswordBottomSheet(
                 sheetState = modalBottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState
@@ -32,7 +32,7 @@ fun AuthBottomSheetsRouter(
                 mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        LoginBottomSheetState.ResetPassword -> {
+        AuthenticationBottomSheetState.ResetPassword -> {
             ResetPasswordBottomSheet(
                 sheetState = modalBottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState
@@ -40,25 +40,25 @@ fun AuthBottomSheetsRouter(
                 mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        JobFlowResultState.ResetPasswordSuccess -> {
+        TransactionResultState.ResetPasswordSuccess -> {
             JobFlowResultBottomSheet(
                 modelBottomSheetState = modalBottomSheetState,
                 bottomSheetState = bottomSheetsVisibilityState,
-                resultState = JobFlowResultState.ResetPasswordSuccess
+                resultState = TransactionResultState.ResetPasswordSuccess
             ) {
                 mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        JobFlowResultState.ResetPasswordFailure -> {
+        TransactionResultState.ResetPasswordFailure -> {
             JobFlowResultBottomSheet(
                 modelBottomSheetState = modalBottomSheetState,
                 bottomSheetState = bottomSheetsVisibilityState,
-                resultState = JobFlowResultState.ResetPasswordFailure
+                resultState = TransactionResultState.ResetPasswordFailure
             ) {
                 mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        LoginBottomSheetState.VerifyEmail -> {
+        AuthenticationBottomSheetState.VerifyEmail -> {
             EmailVerificationBottomSheet(
                 sheetState = modalBottomSheetState,
                 loginBottomSheetState = bottomSheetsVisibilityState

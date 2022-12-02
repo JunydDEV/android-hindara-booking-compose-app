@@ -19,7 +19,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.LoginBottomSheetState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.theme.*
@@ -147,7 +147,7 @@ private fun ContinueButtonComposable(loginBottomSheetState: MutableState<BottomS
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            loginBottomSheetState.value = LoginBottomSheetState.VerifyEmail
+            loginBottomSheetState.value = AuthenticationBottomSheetState.VerifyEmail
         },
     ) {
         Text(stringResource(R.string.button_continue_text))
