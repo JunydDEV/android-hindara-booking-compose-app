@@ -175,7 +175,7 @@ fun HotelInfoComposable(hotel: Hotel) {
 @Composable
 fun HotelImageComposable(hotel: Hotel) {
     val modifier = Modifier
-        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.cardCornerSize)))
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.cardCornersSize)))
         .width(80.dp)
         .height(80.dp)
 

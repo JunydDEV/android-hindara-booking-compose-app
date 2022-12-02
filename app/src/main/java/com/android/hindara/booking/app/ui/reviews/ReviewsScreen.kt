@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelShortHeader
-import com.android.hindara.booking.app.ui.hoteldetails.common.MoreDetailsTopBar
+import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
@@ -24,7 +24,7 @@ fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
         topBar = {
-            MoreDetailsTopBar(navController, stringResource(id = R.string.reviews_title_text))
+            AppTopBar(navController, stringResource(id = R.string.reviews_title_text))
         }
     ) {
         Column(

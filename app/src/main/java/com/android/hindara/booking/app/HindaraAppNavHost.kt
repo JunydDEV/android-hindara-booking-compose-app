@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.android.hindara.booking.app.ui.appmenu.appMenuGraph
 import com.android.hindara.booking.app.ui.authentication.authenticationGraph
+import com.android.hindara.booking.app.ui.bookmarks.bookmarksGraph
 import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
@@ -27,5 +28,6 @@ fun HindaraAppNavHost(navController: NavHostController) {
         hotelDetailsGraph(homeViewModel, navController)
         moreDescriptionGraph(navController, homeViewModel)
         reviewsGraph(navController, homeViewModel)
+        bookmarksGraph(navController)
     }
 }

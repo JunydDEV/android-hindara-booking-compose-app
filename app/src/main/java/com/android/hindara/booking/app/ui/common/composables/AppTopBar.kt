@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.hoteldetails.common
+package com.android.hindara.booking.app.ui.common.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -16,7 +16,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 @Composable
-fun MoreDetailsTopBar(navController: NavController, title: String) {
+fun AppTopBar(navController: NavController, title: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

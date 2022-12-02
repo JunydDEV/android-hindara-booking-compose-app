@@ -2,6 +2,7 @@ package com.android.hindara.booking.app.ui.appmenu
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
@@ -20,6 +21,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.bookmarks.bookmarksRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 import com.android.hindara.booking.app.ui.theme.SelectedContentContentColor
@@ -114,25 +116,27 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
 fun MenuItemsComposable(navController: NavController, viewModel: AppMenuViewModel) {
     Column {
         val items = viewModel.getMenuItems()
-        MenuItemRow(items[MenuList.BOOKMARKS])
-        MenuItemRow(items[MenuList.MY_BOOKINGS])
-        MenuItemRow(items[MenuList.SETTINGS])
+        MenuItemRow(navController, items[MenuList.BOOKMARKS], bookmarksRoute)
+        MenuItemRow(navController, items[MenuList.MY_BOOKINGS], bookmarksRoute)
+        MenuItemRow(navController, items[MenuList.SETTINGS], bookmarksRoute)
         SpacerComposable()
         SpacerComposable()
-        MenuItemRow(items[MenuList.HELP])
-        MenuItemRow(items[MenuList.LOGOUT])
+        MenuItemRow(navController, items[MenuList.HELP], bookmarksRoute)
+        MenuItemRow(navController, items[MenuList.LOGOUT], bookmarksRoute)
     }
 }
 
 @Composable
-private fun MenuItemRow(item: MenuItem) {
+private fun MenuItemRow(navController: NavController, item: MenuItem, route: String) {
     val itemRowModifier = Modifier
         .fillMaxWidth()
         .height(dimensionResource(id = R.dimen.sectionSeparatorSize))
         .background(WhiteColor)
 
     Row(
-        modifier = itemRowModifier,
+        modifier = itemRowModifier.clickable {
+            navController.navigate(route)
+        },
         verticalAlignment = Alignment.CenterVertically
     ) {
         MenuIconComposable(item)

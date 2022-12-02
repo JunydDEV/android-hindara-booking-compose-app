@@ -26,7 +26,7 @@ import com.android.hindara.booking.app.ui.theme.YellowColor
 fun HotelShortHeader(hotel: Hotel) {
     HindaraCard(
         showBorders = false,
-        cornersSize = dimensionResource(id = R.dimen.bottomSheetCornerSize)
+        cornersSize = dimensionResource(id = R.dimen.cardCornersSize)
     ) {
         Row(
             modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))
@@ -46,10 +46,11 @@ fun HotelShortHeader(hotel: Hotel) {
 
 @Composable
 fun HotelImageComposable(hotel: Hotel) {
+    val size = dimensionResource(id = R.dimen.hotelImageSmallSize)
     val modifier = Modifier
-        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.detailsSheetCornersSize)))
-        .width(100.dp)
-        .height(100.dp)
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.hotelImageCornersSize)))
+        .width(size)
+        .height(size)
     Image(
         modifier = modifier,
         contentScale = ContentScale.Crop,

@@ -14,12 +14,11 @@ import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.BordersColor
 import com.android.hindara.booking.app.ui.theme.CardBackgroundColor
-import com.android.hindara.booking.app.ui.theme.WhiteColor
 
 @Composable
 fun HindaraCard(
     showBorders: Boolean = true,
-    cornersSize: Dp = dimensionResource(id = R.dimen.cardCornerSize),
+    cornersSize: Dp = dimensionResource(id = R.dimen.cardCornersSize),
     content: @Composable () -> Unit
 ) {
     val cardModifier = Modifier

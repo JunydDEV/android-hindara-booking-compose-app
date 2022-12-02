@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelShortHeader
-import com.android.hindara.booking.app.ui.hoteldetails.common.MoreDetailsTopBar
+import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
@@ -27,15 +27,15 @@ fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeV
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
         topBar = {
-            MoreDetailsTopBar(navController, stringResource(id = R.string.description_title))
+            AppTopBar(navController, stringResource(id = R.string.description_title))
         }
     ) {
-        Column(
-            Modifier
-                .padding(it)
-                .padding(dimensionResource(id = R.dimen.defaultSpacing))
-                .verticalScroll(rememberScrollState())
-        ) {
+        val modifier = Modifier
+            .padding(it)
+            .padding(dimensionResource(id = R.dimen.defaultSpacing))
+            .verticalScroll(rememberScrollState())
+
+        Column(modifier = modifier) {
             HotelShortHeader(hotel = hotel)
             Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.defaultSpacing)))
             Text(

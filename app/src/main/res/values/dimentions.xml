@@ -51,5 +51,7 @@
     <dimen name="borderWidth">1dp</dimen>
     <dimen name="zeroBorderWidth">0dp</dimen>
 
-    <dimen name="cardCornerSize">10dp</dimen>
+    <dimen name="cardCornersSize">10dp</dimen>
+    <dimen name="hotelImageCornersSize">6dp</dimen>
+    <dimen name="hotelImageSmallSize">100dp</dimen>
 </resources>
