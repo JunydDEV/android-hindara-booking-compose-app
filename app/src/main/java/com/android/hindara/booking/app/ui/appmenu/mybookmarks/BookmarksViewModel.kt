@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.bookmarks
+package com.android.hindara.booking.app.ui.appmenu.mybookmarks
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R

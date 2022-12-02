@@ -21,7 +21,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.bookmarks.bookmarksRoute
+import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsRoute
+import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 import com.android.hindara.booking.app.ui.theme.SelectedContentContentColor
@@ -117,17 +118,17 @@ fun MenuItemsComposable(navController: NavController, viewModel: AppMenuViewMode
     Column {
         val items = viewModel.getMenuItems()
         MenuItemRow(navController, items[MenuList.BOOKMARKS], bookmarksRoute)
-        MenuItemRow(navController, items[MenuList.MY_BOOKINGS], bookmarksRoute)
-        MenuItemRow(navController, items[MenuList.SETTINGS], bookmarksRoute)
+        MenuItemRow(navController, items[MenuList.MY_BOOKINGS], myBookingsRoute)
+        MenuItemRow(navController, items[MenuList.SETTINGS])
         SpacerComposable()
         SpacerComposable()
-        MenuItemRow(navController, items[MenuList.HELP], bookmarksRoute)
-        MenuItemRow(navController, items[MenuList.LOGOUT], bookmarksRoute)
+        MenuItemRow(navController, items[MenuList.HELP])
+        MenuItemRow(navController, items[MenuList.LOGOUT])
     }
 }
 
 @Composable
-private fun MenuItemRow(navController: NavController, item: MenuItem, route: String) {
+private fun MenuItemRow(navController: NavController, item: MenuItem, route: String? = null) {
     val itemRowModifier = Modifier
         .fillMaxWidth()
         .height(dimensionResource(id = R.dimen.sectionSeparatorSize))
@@ -135,7 +136,9 @@ private fun MenuItemRow(navController: NavController, item: MenuItem, route: Str
 
     Row(
         modifier = itemRowModifier.clickable {
-            navController.navigate(route)
+            if (route != null) {
+                navController.navigate(route)
+            }
         },
         verticalAlignment = Alignment.CenterVertically
     ) {

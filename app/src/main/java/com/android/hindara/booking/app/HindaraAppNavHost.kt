@@ -5,12 +5,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.android.hindara.booking.app.ui.appmenu.appMenuGraph
+import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsGraph
 import com.android.hindara.booking.app.ui.authentication.authenticationGraph
-import com.android.hindara.booking.app.ui.bookmarks.bookmarksGraph
+import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksGraph
 import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
-import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
 import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
@@ -29,5 +29,6 @@ fun HindaraAppNavHost(navController: NavHostController) {
         moreDescriptionGraph(navController, homeViewModel)
         reviewsGraph(navController, homeViewModel)
         bookmarksGraph(navController)
+        myBookingsGraph(navController)
     }
 }
