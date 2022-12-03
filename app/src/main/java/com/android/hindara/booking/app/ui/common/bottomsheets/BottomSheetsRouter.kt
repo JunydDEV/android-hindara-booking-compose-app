@@ -11,7 +11,6 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlow
 import com.android.hindara.booking.app.ui.authentication.AuthBottomSheetsRouter
-import com.android.hindara.booking.app.ui.booking.BookingBottomSheetsRouter
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
 import kotlinx.coroutines.CoroutineScope
@@ -43,27 +42,11 @@ fun BottomSheetsRouterComposable(
         coroutineScope.launch { bottomSheetState.hide() }
     }
 
-    when (jobFlow) {
-        JobFlow.AuthenticationFlow -> {
-            AuthBottomSheetsRouter(
-                bottomSheetsVisibilityState,
-                bottomSheetState,
-                mainScreenContent,
-                coroutineScope
-            )
-        }
-        JobFlow.BookingFlow -> {
-            val bookingSharedViewModel: BookingSharedViewModel = hiltViewModel()
-            bookingSharedViewModel.chosenHotel = hotel!!
-
-            BookingBottomSheetsRouter(
-                bookingSharedViewModel,
-                bottomSheetsVisibilityState,
-                bottomSheetState,
-                mainScreenContent,
-                coroutineScope
-            )
-        }
-    }
+    AuthBottomSheetsRouter(
+        bottomSheetsVisibilityState,
+        bottomSheetState,
+        mainScreenContent,
+        coroutineScope
+    )
 
 }

@@ -1,22 +1,21 @@
 package com.android.hindara.booking.app
 
-import androidx.compose.animation.core.AnimationSpec
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.SwipeableDefaults
-import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.plusAssign
 import com.android.hindara.booking.app.ui.appmenu.appMenuGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookings.MyBookingsViewModel
 import com.android.hindara.booking.app.ui.appmenu.mybookings.bottomsheets.details.bookingDetailsBottomSheetGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksGraph
 import com.android.hindara.booking.app.ui.authentication.authenticationGraph
+import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
+import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetNavGraph
+import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetNavGraph
+import com.android.hindara.booking.app.ui.booking.paymentselection.paymentSelectionBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.common.BottomSheetLayoutConfig
+import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.resultBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
@@ -28,17 +27,18 @@ import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
-import kotlinx.coroutines.InternalCoroutinesApi
 
 
 @ExperimentalMaterialNavigationApi
 @Composable
 fun HindaraAppNavHost(
     navController: NavHostController,
-    bottomSheetNavigator: BottomSheetNavigator) {
+    bottomSheetNavigator: BottomSheetNavigator,
+) {
 
     val homeViewModel: HomeViewModel = hiltViewModel()
     val myBookingsViewModel: MyBookingsViewModel = hiltViewModel()
+    val bookingSharedViewModel: BookingSharedViewModel = hiltViewModel()
 
     ModalBottomSheetLayout(
         sheetShape = BottomSheetLayoutConfig.sheetShape(),
@@ -59,7 +59,15 @@ fun HindaraAppNavHost(
             myBookingsGraph(navController, myBookingsViewModel)
 
             // Bottom Sheet Screens
+            calendarBottomSheetNavGraph(
+                navController,
+                bookingSharedViewModel,
+                homeViewModel
+            )
+            paymentSelectionBottomSheetNavGraph(navController, bookingSharedViewModel)
+            paymentConfirmationBottomSheetNavGraph(navController, bookingSharedViewModel)
             bookingDetailsBottomSheetGraph(navController, myBookingsViewModel)
+            resultBottomSheetNavGraph(navController)
         }
     }
 }

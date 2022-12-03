@@ -10,7 +10,7 @@ import com.android.hindara.booking.app.ui.common.bottomsheets.states.Authenticat
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.ForgotPasswordBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.ResetPasswordBottomSheet
-import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.JobFlowResultBottomSheet
+import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.ResultBottomSheet
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -40,24 +40,7 @@ fun AuthBottomSheetsRouter(
                 mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
             }
         }
-        TransactionResultState.ResetPasswordSuccess -> {
-            JobFlowResultBottomSheet(
-                modelBottomSheetState = modalBottomSheetState,
-                bottomSheetState = bottomSheetsVisibilityState,
-                resultState = TransactionResultState.ResetPasswordSuccess
-            ) {
-                mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
-            }
-        }
-        TransactionResultState.ResetPasswordFailure -> {
-            JobFlowResultBottomSheet(
-                modelBottomSheetState = modalBottomSheetState,
-                bottomSheetState = bottomSheetsVisibilityState,
-                resultState = TransactionResultState.ResetPasswordFailure
-            ) {
-                mainScreenContent(bottomSheetsVisibilityState, modalBottomSheetState, coroutineScope)
-            }
-        }
+
         AuthenticationBottomSheetState.VerifyEmail -> {
             EmailVerificationBottomSheet(
                 sheetState = modalBottomSheetState,

@@ -15,50 +15,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.BookingBottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
+import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
+import com.android.hindara.booking.app.ui.booking.paymentselection.paymentSelectionBottomSheetRoute
+import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getFormattedDate
 import java.time.LocalDate
-import java.util.*
 
 /**
  * Bottom sheet to select the booking dates.
  *
  * @param viewModel provides data to UI from outside.
- * @param sheetState state of the bottom sheet.
- * @param bookingBottomSheetState holds the state of current bottom sheet.
- * @param mainScreenContent indicates the main screen content.
  * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DateSelectionBottomSheet(
+    navController: NavController,
     viewModel: BookingSharedViewModel,
-    sheetState: ModalBottomSheetState,
-    bookingBottomSheetState: MutableState<BottomSheetState>,
-    mainScreenContent: @Composable () -> Unit
+    homeViewModel: HomeViewModel
 ) {
     val selectionState = remember {
         mutableStateOf(Pair<LocalDate?, LocalDate?>(null, null))
     }
-
-    HindaraBottomSheet(
-        sheetState = sheetState,
-        sheetContent = {
-            DateSelectionContentComposable(viewModel, selectionState, bookingBottomSheetState)
-        },
-        content = { mainScreenContent() }
-    )
+    DateSelectionContentComposable(navController, viewModel, selectionState, homeViewModel)
 }
 
 @Composable
 private fun DateSelectionContentComposable(
+    navController: NavController,
     viewModel: BookingSharedViewModel,
     selectionState: MutableState<Pair<LocalDate?, LocalDate?>>,
-    bookingBottomSheetState: MutableState<BottomSheetState>
+    homeViewModel: HomeViewModel
 ) {
     val mainModifier = Modifier
         .background(WhiteColor)
@@ -68,7 +57,7 @@ private fun DateSelectionContentComposable(
         CalendarComposable(selectionState)
         SelectedDaysComposable(selectionState)
         if (hasBookingDatesChosen(selectionState)) {
-            ContinueButtonComposable(viewModel, bookingBottomSheetState, selectionState)
+            ContinueButtonComposable(navController, viewModel, selectionState, homeViewModel)
         }
     }
 }
@@ -129,9 +118,10 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
 
 @Composable
 private fun ContinueButtonComposable(
+    navController: NavController,
     viewModel: BookingSharedViewModel,
-    bookingBottomSheetState: MutableState<BottomSheetState>,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>,
+    homeViewModel: HomeViewModel
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
@@ -147,8 +137,8 @@ private fun ContinueButtonComposable(
             val checkOutDate = selectionState.value.second!!
             viewModel.checkInDate = checkInDate
             viewModel.checkOutDate = checkOutDate
-
-            bookingBottomSheetState.value = BookingBottomSheetState.PaymentMethodSelection
+            viewModel.chosenHotel = homeViewModel.getChosenHotel()
+            navController.navigate(paymentSelectionBottomSheetRoute)
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

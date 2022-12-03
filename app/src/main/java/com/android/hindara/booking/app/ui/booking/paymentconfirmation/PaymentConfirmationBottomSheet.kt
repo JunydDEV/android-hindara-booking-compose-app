@@ -9,19 +9,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
+import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.resultBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import com.android.hindara.booking.app.ui.hoteldetails.common.*
 import com.android.hindara.booking.app.ui.theme.*
@@ -30,31 +29,19 @@ import com.android.hindara.booking.app.ui.theme.*
  * Bottom sheet to select the booking dates.
  *
  * @param viewModel provides data to UI from outside.
- * @param sheetState state of the bottom sheet.
- * @param bookingBottomSheetState holds the state of current bottom sheet.
- * @param mainScreenContent indicates the main screen content.
- * */
-@OptIn(ExperimentalMaterialApi::class)
+  * */
 @Composable
 fun PaymentConfirmationBottomSheet(
+    navController: NavController,
     viewModel: BookingSharedViewModel,
-    sheetState: ModalBottomSheetState,
-    bookingBottomSheetState: MutableState<BottomSheetState>,
-    mainScreenContent: @Composable () -> Unit
 ) {
-    HindaraBottomSheet(
-        sheetState = sheetState,
-        sheetContent = {
-            PaymentConfirmationContentComposable(viewModel, bookingBottomSheetState)
-        },
-        content = { mainScreenContent() }
-    )
+    PaymentConfirmationContentComposable(navController, viewModel)
 }
 
 @Composable
 private fun PaymentConfirmationContentComposable(
+    navController: NavController,
     viewModel: BookingSharedViewModel,
-    bookingBottomSheetState: MutableState<BottomSheetState>
 ) {
     BottomSheetContentWithTitle(title = stringResource(id = R.string.title_confirm_payment)) {
         Column(Modifier.verticalScroll(rememberScrollState())) {
@@ -62,7 +49,7 @@ private fun PaymentConfirmationContentComposable(
             BookingDatesComposable(viewModel.checkInDate, viewModel.checkOutDate)
             BookingBillComposable(viewModel)
             SelectedPaymentMethodComposable(viewModel.paymentMethod)
-            ContinueButtonComposable(bookingBottomSheetState)
+            ContinueButtonComposable(navController)
         }
     }
 }
@@ -157,7 +144,7 @@ private fun SelectedPaymentMethodComposable(paymentMethod: PaymentMethod) {
 
 @Composable
 private fun ContinueButtonComposable(
-    bookingBottomSheetState: MutableState<BottomSheetState>
+    navController: NavController
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
@@ -169,7 +156,12 @@ private fun ContinueButtonComposable(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            bookingBottomSheetState.value = TransactionResultState.PaymentResultFailure
+            navController.navigate(
+                resultBottomSheetRoute.replace(
+                    "{type}",
+                    TransactionResultState.PaymentResultFailure.javaClass.name
+                )
+            )
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

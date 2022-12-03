@@ -8,16 +8,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
@@ -25,38 +23,25 @@ import com.android.hindara.booking.app.ui.theme.DarkTextColor
  * Bottom sheet UI to show the job flow result.
  *
  * @param viewModel provides data to UI from outside.
- * @param modelBottomSheetState state of the bottom sheet.
- * @param bottomSheetState holds the state of current bottom sheet.
- * @param resultState indicates success/failure of job flow result.
- * @param mainScreenContent indicates the main screen content.
  * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun JobFlowResultBottomSheet(
-    viewModel: JobFlowResultViewModel = hiltViewModel(),
-    modelBottomSheetState: ModalBottomSheetState,
-    bottomSheetState: MutableState<BottomSheetState>,
-    resultState: TransactionResultState,
-    mainScreenContent: @Composable () -> Unit
-) {
-    HindaraBottomSheet(
-        sheetState = modelBottomSheetState,
-        sheetContent = {
-            JobFlowResultBottomSheetContent(
-                bottomSheetState,
-                viewModel,
-                resultState
-            )
-        },
-        content = { mainScreenContent() }
+fun ResultBottomSheet(
+    navController: NavController,
+    viewModel: ResultViewModel = hiltViewModel(),
+    type: String,
+    ) {
+    JobFlowResultBottomSheetContent(
+        navController,
+        viewModel,
+        type
     )
 }
 
 @Composable
 fun JobFlowResultBottomSheetContent(
-    bottomSheetState: MutableState<BottomSheetState>,
-    viewModel: JobFlowResultViewModel,
-    result: TransactionResultState
+    navController: NavController,
+    viewModel: ResultViewModel,
+    type: String
 ) {
     val parentColumnModifier = Modifier
         .padding(dimensionResource(id = R.dimen.defaultSpacing))
@@ -65,13 +50,13 @@ fun JobFlowResultBottomSheetContent(
     Column(
         modifier = parentColumnModifier
     ) {
-        val jobFlowResult = viewModel.getResult(bottomSheetState.value as TransactionResultState)
-        jobFlowResult?.let {
+        val bottomSheetContent = viewModel.getSheetContent(type)
+        bottomSheetContent?.let {
             SuccessImageComposable(it.icon)
             SpacerComposable()
             ResetPasswordSuccessTitle(it.title)
             ResetPasswordSuccessDescription(it.description)
-            ContinueButtonComposable(bottomSheetState, it.buttonText, result)
+            ContinueButtonComposable(navController, it.buttonText, type)
         }
     }
 }
@@ -124,9 +109,9 @@ private fun ResetPasswordSuccessDescription(description: Int) {
 
 @Composable
 private fun ContinueButtonComposable(
-    loginBottomSheetState: MutableState<BottomSheetState>,
+    navController: NavController,
     buttonText: Int,
-    result: TransactionResultState
+    type: String
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
@@ -135,23 +120,24 @@ private fun ContinueButtonComposable(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            when(result) {
-                TransactionResultState.PaymentResultSuccess -> {
-                    loginBottomSheetState.value = TransactionResultState.BookingCompleted
+            val resultType = when(type) {
+                TransactionResultState.PaymentResultSuccess.javaClass.name -> {
+                    TransactionResultState.BookingCompleted.javaClass.name
                 }
-                TransactionResultState.PaymentResultFailure -> {
-                    loginBottomSheetState.value = TransactionResultState.PaymentResultSuccess
+                TransactionResultState.PaymentResultFailure.javaClass.name -> {
+                    TransactionResultState.PaymentResultSuccess.javaClass.name
                 }
-                TransactionResultState.ResetPasswordSuccess -> {
-                    loginBottomSheetState.value = TransactionResultState.ResetPasswordCompleted
+                TransactionResultState.ResetPasswordSuccess.javaClass.name -> {
+                    TransactionResultState.ResetPasswordCompleted.javaClass.name
                 }
-                TransactionResultState.ResetPasswordFailure -> {
-                    loginBottomSheetState.value = TransactionResultState.ResetPasswordSuccess
+                TransactionResultState.ResetPasswordFailure.javaClass.name -> {
+                    TransactionResultState.ResetPasswordSuccess.javaClass.name
                 }
                 else -> {
-                    loginBottomSheetState.value = TransactionResultState.ResetPasswordSuccess
+                    TransactionResultState.ResetPasswordSuccess.javaClass.name
                 }
             }
+            navController.navigate(resultBottomSheetRoute.replace("{type}", resultType))
         },
     ) {
         Text(stringResource(buttonText))

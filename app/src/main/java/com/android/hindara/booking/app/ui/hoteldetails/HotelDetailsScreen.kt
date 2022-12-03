@@ -22,6 +22,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintLayoutScope
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BookingBottomSheetState
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlow
 import com.android.hindara.booking.app.ui.common.bottomsheets.BottomSheetsRouterComposable
@@ -50,21 +51,18 @@ fun HotelDetailsScreen(
         jobFlow = JobFlow.BookingFlow,
         hotel = hotel
     ) { _, bottomSheetState, coroutineScope ->
-        HotelDetailsContent(navController, bottomSheetState, coroutineScope, hotel)
+        HotelDetailsContent(navController, hotel)
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun HotelDetailsContent(
     navController: NavController,
-    modalBottomSheetState: ModalBottomSheetState,
-    coroutineScope: CoroutineScope,
     hotel: Hotel
 ) {
     Scaffold(
         bottomBar = {
-            BookingBottomBar(navController,modalBottomSheetState, coroutineScope, hotel)
+            BookingBottomBar(navController, hotel)
         }
     ) {
         val mainModifier = Modifier
@@ -400,12 +398,9 @@ fun ReviewsCount(hotel: Hotel) {
 }
 
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BookingBottomBar(
     navController: NavController,
-    modalBottomSheetState: ModalBottomSheetState,
-    coroutineScope: CoroutineScope,
     hotel: Hotel
 ) {
     val modifier = Modifier
@@ -461,9 +456,7 @@ fun BookingBottomBar(
             modifier = bookNowButton,
             shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
             onClick = {
-                coroutineScope.launch {
-                    modalBottomSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                }
+                navController.navigate(calendarBottomSheetRoute)
             },
         ) {
             Text(stringResource(R.string.book_now_button_text))

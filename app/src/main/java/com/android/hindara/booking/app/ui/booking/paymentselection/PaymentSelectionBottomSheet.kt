@@ -15,30 +15,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BookingBottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
+import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
 
 /**
  * Bottom sheet to choose the payment method.
  *
  * @param viewModel provides data to UI from outside.
- * @param sheetState state of the bottom sheet.
- * @param bookingBottomSheetState holds the state of current bottom sheet.
- * @param mainScreenContent indicates the main screen content.
  * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PaymentMethodsBottomSheet(
+    navController: NavController,
     viewModel: BookingSharedViewModel,
-    sheetState: ModalBottomSheetState,
-    bookingBottomSheetState: MutableState<BottomSheetState>,
-    mainScreenContent: @Composable () -> Unit
 ) {
     val paymentMethods = viewModel.getPaymentMethodsList()
 
@@ -46,32 +40,29 @@ fun PaymentMethodsBottomSheet(
         mutableStateOf<PaymentMethod?>(null)
     }
 
-    HindaraBottomSheet(
-        sheetState = sheetState,
-        sheetContent = {
-            PaymentSelectionContentComposable(
-                viewModel,
-                paymentMethods,
-                paymentMethodSelectionState,
-                bookingBottomSheetState
-            )
-        },
-        content = { mainScreenContent() }
+    PaymentSelectionContentComposable(
+        navController = navController,
+        viewModel = viewModel,
+        paymentMethods = paymentMethods,
+        paymentMethodSelectionState = paymentMethodSelectionState,
     )
 }
 
 @Composable
 private fun PaymentSelectionContentComposable(
+    navController: NavController,
     viewModel: BookingSharedViewModel,
     paymentMethods: List<PaymentMethod>,
     paymentMethodSelectionState: MutableState<PaymentMethod?>,
-    bookingBottomSheetState: MutableState<BottomSheetState>
 ) {
     BottomSheetContentWithTitle(stringResource(R.string.title_payment_methods)) {
         PaymentMethodsListComposable(viewModel, paymentMethods, paymentMethodSelectionState)
         if (paymentMethodSelectionState.value != null) {
-            viewModel.paymentMethod = paymentMethodSelectionState.value!!
-            ContinueButtonComposable(bookingBottomSheetState)
+            ContinueButtonComposable(
+                sharedViewModel = viewModel,
+                navController = navController,
+                paymentMethod =  paymentMethodSelectionState.value!!
+            )
         }
     }
 }
@@ -118,7 +109,9 @@ fun PaymentMethodComposable(
 
 @Composable
 private fun ContinueButtonComposable(
-    bookingBottomSheetState: MutableState<BottomSheetState>
+    navController: NavController,
+    sharedViewModel: BookingSharedViewModel,
+    paymentMethod: PaymentMethod
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
@@ -130,8 +123,8 @@ private fun ContinueButtonComposable(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-
-            bookingBottomSheetState.value = BookingBottomSheetState.PaymentConfirmation
+            sharedViewModel.paymentMethod = paymentMethod
+            navController.navigate(paymentConfirmationBottomSheetRoute)
         },
     ) {
         Text(stringResource(R.string.button_continue_text))
