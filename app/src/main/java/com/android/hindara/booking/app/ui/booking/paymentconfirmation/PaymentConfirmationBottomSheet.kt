@@ -20,6 +20,8 @@ import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
+import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetRoute
+import com.android.hindara.booking.app.ui.booking.paymentselection.paymentSelectionBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.resultBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import com.android.hindara.booking.app.ui.hoteldetails.common.*
@@ -158,10 +160,12 @@ private fun ContinueButtonComposable(
         onClick = {
             navController.navigate(
                 resultBottomSheetRoute.replace(
-                    "{type}",
-                    TransactionResultState.PaymentResultFailure.javaClass.name
-                )
-            )
+                    "{type}", TransactionResultState.paymentResultFailure)
+            ) {
+                popUpTo(paymentConfirmationBottomSheetRoute) {
+                    inclusive = true
+                }
+            }
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

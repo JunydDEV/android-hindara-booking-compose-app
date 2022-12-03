@@ -9,7 +9,7 @@ class ResultViewModel @Inject constructor() : ViewModel() {
 
     fun getSheetContent(type: String): BottomSheetContent? {
         return when (type) {
-            TransactionResultState.ResetPasswordSuccess.javaClass.name -> {
+            TransactionResultState.resetPasswordSuccess -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_success,
                     title = R.string.reset_password_success_title,
@@ -17,7 +17,7 @@ class ResultViewModel @Inject constructor() : ViewModel() {
                     buttonText = R.string.button_login_now_text
                 )
             }
-            TransactionResultState.ResetPasswordFailure.javaClass.name -> {
+            TransactionResultState.resetPasswordFailure -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_failed,
                     title = R.string.reset_password_failure_title,
@@ -25,7 +25,7 @@ class ResultViewModel @Inject constructor() : ViewModel() {
                     buttonText = R.string.button_try_again_text
                 )
             }
-            TransactionResultState.PaymentResultSuccess.javaClass.name -> {
+            TransactionResultState.paymentResultSuccess -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_success,
                     title = R.string.payment_result_success_title,
@@ -33,7 +33,7 @@ class ResultViewModel @Inject constructor() : ViewModel() {
                     buttonText = R.string.button_back_to_home_text
                 )
             }
-            TransactionResultState.PaymentResultFailure.javaClass.name -> {
+            TransactionResultState.paymentResultFailure -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_failed,
                     title = R.string.payment_result_failure_title,
@@ -45,6 +45,30 @@ class ResultViewModel @Inject constructor() : ViewModel() {
                 null
             }
         }
+    }
+
+    fun getResultType(type: String): String =
+        when (type) {
+            TransactionResultState.paymentResultFailure -> {
+                TransactionResultState.paymentResultSuccess
+            }
+            TransactionResultState.paymentResultSuccess -> {
+                TransactionResultState.bookingCompleted
+            }
+            TransactionResultState.resetPasswordFailure -> {
+                TransactionResultState.resetPasswordSuccess
+            }
+            TransactionResultState.resetPasswordSuccess -> {
+                TransactionResultState.resetPasswordCompleted
+            }
+            else -> {
+                TransactionResultState.resetPasswordSuccess
+            }
+        }
+
+    fun isTransactionCompleted(type: String): Boolean {
+        return type == TransactionResultState.bookingCompleted
+                || type == TransactionResultState.resetPasswordCompleted
     }
 }
 

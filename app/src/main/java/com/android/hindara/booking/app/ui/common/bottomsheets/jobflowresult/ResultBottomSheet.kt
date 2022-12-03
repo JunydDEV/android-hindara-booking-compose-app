@@ -16,7 +16,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetRoute
+import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
+import com.android.hindara.booking.app.ui.home.HomeViewModel
+import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 /**
@@ -29,11 +33,11 @@ fun ResultBottomSheet(
     navController: NavController,
     viewModel: ResultViewModel = hiltViewModel(),
     type: String,
-    ) {
+) {
     JobFlowResultBottomSheetContent(
-        navController,
-        viewModel,
-        type
+        navController = navController,
+        viewModel = viewModel,
+        type = type
     )
 }
 
@@ -56,7 +60,12 @@ fun JobFlowResultBottomSheetContent(
             SpacerComposable()
             ResetPasswordSuccessTitle(it.title)
             ResetPasswordSuccessDescription(it.description)
-            ContinueButtonComposable(navController, it.buttonText, type)
+            ContinueButtonComposable(
+                viewModel = viewModel,
+                navController = navController,
+                buttonText = it.buttonText,
+                type = type
+            )
         }
     }
 }
@@ -110,6 +119,7 @@ private fun ResetPasswordSuccessDescription(description: Int) {
 @Composable
 private fun ContinueButtonComposable(
     navController: NavController,
+    viewModel: ResultViewModel,
     buttonText: Int,
     type: String
 ) {
@@ -120,26 +130,37 @@ private fun ContinueButtonComposable(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            val resultType = when(type) {
-                TransactionResultState.PaymentResultSuccess.javaClass.name -> {
-                    TransactionResultState.BookingCompleted.javaClass.name
-                }
-                TransactionResultState.PaymentResultFailure.javaClass.name -> {
-                    TransactionResultState.PaymentResultSuccess.javaClass.name
-                }
-                TransactionResultState.ResetPasswordSuccess.javaClass.name -> {
-                    TransactionResultState.ResetPasswordCompleted.javaClass.name
-                }
-                TransactionResultState.ResetPasswordFailure.javaClass.name -> {
-                    TransactionResultState.ResetPasswordSuccess.javaClass.name
-                }
-                else -> {
-                    TransactionResultState.ResetPasswordSuccess.javaClass.name
-                }
-            }
-            navController.navigate(resultBottomSheetRoute.replace("{type}", resultType))
+            onClickEvent(viewModel, type, navController)
         },
     ) {
         Text(stringResource(buttonText))
+    }
+}
+
+private fun onClickEvent(
+    viewModel: ResultViewModel,
+    type: String,
+    navController: NavController
+) {
+    val resultType = viewModel.getResultType(type)
+
+    if (viewModel.isTransactionCompleted(resultType)) {
+        navController.popBackStack(hotelDetailsRoute, inclusive = false)
+    } else {
+        navigateToNextScreen(type, resultType, navController)
+    }
+}
+
+private fun navigateToNextScreen(
+    type: String,
+    resultType: String,
+    navController: NavController
+) {
+    val currentDestination = resultBottomSheetRoute.replace("{type}", type)
+    val nextDestination = resultBottomSheetRoute.replace("{type}", resultType)
+    navController.navigate(nextDestination) {
+        this.popUpTo(currentDestination) {
+            inclusive = true
+        }
     }
 }

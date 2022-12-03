@@ -38,21 +38,13 @@ import com.google.maps.android.compose.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HotelDetailsScreen(
     homeViewModel: HomeViewModel,
     navController: NavController,
 ) {
     val hotel = homeViewModel.getChosenHotel()
-    BottomSheetsRouterComposable(
-        navController = navController,
-        startBottomSheet = BookingBottomSheetState.DateSelection,
-        jobFlow = JobFlow.BookingFlow,
-        hotel = hotel
-    ) { _, bottomSheetState, coroutineScope ->
-        HotelDetailsContent(navController, hotel)
-    }
+    HotelDetailsContent(navController, hotel)
 }
 
 @Composable

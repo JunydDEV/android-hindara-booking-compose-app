@@ -19,17 +19,16 @@ import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.resu
 import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
+import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
-import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
 import com.android.hindara.booking.app.ui.reviews.reviewsGraph
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 
-
-@ExperimentalMaterialNavigationApi
+@OptIn(ExperimentalMaterialNavigationApi::class)
 @Composable
 fun HindaraAppNavHost(
     navController: NavHostController,
@@ -46,7 +45,7 @@ fun HindaraAppNavHost(
         bottomSheetNavigator = bottomSheetNavigator
     ) {
 
-        NavHost(navController = navController, startDestination = onboardingRoute) {
+        NavHost(navController = navController, startDestination = homeRoute) {
             // Main Screens
             onboardingGraph(navController)
             authenticationGraph(navController)

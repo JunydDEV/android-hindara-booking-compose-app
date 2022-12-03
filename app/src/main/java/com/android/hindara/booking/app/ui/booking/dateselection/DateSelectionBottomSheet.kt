@@ -138,7 +138,12 @@ private fun ContinueButtonComposable(
             viewModel.checkInDate = checkInDate
             viewModel.checkOutDate = checkOutDate
             viewModel.chosenHotel = homeViewModel.getChosenHotel()
-            navController.navigate(paymentSelectionBottomSheetRoute)
+
+            navController.navigate(paymentSelectionBottomSheetRoute) {
+                this.popUpTo(calendarBottomSheetRoute) {
+                    inclusive = true
+                }
+            }
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

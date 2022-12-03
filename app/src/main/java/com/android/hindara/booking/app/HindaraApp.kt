@@ -5,9 +5,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.rememberBottomSheetNavigator
 import com.android.hindara.booking.app.ui.theme.HindaraBookingApp
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi

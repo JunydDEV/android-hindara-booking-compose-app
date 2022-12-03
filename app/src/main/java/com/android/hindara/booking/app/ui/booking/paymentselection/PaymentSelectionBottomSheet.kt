@@ -22,6 +22,7 @@ import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
+import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetRoute
 import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
 
 /**
@@ -124,7 +125,11 @@ private fun ContinueButtonComposable(
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
             sharedViewModel.paymentMethod = paymentMethod
-            navController.navigate(paymentConfirmationBottomSheetRoute)
+            navController.navigate(paymentConfirmationBottomSheetRoute){
+                this.popUpTo(paymentSelectionBottomSheetRoute) {
+                    inclusive = true
+                }
+            }
         },
     ) {
         Text(stringResource(R.string.button_continue_text))
