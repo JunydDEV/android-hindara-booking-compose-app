@@ -84,6 +84,10 @@ class MyBookingsViewModel @Inject constructor() : ViewModel() {
 
         )
     }
+
+    fun getCheckInDate(): LocalDate {
+        return LocalDate.now().plusDays(5)
+    }
 }
 
 data class MyBooking(

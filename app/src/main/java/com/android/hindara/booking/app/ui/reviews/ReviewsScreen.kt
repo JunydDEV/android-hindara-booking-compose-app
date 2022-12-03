@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.HomeViewModel
-import com.android.hindara.booking.app.ui.hoteldetails.common.HotelShortHeader
+import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
@@ -33,7 +33,7 @@ fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
                 .padding(dimensionResource(id = R.dimen.defaultSpacing))
                 .verticalScroll(rememberScrollState())
         ) {
-            HotelShortHeader(hotel = hotel)
+            HotelCardComposable(hotel = hotel)
             Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.largeSpacing)))
             repeat(hotel.reviewsList.size) { index ->
                 ReviewItemComposable(review = hotel.reviewsList[index])

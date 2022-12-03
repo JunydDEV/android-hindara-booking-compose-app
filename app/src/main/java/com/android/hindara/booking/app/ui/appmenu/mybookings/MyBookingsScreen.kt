@@ -12,7 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
-import com.android.hindara.booking.app.ui.hoteldetails.common.HotelShortHeader
+import com.android.hindara.booking.app.ui.hoteldetails.common.BookedHotelCardComposable
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
 @Composable
@@ -31,7 +31,10 @@ fun MyBookingsScreen(
         ){
             val myBookingsList = viewModel.getMyBookings()
             items(myBookingsList.size) { index ->
-                HotelShortHeader(hotel = myBookingsList[index].hotel)
+                BookedHotelCardComposable(
+                    checkInDate = viewModel.getCheckInDate(),
+                    hotel = myBookingsList[index].hotel
+                )
             }
         }
     }

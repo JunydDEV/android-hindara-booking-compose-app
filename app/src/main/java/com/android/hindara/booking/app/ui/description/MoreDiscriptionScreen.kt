@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.HomeViewModel
-import com.android.hindara.booking.app.ui.hoteldetails.common.HotelShortHeader
+import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
@@ -36,7 +36,7 @@ fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeV
             .verticalScroll(rememberScrollState())
 
         Column(modifier = modifier) {
-            HotelShortHeader(hotel = hotel)
+            HotelCardComposable(hotel = hotel)
             Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.defaultSpacing)))
             Text(
                 modifier = Modifier.wrapContentWidth(),
