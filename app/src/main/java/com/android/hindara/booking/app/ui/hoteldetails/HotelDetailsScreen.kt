@@ -47,7 +47,7 @@ fun HotelDetailsScreen(
     BottomSheetsRouterComposable(
         navController = navController,
         startBottomSheet = BookingBottomSheetState.DateSelection,
-        jobFlow = JobFlow.Booking,
+        jobFlow = JobFlow.BookingFlow,
         hotel = hotel
     ) { _, bottomSheetState, coroutineScope ->
         HotelDetailsContent(navController, bottomSheetState, coroutineScope, hotel)

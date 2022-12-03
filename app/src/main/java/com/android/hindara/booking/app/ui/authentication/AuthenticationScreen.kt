@@ -38,7 +38,7 @@ fun AuthenticationScreen(
     BottomSheetsRouterComposable(
         navController = navController,
         startBottomSheet = AuthenticationBottomSheetState.ForgotPassword,
-        jobFlow = JobFlow.Authentication
+        jobFlow = JobFlow.AuthenticationFlow
     ) { _, bottomSheetState, coroutineScope->
         MainScreenContentComposable(navController, bottomSheetState, coroutineScope)
     }

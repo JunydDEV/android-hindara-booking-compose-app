@@ -25,17 +25,27 @@ fun MyBookingsScreen(
             AppTopBar(navController, stringResource(id = R.string.menu_item_my_bookings))
         }
     ) {
-        LazyColumn(
-            modifier = Modifier.padding(it),
-            contentPadding = PaddingValues(dimensionResource(id = R.dimen.defaultSpacing))
-        ){
-            val myBookingsList = viewModel.getMyBookings()
-            items(myBookingsList.size) { index ->
-                BookedHotelCardComposable(
-                    checkInDate = viewModel.getCheckInDate(),
-                    hotel = myBookingsList[index].hotel
-                )
-            }
+        MyBookingsListComposable(it, viewModel)
+    }
+}
+
+@Composable
+private fun MyBookingsListComposable(
+    it: PaddingValues,
+    viewModel: MyBookingsViewModel
+) {
+    LazyColumn(
+        modifier = Modifier.padding(it),
+        contentPadding = PaddingValues(dimensionResource(id = R.dimen.defaultSpacing))
+    ) {
+        val myBookingsList = viewModel.getMyBookings()
+        items(myBookingsList.size) { index ->
+            val hotel = myBookingsList[index].hotel
+            BookedHotelCardComposable(
+                checkInDate = viewModel.getCheckInDate(),
+                hotel = hotel,
+                onClick = {  }
+            )
         }
     }
 }

@@ -44,7 +44,7 @@ fun BottomSheetsRouterComposable(
     }
 
     when (jobFlow) {
-        JobFlow.Authentication -> {
+        JobFlow.AuthenticationFlow -> {
             AuthBottomSheetsRouter(
                 bottomSheetsVisibilityState,
                 bottomSheetState,
@@ -52,7 +52,7 @@ fun BottomSheetsRouterComposable(
                 coroutineScope
             )
         }
-        JobFlow.Booking -> {
+        JobFlow.BookingFlow -> {
             val bookingSharedViewModel: BookingSharedViewModel = hiltViewModel()
             bookingSharedViewModel.chosenHotel = hotel!!
 

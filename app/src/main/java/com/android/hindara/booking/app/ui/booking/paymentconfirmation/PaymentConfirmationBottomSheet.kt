@@ -27,6 +27,7 @@ import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import com.android.hindara.booking.app.ui.home.Hotel
+import com.android.hindara.booking.app.ui.hoteldetails.common.*
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getFormattedDate
 
@@ -63,7 +64,7 @@ private fun PaymentConfirmationContentComposable(
     BottomSheetContentWithTitle(title = stringResource(id = R.string.title_confirm_payment)) {
         Column(Modifier.verticalScroll(rememberScrollState())) {
             HotelInfoComposable(viewModel.chosenHotel)
-            BookingDatesComposable(viewModel)
+            BookingDatesComposable(viewModel.checkInDate, viewModel.checkOutDate)
             BookingBillComposable(viewModel)
             SelectedPaymentMethodComposable(viewModel.paymentMethod)
             ContinueButtonComposable(bookingBottomSheetState)
@@ -135,79 +136,7 @@ fun BookedNightsComposable(viewModel: BookingSharedViewModel) {
 }
 
 @Composable
-fun BookingDatesComposable(viewModel: BookingSharedViewModel) {
-    val checkInDate = viewModel.checkInDate
-    val checkOutDate = viewModel.checkOutDate
-
-    HindaraCard {
-        Column {
-            HindaraCommonRow(
-                label = stringResource(id = R.string.check_in_label),
-                value = checkInDate.getFormattedDate()
-            )
-            HindaraCommonRow(
-                label = stringResource(id = R.string.check_out_label),
-                value = checkOutDate.getFormattedDate()
-            )
-        }
-    }
-}
-
-@Composable
-fun HotelInfoComposable(hotel: Hotel) {
-    HindaraCard {
-        Row(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))
-        ) {
-            HotelImageComposable(hotel)
-            Column(
-                modifier = Modifier
-                    .padding(start = dimensionResource(id = R.dimen.defaultSpacing))
-                    .height(80.dp), verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                HotelNameComposable(hotel)
-                HotelAddressComposable(hotel)
-            }
-        }
-    }
-}
-
-@Composable
-fun HotelImageComposable(hotel: Hotel) {
-    val modifier = Modifier
-        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.cardCornersSize)))
-        .width(80.dp)
-        .height(80.dp)
-
-    Image(
-        modifier = modifier,
-        contentScale = ContentScale.Crop,
-        painter = painterResource(id = hotel.image), contentDescription = null
-    )
-}
-
-@Composable
-private fun HotelNameComposable(hotel: Hotel) {
-    Text(
-        modifier = Modifier.wrapContentWidth(),
-        text = hotel.name,
-        style = MaterialTheme.typography.h2,
-        color = DarkTextColor
-    )
-}
-
-@Composable
-fun HotelAddressComposable(hotel: Hotel) {
-    Text(
-        modifier = Modifier.wrapContentWidth(),
-        text = hotel.address.locationTitle,
-        style = MaterialTheme.typography.body1,
-        color = LightTextColor
-    )
-}
-
-@Composable
-fun SelectedPaymentMethodComposable(paymentMethod: PaymentMethod) {
+private fun SelectedPaymentMethodComposable(paymentMethod: PaymentMethod) {
     HindaraCard {
         Row(
             modifier = Modifier
@@ -249,31 +178,5 @@ private fun ContinueButtonComposable(
         },
     ) {
         Text(stringResource(R.string.button_continue_text))
-    }
-}
-
-@Composable
-private fun HindaraCommonRow(label: String, value: String) {
-    val modifier = Modifier
-        .fillMaxWidth()
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
-
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            modifier = Modifier.wrapContentWidth(),
-            text = label,
-            style = MaterialTheme.typography.body1,
-            color = LightTextColor
-        )
-        Text(
-            modifier = Modifier.wrapContentWidth(),
-            text = value,
-            style = MaterialTheme.typography.h2,
-            color = DarkTextColor
-        )
     }
 }

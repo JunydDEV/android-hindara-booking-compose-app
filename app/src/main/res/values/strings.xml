@@ -81,4 +81,7 @@
     <string name="payment_result_success_description">Congratulations! You can see your bookings in the booking section. Enjoy your trip!</string>
     <string name="payment_result_failure_description">Please check your internet connection and try again in a moments. Good luck!</string>
     <string name="button_back_to_home_text">Back To Home</string>
+    <string name="booking_details">Booking Details</string>
+    <string name="payment_status">Payment Status</string>
+    <string name="status_paid">Paid</string>
 </resources>

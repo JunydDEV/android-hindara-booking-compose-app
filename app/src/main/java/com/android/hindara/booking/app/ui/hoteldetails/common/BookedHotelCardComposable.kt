@@ -1,5 +1,6 @@
 package com.android.hindara.booking.app.ui.hoteldetails.common
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -14,13 +15,19 @@ import com.android.hindara.booking.app.utils.getFormattedDate
 import java.time.LocalDate
 
 @Composable
-fun BookedHotelCardComposable(checkInDate: LocalDate, hotel: Hotel) {
+fun BookedHotelCardComposable(
+    checkInDate: LocalDate,
+    hotel: Hotel,
+    onClick: () -> Unit
+) {
     HindaraCard(
         showBorders = false,
-        cornersSize = dimensionResource(id = R.dimen.cardCornersSize)
+        cornersSize = dimensionResource(id = R.dimen.cardCornersSize),
     ) {
         Row(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing)).clickable {
+                onClick()
+            }
         ) {
             HotelImageComposable(hotel)
             Column(
