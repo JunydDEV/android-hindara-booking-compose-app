@@ -8,6 +8,7 @@
 
     <dimen name="buttonWidth">200dp</dimen>
     <dimen name="buttonCornersSize">50dp</dimen>
+    <dimen name="buttonBordersWidth">2dp</dimen>
     <dimen name="fieldCornersSize">50dp</dimen>
     <dimen name="detailsSheetCornersSize">20dp</dimen>
 

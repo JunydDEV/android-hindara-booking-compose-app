@@ -7,6 +7,7 @@ val ScreenBackgroundColor = Color(0xFFF3F3F3)
 val BottomSheetBackgroundColor = Color(0xFFF3F3F3)
 val SuccessColor = Color(0xFF18AF7C)
 val FailureColor = Color(0xFFFE2D3F)
+val CancelButtonColor = Color(0xFFFE2D3F)
 val WhiteColor = Color(0xFFFFFFFF)
 val DarkTextColor = Color(0xFF3E3E3E)
 val PrimaryButtonColor = PrimaryColor

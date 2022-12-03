@@ -84,4 +84,5 @@
     <string name="booking_details">Booking Details</string>
     <string name="payment_status">Payment Status</string>
     <string name="status_paid">Paid</string>
+    <string name="button_cancel_booking">Cancel Booking</string>
 </resources>
