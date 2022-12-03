@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterialApi::class)
 
-package com.android.hindara.booking.app.ui
+package com.android.hindara.booking.app.ui.common.bottomsheets.composables
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.shape.RoundedCornerShape

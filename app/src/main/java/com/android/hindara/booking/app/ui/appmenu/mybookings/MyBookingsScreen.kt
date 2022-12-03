@@ -11,13 +11,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.appmenu.mybookings.bottomsheets.details.bookingDetailsBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.hoteldetails.common.BookedHotelCardComposable
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
 @Composable
 fun MyBookingsScreen(
-    viewModel: MyBookingsViewModel = hiltViewModel(),
+    viewModel: MyBookingsViewModel,
     navController: NavController) {
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
@@ -25,17 +26,22 @@ fun MyBookingsScreen(
             AppTopBar(navController, stringResource(id = R.string.menu_item_my_bookings))
         }
     ) {
-        MyBookingsListComposable(it, viewModel)
+        MyBookingsListComposable(
+            navController = navController,
+            paddingValues =  it,
+            viewModel = viewModel
+        )
     }
 }
 
 @Composable
 private fun MyBookingsListComposable(
-    it: PaddingValues,
+    navController: NavController,
+    paddingValues: PaddingValues,
     viewModel: MyBookingsViewModel
 ) {
     LazyColumn(
-        modifier = Modifier.padding(it),
+        modifier = Modifier.padding(paddingValues),
         contentPadding = PaddingValues(dimensionResource(id = R.dimen.defaultSpacing))
     ) {
         val myBookingsList = viewModel.getMyBookings()
@@ -44,7 +50,10 @@ private fun MyBookingsListComposable(
             BookedHotelCardComposable(
                 checkInDate = viewModel.getCheckInDate(),
                 hotel = hotel,
-                onClick = {  }
+                onClick = {
+                    viewModel.chosenBooking = myBookingsList[index]
+                    navController.navigate(bookingDetailsBottomSheetRoute)
+                }
             )
         }
     }

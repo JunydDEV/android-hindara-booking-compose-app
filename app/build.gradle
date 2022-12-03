@@ -68,8 +68,11 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:$androidx_hilt_version"
 
     // Pager
-    implementation "com.google.accompanist:accompanist-pager:0.21.2-beta"
-    implementation "com.google.accompanist:accompanist-pager-indicators:0.21.2-beta"
+    implementation "com.google.accompanist:accompanist-pager:$accompaniest_version"
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompaniest_version"
+
+    // BottomSheet Navigation
+    implementation "com.google.accompanist:accompanist-navigation-material:$accompaniest_version"
 
     // Maps
     implementation 'com.google.maps.android:maps-compose:2.7.2'

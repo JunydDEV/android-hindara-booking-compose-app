@@ -10,6 +10,9 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 class MyBookingsViewModel @Inject constructor() : ViewModel() {
+
+    lateinit var chosenBooking: MyBooking
+
     fun getMyBookings(): List<MyBooking> {
         val hotel = getHotel()
         val firstBooking = MyBooking(

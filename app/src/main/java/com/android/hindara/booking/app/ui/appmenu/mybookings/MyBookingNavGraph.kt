@@ -6,8 +6,11 @@ import androidx.navigation.compose.composable
 
 const val myBookingsRoute = "my_bookings_route"
 
-fun NavGraphBuilder.myBookingsGraph(navController: NavController) {
+fun NavGraphBuilder.myBookingsGraph(
+    navController: NavController,
+    myBookingsViewModel: MyBookingsViewModel
+) {
     composable(myBookingsRoute) {
-        MyBookingsScreen(navController = navController)
+        MyBookingsScreen(navController = navController, viewModel = myBookingsViewModel)
     }
 }

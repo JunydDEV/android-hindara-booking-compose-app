@@ -21,7 +21,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.HindaraBottomSheet
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.HindaraBottomSheet
 import com.android.hindara.booking.app.ui.theme.*
 
 /**
