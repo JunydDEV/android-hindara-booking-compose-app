@@ -5,11 +5,11 @@ import androidx.navigation.NavGraphBuilder
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.bottomSheet
 
-const val resultBottomSheetRoute = "result_bottom_sheet_route/{type}"
+const val alertBottomSheetRoute = "result_bottom_sheet_route/{type}"
 
 @OptIn(ExperimentalMaterialNavigationApi::class)
-fun NavGraphBuilder.resultBottomSheetNavGraph(navController: NavController) {
-    bottomSheet(resultBottomSheetRoute) {
-        ResultBottomSheet(navController = navController, type = it.arguments?.getString("type")!!)
+fun NavGraphBuilder.alertBottomSheetNavGraph(navController: NavController) {
+    bottomSheet(alertBottomSheetRoute) {
+        AlertBottomSheet(navController = navController, type = it.arguments?.getString("type")!!)
     }
 }

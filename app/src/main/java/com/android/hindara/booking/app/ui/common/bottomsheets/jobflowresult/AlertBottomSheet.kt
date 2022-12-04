@@ -16,25 +16,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetRoute
-import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
-import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
-/**
- * Bottom sheet UI to show the job flow result.
- *
- * @param viewModel provides data to UI from outside.
- * */
 @Composable
-fun ResultBottomSheet(
+fun AlertBottomSheet(
     navController: NavController,
     viewModel: ResultViewModel = hiltViewModel(),
     type: String,
 ) {
-    JobFlowResultBottomSheetContent(
+    AlertBottomSheetContent(
         navController = navController,
         viewModel = viewModel,
         type = type
@@ -42,7 +33,7 @@ fun ResultBottomSheet(
 }
 
 @Composable
-fun JobFlowResultBottomSheetContent(
+fun AlertBottomSheetContent(
     navController: NavController,
     viewModel: ResultViewModel,
     type: String
@@ -56,11 +47,11 @@ fun JobFlowResultBottomSheetContent(
     ) {
         val bottomSheetContent = viewModel.getSheetContent(type)
         bottomSheetContent?.let {
-            SuccessImageComposable(it.icon)
+            ImageComposable(it.icon)
             SpacerComposable()
-            ResetPasswordSuccessTitle(it.title)
-            ResetPasswordSuccessDescription(it.description)
-            ContinueButtonComposable(
+            AlertTitleComposable(it.title)
+            AlertDescriptionComposable(it.description)
+            AlertButtonComposable(
                 viewModel = viewModel,
                 navController = navController,
                 buttonText = it.buttonText,
@@ -71,7 +62,7 @@ fun JobFlowResultBottomSheetContent(
 }
 
 @Composable
-private fun SuccessImageComposable(resultIcon: Int) {
+private fun ImageComposable(resultIcon: Int) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -97,7 +88,7 @@ private fun SpacerComposable() {
 }
 
 @Composable
-private fun ResetPasswordSuccessTitle(title: Int) {
+private fun AlertTitleComposable(title: Int) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(title),
@@ -107,7 +98,7 @@ private fun ResetPasswordSuccessTitle(title: Int) {
 }
 
 @Composable
-private fun ResetPasswordSuccessDescription(description: Int) {
+private fun AlertDescriptionComposable(description: Int) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(description),
@@ -117,7 +108,7 @@ private fun ResetPasswordSuccessDescription(description: Int) {
 }
 
 @Composable
-private fun ContinueButtonComposable(
+private fun AlertButtonComposable(
     navController: NavController,
     viewModel: ResultViewModel,
     buttonText: Int,
@@ -156,8 +147,8 @@ private fun navigateToNextScreen(
     resultType: String,
     navController: NavController
 ) {
-    val currentDestination = resultBottomSheetRoute.replace("{type}", type)
-    val nextDestination = resultBottomSheetRoute.replace("{type}", resultType)
+    val currentDestination = alertBottomSheetRoute.replace("{type}", type)
+    val nextDestination = alertBottomSheetRoute.replace("{type}", resultType)
     navController.navigate(nextDestination) {
         this.popUpTo(currentDestination) {
             inclusive = true

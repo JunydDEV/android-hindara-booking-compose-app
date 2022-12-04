@@ -15,7 +15,7 @@ import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSh
 import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.booking.paymentselection.paymentSelectionBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.common.BottomSheetLayoutConfig
-import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.resultBottomSheetNavGraph
+import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
@@ -66,7 +66,7 @@ fun HindaraAppNavHost(
             paymentSelectionBottomSheetNavGraph(navController, bookingSharedViewModel)
             paymentConfirmationBottomSheetNavGraph(navController, bookingSharedViewModel)
             bookingDetailsBottomSheetGraph(navController, myBookingsViewModel)
-            resultBottomSheetNavGraph(navController)
+            alertBottomSheetNavGraph(navController)
         }
     }
 }

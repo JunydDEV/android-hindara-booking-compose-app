@@ -10,8 +10,6 @@ import com.android.hindara.booking.app.ui.common.bottomsheets.states.Authenticat
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.EmailVerificationBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.ForgotPasswordBottomSheet
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.ResetPasswordBottomSheet
-import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.ResultBottomSheet
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
