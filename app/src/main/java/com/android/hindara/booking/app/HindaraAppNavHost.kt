@@ -9,6 +9,7 @@ import com.android.hindara.booking.app.ui.appmenu.mybookings.MyBookingsViewModel
 import com.android.hindara.booking.app.ui.appmenu.mybookings.bottomsheets.details.bookingDetailsBottomSheetGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksGraph
+import com.android.hindara.booking.app.ui.appmenu.settings.settingsGraph
 import com.android.hindara.booking.app.ui.authentication.authenticationGraph
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetNavGraph
@@ -56,6 +57,7 @@ fun HindaraAppNavHost(
             reviewsGraph(navController, homeViewModel)
             bookmarksGraph(navController)
             myBookingsGraph(navController, myBookingsViewModel)
+            settingsGraph(navController)
 
             // Bottom Sheet Screens
             calendarBottomSheetNavGraph(navController, bookingSharedViewModel, homeViewModel)

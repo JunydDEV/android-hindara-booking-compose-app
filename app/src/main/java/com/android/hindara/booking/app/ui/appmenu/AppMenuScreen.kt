@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsRoute
 import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksRoute
+import com.android.hindara.booking.app.ui.appmenu.settings.settingsRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 import com.android.hindara.booking.app.ui.theme.SelectedContentContentColor
@@ -119,7 +120,7 @@ fun MenuItemsComposable(navController: NavController, viewModel: AppMenuViewMode
         val items = viewModel.getMenuItems()
         MenuItemRow(navController, items[MenuList.BOOKMARKS], bookmarksRoute)
         MenuItemRow(navController, items[MenuList.MY_BOOKINGS], myBookingsRoute)
-        MenuItemRow(navController, items[MenuList.SETTINGS])
+        MenuItemRow(navController, items[MenuList.SETTINGS], settingsRoute)
         SpacerComposable()
         SpacerComposable()
         MenuItemRow(navController, items[MenuList.HELP])

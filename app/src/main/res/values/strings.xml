@@ -90,5 +90,13 @@
     <string name="button_done">Done</string>
     <string name="title_cancel_booking">Cancel Booking</string>
     <string name="description_cancel_booking">Are you sure to cancel your bookings? There will no refund at all.</string>
+    <string name="user_icon_description">user settings</string>
+    <string name="notifications_icon_description">notifications</string>
+    <string name="user_settings_option">User Settings</string>
+    <string name="right_arrow_icon_description">right arrow</string>
+    <string name="notification_menu">Notification</string>
+    <string name="contact_us_option">Contact Us</string>
+    <string name="payment_settings_option">Payment Settings</string>
+    <string name="settings_icon_description">Settings icon description</string>
 
 </resources>
