@@ -157,7 +157,12 @@ private fun onClickEvent(
     val resultType = viewModel.getResultType(type)
 
     if (viewModel.isTransactionCompleted(resultType)) {
-        navController.popBackStack(myBookingsRoute, inclusive = false)
+        val route = if (resultType == AlertType.bookingCompleted) {
+            hotelDetailsRoute
+        } else {
+            myBookingsRoute
+        }
+        navController.popBackStack(route, inclusive = false)
     } else {
         navigateToNextScreen(type, resultType, navController)
     }
