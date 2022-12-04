@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -24,6 +25,8 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsRoute
 import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksRoute
 import com.android.hindara.booking.app.ui.appmenu.settings.settingsRoute
+import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 import com.android.hindara.booking.app.ui.theme.SelectedContentContentColor
@@ -118,18 +121,30 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
 fun MenuItemsComposable(navController: NavController, viewModel: AppMenuViewModel) {
     Column {
         val items = viewModel.getMenuItems()
-        MenuItemRow(navController, items[MenuList.BOOKMARKS], bookmarksRoute)
-        MenuItemRow(navController, items[MenuList.MY_BOOKINGS], myBookingsRoute)
-        MenuItemRow(navController, items[MenuList.SETTINGS], settingsRoute)
+        MenuItemRow(items[MenuList.BOOKMARKS]) {
+            navController.navigate(bookmarksRoute)
+        }
+        MenuItemRow(items[MenuList.MY_BOOKINGS]) {
+            navController.navigate(myBookingsRoute)
+        }
+        MenuItemRow(items[MenuList.SETTINGS]) {
+            navController.navigate(settingsRoute)
+        }
         SpacerComposable()
         SpacerComposable()
-        MenuItemRow(navController, items[MenuList.HELP])
-        MenuItemRow(navController, items[MenuList.LOGOUT])
+        MenuItemRow(items[MenuList.HELP]) {
+
+        }
+        MenuItemRow(items[MenuList.LOGOUT]) {
+            navController.navigate(authenticationRoute) {
+                popUpTo(homeRoute) { inclusive = true }
+            }
+        }
     }
 }
 
 @Composable
-private fun MenuItemRow(navController: NavController, item: MenuItem, route: String? = null) {
+private fun MenuItemRow(item: MenuItem, onClick: ()-> Unit) {
     val itemRowModifier = Modifier
         .fillMaxWidth()
         .height(dimensionResource(id = R.dimen.sectionSeparatorSize))
@@ -137,9 +152,7 @@ private fun MenuItemRow(navController: NavController, item: MenuItem, route: Str
 
     Row(
         modifier = itemRowModifier.clickable {
-            if (route != null) {
-                navController.navigate(route)
-            }
+            onClick()
         },
         verticalAlignment = Alignment.CenterVertically
     ) {
