@@ -21,7 +21,7 @@ import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.TransactionResultState
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
 import com.android.hindara.booking.app.ui.hoteldetails.common.*
 import com.android.hindara.booking.app.ui.theme.*
 
@@ -158,7 +158,7 @@ private fun ContinueButtonComposable(
         onClick = {
             navController.navigate(
                 alertBottomSheetRoute.replace(
-                    "{type}", TransactionResultState.paymentResultFailure)
+                    "{type}", AlertType.paymentResultFailure)
             ) {
                 popUpTo(paymentConfirmationBottomSheetRoute) {
                     inclusive = true

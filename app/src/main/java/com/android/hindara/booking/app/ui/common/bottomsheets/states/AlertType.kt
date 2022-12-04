@@ -1,6 +1,6 @@
 package com.android.hindara.booking.app.ui.common.bottomsheets.states
 
-class TransactionResultState {
+class AlertType {
 
     companion object {
         const val resetPasswordSuccess = "ResetPasswordFailure"
@@ -10,6 +10,11 @@ class TransactionResultState {
         const val paymentResultSuccess = "PaymentResultSuccess"
         const val paymentResultFailure = "PaymentResultFailure"
         const val bookingCompleted = "BookingCompleted"
+
+        const val cancelBookingConfirmation = "CancelBookingConfirmation"
+        const val cancelBookingSuccess = "CancelBookingSuccess"
+        const val cancelBookingFailure = "CancelBookingFailure"
+        const val cancellationCompleted = "CancellationCompleted"
     }
 
 }

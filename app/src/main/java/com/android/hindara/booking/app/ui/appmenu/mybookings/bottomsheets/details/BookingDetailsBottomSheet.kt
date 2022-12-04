@@ -22,6 +22,9 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.HindaraCard
 import com.android.hindara.booking.app.ui.appmenu.mybookings.MyBookingsViewModel
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
+import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.common.BookingDatesComposable
@@ -54,7 +57,14 @@ fun BookingDetailsContent(
             HotelInfoComposable(hotel)
             BookingDatesComposable(checkInDate, checkOutDate)
             PaymentStatusComposable()
-            CancelButtonComposable(navController)
+            CancelButtonComposable {
+                val destination = alertBottomSheetRoute.replace("{type}",AlertType.cancelBookingConfirmation)
+                navController.navigate(destination){
+                    popUpTo(bookingDetailsBottomSheetRoute){
+                        inclusive = true
+                    }
+                }
+            }
         }
     }
 }
@@ -80,32 +90,5 @@ private fun PaymentStatusComposable() {
                 color = SuccessColor
             )
         }
-    }
-}
-
-
-@Composable
-fun CancelButtonComposable(navController: NavController) {
-    val buttonModifier = Modifier
-        .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.largeSpacing))
-
-    Button(
-        modifier = buttonModifier,
-        border = BorderStroke(
-            width = dimensionResource(id = R.dimen.buttonBordersWidth),
-            brush = SolidColor(CancelButtonColor)
-        ),
-        colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = ScreenBackgroundColor,
-            contentColor = CancelButtonColor,
-            disabledContentColor = LightTextColor
-        ),
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
-        onClick = {
-
-        },
-    ) {
-        Text(stringResource(R.string.button_cancel_booking))
     }
 }

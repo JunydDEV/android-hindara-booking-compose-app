@@ -16,13 +16,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsRoute
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 @Composable
 fun AlertBottomSheet(
     navController: NavController,
-    viewModel: ResultViewModel = hiltViewModel(),
+    viewModel: AlertViewModel = hiltViewModel(),
     type: String,
 ) {
     AlertBottomSheetContent(
@@ -35,7 +38,7 @@ fun AlertBottomSheet(
 @Composable
 fun AlertBottomSheetContent(
     navController: NavController,
-    viewModel: ResultViewModel,
+    viewModel: AlertViewModel,
     type: String
 ) {
     val parentColumnModifier = Modifier
@@ -51,12 +54,17 @@ fun AlertBottomSheetContent(
             SpacerComposable()
             AlertTitleComposable(it.title)
             AlertDescriptionComposable(it.description)
-            AlertButtonComposable(
-                viewModel = viewModel,
-                navController = navController,
-                buttonText = it.buttonText,
-                type = type
-            )
+
+            if (type == AlertType.cancelBookingConfirmation) {
+                OutlinedAlertButtonComposable(viewModel, navController, type)
+            } else {
+                FilledAlertButtonComposable(
+                    viewModel = viewModel,
+                    navController = navController,
+                    buttonText = it.buttonText,
+                    type = type
+                )
+            }
         }
     }
 }
@@ -102,21 +110,24 @@ private fun AlertDescriptionComposable(description: Int) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(description),
-        style = MaterialTheme.typography.body2,
+        style = MaterialTheme.typography.body1,
         color = DarkTextColor
     )
 }
 
 @Composable
-private fun AlertButtonComposable(
+private fun FilledAlertButtonComposable(
     navController: NavController,
-    viewModel: ResultViewModel,
+    viewModel: AlertViewModel,
     buttonText: Int,
     type: String
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(
+            top = dimensionResource(id = R.dimen.defaultSpacing),
+            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+        )
     Button(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
@@ -128,15 +139,25 @@ private fun AlertButtonComposable(
     }
 }
 
+@Composable fun OutlinedAlertButtonComposable(
+    viewModel: AlertViewModel,
+    navController: NavController,
+    type: String
+) {
+    CancelButtonComposable {
+        onClickEvent(viewModel, type, navController)
+    }
+}
+
 private fun onClickEvent(
-    viewModel: ResultViewModel,
+    viewModel: AlertViewModel,
     type: String,
     navController: NavController
 ) {
     val resultType = viewModel.getResultType(type)
 
     if (viewModel.isTransactionCompleted(resultType)) {
-        navController.popBackStack(hotelDetailsRoute, inclusive = false)
+        navController.popBackStack(myBookingsRoute, inclusive = false)
     } else {
         navigateToNextScreen(type, resultType, navController)
     }

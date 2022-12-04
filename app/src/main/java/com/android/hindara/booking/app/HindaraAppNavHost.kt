@@ -58,11 +58,7 @@ fun HindaraAppNavHost(
             myBookingsGraph(navController, myBookingsViewModel)
 
             // Bottom Sheet Screens
-            calendarBottomSheetNavGraph(
-                navController,
-                bookingSharedViewModel,
-                homeViewModel
-            )
+            calendarBottomSheetNavGraph(navController, bookingSharedViewModel, homeViewModel)
             paymentSelectionBottomSheetNavGraph(navController, bookingSharedViewModel)
             paymentConfirmationBottomSheetNavGraph(navController, bookingSharedViewModel)
             bookingDetailsBottomSheetGraph(navController, myBookingsViewModel)

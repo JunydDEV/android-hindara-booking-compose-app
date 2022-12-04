@@ -78,11 +78,17 @@
     <string name="total_label">Total</string>
     <string name="payment_result_success_title">Transaction Success</string>
     <string name="payment_result_failure_title">Transaction Failed</string>
-    <string name="payment_result_success_description">Congratulations! You can see your bookings in the booking section. Enjoy your trip!</string>
-    <string name="payment_result_failure_description">Please check your internet connection and try again in a moments. Good luck!</string>
+    <string name="booking_cancellation_result_failure_title">Cancellation Failed</string>
+    <string name="booking_cancellation_result_success_title">Cancellation Success</string>
+    <string name="result_success_description">Done! Your booking cancelled successfully. See you next time!</string>
+    <string name="result_failure_description">Please check your internet connection and try again in a moments. Good luck!</string>
     <string name="button_back_to_home_text">Back To Home</string>
     <string name="booking_details">Booking Details</string>
     <string name="payment_status">Payment Status</string>
     <string name="status_paid">Paid</string>
     <string name="button_cancel_booking">Cancel Booking</string>
+    <string name="button_done">Done</string>
+    <string name="title_cancel_booking">Cancel Booking</string>
+    <string name="description_cancel_booking">Are you sure to cancel your bookings? There will no refund at all.</string>
+
 </resources>
