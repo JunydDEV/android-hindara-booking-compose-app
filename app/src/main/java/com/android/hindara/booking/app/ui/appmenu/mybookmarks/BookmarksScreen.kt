@@ -12,13 +12,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
+import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
 @Composable
 fun BookmarksScreen(
     viewModel: BookmarksViewModel = hiltViewModel(),
-    navController: NavController
+    navController: NavController,
+    onHotelSelect: (Hotel) -> Unit
 ) {
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
@@ -32,7 +34,7 @@ fun BookmarksScreen(
         ){
             val bookmarkList = viewModel.getBookmarkedHotelsList()
             items(bookmarkList.size) { index ->
-                HotelCardComposable(hotel = bookmarkList[index])
+                HotelCardComposable(hotel = bookmarkList[index], onHotelSelect = onHotelSelect)
             }
         }
     }

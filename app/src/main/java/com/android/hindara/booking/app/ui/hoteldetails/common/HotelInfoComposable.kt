@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.HindaraCard
+import com.android.hindara.booking.app.ui.common.composables.HindaraCard
 import com.android.hindara.booking.app.ui.home.Hotel
 
 @Composable

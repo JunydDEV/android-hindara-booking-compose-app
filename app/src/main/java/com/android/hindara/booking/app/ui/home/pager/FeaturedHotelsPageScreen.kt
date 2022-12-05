@@ -52,7 +52,7 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
     val constrainLayoutModifier = Modifier
         .wrapContentSize()
         .clickable {
-            homeViewModel.onChooseHotel(hotel)
+            homeViewModel.onHotelSelect(hotel)
             navController.navigate(hotelDetailsRoute)
         }
         .padding(top = defaultSpacing, bottom = defaultSpacing)

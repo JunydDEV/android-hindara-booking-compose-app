@@ -1,6 +1,7 @@
-package com.android.hindara.booking.app.ui
+package com.android.hindara.booking.app.ui.common.composables
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,11 +20,15 @@ import com.android.hindara.booking.app.ui.theme.CardBackgroundColor
 fun HindaraCard(
     showBorders: Boolean = true,
     cornersSize: Dp = dimensionResource(id = R.dimen.cardCornersSize),
+    onCardClick: (() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
     val cardModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+        .clickable {
+            onCardClick?.invoke()
+        }
 
     Card(
         modifier = cardModifier,

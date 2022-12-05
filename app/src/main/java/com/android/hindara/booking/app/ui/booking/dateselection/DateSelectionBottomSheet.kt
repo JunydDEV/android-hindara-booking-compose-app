@@ -18,7 +18,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
-import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
 import com.android.hindara.booking.app.ui.booking.paymentselection.paymentSelectionBottomSheetRoute
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.theme.*
@@ -137,7 +136,7 @@ private fun ContinueButtonComposable(
             val checkOutDate = selectionState.value.second!!
             viewModel.checkInDate = checkInDate
             viewModel.checkOutDate = checkOutDate
-            viewModel.chosenHotel = homeViewModel.getChosenHotel()
+            viewModel.chosenHotel = homeViewModel.getSelectedHotel()
 
             navController.navigate(paymentSelectionBottomSheetRoute) {
                 this.popUpTo(calendarBottomSheetRoute) {

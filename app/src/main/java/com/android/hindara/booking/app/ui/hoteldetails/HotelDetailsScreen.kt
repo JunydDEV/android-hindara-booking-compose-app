@@ -23,9 +23,6 @@ import androidx.constraintlayout.compose.ConstraintLayoutScope
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.BookingBottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlow
-import com.android.hindara.booking.app.ui.common.bottomsheets.BottomSheetsRouterComposable
 import com.android.hindara.booking.app.ui.description.moreDescriptionRoute
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
@@ -35,15 +32,13 @@ import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
 import com.google.android.gms.maps.model.*
 import com.google.maps.android.compose.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @Composable
 fun HotelDetailsScreen(
     homeViewModel: HomeViewModel,
     navController: NavController,
 ) {
-    val hotel = homeViewModel.getChosenHotel()
+    val hotel = homeViewModel.getSelectedHotel()
     HotelDetailsContent(navController, hotel)
 }
 

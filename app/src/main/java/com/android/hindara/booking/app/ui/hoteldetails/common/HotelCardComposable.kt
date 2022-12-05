@@ -12,15 +12,18 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.HindaraCard
+import com.android.hindara.booking.app.ui.common.composables.HindaraCard
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.YellowColor
 
 @Composable
-fun HotelCardComposable(hotel: Hotel) {
+fun HotelCardComposable(hotel: Hotel, onHotelSelect: ((Hotel) -> Unit)? = null) {
     HindaraCard(
         showBorders = false,
-        cornersSize = dimensionResource(id = R.dimen.cardCornersSize)
+        cornersSize = dimensionResource(id = R.dimen.cardCornersSize),
+        onCardClick = {
+            onHotelSelect?.invoke(hotel)
+        }
     ) {
         Row(
             modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))

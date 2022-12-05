@@ -20,7 +20,7 @@ import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
 @Composable
 fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
-    val hotel = homeViewModel.getChosenHotel()
+    val hotel = homeViewModel.getSelectedHotel()
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
         topBar = {

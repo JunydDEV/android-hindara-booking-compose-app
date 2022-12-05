@@ -22,8 +22,8 @@ import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
+import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
-import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
 import com.android.hindara.booking.app.ui.reviews.reviewsGraph
 import com.android.hindara.booking.app.ui.search.searchScreenNavGraph
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
@@ -57,10 +57,16 @@ fun HindaraAppNavHost(
             hotelDetailsGraph(homeViewModel, navController)
             moreDescriptionGraph(navController, homeViewModel)
             reviewsGraph(navController, homeViewModel)
-            bookmarksGraph(navController)
+            bookmarksGraph(navController, onHotelSelect = {
+                homeViewModel.onHotelSelect(it)
+                navController.navigate(hotelDetailsRoute)
+            })
             myBookingsGraph(navController, myBookingsViewModel)
             settingsGraph(navController)
-            searchScreenNavGraph(navController)
+            searchScreenNavGraph(navController, onHotelSelect = {
+                homeViewModel.onHotelSelect(it)
+                navController.navigate(hotelDetailsRoute)
+            })
 
             // Bottom Sheet Screens
             calendarBottomSheetNavGraph(navController, bookingSharedViewModel, homeViewModel)

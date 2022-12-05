@@ -6,14 +6,14 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor() : ViewModel() {
 
-    private lateinit var chosenHotel: Hotel
+    private lateinit var selectedHotel: Hotel
 
-    fun onChooseHotel(hotel: Hotel) {
-        chosenHotel = hotel
+    fun onHotelSelect(hotel: Hotel) {
+        selectedHotel = hotel
     }
 
-    fun getChosenHotel(): Hotel {
-        return chosenHotel
+    fun getSelectedHotel(): Hotel {
+        return selectedHotel
     }
 
     fun getFeaturedCategories(): List<FeaturedCategory> {

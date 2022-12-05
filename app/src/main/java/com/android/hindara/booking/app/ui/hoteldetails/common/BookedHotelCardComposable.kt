@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.HindaraCard
+import com.android.hindara.booking.app.ui.common.composables.HindaraCard
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.PrimaryColor
 import com.android.hindara.booking.app.utils.getFormattedDate
