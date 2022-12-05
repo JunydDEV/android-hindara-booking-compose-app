@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.home
+package com.android.hindara.booking.app.ui.home.pager
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -19,6 +19,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.home.FeaturedCategory
+import com.android.hindara.booking.app.ui.home.HomeViewModel
+import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.BlackGradientColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
