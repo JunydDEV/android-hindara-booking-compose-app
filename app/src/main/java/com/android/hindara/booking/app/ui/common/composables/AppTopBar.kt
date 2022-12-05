@@ -16,7 +16,12 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 @Composable
-fun AppTopBar(navController: NavController, title: String) {
+fun AppTopBar(
+    navController: NavController,
+    title: String,
+    menuItemToShow: AppBarMenuItem? = null,
+    menuItemClick: (() -> Unit)? = null
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -26,27 +31,61 @@ fun AppTopBar(navController: NavController, title: String) {
                 end = dimensionResource(id = R.dimen.defaultSpacing)
             )
             .height(dimensionResource(id = R.dimen.topBarHeight)),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
 
-        Image(
-            modifier = Modifier.clickable {
-                navController.popBackStack()
-            },
-            painter = painterResource(id = R.drawable.ic_back),
-            contentDescription = null,
-            colorFilter = ColorFilter.tint(DarkTextColor)
-        )
-        Spacer(
-            modifier = Modifier
-                .fillMaxHeight()
-                .width(dimensionResource(id = R.dimen.defaultSpacing))
-        )
-        Text(
-            modifier = Modifier.wrapContentWidth(),
-            text = title,
-            style = MaterialTheme.typography.h1,
-            color = DarkTextColor
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Image(
+                modifier = Modifier.clickable {
+                    navController.popBackStack()
+                },
+                painter = painterResource(id = R.drawable.ic_back),
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(DarkTextColor)
+            )
+            Spacer(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .width(dimensionResource(id = R.dimen.defaultSpacing))
+            )
+            Text(
+                modifier = Modifier.wrapContentWidth(),
+                text = title,
+                style = MaterialTheme.typography.h1,
+                color = DarkTextColor
+            )
+        }
+
+        menuItemToShow?.let {
+            Image(
+                modifier = Modifier.clickable {
+                    menuItemClick?.invoke()
+                },
+                painter = painterResource(id = getMenuItemIcon(menuItemToShow)),
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(DarkTextColor)
+            )
+        }
     }
+}
+
+fun getMenuItemIcon(menuItemToShow: AppBarMenuItem): Int {
+    return when(menuItemToShow) {
+        AppBarMenuItem.FILTER -> {
+            R.drawable.ic_filter
+        }
+        AppBarMenuItem.NOTIFICATION -> {
+            R.drawable.ic_notification
+        }
+        AppBarMenuItem.BOOKMARKS -> {
+            R.drawable.ic_bookmark
+        }
+    }
+}
+
+enum class AppBarMenuItem {
+    FILTER,
+    NOTIFICATION,
+    BOOKMARKS
 }

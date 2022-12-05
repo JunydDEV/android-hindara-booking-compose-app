@@ -55,4 +55,9 @@
     <dimen name="cardCornersSize">10dp</dimen>
     <dimen name="hotelImageCornersSize">6dp</dimen>
     <dimen name="hotelImageSmallSize">100dp</dimen>
+    <dimen name="searchHotelImageHeight">150dp</dimen>
+
+    <dimen name="ratingStartSize">15dp</dimen>
+
+
 </resources>

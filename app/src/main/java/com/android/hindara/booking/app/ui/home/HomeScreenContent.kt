@@ -26,7 +26,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComposable
 import com.android.hindara.booking.app.ui.home.pager.FeaturedOnHomeScreenListing
+import com.android.hindara.booking.app.ui.search.searchRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
@@ -43,10 +45,24 @@ fun HomeScreenContent(
         SpacerComposable()
         TitleComposable()
         SpacerComposable()
-        SearchTextFieldComposable()
+        SearchComposable(navController)
         SpacerComposable()
         FeaturedOnHomeScreenListing(viewModel, navController)
     }
+}
+
+@Composable
+private fun SearchComposable(navController: NavController) {
+    val searchFieldState = remember {
+        mutableStateOf("")
+    }
+    SearchTextFieldComposable(
+        searchFieldState.value,
+        readyOnly = true,
+        isClickable = true,
+        onValueChange = { searchFieldState.value = it },
+        onClick = { navController.navigate(searchRoute) },
+    )
 }
 
 @Composable
@@ -72,73 +88,3 @@ private fun TitleComposable() {
         color = DarkTextColor
     )
 }
-
-@Composable
-fun SearchTextFieldComposable() {
-    val focus = LocalFocusManager.current
-    val textFieldEmailState = remember {
-        mutableStateOf("")
-    }
-
-    val emailTextFieldModifier = Modifier
-        .fillMaxWidth()
-        .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
-        )
-
-    TextField(
-        modifier = emailTextFieldModifier,
-        value = textFieldEmailState.value,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
-        singleLine = true,
-        textStyle = MaterialTheme.typography.body1,
-        onValueChange = { textFieldEmailState.value = it },
-        keyboardActions = onKeyboardAction(focus),
-        keyboardOptions = getKeyboardOptions(ImeAction.Search, KeyboardType.Text),
-        colors = getTextFieldColors(),
-        placeholder = {
-            SearchFieldPlaceholderContent()
-        },
-        leadingIcon = {
-            SearchIconComposable()
-        }
-    )
-}
-
-@Composable
-private fun SearchIconComposable() = Image(
-    painter = painterResource(id = R.drawable.ic_search),
-    contentDescription = stringResource(
-        R.string.search_image_description
-    )
-)
-
-
-@Composable
-private fun SearchFieldPlaceholderContent() = Text(
-    text = stringResource(R.string.textField_find_hotels_placeholder),
-    style = MaterialTheme.typography.body1,
-    color = FieldPlaceholderColor
-)
-
-
-@Composable
-private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
-    backgroundColor = FieldBackgroundColor,
-    focusedIndicatorColor = Color.Transparent,
-    unfocusedIndicatorColor = Color.Transparent
-)
-
-@Composable
-private fun onKeyboardAction(focus: FocusManager) = KeyboardActions(
-    onNext = { focus.moveFocus(FocusDirection.Down) },
-    onDone = { focus.clearFocus() },
-    onSearch = { focus.clearFocus() }
-)
-
-@Composable
-private fun getKeyboardOptions(imeAction: ImeAction, keyboardType: KeyboardType) = KeyboardOptions(
-    imeAction = imeAction,
-    keyboardType = keyboardType
-)

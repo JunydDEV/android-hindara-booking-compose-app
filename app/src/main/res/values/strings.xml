@@ -98,5 +98,8 @@
     <string name="contact_us_option">Contact Us</string>
     <string name="payment_settings_option">Payment Settings</string>
     <string name="settings_icon_description">Settings icon description</string>
+    <string name="title_search_hotels">Search Hotels</string>
+    <string name="hotel_description">hotel description</string>
+    <string name="ratring_start_description">rating start description</string>
 
 </resources>
