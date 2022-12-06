@@ -17,8 +17,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.composables.HindaraCard
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
 import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
@@ -72,7 +72,7 @@ fun PaymentMethodsListComposable(
     paymentMethods: List<PaymentMethod>,
     paymentMethodSelectionState: MutableState<PaymentMethod?>
 ) {
-    val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
+    val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
     LazyColumn(
         contentPadding = PaddingValues(top = defaultSpacing, bottom = defaultSpacing),
         verticalArrangement = Arrangement.SpaceBetween
@@ -87,9 +87,9 @@ fun PaymentMethodsListComposable(
 fun PaymentMethodComposable(
     paymentMethod: PaymentMethod, paymentMethodSelectionState: MutableState<PaymentMethod?>
 ) {
-    HindaraCard {
+    ApplicationCard {
         Row(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing)),
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing)),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -115,12 +115,12 @@ private fun ContinueButtonComposable(
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            bottom = dimensionResource(id = R.dimen.default_spacing)
         )
     Button(
         modifier = buttonModifier,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
             sharedViewModel.paymentMethod = paymentMethod
             navController.navigate(paymentConfirmationBottomSheetRoute){

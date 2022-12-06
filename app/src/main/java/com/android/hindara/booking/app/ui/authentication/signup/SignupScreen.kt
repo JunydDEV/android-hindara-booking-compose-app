@@ -67,7 +67,7 @@ fun SignupScreen(
 
 @Composable
 private fun SpacerComposable() {
-    val height = dimensionResource(id = R.dimen.defaultSpacing)
+    val height = dimensionResource(id = R.dimen.default_spacing)
     Spacer(
         Modifier
             .fillMaxWidth()
@@ -80,9 +80,9 @@ private fun UsernameTextFieldLabelComposable() {
     val emailLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.largeSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.large_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
     Text(
         modifier = emailLabelModifier,
@@ -102,14 +102,14 @@ fun UsernameFieldComposable() {
     val emailTextFieldModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
 
     TextField(
         modifier = emailTextFieldModifier,
         value = textFieldEmailState.value,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
         singleLine = true,
         textStyle = MaterialTheme.typography.body1,
         onValueChange = { textFieldEmailState.value = it },
@@ -134,9 +134,9 @@ private fun EmailTextFieldLabelComposable() {
     val emailLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.largeSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.large_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
     Text(
         modifier = emailLabelModifier,
@@ -156,14 +156,14 @@ fun EmailTextFieldComposable() {
     val emailTextFieldModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
 
     TextField(
         modifier = emailTextFieldModifier,
         value = textFieldEmailState.value,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
         singleLine = true,
         textStyle = MaterialTheme.typography.body1,
         onValueChange = { textFieldEmailState.value = it },
@@ -188,9 +188,9 @@ private fun PasswordTextFieldLabelComposable() {
     val passwordLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.largeSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.large_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
     Text(
         modifier = passwordLabelModifier,
@@ -209,15 +209,15 @@ fun PasswordTextFieldComposable() {
     val passwordTextFieldModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
 
     TextField(
         modifier = passwordTextFieldModifier,
         value = textFieldPasswordState.value,
         onValueChange = { textFieldPasswordState.value = it },
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
         colors = getTextFieldColors(),
         singleLine = true,
         textStyle = MaterialTheme.typography.body1,
@@ -246,9 +246,9 @@ private fun SignupButtonComposable(navController: NavController) {
     val loginButtonModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
-            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
+            bottom = dimensionResource(id = R.dimen.default_spacing)
         )
     Button(
         modifier = loginButtonModifier,

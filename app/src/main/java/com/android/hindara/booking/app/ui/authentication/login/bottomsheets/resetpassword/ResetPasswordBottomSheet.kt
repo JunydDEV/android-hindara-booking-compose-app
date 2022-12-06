@@ -29,7 +29,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
 import com.android.hindara.booking.app.ui.theme.*
@@ -70,8 +70,8 @@ private fun NewPasswordTextFieldLabelComposable() {
     val passwordLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.smallSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.small_spacing)
         )
     Text(
         modifier = passwordLabelModifier,
@@ -93,7 +93,7 @@ fun NewPasswordTextFieldComposable() {
     TextField(
         modifier = Modifier.fillMaxWidth(),
         value = textFieldPasswordState.value,
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.fieldCornersSize)),
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.textField_corners_size)),
         singleLine = true,
         textStyle = MaterialTheme.typography.body1,
         onValueChange = { textFieldPasswordState.value = it },
@@ -122,8 +122,8 @@ private fun ConfirmPasswordTextFieldLabelComposable() {
     val passwordLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.smallSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.small_spacing)
         )
     Text(
         modifier = passwordLabelModifier,
@@ -145,7 +145,7 @@ fun ConfirmPasswordTextFieldComposable() {
     TextField(
         modifier = Modifier.fillMaxWidth(),
         value = textFieldPasswordState.value,
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.fieldCornersSize)),
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.textField_corners_size)),
         singleLine = true,
         textStyle = MaterialTheme.typography.body1,
         onValueChange = { textFieldPasswordState.value = it },
@@ -208,10 +208,10 @@ private fun getPasswordKeyboardOptions(imeOptions: ImeAction) = KeyboardOptions(
 private fun ResetButtonComposable(navController: NavController) {
     val buttonModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(top = dimensionResource(id = R.dimen.default_spacing))
     Button(
         modifier = buttonModifier,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
             navController.navigate(
                 alertBottomSheetRoute.replace("{type}", AlertType.resetPasswordFailure)

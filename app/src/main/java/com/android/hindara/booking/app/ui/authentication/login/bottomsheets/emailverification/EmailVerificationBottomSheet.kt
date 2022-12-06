@@ -24,7 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.resetPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
@@ -69,10 +69,10 @@ fun DigitsRowComposable() {
 
 @Composable
 private fun DigitsLazyRowComposable() {
-    val digitsRowModifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))
+    val digitsRowModifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing))
     LazyRow(
         modifier = digitsRowModifier,
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.smallSpacing))
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.small_spacing))
     ) {
         val itemsCount = 4
         items(itemsCount) {
@@ -92,13 +92,13 @@ fun DigitFieldComposable(isLastField: Boolean, isFirsField: Boolean) {
     }
 
     val fieldModifier = Modifier
-        .width(dimensionResource(id = R.dimen.digitFieldWidth))
-        .height(dimensionResource(id = R.dimen.digitFieldHeight))
+        .width(dimensionResource(id = R.dimen.digit_field_width))
+        .height(dimensionResource(id = R.dimen.digit_field_height))
 
     OutlinedTextField(
         modifier = fieldModifier,
         value = fieldState.value,
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.digitFieldCornerSize)),
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.digit_field_corners_size)),
         singleLine = true,
         textStyle = TextStyle(textAlign = TextAlign.Center).plus(MaterialTheme.typography.h1),
         keyboardActions = onKeyboardAction(focus),
@@ -186,10 +186,10 @@ private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
 private fun ContinueButtonComposable(navController: NavController) {
     val buttonModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.smallSpacing))
+        .padding(top = dimensionResource(id = R.dimen.small_spacing))
     Button(
         modifier = buttonModifier,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
             navController.navigate(resetPasswordBottomSheetRoute)
         },

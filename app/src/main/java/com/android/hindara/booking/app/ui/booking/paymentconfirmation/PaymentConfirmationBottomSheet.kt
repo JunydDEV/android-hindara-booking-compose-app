@@ -16,8 +16,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.composables.HindaraCard
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
@@ -56,7 +56,7 @@ private fun PaymentConfirmationContentComposable(
 
 @Composable
 fun BookingBillComposable(viewModel: BookingSharedViewModel) {
-    HindaraCard {
+    ApplicationCard {
         Column {
             BookedNightsComposable(viewModel)
             TaxesAndFeesComposable(viewModel)
@@ -70,7 +70,7 @@ fun BookingBillComposable(viewModel: BookingSharedViewModel) {
 fun TotalBillComposable(viewModel: BookingSharedViewModel) {
     val modifier = Modifier
         .fillMaxWidth()
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(dimensionResource(id = R.dimen.default_spacing))
 
     Row(
         modifier = modifier,
@@ -97,7 +97,7 @@ private fun HorizontalLineComposable() {
     Spacer(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.lineThickness))
+            .height(dimensionResource(id = R.dimen.menu_screen_horizontal_line_thickness))
             .background(BordersColor)
     )
 }
@@ -119,11 +119,11 @@ fun BookedNightsComposable(viewModel: BookingSharedViewModel) {
 
 @Composable
 private fun SelectedPaymentMethodComposable(paymentMethod: PaymentMethod) {
-    HindaraCard {
+    ApplicationCard {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.defaultSpacing)),
+                .padding(dimensionResource(id = R.dimen.default_spacing)),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -149,12 +149,12 @@ private fun ContinueButtonComposable(
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            bottom = dimensionResource(id = R.dimen.default_spacing)
         )
     Button(
         modifier = buttonModifier,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
             navController.navigate(
                 alertBottomSheetRoute.replace(

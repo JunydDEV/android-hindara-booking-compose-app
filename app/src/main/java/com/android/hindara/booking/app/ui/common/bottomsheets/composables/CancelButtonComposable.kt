@@ -24,14 +24,14 @@ fun CancelButtonComposable(onClick: ()->Unit) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            bottom = dimensionResource(id = R.dimen.default_spacing)
         )
 
     Button(
         modifier = buttonModifier,
         border = BorderStroke(
-            width = dimensionResource(id = R.dimen.buttonBordersWidth),
+            width = dimensionResource(id = R.dimen.primary_button_borders_width),
             brush = SolidColor(CancelButtonColor)
         ),
         colors = ButtonDefaults.outlinedButtonColors(
@@ -40,7 +40,7 @@ fun CancelButtonComposable(onClick: ()->Unit) {
             disabledContentColor = LightTextColor
         ),
         elevation = ButtonDefaults.elevation(defaultElevation = 0.dp),
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
             onClick()
         },

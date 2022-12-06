@@ -52,7 +52,7 @@ private fun TabRowComposable(
     ScrollableTabRow(
         selectedTabIndex = tabPosition.value,
         backgroundColor = ScreenBackgroundColor,
-        edgePadding = dimensionResource(id = R.dimen.defaultSpacing),
+        edgePadding = dimensionResource(id = R.dimen.default_spacing),
         divider = {
             TabRowDefaults.Divider(color = Color.Transparent)
         },

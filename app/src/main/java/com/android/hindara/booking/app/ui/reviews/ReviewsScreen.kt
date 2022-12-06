@@ -30,15 +30,15 @@ fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
         Column(
             Modifier
                 .padding(it)
-                .padding(dimensionResource(id = R.dimen.defaultSpacing))
+                .padding(dimensionResource(id = R.dimen.default_spacing))
                 .verticalScroll(rememberScrollState())
         ) {
             HotelCardComposable(hotel = hotel)
-            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.largeSpacing)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.large_spacing)))
             repeat(hotel.reviewsList.size) { index ->
                 ReviewItemComposable(review = hotel.reviewsList[index])
             }
-            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.defaultSpacing)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing)))
         }
     }
 }

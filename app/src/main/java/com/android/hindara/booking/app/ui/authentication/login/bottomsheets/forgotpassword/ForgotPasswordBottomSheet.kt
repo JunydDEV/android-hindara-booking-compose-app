@@ -19,7 +19,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.emailVerificationBottomSheetRoute
 import com.android.hindara.booking.app.ui.theme.*
 
@@ -56,8 +56,8 @@ private fun ForgotPasswordEmailTextFieldLabelComposable() {
     val emailLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.smallSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.small_spacing)
         )
     Text(
         modifier = emailLabelModifier,
@@ -78,7 +78,7 @@ fun ForgotPasswordEmailTextFieldComposable() {
     TextField(
         modifier = Modifier.fillMaxWidth(),
         value = textFieldEmailState.value,
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.fieldCornersSize)),
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.textField_corners_size)),
         singleLine = true,
         textStyle = MaterialTheme.typography.body1,
         onValueChange = { textFieldEmailState.value = it },
@@ -126,10 +126,10 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
 private fun ContinueButtonComposable(navController: NavController) {
     val buttonModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(top = dimensionResource(id = R.dimen.default_spacing))
     Button(
         modifier = buttonModifier,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
             navController.navigate(emailVerificationBottomSheetRoute)
         },

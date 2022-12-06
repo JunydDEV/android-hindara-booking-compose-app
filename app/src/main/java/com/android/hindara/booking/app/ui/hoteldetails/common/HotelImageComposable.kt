@@ -15,9 +15,9 @@ import com.android.hindara.booking.app.ui.home.Hotel
 
 @Composable
 fun HotelImageComposable(hotel: Hotel) {
-    val size = dimensionResource(id = R.dimen.hotelImageSmallSize)
+    val size = dimensionResource(id = R.dimen.hotel_small_image_size)
     val modifier = Modifier
-        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.hotelImageCornersSize)))
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.hotel_image_corners_size)))
         .width(size)
         .height(size)
     Image(

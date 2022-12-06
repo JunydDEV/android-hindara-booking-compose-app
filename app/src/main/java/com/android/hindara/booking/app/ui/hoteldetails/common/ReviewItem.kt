@@ -29,12 +29,12 @@ fun ReviewItemComposable(
     ConstraintLayout {
         val (reviewerImage, reviewerName, rating, reviewComment) = createRefs()
 
-        val spacing = dimensionResource(id = R.dimen.defaultSpacing)
+        val spacing = dimensionResource(id = R.dimen.default_spacing)
         val reviewerImageModifier = Modifier
             .clip(CircleShape)
             .size(
-                width = dimensionResource(id = R.dimen.userImageWidth),
-                height = dimensionResource(id = R.dimen.userImageHeight)
+                width = dimensionResource(id = R.dimen.profile_image_width),
+                height = dimensionResource(id = R.dimen.profile_image_height)
             )
             .constrainAs(reviewerImage) {
                 start.linkTo(parent.start)
@@ -71,7 +71,7 @@ fun ReviewItemComposable(
                 Image(
                     modifier = Modifier
                         .size(18.dp, 18.dp)
-                        .padding(end = dimensionResource(id = R.dimen.verySmallSpacing)),
+                        .padding(end = dimensionResource(id = R.dimen.tiny_spacing)),
                     painter = painterResource(id = R.drawable.ic_star), contentDescription = null
                 )
             }

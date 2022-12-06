@@ -54,7 +54,7 @@ private fun SpacerComposable() {
     Spacer(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.defaultSpacing))
+            .height(dimensionResource(id = R.dimen.default_spacing))
     )
 }
 
@@ -64,8 +64,8 @@ private fun TitleComposable() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                start = dimensionResource(id = R.dimen.defaultSpacing),
-                end = dimensionResource(id = R.dimen.defaultSpacing)
+                start = dimensionResource(id = R.dimen.default_spacing),
+                end = dimensionResource(id = R.dimen.default_spacing)
             ),
         text = stringResource(R.string.label_welcome_message),
         style = MaterialTheme.typography.h1.copy(fontSize = 28.sp),

@@ -15,7 +15,7 @@ import com.android.hindara.booking.app.ui.theme.LightTextColor
 fun HindaraCommonRow(label: String, value: String) {
     val modifier = Modifier
         .fillMaxWidth()
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(dimensionResource(id = R.dimen.default_spacing))
 
     Row(
         modifier = modifier,

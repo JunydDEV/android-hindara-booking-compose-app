@@ -53,7 +53,7 @@ private fun SpacerComposable() {
     Spacer(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.largeSpacing))
+            .height(dimensionResource(id = R.dimen.large_spacing))
     )
 }
 
@@ -62,18 +62,18 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
     ConstraintLayout(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.profileContainerHeight))
+            .height(dimensionResource(id = R.dimen.profile_layout_height))
     ) {
 
-        val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
+        val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
         val profileInfo = viewModel.getProfileInfo()
         val (profileImage, name, country) = createRefs()
 
         val profilePictureModifier = Modifier
             .clip(CircleShape)
             .size(
-                width = dimensionResource(id = R.dimen.userImageWidth),
-                height = dimensionResource(id = R.dimen.userImageHeight)
+                width = dimensionResource(id = R.dimen.profile_image_width),
+                height = dimensionResource(id = R.dimen.profile_image_height)
             )
             .constrainAs(profileImage) {
                 start.linkTo(parent.start, margin = defaultSpacing)
@@ -146,7 +146,7 @@ fun MenuItemsComposable(navController: NavController, viewModel: AppMenuViewMode
 private fun MenuItemRow(item: MenuItem, onClick: ()-> Unit) {
     val itemRowModifier = Modifier
         .fillMaxWidth()
-        .height(dimensionResource(id = R.dimen.sectionSeparatorSize))
+        .height(dimensionResource(id = R.dimen.menu_screen_horizontal_line_width))
         .background(WhiteColor)
 
     Row(
@@ -169,12 +169,12 @@ private fun MenuItemRow(item: MenuItem, onClick: ()-> Unit) {
 private fun MenuIconComposable(item: MenuItem) {
     val iconModifier = Modifier
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing)
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing)
         )
         .size(
-            width = dimensionResource(id = R.dimen.menuItemIconWidth),
-            height = dimensionResource(id = R.dimen.menuItemIconHeight)
+            width = dimensionResource(id = R.dimen.menu_item_size),
+            height = dimensionResource(id = R.dimen.menu_item_size)
         )
 
     Image(
@@ -187,7 +187,7 @@ private fun MenuIconComposable(item: MenuItem) {
 
 @Composable
 private fun RowItemsDividerComposable() {
-    Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.smallSpacing)))
+    Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.small_spacing)))
 }
 
 @Composable
@@ -195,7 +195,7 @@ private fun HorizontalLineComposable() {
     Spacer(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.lineThickness))
+            .height(dimensionResource(id = R.dimen.menu_screen_horizontal_line_thickness))
             .background(Color.LightGray)
     )
 }

@@ -53,7 +53,7 @@ private fun MainScreenContentComposable(navController: NavController) {
 private fun SpacerComposable() {
     val topSpacerModifier = Modifier
         .fillMaxWidth()
-        .height(dimensionResource(id = R.dimen.extraLargeSpacing))
+        .height(dimensionResource(id = R.dimen.extra_large_spacing))
     Spacer(modifier = topSpacerModifier)
 }
 

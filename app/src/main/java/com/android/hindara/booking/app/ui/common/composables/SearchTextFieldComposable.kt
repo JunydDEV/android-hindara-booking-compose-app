@@ -40,8 +40,8 @@ fun SearchTextFieldComposable(
     val searchTextFieldModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
         .clickable {
             if (isClickable) {
@@ -52,7 +52,7 @@ fun SearchTextFieldComposable(
     TextField(
         modifier = searchTextFieldModifier,
         value = value,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
         singleLine = true,
         enabled = !readyOnly,
         textStyle = MaterialTheme.typography.body1,

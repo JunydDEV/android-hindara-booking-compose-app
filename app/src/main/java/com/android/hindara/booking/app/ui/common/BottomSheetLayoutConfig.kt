@@ -11,8 +11,8 @@ object BottomSheetLayoutConfig {
     @Composable
     @ReadOnlyComposable
     fun sheetShape() = RoundedCornerShape(
-        topStart = dimensionResource(id = R.dimen.bottomSheetCornerSize),
-        topEnd = dimensionResource(id = R.dimen.bottomSheetCornerSize)
+        topStart = dimensionResource(id = R.dimen.primary_bottom_sheet_corners_size),
+        topEnd = dimensionResource(id = R.dimen.primary_bottom_sheet_corners_size)
     )
 
 }

@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.composables.HindaraCard
+import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
@@ -31,7 +31,7 @@ fun SettingsScreen(
     ) {
         val modifier = Modifier
             .padding(it)
-            .padding(dimensionResource(id = R.dimen.defaultSpacing))
+            .padding(dimensionResource(id = R.dimen.default_spacing))
             .fillMaxSize()
 
         Column(modifier) {
@@ -64,7 +64,7 @@ fun SettingsScreen(
 
 @Composable
 private fun DefaultSpacer() {
-    Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.defaultSpacing)))
+    Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing)))
 }
 
 @Composable
@@ -78,9 +78,9 @@ private fun SettingsItemComposable(
         .clickable {
             onClick()
         }
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(dimensionResource(id = R.dimen.default_spacing))
 
-    HindaraCard {
+    ApplicationCard {
         Row(
             modifier = modifier,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -92,7 +92,7 @@ private fun SettingsItemComposable(
                 )
                 Text(
                     modifier = Modifier.padding(
-                        start = dimensionResource(id = R.dimen.defaultSpacing)
+                        start = dimensionResource(id = R.dimen.default_spacing)
                     ),
                     text = stringResource(label),
                     style = MaterialTheme.typography.body1

@@ -12,8 +12,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.composables.HindaraCard
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.appmenu.mybookings.MyBookingsViewModel
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
@@ -63,11 +63,11 @@ fun BookingDetailsContent(
 
 @Composable
 private fun PaymentStatusComposable() {
-    HindaraCard {
+    ApplicationCard {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.defaultSpacing)),
+                .padding(dimensionResource(id = R.dimen.default_spacing)),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

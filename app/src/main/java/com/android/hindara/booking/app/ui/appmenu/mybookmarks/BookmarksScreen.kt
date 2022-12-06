@@ -30,7 +30,7 @@ fun BookmarksScreen(
     ) {
         LazyColumn(
             modifier = Modifier.padding(it),
-            contentPadding = PaddingValues(dimensionResource(id = R.dimen.defaultSpacing))
+            contentPadding = PaddingValues(dimensionResource(id = R.dimen.default_spacing))
         ){
             val bookmarkList = viewModel.getBookmarkedHotelsList()
             items(bookmarkList.size) { index ->

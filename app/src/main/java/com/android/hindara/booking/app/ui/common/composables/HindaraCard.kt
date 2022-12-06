@@ -17,15 +17,15 @@ import com.android.hindara.booking.app.ui.theme.BordersColor
 import com.android.hindara.booking.app.ui.theme.CardBackgroundColor
 
 @Composable
-fun HindaraCard(
+fun ApplicationCard(
     showBorders: Boolean = true,
-    cornersSize: Dp = dimensionResource(id = R.dimen.cardCornersSize),
+    cornersSize: Dp = dimensionResource(id = R.dimen.app_card_corners_size),
     onCardClick: (() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
     val cardModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(top = dimensionResource(id = R.dimen.default_spacing))
         .clickable {
             onCardClick?.invoke()
         }
@@ -42,7 +42,7 @@ fun HindaraCard(
 
 @Composable
 private fun borderStroke() = BorderStroke(
-    dimensionResource(id = R.dimen.borderWidth), brush = SolidColor(
+    dimensionResource(id = R.dimen.card_default_borders_width), brush = SolidColor(
         BordersColor
     )
 )

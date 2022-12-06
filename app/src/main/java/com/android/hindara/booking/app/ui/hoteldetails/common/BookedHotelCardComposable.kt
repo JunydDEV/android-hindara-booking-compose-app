@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.composables.HindaraCard
+import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.PrimaryColor
 import com.android.hindara.booking.app.utils.getFormattedDate
@@ -20,18 +20,18 @@ fun BookedHotelCardComposable(
     hotel: Hotel,
     onClick: () -> Unit
 ) {
-    HindaraCard(
+    ApplicationCard(
         showBorders = false,
-        cornersSize = dimensionResource(id = R.dimen.cardCornersSize),
+        cornersSize = dimensionResource(id = R.dimen.card_corners_size),
     ) {
         Row(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing)).clickable {
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing)).clickable {
                 onClick()
             }
         ) {
             HotelImageComposable(hotel)
             Column(
-                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.defaultSpacing)),
+                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.default_spacing)),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 HotelNameComposable(hotel)

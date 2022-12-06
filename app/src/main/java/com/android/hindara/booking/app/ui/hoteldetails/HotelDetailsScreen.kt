@@ -92,13 +92,13 @@ fun ConstraintLayoutScope.BackButtonComposable(
     navController: NavController,
     backButton: ConstrainedLayoutReference
 ) {
-    val extraLargeSpacing = dimensionResource(id = R.dimen.extraLargeSpacing)
-    val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
+    val extraLargeSpacing = dimensionResource(id = R.dimen.extra_large_spacing)
+    val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
     val backButtonBoxModifier = Modifier
         .size(50.dp, 50.dp)
         .clip(RoundedCornerShape(10.dp))
         .background(BlackGradientColor)
-        .padding(dimensionResource(id = R.dimen.verySmallSpacing))
+        .padding(dimensionResource(id = R.dimen.tiny_spacing))
         .constrainAs(backButton) {
             top.linkTo(parent.top, margin = extraLargeSpacing)
             start.linkTo(parent.start, margin = defaultSpacing)
@@ -120,13 +120,13 @@ fun ConstraintLayoutScope.BackButtonComposable(
 
 @Composable
 fun ConstraintLayoutScope.BookmarkButtonComposable(bookmarkButton: ConstrainedLayoutReference) {
-    val extraLargeSpacing = dimensionResource(id = R.dimen.extraLargeSpacing)
-    val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
+    val extraLargeSpacing = dimensionResource(id = R.dimen.extra_large_spacing)
+    val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
     val bookMarkButtonBoxModifier = Modifier
         .size(50.dp, 50.dp)
         .clip(RoundedCornerShape(10.dp))
         .background(BlackGradientColor)
-        .padding(dimensionResource(id = R.dimen.verySmallSpacing))
+        .padding(dimensionResource(id = R.dimen.tiny_spacing))
         .constrainAs(bookmarkButton) {
             top.linkTo(parent.top, margin = extraLargeSpacing)
             end.linkTo(parent.end, margin = defaultSpacing)
@@ -151,20 +151,20 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
     hotel: Hotel
 ) {
 
-    val detailsSheetCornersSize = dimensionResource(id = R.dimen.detailsSheetCornersSize)
+    val detailsSheetCornersSize = dimensionResource(id = R.dimen.hotel_content_corners_size)
     val offset = getHeaderImageHeightInDp() - detailsSheetCornersSize
     val topGuidelineForContentView = createGuidelineFromTop(offset)
 
     val modifier = Modifier
         .clip(
             RoundedCornerShape(
-                topStart = dimensionResource(id = R.dimen.detailsSheetCornersSize),
-                topEnd = dimensionResource(id = R.dimen.detailsSheetCornersSize)
+                topStart = dimensionResource(id = R.dimen.hotel_content_corners_size),
+                topEnd = dimensionResource(id = R.dimen.hotel_content_corners_size)
             )
         )
         .background(ScreenBackgroundColor)
         .fillMaxSize()
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(dimensionResource(id = R.dimen.default_spacing))
         .constrainAs(contentSection) {
             top.linkTo(topGuidelineForContentView)
             start.linkTo(parent.start)
@@ -172,7 +172,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
         }
 
     Column(modifier = modifier) {
-        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.halfOfBannerHeight)))
+        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.half_height_of_banner_layout)))
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = stringResource(R.string.label_hotel_description),
@@ -203,7 +203,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             SmallSpacer()
         }
         GoogleMapsComposable(hotel)
-        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.largeSpacing)))
+        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.large_spacing)))
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = stringResource(R.string.label_reviews),
@@ -227,13 +227,13 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                 color = SuccessColor
             )
         }
-        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.largeSpacing)))
+        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.large_spacing)))
     }
 }
 
 @Composable
 private fun SmallSpacer() {
-    Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.smallSpacing)))
+    Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)))
 }
 
 @Composable
@@ -245,8 +245,8 @@ fun GoogleMapsComposable(hotel: Hotel) {
     }
     val googleMapModifier = Modifier
         .fillMaxWidth()
-        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.detailsSheetCornersSize)))
-        .height(dimensionResource(id = R.dimen.googleMapHeight))
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.hotel_content_corners_size)))
+        .height(dimensionResource(id = R.dimen.google_maps_height))
 
     GoogleMap(
         modifier = googleMapModifier,
@@ -271,9 +271,9 @@ fun ConstraintLayoutScope.HotelBannerComposable(
     hotel: Hotel
 ) {
     val eightyPercentWidthOfScreen = 0.8f
-    val bannerHeight = dimensionResource(id = R.dimen.hotelBannerHeight)
-    val halfOfBannerHeight = dimensionResource(id = R.dimen.halfOfBannerHeight)
-    val detailsSheetCornersSize = dimensionResource(id = R.dimen.detailsSheetCornersSize)
+    val bannerHeight = dimensionResource(id = R.dimen.hotel_banner_layout_height)
+    val halfOfBannerHeight = dimensionResource(id = R.dimen.half_height_of_banner_layout)
+    val detailsSheetCornersSize = dimensionResource(id = R.dimen.hotel_content_corners_size)
 
     val spaceFromBottomOfHeaderImage = halfOfBannerHeight + detailsSheetCornersSize
     val offset = getHeaderImageHeightInDp() - spaceFromBottomOfHeaderImage
@@ -290,11 +290,11 @@ fun ConstraintLayoutScope.HotelBannerComposable(
     Card(
         modifier = modifier,
         backgroundColor = WhiteColor,
-        elevation = dimensionResource(id = R.dimen.cardElevation),
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.detailsSheetCornersSize))
+        elevation = dimensionResource(id = R.dimen.card_default_elevation),
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.hotel_content_corners_size))
     ) {
         Column(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing)),
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing)),
             verticalArrangement = Arrangement.SpaceAround
         ) {
             HotelNameComposable(hotel)
@@ -349,7 +349,7 @@ fun RatingBarComposable() {
     ) {
         repeat(5) {
             Image(
-                modifier = Modifier.padding(end = dimensionResource(id = R.dimen.verySmallSpacing)),
+                modifier = Modifier.padding(end = dimensionResource(id = R.dimen.tiny_spacing)),
                 painter = painterResource(id = R.drawable.ic_star), contentDescription = null
             )
         }
@@ -360,7 +360,7 @@ fun RatingBarComposable() {
 fun RatingTextComposable(hotel: Hotel) {
     val modifier = Modifier
         .wrapContentWidth()
-        .padding(start = dimensionResource(id = R.dimen.smallSpacing))
+        .padding(start = dimensionResource(id = R.dimen.small_spacing))
 
     Text(
         modifier = modifier,
@@ -374,7 +374,7 @@ fun RatingTextComposable(hotel: Hotel) {
 fun ReviewsCount(hotel: Hotel) {
     val modifier = Modifier
         .wrapContentWidth()
-        .padding(start = dimensionResource(id = R.dimen.smallSpacing))
+        .padding(start = dimensionResource(id = R.dimen.small_spacing))
 
     Text(
         modifier = modifier,
@@ -394,13 +394,13 @@ fun BookingBottomBar(
         .wrapContentHeight()
         .clip(
             RoundedCornerShape(
-                topStart = dimensionResource(id = R.dimen.featuredImageCornerSize),
-                topEnd = dimensionResource(id = R.dimen.featuredImageCornerSize)
+                topStart = dimensionResource(id = R.dimen.home_screen_hotel_image_corners_size),
+                topEnd = dimensionResource(id = R.dimen.home_screen_hotel_image_corners_size)
             )
         )
         .fillMaxWidth()
         .background(WhiteColor)
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(dimensionResource(id = R.dimen.default_spacing))
 
     ConstraintLayout(
         modifier = modifier
@@ -441,7 +441,7 @@ fun BookingBottomBar(
             }
         Button(
             modifier = bookNowButton,
-            shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+            shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
             onClick = {
                 navController.navigate(calendarBottomSheetRoute)
             },

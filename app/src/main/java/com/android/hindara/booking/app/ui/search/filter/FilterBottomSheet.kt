@@ -38,8 +38,8 @@ fun FilterBottomSheetScreen(
         mutableStateOf(viewModel.getPriceRange())
     }
 
-    val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
-    val largeSpacing = dimensionResource(id = R.dimen.extraLargeSpacing)
+    val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
+    val largeSpacing = dimensionResource(id = R.dimen.extra_large_spacing)
 
     val modifier = Modifier
         .background(BottomSheetBackgroundColor)
@@ -111,7 +111,7 @@ private fun DefaultSpacer() {
     Spacer(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.defaultSpacing))
+            .height(dimensionResource(id = R.dimen.default_spacing))
     )
 }
 
@@ -120,7 +120,7 @@ private fun TitleComposable(title: String) {
     val modifier = Modifier
         .fillMaxWidth()
         .padding(
-            bottom = dimensionResource(id = R.dimen.smallSpacing)
+            bottom = dimensionResource(id = R.dimen.small_spacing)
         )
     Text(
         modifier = modifier,
@@ -140,7 +140,7 @@ fun FilterChipComposable(
 
     val modifier = Modifier
         .fillMaxWidth()
-        .padding(bottom = dimensionResource(id = R.dimen.smallSpacing))
+        .padding(bottom = dimensionResource(id = R.dimen.small_spacing))
 
     LazyRow(
         modifier = modifier,
@@ -161,9 +161,9 @@ private fun ChipComposable(
     onLocationSelection: (ChipInfo) -> Unit
 ) {
     FilterChip(
-        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.defaultSpacing)),
+        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.default_spacing)),
         selected = isChipSelected(selectedChipInfo, locations[index]),
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.cardCornersSize)),
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.card_corners_size)),
         border = getBorderStroke(selectedChipInfo, locations, index),
         colors = chipColors(),
         onClick = {
@@ -182,7 +182,7 @@ private fun ChipLabelComposable(
     selectedChipInfo: ChipInfo?
 ) {
     Text(
-        modifier = Modifier.padding(dimensionResource(id = R.dimen.smallSpacing)),
+        modifier = Modifier.padding(dimensionResource(id = R.dimen.small_spacing)),
         text = locations[index].label,
         style = MaterialTheme.typography.h2,
         color = getTextColor(selectedChipInfo, locations[index])
@@ -195,7 +195,7 @@ private fun getBorderStroke(
     locations: List<ChipInfo>,
     index: Int
 ) = BorderStroke(
-    dimensionResource(id = R.dimen.borderWidth),
+    dimensionResource(id = R.dimen.card_default_borders_width),
     brush = getBordersColor(selectedChipInfo, locations[index])
 )
 
@@ -246,12 +246,12 @@ private fun ApplyFilterButtonComposable(navController: NavController) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            bottom = dimensionResource(id = R.dimen.default_spacing)
         )
     Button(
         modifier = buttonModifier,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
             navController.popBackStack()
         },

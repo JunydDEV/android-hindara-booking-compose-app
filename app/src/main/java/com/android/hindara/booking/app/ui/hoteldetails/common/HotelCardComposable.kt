@@ -12,25 +12,25 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.composables.HindaraCard
+import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.YellowColor
 
 @Composable
 fun HotelCardComposable(hotel: Hotel, onHotelSelect: ((Hotel) -> Unit)? = null) {
-    HindaraCard(
+    ApplicationCard(
         showBorders = false,
-        cornersSize = dimensionResource(id = R.dimen.cardCornersSize),
+        cornersSize = dimensionResource(id = R.dimen.card_corners_size),
         onCardClick = {
             onHotelSelect?.invoke(hotel)
         }
     ) {
         Row(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.defaultSpacing))
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing))
         ) {
             HotelImageComposable(hotel)
             Column(
-                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.defaultSpacing)),
+                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.default_spacing)),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 HotelNameComposable(hotel)
@@ -56,7 +56,7 @@ fun HotelRatingAndReviewComposable(hotel: Hotel) {
 @Composable
 private fun RatingImageComposable() {
     Image(
-        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.verySmallSpacing)),
+        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.tiny_spacing)),
         painter = painterResource(id = R.drawable.ic_star), contentDescription = null
     )
 }
@@ -66,7 +66,7 @@ private fun RatingImageComposable() {
 fun RatingTextComposable(hotel: Hotel) {
     val modifier = Modifier
         .wrapContentWidth()
-        .padding(start = dimensionResource(id = R.dimen.smallSpacing))
+        .padding(start = dimensionResource(id = R.dimen.small_spacing))
 
     Text(
         modifier = modifier,
@@ -80,7 +80,7 @@ fun RatingTextComposable(hotel: Hotel) {
 fun ReviewsCount(hotel: Hotel) {
     val modifier = Modifier
         .wrapContentWidth()
-        .padding(start = dimensionResource(id = R.dimen.smallSpacing))
+        .padding(start = dimensionResource(id = R.dimen.small_spacing))
 
     Text(
         modifier = modifier,

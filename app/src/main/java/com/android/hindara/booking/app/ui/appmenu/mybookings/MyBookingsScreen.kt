@@ -41,7 +41,7 @@ private fun MyBookingsListComposable(
 ) {
     LazyColumn(
         modifier = Modifier.padding(paddingValues),
-        contentPadding = PaddingValues(dimensionResource(id = R.dimen.defaultSpacing))
+        contentPadding = PaddingValues(dimensionResource(id = R.dimen.default_spacing))
     ) {
         val myBookingsList = viewModel.getMyBookings()
         items(myBookingsList.size) { index ->

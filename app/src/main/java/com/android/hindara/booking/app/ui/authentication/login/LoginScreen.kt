@@ -77,7 +77,7 @@ private fun MainScreenContent(navController: NavController) {
 fun SocialAuthLoginButtonsComposable() {
     val rowContentModifier = Modifier
         .fillMaxWidth()
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(dimensionResource(id = R.dimen.default_spacing))
     Row(
         modifier = rowContentModifier,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -92,9 +92,9 @@ private fun EmailTextFieldLabelComposable() {
     val emailLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.largeSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.large_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
     Text(
         modifier = emailLabelModifier,
@@ -114,14 +114,14 @@ fun EmailTextFieldComposable() {
     val emailTextFieldModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
 
     TextField(
         modifier = emailTextFieldModifier,
         value = textFieldEmailState.value,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
         singleLine = true,
         textStyle = typography.body1,
         onValueChange = { textFieldEmailState.value = it },
@@ -139,9 +139,9 @@ private fun PasswordTextFieldLabelComposable() {
     val passwordLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.largeSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.large_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
     Text(
         modifier = passwordLabelModifier,
@@ -160,15 +160,15 @@ fun PasswordTextFieldComposable() {
     val passwordTextFieldModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
 
     TextField(
         modifier = passwordTextFieldModifier,
         value = textFieldPasswordState.value,
         onValueChange = { textFieldPasswordState.value = it },
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.fieldCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
         colors = getTextFieldColors(),
         singleLine = true,
         textStyle = typography.body1,
@@ -192,9 +192,9 @@ fun ForgotPasswordTextComposable(navController: NavController) {
     ) {
         val forgotPasswordTextModifier = Modifier
             .padding(
-                top = dimensionResource(id = R.dimen.defaultSpacing),
-                start = dimensionResource(id = R.dimen.largeSpacing),
-                end = dimensionResource(id = R.dimen.defaultSpacing),
+                top = dimensionResource(id = R.dimen.default_spacing),
+                start = dimensionResource(id = R.dimen.large_spacing),
+                end = dimensionResource(id = R.dimen.default_spacing),
             )
 
         Text(
@@ -212,24 +212,24 @@ fun ForgotPasswordTextComposable(navController: NavController) {
 @Composable
 fun HorizontalLineComposable() {
     val horizontalLineModifier = Modifier
-        .width(dimensionResource(id = R.dimen.horizontalLineWidth))
-        .height(dimensionResource(id = R.dimen.horizontalLineHeight))
+        .width(dimensionResource(id = R.dimen.login_with_line_width))
+        .height(dimensionResource(id = R.dimen.login_with_line_height))
         .background(LineColor)
 
     val alternateLoginWithTextModifier = Modifier
         .wrapContentWidth()
         .background(ScreenBackgroundColor)
         .padding(
-            start = dimensionResource(id = R.dimen.largeSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.large_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
 
     val boxModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            start = dimensionResource(id = R.dimen.largeSpacing),
-            end = dimensionResource(id = R.dimen.largeSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.large_spacing),
+            end = dimensionResource(id = R.dimen.large_spacing)
         )
 
     Box(
@@ -253,8 +253,8 @@ private fun LoginButtonComposable(navController: NavController) {
     val loginButtonModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
     Button(
         modifier = loginButtonModifier,
@@ -352,7 +352,7 @@ private fun SpacerComposable() {
     Spacer(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.defaultSpacing))
+            .height(dimensionResource(id = R.dimen.default_spacing))
     )
 }
 

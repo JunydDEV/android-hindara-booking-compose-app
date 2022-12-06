@@ -62,7 +62,7 @@ fun SearchScreen(
     ) {
         val modifier = Modifier
             .padding(it)
-            .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+            .padding(top = dimensionResource(id = R.dimen.default_spacing))
         Column(modifier) {
             SearchComposable(viewModel)
             SearchResultsGridComposable(
@@ -95,7 +95,7 @@ fun SearchResultsGridComposable(hotels: List<Hotel>?, onHotelSelect: (Hotel) -> 
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(COLUMNS_COUNT),
-        contentPadding = PaddingValues(dimensionResource(id = R.dimen.smallSpacing))
+        contentPadding = PaddingValues(dimensionResource(id = R.dimen.small_spacing))
     ) {
         items(hotels.size) {
             HotelCard(hotels[it], onHotelSelect)
@@ -108,15 +108,15 @@ fun HotelCard(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
     val modifier = Modifier
         .wrapContentWidth()
         .wrapContentHeight()
-        .padding(dimensionResource(id = R.dimen.smallSpacing))
+        .padding(dimensionResource(id = R.dimen.small_spacing))
 
     Card(
         modifier = modifier,
         backgroundColor = WhiteColor,
         elevation = 0.dp,
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.cardCornersSize))
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.card_corners_size))
     ) {
-        Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.smallSpacing))) {
+        Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.small_spacing))) {
             HotelImageComposable(hotel, onHotelSelect)
             HotelNameAndAddressComposable(hotel)
             HotelRatingComposable(hotel)
@@ -127,8 +127,8 @@ fun HotelCard(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
 @Composable
 private fun HotelImageComposable(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
     val hotelImageModifier = Modifier
-        .height(dimensionResource(id = R.dimen.searchHotelImageHeight))
-        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.cardCornersSize)))
+        .height(dimensionResource(id = R.dimen.hotel_small_image_height))
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.card_corners_size)))
         .clickable {
             onHotelSelect(hotel)
         }
@@ -143,13 +143,13 @@ private fun HotelImageComposable(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
 @Composable
 private fun HotelNameAndAddressComposable(hotel: Hotel) {
     Text(
-        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.smallSpacing)),
+        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)),
         text = hotel.name,
         style = MaterialTheme.typography.body1
     )
 
     Text(
-        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.smallSpacing)),
+        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)),
         text = hotel.address.locationTitle,
         style = MaterialTheme.typography.body1,
         maxLines = 1,
@@ -161,12 +161,12 @@ private fun HotelNameAndAddressComposable(hotel: Hotel) {
 @Composable
 private fun HotelRatingComposable(hotel: Hotel) {
     Row(
-        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.smallSpacing)),
+        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)),
         verticalAlignment = Alignment.CenterVertically
     ) {
         val startImageModifier = Modifier.size(
-            width = dimensionResource(id = R.dimen.ratingStartSize),
-            height = dimensionResource(id = R.dimen.ratingStartSize)
+            width = dimensionResource(id = R.dimen.rating_star_size),
+            height = dimensionResource(id = R.dimen.rating_star_size)
         )
         Image(
             modifier = startImageModifier,
@@ -174,7 +174,7 @@ private fun HotelRatingComposable(hotel: Hotel) {
             contentDescription = stringResource(R.string.image_star)
         )
         Text(
-            modifier = Modifier.padding(start = dimensionResource(id = R.dimen.smallSpacing)),
+            modifier = Modifier.padding(start = dimensionResource(id = R.dimen.small_spacing)),
             text = hotel.rating.toString(),
             style = MaterialTheme.typography.body2,
             color = YellowColor

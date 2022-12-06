@@ -65,7 +65,7 @@ fun OnboardingScreen(
 private fun SpacerComposable() {
     val topSpacerModifier = Modifier
         .fillMaxWidth()
-        .height(dimensionResource(id = R.dimen.extraLargeSpacing))
+        .height(dimensionResource(id = R.dimen.extra_large_spacing))
     Spacer(modifier = topSpacerModifier)
 }
 
@@ -86,9 +86,9 @@ private fun OnboardingImageComposable(selectedImage: OnboardingImage) {
 @Composable
 private fun OnboardingTitleComposable(selectedImage: OnboardingImage) {
     val onBoardingTitleModifier = Modifier.padding(
-        top = dimensionResource(id = R.dimen.largeSpacing),
-        start = dimensionResource(id = R.dimen.defaultSpacing),
-        end = dimensionResource(id = R.dimen.defaultSpacing),
+        top = dimensionResource(id = R.dimen.large_spacing),
+        start = dimensionResource(id = R.dimen.default_spacing),
+        end = dimensionResource(id = R.dimen.default_spacing),
     )
     Text(
         modifier = onBoardingTitleModifier,
@@ -101,8 +101,8 @@ private fun OnboardingTitleComposable(selectedImage: OnboardingImage) {
 @Composable
 private fun OnboardingDescriptionComposable(selectedImage: OnboardingImage) {
     val onBoardingDescriptionModifier = Modifier.padding(
-        start = dimensionResource(id = R.dimen.defaultSpacing),
-        end = dimensionResource(id = R.dimen.defaultSpacing),
+        start = dimensionResource(id = R.dimen.default_spacing),
+        end = dimensionResource(id = R.dimen.default_spacing),
     )
     Text(
         modifier = onBoardingDescriptionModifier,
@@ -121,8 +121,8 @@ private fun OnboardingBottomNavigationComposable(
     val onboardingNavigationModifier = Modifier
         .fillMaxSize()
         .padding(
-            start = dimensionResource(id = R.dimen.defaultSpacing),
-            end = dimensionResource(id = R.dimen.defaultSpacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing),
         )
     OnboardingNavigationComposable(
         onboardingNavigationModifier,
@@ -172,8 +172,8 @@ private fun NextButtonComposable(
     navHostController: NavHostController
 ) {
     val buttonNextModifier = Modifier
-        .width(dimensionResource(id = R.dimen.buttonWidth))
-        .padding(start = dimensionResource(id = R.dimen.defaultSpacing))
+        .width(dimensionResource(id = R.dimen.primary_button_width))
+        .padding(start = dimensionResource(id = R.dimen.default_spacing))
 
     val clickListener = if (imageSelectionState.value < onboardingImagesList.size - 1) {
         onNextClickListener(positionState = imageSelectionState)
@@ -183,7 +183,7 @@ private fun NextButtonComposable(
 
     Button(
         modifier = buttonNextModifier,
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.buttonCornersSize)),
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.primary_button_corners_size)),
         onClick = clickListener
     ) {
         OnboardingButtonContent(imageSelectionState, onboardingImagesList)
@@ -214,7 +214,7 @@ private fun DotView(onboardingImage: OnboardingImage) {
     val icon = getDotIcon(onboardingImage)
     val tintColor = getTintColor(onboardingImage)
     Image(
-        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.smallSpacing)),
+        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.small_spacing)),
         painter = painterResource(id = icon),
         colorFilter = ColorFilter.tint(tintColor),
         contentDescription = stringResource(R.string.image_slider_dot)

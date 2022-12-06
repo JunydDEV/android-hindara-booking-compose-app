@@ -22,7 +22,7 @@ fun HomeScreenTopBar(navController: NavController) {
         val topBarModifier = Modifier
             .fillMaxWidth()
             .background(ScreenBackgroundColor)
-            .padding(dimensionResource(id = R.dimen.defaultSpacing))
+            .padding(dimensionResource(id = R.dimen.default_spacing))
         Row(modifier = topBarModifier, horizontalArrangement = Arrangement.SpaceBetween) {
             Image(
                 modifier = Modifier.clickable {
@@ -43,6 +43,6 @@ fun HomeScreenTopBar(navController: NavController) {
 private fun SpacerComposable() {
     val topSpacerModifier = Modifier
         .fillMaxWidth()
-        .height(dimensionResource(id = R.dimen.extraLargeSpacing))
+        .height(dimensionResource(id = R.dimen.extra_large_spacing))
     Spacer(modifier = topSpacerModifier)
 }

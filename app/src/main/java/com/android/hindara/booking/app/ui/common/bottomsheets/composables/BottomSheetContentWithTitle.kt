@@ -1,12 +1,10 @@
-package com.android.hindara.booking.app.ui
+package com.android.hindara.booking.app.ui.common.bottomsheets.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,8 +25,8 @@ fun BottomSheetContentWithTitle(
     title: String,
     content: @Composable ColumnScope.() -> Unit
 ) {
-    val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
-    val largeSpacing = dimensionResource(id = R.dimen.extraLargeSpacing)
+    val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
+    val largeSpacing = dimensionResource(id = R.dimen.extra_large_spacing)
 
     val modifier = Modifier
         .background(BottomSheetBackgroundColor)
@@ -55,7 +53,7 @@ fun TitleComposable(title: String) {
     val modifier = Modifier
         .fillMaxWidth()
         .padding(
-            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+            bottom = dimensionResource(id = R.dimen.default_spacing)
         )
     Text(
         modifier = modifier,

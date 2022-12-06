@@ -32,12 +32,12 @@ fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeV
     ) {
         val modifier = Modifier
             .padding(it)
-            .padding(dimensionResource(id = R.dimen.defaultSpacing))
+            .padding(dimensionResource(id = R.dimen.default_spacing))
             .verticalScroll(rememberScrollState())
 
         Column(modifier = modifier) {
             HotelCardComposable(hotel = hotel)
-            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.defaultSpacing)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing)))
             Text(
                 modifier = Modifier.wrapContentWidth(),
                 text = hotel.description,

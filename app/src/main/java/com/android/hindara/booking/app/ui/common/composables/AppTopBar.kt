@@ -26,11 +26,11 @@ fun AppTopBar(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                top = dimensionResource(id = R.dimen.largeSpacing),
-                start = dimensionResource(id = R.dimen.defaultSpacing),
-                end = dimensionResource(id = R.dimen.defaultSpacing)
+                top = dimensionResource(id = R.dimen.large_spacing),
+                start = dimensionResource(id = R.dimen.default_spacing),
+                end = dimensionResource(id = R.dimen.default_spacing)
             )
-            .height(dimensionResource(id = R.dimen.topBarHeight)),
+            .height(dimensionResource(id = R.dimen.application_bar_height)),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -47,7 +47,7 @@ fun AppTopBar(
             Spacer(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(dimensionResource(id = R.dimen.defaultSpacing))
+                    .width(dimensionResource(id = R.dimen.default_spacing))
             )
             Text(
                 modifier = Modifier.wrapContentWidth(),

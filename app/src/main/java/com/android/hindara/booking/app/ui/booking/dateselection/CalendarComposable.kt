@@ -64,13 +64,13 @@ fun CalendarContent(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) 
 fun MonthHeader(daysOfWeek: List<DayOfWeek>, month: CalendarMonth) {
     val headerModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.largeSpacing))
+        .padding(top = dimensionResource(id = R.dimen.large_spacing))
 
     Column(modifier = headerModifier) {
         CalendarTitle(month)
         val monthYearModifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
+            .padding(top = dimensionResource(id = R.dimen.default_spacing))
         Row(modifier = monthYearModifier) {
             for (dayOfWeek in daysOfWeek) {
                 Text(
@@ -89,7 +89,7 @@ fun MonthHeader(daysOfWeek: List<DayOfWeek>, month: CalendarMonth) {
 fun CalendarTitle(month: CalendarMonth) {
     val year = month.yearMonth.year
     val monthName = month.yearMonth.month.name.toTitleCase()
-    val titleModifier = Modifier.padding(start = dimensionResource(id = R.dimen.defaultSpacing))
+    val titleModifier = Modifier.padding(start = dimensionResource(id = R.dimen.default_spacing))
     Text(
         modifier = titleModifier,
         text = "$monthName $year",

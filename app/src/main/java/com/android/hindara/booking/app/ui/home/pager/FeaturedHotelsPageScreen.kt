@@ -46,8 +46,8 @@ fun FeaturedHotelsPageScreen(
 
 @Composable
 fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavController, hotel: Hotel) {
-    val defaultSpacing = dimensionResource(id = R.dimen.defaultSpacing)
-    val largeSpacing = dimensionResource(id = R.dimen.largeSpacing)
+    val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
+    val largeSpacing = dimensionResource(id = R.dimen.large_spacing)
 
     val constrainLayoutModifier = Modifier
         .wrapContentSize()
@@ -62,9 +62,9 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
         val (image, gradientLayer, title, description, rating) = createRefs()
 
         val featuredImageModifier = Modifier
-            .clip(RoundedCornerShape(dimensionResource(id = R.dimen.featuredImageCornerSize)))
-            .width(dimensionResource(id = R.dimen.featuredHotelImageWith))
-            .height(dimensionResource(id = R.dimen.featuredHotelImageHeight))
+            .clip(RoundedCornerShape(dimensionResource(id = R.dimen.home_screen_hotel_image_corners_size)))
+            .width(dimensionResource(id = R.dimen.home_screen_hotel_image_width))
+            .height(dimensionResource(id = R.dimen.home_screen_hotel_image_height))
             .constrainAs(image) {
                 top.linkTo(parent.top, margin = defaultSpacing)
                 start.linkTo(parent.start, margin = defaultSpacing)
@@ -80,9 +80,9 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
 
         Spacer(
             modifier = Modifier
-                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.featuredImageCornerSize)))
-                .width(dimensionResource(id = R.dimen.featuredHotelImageWith))
-                .height(dimensionResource(id = R.dimen.featuredHotelImageHeight))
+                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.home_screen_hotel_image_corners_size)))
+                .width(dimensionResource(id = R.dimen.home_screen_hotel_image_width))
+                .height(dimensionResource(id = R.dimen.home_screen_hotel_image_height))
                 .background(BlackGradientColor)
                 .constrainAs(gradientLayer) {
                     top.linkTo(parent.top, margin = defaultSpacing)
@@ -119,13 +119,13 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
         )
 
         val ratingViewModifier = Modifier
-            .clip(RoundedCornerShape(dimensionResource(id = R.dimen.ratingViewCornerSize)))
+            .clip(RoundedCornerShape(dimensionResource(id = R.dimen.rating_bar_corners_size)))
             .background(BlackGradientColor)
             .padding(
-                start = dimensionResource(id = R.dimen.smallSpacing),
-                end = dimensionResource(id = R.dimen.smallSpacing),
-                top = dimensionResource(id = R.dimen.verySmallSpacing),
-                bottom = dimensionResource(id = R.dimen.verySmallSpacing)
+                start = dimensionResource(id = R.dimen.small_spacing),
+                end = dimensionResource(id = R.dimen.small_spacing),
+                top = dimensionResource(id = R.dimen.tiny_spacing),
+                bottom = dimensionResource(id = R.dimen.tiny_spacing)
             )
             .constrainAs(rating) {
                 end.linkTo(image.end, margin = defaultSpacing)
@@ -147,7 +147,7 @@ private fun RatingContentComposable(hotel: Hotel) {
         painter = painterResource(id = R.drawable.ic_star),
         contentDescription = stringResource(R.string.image_star)
     )
-    Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.smallSpacing)))
+    Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.small_spacing)))
     Text(
         modifier = Modifier.wrapContentSize(),
         text = hotel.rating.toString(),

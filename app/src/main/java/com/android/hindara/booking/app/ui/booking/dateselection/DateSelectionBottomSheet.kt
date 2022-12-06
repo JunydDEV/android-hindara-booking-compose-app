@@ -50,7 +50,7 @@ private fun DateSelectionContentComposable(
 ) {
     val mainModifier = Modifier
         .background(WhiteColor)
-        .padding(dimensionResource(id = R.dimen.defaultSpacing))
+        .padding(dimensionResource(id = R.dimen.default_spacing))
 
     Column(modifier = mainModifier) {
         CalendarComposable(selectionState)
@@ -125,12 +125,12 @@ private fun ContinueButtonComposable(
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.defaultSpacing),
-            bottom = dimensionResource(id = R.dimen.defaultSpacing)
+            top = dimensionResource(id = R.dimen.default_spacing),
+            bottom = dimensionResource(id = R.dimen.default_spacing)
         )
     Button(
         modifier = buttonModifier,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
+        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
             val checkInDate = selectionState.value.first!!
             val checkOutDate = selectionState.value.second!!
