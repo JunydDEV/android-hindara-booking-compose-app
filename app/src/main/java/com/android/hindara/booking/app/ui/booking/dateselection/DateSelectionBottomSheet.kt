@@ -82,7 +82,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
         Column {
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = stringResource(R.string.check_in_label),
+                text = stringResource(R.string.label_check_in),
                 style = MaterialTheme.typography.body1,
                 color = LightTextColor
             )
@@ -100,7 +100,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
         Column {
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = stringResource(R.string.check_out_label),
+                text = stringResource(R.string.label_check_out),
                 style = MaterialTheme.typography.body1,
                 color = LightTextColor
             )
@@ -145,6 +145,6 @@ private fun ContinueButtonComposable(
             }
         },
     ) {
-        Text(stringResource(R.string.button_continue_text))
+        Text(stringResource(R.string.button_continue_label))
     }
 }

@@ -27,7 +27,7 @@ fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeV
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
         topBar = {
-            AppTopBar(navController, stringResource(id = R.string.description_title))
+            AppTopBar(navController, stringResource(id = R.string.label_hotel_description))
         }
     ) {
         val modifier = Modifier

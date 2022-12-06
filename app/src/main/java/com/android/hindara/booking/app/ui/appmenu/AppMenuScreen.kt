@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -84,7 +83,7 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
         Image(
             modifier = profilePictureModifier,
             painter = painterResource(id = profileInfo.picture),
-            contentDescription = stringResource(R.string.profile_picture_description)
+            contentDescription = stringResource(R.string.image_profile)
         )
 
         val nameModifier = Modifier.constrainAs(name) {

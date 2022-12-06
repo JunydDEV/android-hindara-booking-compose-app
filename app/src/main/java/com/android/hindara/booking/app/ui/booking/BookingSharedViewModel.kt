@@ -15,9 +15,9 @@ class BookingSharedViewModel @Inject constructor(): ViewModel() {
     lateinit var chosenHotel: Hotel
 
     fun getPaymentMethodsList(): List<PaymentMethod> {
-        val masterCard = PaymentMethod(R.drawable.ic_mastercard, R.string.mastercard, false)
-        val visa = PaymentMethod(R.drawable.ic_visa, R.string.visa, false)
-        val paypal = PaymentMethod(R.drawable.ic_paypal, R.string.paypal, false)
+        val masterCard = PaymentMethod(R.drawable.ic_mastercard, R.string.label_mastercard, false)
+        val visa = PaymentMethod(R.drawable.ic_visa, R.string.label_visa, false)
+        val paypal = PaymentMethod(R.drawable.ic_paypal, R.string.label_paypal, false)
         return listOf(masterCard, visa, paypal)
     }
 

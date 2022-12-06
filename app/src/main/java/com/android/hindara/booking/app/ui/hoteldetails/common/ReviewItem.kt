@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,7 +43,7 @@ fun ReviewItemComposable(
         Image(
             modifier = reviewerImageModifier,
             painter = painterResource(id = review.reviewImage),
-            contentDescription = stringResource(R.string.reviewer_image_description)
+            contentDescription = stringResource(R.string.image_review_person)
         )
 
         val nameModifier = Modifier.constrainAs(reviewerName) {

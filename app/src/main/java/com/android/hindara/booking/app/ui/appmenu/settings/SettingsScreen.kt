@@ -26,7 +26,7 @@ fun SettingsScreen(
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
         topBar = {
-            AppTopBar(navController, stringResource(id = R.string.menu_item_settings))
+            AppTopBar(navController, stringResource(id = R.string.label_settings))
         }
     ) {
         val modifier = Modifier
@@ -37,25 +37,25 @@ fun SettingsScreen(
         Column(modifier) {
             SettingsItemComposable(
                 icon = R.drawable.ic_user,
-                label = R.string.user_settings_option,
+                label = R.string.label_user_settings,
                 onClick = {}
             )
             DefaultSpacer()
             SettingsItemComposable(
                 icon = R.drawable.ic_notification,
-                label = R.string.notification_menu,
+                label = R.string.label_notification,
                 onClick = {}
             )
             DefaultSpacer()
             SettingsItemComposable(
                 icon = R.drawable.ic_phone,
-                label = R.string.contact_us_option,
+                label = R.string.label_contact_us,
                 onClick = {}
             )
             DefaultSpacer()
             SettingsItemComposable(
                 icon = R.drawable.ic_credit_card,
-                label = R.string.payment_settings_option,
+                label = R.string.label_payment_settings,
                 onClick = {}
             )
         }
@@ -88,7 +88,7 @@ private fun SettingsItemComposable(
             Row {
                 Icon(
                     painter = painterResource(id = icon),
-                    contentDescription = stringResource(R.string.settings_icon_description)
+                    contentDescription = stringResource(R.string.image_settings)
                 )
                 Text(
                     modifier = Modifier.padding(
@@ -100,7 +100,7 @@ private fun SettingsItemComposable(
             }
             Icon(
                 painter = painterResource(id = R.drawable.ic_right_arrow),
-                contentDescription = stringResource(R.string.right_arrow_icon_description)
+                contentDescription = stringResource(R.string.image_right_arrow)
             )
         }
     }

@@ -14,8 +14,8 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
                     imageDrawable = R.drawable.ic_onboarding_first_image,
                     isSelected = true,
                     position = 0,
-                    title = R.string.text_onboarding_first_title,
-                    description = R.string.text_onboarding_first_description
+                    title = R.string.label_travel_with_no_worry,
+                    description = R.string.label_travel_with_no_worry_description
                 )
             )
             add(
@@ -23,8 +23,8 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
                     imageDrawable = R.drawable.ic_onboarding_second_image,
                     isSelected = false,
                     position = 1,
-                    title = R.string.text_onboarding_second_title,
-                    description = R.string.text_onboarding_second_description
+                    title = R.string.label_find_hundreds_hotels,
+                    description = R.string.label_find_hundreds_hotels_description
                 )
             )
             add(
@@ -32,8 +32,8 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
                     imageDrawable = R.drawable.ic_onboarding_third_image,
                     isSelected = false,
                     position = 2,
-                    title = R.string.text_onboarding_third_title,
-                    description = R.string.text_onboarding_third_description
+                    title = R.string.label_discover_the_world,
+                    description = R.string.label_discover_the_world_description
                 )
             )
         }

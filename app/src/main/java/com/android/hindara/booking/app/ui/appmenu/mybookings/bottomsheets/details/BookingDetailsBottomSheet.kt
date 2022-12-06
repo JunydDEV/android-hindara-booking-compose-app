@@ -44,7 +44,7 @@ fun BookingDetailsContent(
     checkInDate: LocalDate,
     checkOutDate: LocalDate
 ) {
-    BottomSheetContentWithTitle(title = stringResource(R.string.booking_details)) {
+    BottomSheetContentWithTitle(title = stringResource(R.string.label_booking_details)) {
         Column(Modifier.verticalScroll(rememberScrollState())) {
             HotelInfoComposable(hotel)
             BookingDatesComposable(checkInDate, checkOutDate)
@@ -72,12 +72,12 @@ private fun PaymentStatusComposable() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = stringResource(R.string.payment_status),
+                text = stringResource(R.string.label_payment_status),
                 style = MaterialTheme.typography.h2,
                 color = DarkTextColor
             )
             Text(
-                text = stringResource(R.string.status_paid),
+                text = stringResource(R.string.label_payment_status_paid),
                 style = MaterialTheme.typography.h2,
                 color = SuccessColor
             )

@@ -61,7 +61,7 @@ private fun SpacerComposable() {
 private fun AppLogoComposable() {
     Image(
         painter = painterResource(id = R.drawable.ic_hindara),
-        contentDescription = stringResource(R.string.hindara_logo_description)
+        contentDescription = stringResource(R.string.image_app_logo)
     )
 }
 
@@ -71,8 +71,8 @@ fun SwipePagerView(navController: NavController) {
     Column {
         val tabIndexState = remember { mutableStateOf(0) }
         val tabTitles = listOf(
-            stringResource(R.string.tab_title_login),
-            stringResource(R.string.tab_title_signup)
+            stringResource(R.string.tab_login_label),
+            stringResource(R.string.tab_signup_label)
         )
         val pagerState = rememberPagerState()
 

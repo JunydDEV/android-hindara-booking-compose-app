@@ -2,7 +2,6 @@ package com.android.hindara.booking.app.ui.search.filter
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CornerSize
@@ -11,16 +10,11 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
@@ -54,7 +48,7 @@ fun FilterBottomSheetScreen(
         )
 
     Column(modifier = modifier) {
-        TitleComposable(stringResource(R.string.title_location))
+        TitleComposable(stringResource(R.string.label_location))
         FilterChipComposable(
             list = viewModel.getLocationsChipsList(),
             value = locationSelectionState.value,
@@ -62,7 +56,7 @@ fun FilterBottomSheetScreen(
         )
 
         DefaultSpacer()
-        TitleComposable(stringResource(id = R.string.title_price_range))
+        TitleComposable(stringResource(id = R.string.label_price_range))
         PriceRangeSliderComposable(
             viewModel = viewModel,
             value = priceRangeState.value,
@@ -70,7 +64,7 @@ fun FilterBottomSheetScreen(
         )
 
         DefaultSpacer()
-        TitleComposable(stringResource(R.string.title_facilities))
+        TitleComposable(stringResource(R.string.label_facilities))
         FilterChipComposable(
             list = viewModel.getFacilitiesChipsList(),
             value = facilitiesSelectionState.value,
@@ -262,6 +256,6 @@ private fun ApplyFilterButtonComposable(navController: NavController) {
             navController.popBackStack()
         },
     ) {
-        Text(stringResource(R.string.button_apply_filter_text))
+        Text(stringResource(R.string.button_apply_filter_label))
     }
 }

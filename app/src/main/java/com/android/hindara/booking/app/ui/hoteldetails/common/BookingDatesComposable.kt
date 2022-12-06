@@ -13,11 +13,11 @@ fun BookingDatesComposable(checkInDate: LocalDate, checkOutDate: LocalDate) {
     HindaraCard {
         Column {
             HindaraCommonRow(
-                label = stringResource(id = R.string.check_in_label),
+                label = stringResource(id = R.string.label_check_in),
                 value = checkInDate.getFormattedDate()
             )
             HindaraCommonRow(
-                label = stringResource(id = R.string.check_out_label),
+                label = stringResource(id = R.string.label_check_out),
                 value = checkOutDate.getFormattedDate()
             )
         }

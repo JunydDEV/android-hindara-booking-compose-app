@@ -29,7 +29,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
@@ -46,7 +45,7 @@ fun ResetPasswordBottomSheet(
 
 @Composable
 fun ResetPasswordBottomSheetContent(navController: NavController) {
-    BottomSheetContentWithTitle(stringResource(R.string.reset_password_title)) {
+    BottomSheetContentWithTitle(stringResource(R.string.label_reset_password)) {
         ResetPasswordDescriptionComposable()
         NewPasswordTextFieldLabelComposable()
         NewPasswordTextFieldComposable()
@@ -60,7 +59,7 @@ fun ResetPasswordBottomSheetContent(navController: NavController) {
 private fun ResetPasswordDescriptionComposable() {
     Text(
         modifier = Modifier.fillMaxWidth(),
-        text = stringResource(R.string.reset_password_description),
+        text = stringResource(R.string.label_reset_password_description),
         style = MaterialTheme.typography.body2,
         color = DarkTextColor
     )
@@ -219,7 +218,7 @@ private fun ResetButtonComposable(navController: NavController) {
             )
         },
     ) {
-        Text(stringResource(R.string.button_reset_password_text))
+        Text(stringResource(R.string.button_reset_password_label))
     }
 }
 
@@ -238,7 +237,7 @@ private fun PasswordVisibilityTrailingIcon(
         Icon(
             imageVector = icon,
             tint = iconColor,
-            contentDescription = stringResource(R.string.description_password_visibility),
+            contentDescription = stringResource(R.string.image_password_visibility),
         )
     }
 }

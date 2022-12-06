@@ -24,7 +24,7 @@ fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
         topBar = {
-            AppTopBar(navController, stringResource(id = R.string.reviews_title_text))
+            AppTopBar(navController, stringResource(id = R.string.label_reviews))
         }
     ) {
         Column(

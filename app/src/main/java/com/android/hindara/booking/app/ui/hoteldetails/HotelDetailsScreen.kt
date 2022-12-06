@@ -83,7 +83,7 @@ fun ConstraintLayoutScope.HeaderImageComposable(
         modifier = headerImageModifier,
         painter = painterResource(id = hotel.image),
         contentScale = ContentScale.Crop,
-        contentDescription = stringResource(R.string.hotel_header_image_description)
+        contentDescription = stringResource(R.string.image_hotel_header)
     )
 }
 
@@ -113,7 +113,7 @@ fun ConstraintLayoutScope.BackButtonComposable(
             },
             painter = painterResource(id = R.drawable.ic_back),
             colorFilter = tint(WhiteColor),
-            contentDescription = stringResource(R.string.back_button_description)
+            contentDescription = stringResource(R.string.image_back)
         )
     }
 }
@@ -138,7 +138,7 @@ fun ConstraintLayoutScope.BookmarkButtonComposable(bookmarkButton: ConstrainedLa
         Image(
             painter = painterResource(id = R.drawable.ic_bookmark),
             colorFilter = tint(WhiteColor),
-            contentDescription = stringResource(R.string.back_button_description)
+            contentDescription = stringResource(R.string.image_back)
         )
     }
 }
@@ -175,7 +175,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.halfOfBannerHeight)))
         Text(
             modifier = Modifier.wrapContentWidth(),
-            text = stringResource(R.string.description_title),
+            text = stringResource(R.string.label_hotel_description),
             style = MaterialTheme.typography.h1,
             color = DarkTextColor
         )
@@ -196,7 +196,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                     .clickable {
                         navController.navigate(moreDescriptionRoute)
                     },
-                text = stringResource(R.string.read_more_text),
+                text = stringResource(R.string.label_read_more),
                 style = MaterialTheme.typography.body1,
                 color = SuccessColor
             )
@@ -206,7 +206,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.largeSpacing)))
         Text(
             modifier = Modifier.wrapContentWidth(),
-            text = stringResource(R.string.reviews_title_text),
+            text = stringResource(R.string.label_reviews),
             style = MaterialTheme.typography.h1,
             color = DarkTextColor
         )
@@ -222,7 +222,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                     .clickable {
                         navController.navigate(reviewsRoute)
                     },
-                text = stringResource(R.string.see_more_reviews_text),
+                text = stringResource(R.string.label_see_more_reviews),
                 style = MaterialTheme.typography.body1,
                 color = SuccessColor
             )
@@ -378,7 +378,7 @@ fun ReviewsCount(hotel: Hotel) {
 
     Text(
         modifier = modifier,
-        text = "(${hotel.reviewsList.size} ${stringResource(id = R.string.reviews_title_text)})",
+        text = "(${hotel.reviewsList.size} ${stringResource(id = R.string.label_reviews)})",
         style = MaterialTheme.typography.body1,
         color = Color.LightGray
     )
@@ -414,7 +414,7 @@ fun BookingBottomBar(
             }
         Text(
             modifier = priceLabelModifier,
-            text = stringResource(R.string.per_night_price_text),
+            text = stringResource(R.string.label_per_night_price),
             style = MaterialTheme.typography.body1,
             color = LightTextColor
         )
@@ -446,7 +446,7 @@ fun BookingBottomBar(
                 navController.navigate(calendarBottomSheetRoute)
             },
         ) {
-            Text(stringResource(R.string.book_now_button_text))
+            Text(stringResource(R.string.button_book_now_label))
         }
     }
 }

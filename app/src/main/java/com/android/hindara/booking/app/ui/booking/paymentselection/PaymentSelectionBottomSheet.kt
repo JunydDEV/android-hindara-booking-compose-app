@@ -54,7 +54,7 @@ private fun PaymentSelectionContentComposable(
     paymentMethods: List<PaymentMethod>,
     paymentMethodSelectionState: MutableState<PaymentMethod?>,
 ) {
-    BottomSheetContentWithTitle(stringResource(R.string.title_payment_methods)) {
+    BottomSheetContentWithTitle(stringResource(R.string.label_payment_methods)) {
         PaymentMethodsListComposable(viewModel, paymentMethods, paymentMethodSelectionState)
         if (paymentMethodSelectionState.value != null) {
             ContinueButtonComposable(
@@ -130,6 +130,6 @@ private fun ContinueButtonComposable(
             }
         },
     ) {
-        Text(stringResource(R.string.button_continue_text))
+        Text(stringResource(R.string.button_continue_label))
     }
 }

@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.mybookings.bottomsheets.details.bookingDetailsBottomSheetRoute
@@ -23,7 +22,7 @@ fun MyBookingsScreen(
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
         topBar = {
-            AppTopBar(navController, stringResource(id = R.string.menu_item_my_bookings))
+            AppTopBar(navController, stringResource(id = R.string.label_my_bookings))
         }
     ) {
         MyBookingsListComposable(

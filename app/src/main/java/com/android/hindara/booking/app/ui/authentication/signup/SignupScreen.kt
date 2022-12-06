@@ -257,7 +257,7 @@ private fun SignupButtonComposable(navController: NavController) {
             navigationToHomeScreen(navController)
         },
     ) {
-        Text(stringResource(R.string.button_signup_text))
+        Text(stringResource(R.string.button_signup_label))
     }
 }
 
@@ -308,7 +308,7 @@ private fun PasswordVisibilityTrailingIcon(
         Icon(
             imageVector = icon,
             tint = iconColor,
-            contentDescription = stringResource(R.string.description_password_visibility),
+            contentDescription = stringResource(R.string.image_password_visibility),
         )
     }
 }

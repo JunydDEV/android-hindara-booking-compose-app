@@ -36,8 +36,6 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.forgotPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -203,7 +201,7 @@ fun ForgotPasswordTextComposable(navController: NavController) {
             modifier = forgotPasswordTextModifier.clickable {
                 navController.navigate(forgotPasswordBottomSheetRoute)
             },
-            text = stringResource(R.string.text_forgot_password_label),
+            text = stringResource(R.string.label_forgot_password_q),
             style = typography.body1,
             color = DarkTextColor,
             textAlign = TextAlign.End
@@ -241,7 +239,7 @@ fun HorizontalLineComposable() {
         Spacer(modifier = horizontalLineModifier)
         Text(
             modifier = alternateLoginWithTextModifier,
-            text = stringResource(R.string.text_alternate_login_with),
+            text = stringResource(R.string.label_login_with),
             style = typography.body1,
             color = DarkTextColor,
             textAlign = TextAlign.Center
@@ -265,7 +263,7 @@ private fun LoginButtonComposable(navController: NavController) {
             navigationToHomeScreen(navController)
         },
     ) {
-        Text(stringResource(R.string.button_login_text))
+        Text(stringResource(R.string.button_login_label))
     }
 }
 
@@ -296,7 +294,7 @@ private fun FacebookAuthButtonContentComposable() {
     Row(modifier = Modifier.wrapContentWidth(), verticalAlignment = Alignment.CenterVertically) {
         Image(
             painter = painterResource(id = R.drawable.ic_facebook),
-            contentDescription = stringResource(R.string.facebook_image_description),
+            contentDescription = stringResource(R.string.image_facebook),
             modifier = Modifier.size(ButtonDefaults.IconSize)
         )
         Spacer(
@@ -305,7 +303,7 @@ private fun FacebookAuthButtonContentComposable() {
                 .height(10.dp)
         )
         Text(
-            text = stringResource(R.string.button_facebook_text),
+            text = stringResource(R.string.button_facebook_label),
             color = WhiteColor
         )
     }
@@ -334,7 +332,7 @@ private fun GoogleAuthButtonContentComposable() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_google),
-            contentDescription = stringResource(R.string.google_image_description),
+            contentDescription = stringResource(R.string.image_google),
             modifier = Modifier.size(ButtonDefaults.IconSize)
         )
         Spacer(
@@ -343,7 +341,7 @@ private fun GoogleAuthButtonContentComposable() {
                 .height(10.dp)
         )
         Text(
-            text = stringResource(R.string.button_login_text),
+            text = stringResource(R.string.button_login_label),
             color = DarkTextColor
         )
     }
@@ -415,7 +413,7 @@ private fun PasswordVisibilityTrailingIcon(
         Icon(
             imageVector = icon,
             tint = iconColor,
-            contentDescription = stringResource(R.string.description_password_visibility),
+            contentDescription = stringResource(R.string.image_password_visibility),
         )
     }
 }

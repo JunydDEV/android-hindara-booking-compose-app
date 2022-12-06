@@ -43,7 +43,7 @@ private fun PaymentConfirmationContentComposable(
     navController: NavController,
     viewModel: BookingSharedViewModel,
 ) {
-    BottomSheetContentWithTitle(title = stringResource(id = R.string.title_confirm_payment)) {
+    BottomSheetContentWithTitle(title = stringResource(id = R.string.label_confirm_payment)) {
         Column(Modifier.verticalScroll(rememberScrollState())) {
             HotelInfoComposable(viewModel.chosenHotel)
             BookingDatesComposable(viewModel.checkInDate, viewModel.checkOutDate)
@@ -79,7 +79,7 @@ fun TotalBillComposable(viewModel: BookingSharedViewModel) {
     ) {
         Text(
             modifier = Modifier.wrapContentWidth(),
-            text = stringResource(R.string.total_label),
+            text = stringResource(R.string.label_total_amount),
             style = MaterialTheme.typography.h2,
             color = DarkTextColor
         )
@@ -134,7 +134,7 @@ private fun SelectedPaymentMethodComposable(paymentMethod: PaymentMethod) {
                 color = DarkTextColor
             )
             Text(
-                text = stringResource(R.string.change_payment_method_label),
+                text = stringResource(R.string.label_change_payment_method),
                 style = MaterialTheme.typography.h2,
                 color = SuccessColor
             )
@@ -166,6 +166,6 @@ private fun ContinueButtonComposable(
             }
         },
     ) {
-        Text(stringResource(R.string.button_continue_text))
+        Text(stringResource(R.string.button_continue_label))
     }
 }

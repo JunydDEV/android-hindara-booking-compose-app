@@ -10,7 +10,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.appMenuRoute
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
@@ -30,11 +29,11 @@ fun HomeScreenTopBar(navController: NavController) {
                     navController.navigate(appMenuRoute)
                 },
                 painter = painterResource(id = R.drawable.ic_menu),
-                contentDescription = stringResource(R.string.menu_icon_description)
+                contentDescription = stringResource(R.string.image_menu)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_notification),
-                contentDescription = stringResource(R.string.notification_icon_description)
+                contentDescription = stringResource(R.string.image_notification)
             )
         }
     }

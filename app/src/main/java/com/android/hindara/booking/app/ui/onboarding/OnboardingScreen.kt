@@ -79,7 +79,7 @@ private fun OnboardingImageComposable(selectedImage: OnboardingImage) {
     Image(
         modifier = onBoardingImageModifier,
         painter = painterResource(id = selectedImage.imageDrawable),
-        contentDescription = stringResource(R.string.image_description_getting_start_first)
+        contentDescription = stringResource(R.string.image_getting_started)
     )
 }
 
@@ -204,9 +204,9 @@ private fun getButtonText(
     imageSelectionState: MutableState<Int>,
     onboardingImagesList: List<OnboardingImage>
 ) = if (imageSelectionState.value < onboardingImagesList.size - 1) {
-    stringResource(R.string.button_text_next)
+    stringResource(R.string.button_next_label)
 } else {
-    stringResource(R.string.button_text_get_started)
+    stringResource(R.string.button_get_started_label)
 }
 
 @Composable
@@ -217,7 +217,7 @@ private fun DotView(onboardingImage: OnboardingImage) {
         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.smallSpacing)),
         painter = painterResource(id = icon),
         colorFilter = ColorFilter.tint(tintColor),
-        contentDescription = stringResource(R.string.dot_icon_image_description)
+        contentDescription = stringResource(R.string.image_slider_dot)
     )
 }
 

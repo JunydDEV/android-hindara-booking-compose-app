@@ -25,7 +25,7 @@ fun BookmarksScreen(
     Scaffold(
         backgroundColor = ScreenBackgroundColor,
         topBar = {
-            AppTopBar(navController, stringResource(id = R.string.menu_item_bookmarks))
+            AppTopBar(navController, stringResource(id = R.string.label_bookmarks))
         }
     ) {
         LazyColumn(

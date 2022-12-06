@@ -12,57 +12,57 @@ class AlertViewModel @Inject constructor() : ViewModel() {
             AlertType.resetPasswordSuccess -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_success,
-                    title = R.string.reset_password_success_title,
-                    description = R.string.reset_password_success_description,
-                    buttonText = R.string.button_login_now_text
+                    title = R.string.label_reset_password_success,
+                    description = R.string.label_reset_password_success_description,
+                    buttonText = R.string.button_login_now_label
                 )
             }
             AlertType.resetPasswordFailure -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_failed,
-                    title = R.string.reset_password_failure_title,
-                    description = R.string.reset_password_failure_description,
-                    buttonText = R.string.button_try_again_text
+                    title = R.string.label_reset_password_failure,
+                    description = R.string.label_reset_password_failure_description,
+                    buttonText = R.string.button_try_again_label
                 )
             }
             AlertType.paymentResultSuccess -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_success,
-                    title = R.string.payment_result_success_title,
-                    description = R.string.result_success_description,
-                    buttonText = R.string.button_back_to_home_text
+                    title = R.string.label_payment_result_success,
+                    description = R.string.label_cancellation_success_description,
+                    buttonText = R.string.button_back_to_home_label
                 )
             }
             AlertType.paymentResultFailure -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_failed,
-                    title = R.string.payment_result_failure_title,
-                    description = R.string.result_failure_description,
-                    buttonText = R.string.button_try_again_text
+                    title = R.string.label_payment_result_failure,
+                    description = R.string.label_cancellation_failure_description,
+                    buttonText = R.string.button_try_again_label
                 )
             }
             AlertType.cancelBookingConfirmation -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_alert,
-                    title = R.string.title_cancel_booking,
-                    description = R.string.description_cancel_booking,
-                    buttonText = R.string.button_cancel_booking
+                    title = R.string.label_cancel_booking,
+                    description = R.string.label_cancel_booking_description,
+                    buttonText = R.string.button_cancel_booking_label
                 )
             }
             AlertType.cancelBookingFailure -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_failed,
-                    title = R.string.booking_cancellation_result_failure_title,
-                    description = R.string.result_failure_description,
-                    buttonText = R.string.button_try_again_text
+                    title = R.string.label_cancellation_failure,
+                    description = R.string.label_cancellation_failure_description,
+                    buttonText = R.string.button_try_again_label
                 )
             }
             AlertType.cancelBookingSuccess -> {
                 BottomSheetContent(
                     icon = R.drawable.ic_success,
-                    title = R.string.booking_cancellation_result_success_title,
-                    description = R.string.result_success_description,
-                    buttonText = R.string.button_done
+                    title = R.string.label_booking_cancellation_success,
+                    description = R.string.label_cancellation_success_description,
+                    buttonText = R.string.button_done_label
                 )
             }
             else -> {

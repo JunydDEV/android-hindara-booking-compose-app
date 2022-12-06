@@ -73,7 +73,7 @@ fun SearchTextFieldComposable(
 private fun SearchIconComposable() = Image(
     painter = painterResource(id = R.drawable.ic_search),
     contentDescription = stringResource(
-        R.string.search_image_description
+        R.string.image_search
     )
 )
 

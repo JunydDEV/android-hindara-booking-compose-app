@@ -75,7 +75,7 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
             modifier = featuredImageModifier,
             contentScale = ContentScale.Crop,
             painter = painterResource(id = hotel.image),
-            contentDescription = stringResource(R.string.hotel_image_discription)
+            contentDescription = stringResource(R.string.image_hotel)
         )
 
         Spacer(
@@ -145,7 +145,7 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
 private fun RatingContentComposable(hotel: Hotel) {
     Image(
         painter = painterResource(id = R.drawable.ic_star),
-        contentDescription = stringResource(R.string.start_icon_image_description)
+        contentDescription = stringResource(R.string.image_star)
     )
     Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.smallSpacing)))
     Text(

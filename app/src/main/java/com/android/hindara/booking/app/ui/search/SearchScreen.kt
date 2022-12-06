@@ -52,7 +52,7 @@ fun SearchScreen(
         topBar = {
             AppTopBar(
                 navController = navController,
-                title = stringResource(R.string.title_search_hotels),
+                title = stringResource(R.string.label_title_search),
                 menuItemToShow = AppBarMenuItem.FILTER,
                 menuItemClick = {
                     navController.navigate(filterBottomSheetRoute)
@@ -136,7 +136,7 @@ private fun HotelImageComposable(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
         modifier = hotelImageModifier,
         painter = painterResource(id = hotel.image),
         contentScale = ContentScale.Crop,
-        contentDescription = stringResource(R.string.hotel_description)
+        contentDescription = stringResource(R.string.image_search_hotel)
     )
 }
 
@@ -171,7 +171,7 @@ private fun HotelRatingComposable(hotel: Hotel) {
         Image(
             modifier = startImageModifier,
             painter = painterResource(id = R.drawable.ic_star),
-            contentDescription = stringResource(R.string.ratring_start_description)
+            contentDescription = stringResource(R.string.image_star)
         )
         Text(
             modifier = Modifier.padding(start = dimensionResource(id = R.dimen.smallSpacing)),

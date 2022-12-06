@@ -84,7 +84,7 @@ fun ReviewsCount(hotel: Hotel) {
 
     Text(
         modifier = modifier,
-        text = "(${hotel.reviewsList.size} ${stringResource(id = R.string.reviews_title_text)})",
+        text = "(${hotel.reviewsList.size} ${stringResource(id = R.string.label_reviews)})",
         style = MaterialTheme.typography.body1,
         color = Color.LightGray
     )

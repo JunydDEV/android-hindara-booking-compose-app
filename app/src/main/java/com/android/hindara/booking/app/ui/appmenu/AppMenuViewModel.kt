@@ -23,11 +23,11 @@ class AppMenuViewModel @Inject constructor() : ViewModel() {
 
     fun getMenuItems(): List<MenuItem> {
         return mutableListOf(
-            MenuItem(R.string.menu_item_bookmarks, R.drawable.ic_bookmark),
-            MenuItem(R.string.menu_item_my_bookings, R.drawable.ic_tickets),
-            MenuItem(R.string.menu_item_settings, R.drawable.ic_settings),
-            MenuItem(R.string.menu_item_help, R.drawable.ic_help),
-            MenuItem(R.string.menu_item_logout, R.drawable.ic_logout),
+            MenuItem(R.string.label_bookmarks, R.drawable.ic_bookmark),
+            MenuItem(R.string.label_my_bookings, R.drawable.ic_tickets),
+            MenuItem(R.string.label_settings, R.drawable.ic_settings),
+            MenuItem(R.string.label_help, R.drawable.ic_help),
+            MenuItem(R.string.label_logout, R.drawable.ic_logout),
         )
     }
 }

@@ -19,21 +19,21 @@ class MyBookingsViewModel @Inject constructor() : ViewModel() {
             hotel = hotel,
             checkInDate = LocalDate.now(),
             checkOutDate = LocalDate.now().plusDays(5),
-            paymentMethod = PaymentMethod(R.drawable.ic_visa, R.string.visa, true)
+            paymentMethod = PaymentMethod(R.drawable.ic_visa, R.string.label_visa, true)
         )
 
         val secondBooking = MyBooking(
             hotel = hotel,
             checkInDate = LocalDate.now(),
             checkOutDate = LocalDate.now().plusDays(5),
-            paymentMethod = PaymentMethod(R.drawable.ic_visa, R.string.visa, true)
+            paymentMethod = PaymentMethod(R.drawable.ic_visa, R.string.label_visa, true)
         )
 
         val thirdBooking = MyBooking(
             hotel = hotel,
             checkInDate = LocalDate.now(),
             checkOutDate = LocalDate.now().plusDays(5),
-            paymentMethod = PaymentMethod(R.drawable.ic_visa, R.string.visa, true)
+            paymentMethod = PaymentMethod(R.drawable.ic_visa, R.string.label_visa, true)
         )
 
         return listOf(firstBooking, secondBooking, thirdBooking)

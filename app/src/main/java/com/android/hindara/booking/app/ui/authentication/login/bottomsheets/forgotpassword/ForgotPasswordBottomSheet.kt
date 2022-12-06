@@ -19,11 +19,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.emailVerificationBottomSheetRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
 import com.android.hindara.booking.app.ui.theme.*
 
 @Composable
@@ -36,7 +33,7 @@ fun ForgotPasswordBottomSheet(
 
 @Composable
 fun ForgotPasswordBottomSheetContent(navController: NavController) {
-    BottomSheetContentWithTitle(stringResource(R.string.forgot_password_title)) {
+    BottomSheetContentWithTitle(stringResource(R.string.label_forgot_password)) {
         ForgotPasswordDescriptionComposable()
         ForgotPasswordEmailTextFieldLabelComposable()
         ForgotPasswordEmailTextFieldComposable()
@@ -48,7 +45,7 @@ fun ForgotPasswordBottomSheetContent(navController: NavController) {
 private fun ForgotPasswordDescriptionComposable() {
     Text(
         modifier = Modifier.fillMaxWidth(),
-        text = stringResource(R.string.forgot_password_description),
+        text = stringResource(R.string.label_forgot_password_description),
         style = MaterialTheme.typography.body2,
         color = DarkTextColor
     )
@@ -137,6 +134,6 @@ private fun ContinueButtonComposable(navController: NavController) {
             navController.navigate(emailVerificationBottomSheetRoute)
         },
     ) {
-        Text(stringResource(R.string.button_continue_text))
+        Text(stringResource(R.string.button_continue_label))
     }
 }

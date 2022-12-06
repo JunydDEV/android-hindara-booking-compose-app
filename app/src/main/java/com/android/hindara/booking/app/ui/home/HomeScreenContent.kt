@@ -1,28 +1,14 @@
 package com.android.hindara.booking.app.ui.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
@@ -30,8 +16,6 @@ import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComp
 import com.android.hindara.booking.app.ui.home.pager.FeaturedOnHomeScreenListing
 import com.android.hindara.booking.app.ui.search.searchRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
-import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
 
 @Composable
 fun HomeScreenContent(
@@ -83,7 +67,7 @@ private fun TitleComposable() {
                 start = dimensionResource(id = R.dimen.defaultSpacing),
                 end = dimensionResource(id = R.dimen.defaultSpacing)
             ),
-        text = stringResource(R.string.title_home_screen),
+        text = stringResource(R.string.label_welcome_message),
         style = MaterialTheme.typography.h1.copy(fontSize = 28.sp),
         color = DarkTextColor
     )
