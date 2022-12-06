@@ -24,6 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.forgotPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.resetPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
@@ -52,7 +54,7 @@ private fun VerifyEmailDescriptionComposable() {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(R.string.label_enter_digits_description),
-        style = MaterialTheme.typography.body2,
+        style = MaterialTheme.typography.body1,
         color = DarkTextColor
     )
 }
@@ -191,7 +193,9 @@ private fun ContinueButtonComposable(navController: NavController) {
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
-            navController.navigate(resetPasswordBottomSheetRoute)
+            navController.navigate(resetPasswordBottomSheetRoute) {
+                popUpTo(authenticationRoute)
+            }
         },
     ) {
         Text(stringResource(R.string.button_continue_label))

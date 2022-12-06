@@ -37,8 +37,6 @@ import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forg
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
 
-
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
@@ -47,7 +45,6 @@ fun LoginScreen(
     MainScreenContent(navController = navController)
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun MainScreenContent(navController: NavController) {
     val mainModifier = Modifier
@@ -183,7 +180,6 @@ fun PasswordTextFieldComposable() {
     )
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ForgotPasswordTextComposable(navController: NavController) {
     Box(

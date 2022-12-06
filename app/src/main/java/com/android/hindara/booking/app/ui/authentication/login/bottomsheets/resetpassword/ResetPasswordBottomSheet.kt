@@ -29,6 +29,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.forgotPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
@@ -60,7 +62,7 @@ private fun ResetPasswordDescriptionComposable() {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(R.string.label_reset_password_description),
-        style = MaterialTheme.typography.body2,
+        style = MaterialTheme.typography.body1,
         color = DarkTextColor
     )
 }
@@ -215,7 +217,9 @@ private fun ResetButtonComposable(navController: NavController) {
         onClick = {
             navController.navigate(
                 alertBottomSheetRoute.replace("{type}", AlertType.resetPasswordFailure)
-            )
+            ) {
+                popUpTo(authenticationRoute)
+            }
         },
     ) {
         Text(stringResource(R.string.button_reset_password_label))

@@ -80,9 +80,7 @@ private fun ImageComposable(resultIcon: Int) {
     ) {
         Image(
             painter = painterResource(id = resultIcon),
-            contentDescription = stringResource(
-                R.string.reset_password_success_image_description
-            )
+            contentDescription = stringResource(R.string.image_result_alert)
         )
     }
 }
@@ -183,7 +181,7 @@ private fun navigateToNextScreen(
     val currentDestination = alertBottomSheetRoute.replace("{type}", type)
     val nextDestination = alertBottomSheetRoute.replace("{type}", resultType)
     navController.navigate(nextDestination) {
-        this.popUpTo(currentDestination) {
+        popUpTo(currentDestination) {
             inclusive = true
         }
     }

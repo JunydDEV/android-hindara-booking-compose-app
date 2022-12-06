@@ -22,7 +22,7 @@ fun BookedHotelCardComposable(
 ) {
     ApplicationCard(
         showBorders = false,
-        cornersSize = dimensionResource(id = R.dimen.card_corners_size),
+        cornersSize = dimensionResource(id = R.dimen.app_card_corners_size),
     ) {
         Row(
             modifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing)).clickable {

@@ -20,7 +20,7 @@ import com.android.hindara.booking.app.ui.theme.YellowColor
 fun HotelCardComposable(hotel: Hotel, onHotelSelect: ((Hotel) -> Unit)? = null) {
     ApplicationCard(
         showBorders = false,
-        cornersSize = dimensionResource(id = R.dimen.card_corners_size),
+        cornersSize = dimensionResource(id = R.dimen.app_card_corners_size),
         onCardClick = {
             onHotelSelect?.invoke(hotel)
         }

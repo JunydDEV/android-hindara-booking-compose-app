@@ -163,7 +163,7 @@ private fun ChipComposable(
     FilterChip(
         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.default_spacing)),
         selected = isChipSelected(selectedChipInfo, locations[index]),
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.card_corners_size)),
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.app_card_corners_size)),
         border = getBorderStroke(selectedChipInfo, locations, index),
         colors = chipColors(),
         onClick = {
