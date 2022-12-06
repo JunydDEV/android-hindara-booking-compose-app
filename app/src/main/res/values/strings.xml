@@ -101,5 +101,9 @@
     <string name="title_search_hotels">Search Hotels</string>
     <string name="hotel_description">hotel description</string>
     <string name="ratring_start_description">rating start description</string>
+    <string name="title_location">Location</string>
+    <string name="title_price_range">Price Range</string>
+    <string name="title_facilities">Facilities</string>
+    <string name="button_apply_filter_text">Apply Filter</string>
 
 </resources>

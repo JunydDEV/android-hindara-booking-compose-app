@@ -27,4 +27,5 @@ val RangeBackgroundColor = Color(0x3300A76E)
 val BordersColor = Color(0x66A9A9A9)
 val CardBackgroundColor = Color(0xFFFFFFFF)
 val LightTextColor = Color(0x993E3E3E)
+val SelectedChipBackgroundColor = Color(0x3300A76E)
 

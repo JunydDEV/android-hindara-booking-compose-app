@@ -30,6 +30,7 @@ import com.android.hindara.booking.app.ui.common.composables.AppBarMenuItem
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComposable
 import com.android.hindara.booking.app.ui.home.Hotel
+import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetRoute
 import com.android.hindara.booking.app.ui.theme.LightTextColor
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
@@ -54,7 +55,7 @@ fun SearchScreen(
                 title = stringResource(R.string.title_search_hotels),
                 menuItemToShow = AppBarMenuItem.FILTER,
                 menuItemClick = {
-
+                    navController.navigate(filterBottomSheetRoute)
                 }
             )
         }

@@ -19,12 +19,14 @@ import com.android.hindara.booking.app.ui.common.BottomSheetLayoutConfig
 import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
+import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
 import com.android.hindara.booking.app.ui.reviews.reviewsGraph
+import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.search.searchScreenNavGraph
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
 import com.google.accompanist.navigation.material.BottomSheetNavigator
@@ -58,14 +60,12 @@ fun HindaraAppNavHost(
             moreDescriptionGraph(navController, homeViewModel)
             reviewsGraph(navController, homeViewModel)
             bookmarksGraph(navController, onHotelSelect = {
-                homeViewModel.onHotelSelect(it)
-                navController.navigate(hotelDetailsRoute)
+                navigateToHotelDetailsScreen(homeViewModel, it, navController)
             })
             myBookingsGraph(navController, myBookingsViewModel)
             settingsGraph(navController)
             searchScreenNavGraph(navController, onHotelSelect = {
-                homeViewModel.onHotelSelect(it)
-                navController.navigate(hotelDetailsRoute)
+                navigateToHotelDetailsScreen(homeViewModel, it, navController)
             })
 
             // Bottom Sheet Screens
@@ -74,6 +74,16 @@ fun HindaraAppNavHost(
             paymentConfirmationBottomSheetNavGraph(navController, bookingSharedViewModel)
             bookingDetailsBottomSheetGraph(navController, myBookingsViewModel)
             alertBottomSheetNavGraph(navController)
+            filterBottomSheetNavGraph(navController)
         }
     }
+}
+
+private fun navigateToHotelDetailsScreen(
+    homeViewModel: HomeViewModel,
+    it: Hotel,
+    navController: NavHostController
+) {
+    homeViewModel.onHotelSelect(it)
+    navController.navigate(hotelDetailsRoute)
 }
