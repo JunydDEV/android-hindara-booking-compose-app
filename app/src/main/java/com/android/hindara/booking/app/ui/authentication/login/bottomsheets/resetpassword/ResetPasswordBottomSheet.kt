@@ -27,45 +27,32 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.HindaraBottomSheet
+import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
 import com.android.hindara.booking.app.ui.theme.*
 
 
-/**
- * Bottom sheet to show the new passwords setting UI.
- *
- * @param viewModel provides data to UI from outside.
- * @param sheetState state of the bottom sheet.
- * @param loginBottomSheetState holds the state of current bottom sheet.
- * @param mainScreenContent indicates the main screen content.
- * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ResetPasswordBottomSheet(
     viewModel: ResetPasswordViewModel = hiltViewModel(),
-    sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<BottomSheetState>,
-    mainScreenContent: @Composable () -> Unit
+    navController: NavController
 ) {
-    HindaraBottomSheet(
-        sheetState = sheetState,
-        sheetContent = { ResetPasswordBottomSheetContent(loginBottomSheetState) },
-        content = { mainScreenContent() }
-    )
+    ResetPasswordBottomSheetContent(navController)
 }
 
 @Composable
-fun ResetPasswordBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
+fun ResetPasswordBottomSheetContent(navController: NavController) {
     BottomSheetContentWithTitle(stringResource(R.string.reset_password_title)) {
         ResetPasswordDescriptionComposable()
         NewPasswordTextFieldLabelComposable()
         NewPasswordTextFieldComposable()
         ConfirmPasswordTextFieldLabelComposable()
         ConfirmPasswordTextFieldComposable()
-        ResetButtonComposable(loginBottomSheetState)
+        ResetButtonComposable(navController)
     }
 }
 
@@ -219,7 +206,7 @@ private fun getPasswordKeyboardOptions(imeOptions: ImeAction) = KeyboardOptions(
 )
 
 @Composable
-private fun ResetButtonComposable(loginBottomSheetState: MutableState<BottomSheetState>) {
+private fun ResetButtonComposable(navController: NavController) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
@@ -227,6 +214,9 @@ private fun ResetButtonComposable(loginBottomSheetState: MutableState<BottomShee
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
+            navController.navigate(
+                alertBottomSheetRoute.replace("{type}", AlertType.resetPasswordFailure)
+            )
         },
     ) {
         Text(stringResource(R.string.button_reset_password_text))

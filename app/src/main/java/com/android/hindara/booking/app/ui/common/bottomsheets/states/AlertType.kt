@@ -3,7 +3,7 @@ package com.android.hindara.booking.app.ui.common.bottomsheets.states
 class AlertType {
 
     companion object {
-        const val resetPasswordSuccess = "ResetPasswordFailure"
+        const val resetPasswordSuccess = "ResetPasswordSuccess"
         const val resetPasswordFailure = "ResetPasswordFailure"
         const val resetPasswordCompleted = "ResetPasswordCompleted"
 

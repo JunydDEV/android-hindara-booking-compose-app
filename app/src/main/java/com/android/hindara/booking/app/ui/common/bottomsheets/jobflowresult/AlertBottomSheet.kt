@@ -17,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsRoute
+import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
@@ -157,10 +158,16 @@ private fun onClickEvent(
     val resultType = viewModel.getResultType(type)
 
     if (viewModel.isTransactionCompleted(resultType)) {
-        val route = if (resultType == AlertType.bookingCompleted) {
-            hotelDetailsRoute
-        } else {
-            myBookingsRoute
+        val route = when (resultType) {
+            AlertType.bookingCompleted -> {
+                hotelDetailsRoute
+            }
+            AlertType.resetPasswordCompleted -> {
+                authenticationRoute
+            }
+            else -> {
+                myBookingsRoute
+            }
         }
         navController.popBackStack(route, inclusive = false)
     } else {

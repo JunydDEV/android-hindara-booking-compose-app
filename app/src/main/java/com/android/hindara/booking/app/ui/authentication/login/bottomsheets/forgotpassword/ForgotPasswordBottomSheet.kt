@@ -17,43 +17,30 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.HindaraBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.emailVerificationBottomSheetRoute
+import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
+import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
 import com.android.hindara.booking.app.ui.theme.*
 
-/**
- * Bottom sheet to get the email from user for resetting password.
- *
- * @param viewModel provides data to UI from outside.
- * @param sheetState state of the bottom sheet.
- * @param loginBottomSheetState holds the state of current bottom sheet.
- * @param mainScreenContent indicates the main screen content.
- * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ForgotPasswordBottomSheet(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
-    sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<BottomSheetState>,
-    mainScreenContent: @Composable () -> Unit
+    navController: NavController
 ) {
-    HindaraBottomSheet(
-        sheetState = sheetState,
-        sheetContent = { ForgotPasswordBottomSheetContent(loginBottomSheetState) },
-        content = { mainScreenContent() }
-    )
+    ForgotPasswordBottomSheetContent(navController)
 }
 
 @Composable
-fun ForgotPasswordBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
+fun ForgotPasswordBottomSheetContent(navController: NavController) {
     BottomSheetContentWithTitle(stringResource(R.string.forgot_password_title)) {
         ForgotPasswordDescriptionComposable()
         ForgotPasswordEmailTextFieldLabelComposable()
         ForgotPasswordEmailTextFieldComposable()
-        ContinueButtonComposable(loginBottomSheetState)
+        ContinueButtonComposable(navController)
     }
 }
 
@@ -139,7 +126,7 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
 )
 
 @Composable
-private fun ContinueButtonComposable(loginBottomSheetState: MutableState<BottomSheetState>) {
+private fun ContinueButtonComposable(navController: NavController) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.defaultSpacing))
@@ -147,7 +134,7 @@ private fun ContinueButtonComposable(loginBottomSheetState: MutableState<BottomS
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
         onClick = {
-            loginBottomSheetState.value = AuthenticationBottomSheetState.VerifyEmail
+            navController.navigate(emailVerificationBottomSheetRoute)
         },
     ) {
         Text(stringResource(R.string.button_continue_text))

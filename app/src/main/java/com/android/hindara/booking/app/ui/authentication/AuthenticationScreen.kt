@@ -13,14 +13,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.JobFlow
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
-import com.android.hindara.booking.app.ui.common.bottomsheets.BottomSheetsRouterComposable
 import com.android.hindara.booking.app.ui.authentication.login.*
 import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
 import com.android.hindara.booking.app.ui.theme.*
 import com.google.accompanist.pager.*
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 /**
@@ -29,28 +25,16 @@ import kotlinx.coroutines.launch
  * @param navController helps in navigation to other screen.
  * @param viewModel establishes communication between UI & data component.
  * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AuthenticationScreen(
-    navController: NavController,
-    viewModel: AuthenticationViewModel = hiltViewModel()
+    viewModel: AuthenticationViewModel = hiltViewModel(),
+    navController: NavController
 ) {
-    BottomSheetsRouterComposable(
-        navController = navController,
-        startBottomSheet = AuthenticationBottomSheetState.ForgotPassword,
-        jobFlow = JobFlow.AuthenticationFlow
-    ) { _, bottomSheetState, coroutineScope->
-        MainScreenContentComposable(navController, bottomSheetState, coroutineScope)
-    }
+    MainScreenContentComposable(navController)
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun MainScreenContentComposable(
-    navController: NavController,
-    bottomSheetState: ModalBottomSheetState,
-    scope: CoroutineScope
-) {
+private fun MainScreenContentComposable(navController: NavController) {
     val mainColumnModifier = Modifier
         .background(ScreenBackgroundColor)
         .fillMaxSize()
@@ -61,7 +45,7 @@ private fun MainScreenContentComposable(
         SpacerComposable()
         AppLogoComposable()
         SpacerComposable()
-        SwipePagerView(navController, bottomSheetState, scope)
+        SwipePagerView(navController)
     }
 }
 
@@ -81,13 +65,9 @@ private fun AppLogoComposable() {
     )
 }
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun SwipePagerView(
-    navController: NavController,
-    bottomSheetState: ModalBottomSheetState,
-    coroutineScope: CoroutineScope
-) {
+fun SwipePagerView(navController: NavController) {
     Column {
         val tabIndexState = remember { mutableStateOf(0) }
         val tabTitles = listOf(
@@ -104,11 +84,9 @@ fun SwipePagerView(
 
         TabRowComposable(tabIndexState, pagerState, tabTitles)
         HorizontalPagerComposable(
-            navController,
-            tabTitles,
-            pagerState,
-            bottomSheetState,
-            coroutineScope
+            navController = navController,
+            tabTitles = tabTitles,
+            pagerState = pagerState
         )
     }
 }
@@ -155,15 +133,12 @@ private fun TabIndicatorComposable(pagerState: PagerState, tabPositions: List<Ta
     )
 }
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun HorizontalPagerComposable(
     navController: NavController,
     tabTitles: List<String>,
-    pagerState: PagerState,
-    bottomSheetState: ModalBottomSheetState,
-    scope: CoroutineScope
-) {
+    pagerState: PagerState) {
     val loginPage = 0
     val signupPage = 1
 
@@ -172,7 +147,7 @@ private fun HorizontalPagerComposable(
         state = pagerState,
     ) { index ->
         if (index == loginPage) {
-            LoginScreen(navController, bottomSheetState, scope)
+            LoginScreen(navController = navController)
         } else if (index == signupPage) {
             SignupScreen(navController = navController)
         }

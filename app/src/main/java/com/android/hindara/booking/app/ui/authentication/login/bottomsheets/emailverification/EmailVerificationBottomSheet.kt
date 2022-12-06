@@ -22,44 +22,30 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.BottomSheetState
 import com.android.hindara.booking.app.ui.common.bottomsheets.states.AuthenticationBottomSheetState
 import com.android.hindara.booking.app.ui.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.HindaraBottomSheet
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.resetPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 
 
-/**
- * Bottom sheet to verify the OTP sent on email for resetting password.
- *
- * @param viewModel provides data to UI from outside.
- * @param sheetState state of the bottom sheet.
- * @param loginBottomSheetState holds the state of current bottom sheet.
- * @param mainScreenContent indicates the main screen content.
- * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun EmailVerificationBottomSheet(
     viewModel: EmailVerificationViewModel = hiltViewModel(),
-    sheetState: ModalBottomSheetState,
-    loginBottomSheetState: MutableState<BottomSheetState>,
-    mainScreenContent: @Composable () -> Unit
+    navController: NavController
 ) {
-    HindaraBottomSheet(
-        sheetState = sheetState,
-        sheetContent = { EmailVerificationBottomSheetContent(loginBottomSheetState) },
-        content = { mainScreenContent() }
-    )
+    EmailVerificationBottomSheetContent(navController)
 }
 
 @Composable
-fun EmailVerificationBottomSheetContent(loginBottomSheetState: MutableState<BottomSheetState>) {
+fun EmailVerificationBottomSheetContent(navController: NavController) {
     BottomSheetContentWithTitle(stringResource(R.string.enter_digits_title)) {
         VerifyEmailDescriptionComposable()
         DigitsRowComposable()
-        ContinueButtonComposable(loginBottomSheetState)
+        ContinueButtonComposable(navController)
     }
 }
 
@@ -199,14 +185,16 @@ private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
 )
 
 @Composable
-private fun ContinueButtonComposable(loginBottomSheetState: MutableState<BottomSheetState>) {
+private fun ContinueButtonComposable(navController: NavController) {
     val buttonModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.smallSpacing))
     Button(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.buttonCornersSize))),
-        onClick = { loginBottomSheetState.value = AuthenticationBottomSheetState.ResetPassword },
+        onClick = {
+            navController.navigate(resetPasswordBottomSheetRoute)
+        },
     ) {
         Text(stringResource(R.string.button_continue_text))
     }

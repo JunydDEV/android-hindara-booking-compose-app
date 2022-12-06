@@ -33,41 +33,25 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.utils.getHalfScreenWidth
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.forgotPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-/**
- * Bottom sheet UI to show the login screen to user.
- *
- * @param navController helps in navigation to other screens.
- * @param bottomSheetState state of the bottom sheet.
- * @param scope coroutine scope used for show/hide of bottom sheet.
- * @param viewModel establishes communication between UI & data component.
- * */
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun LoginScreen(
-    navController: NavController,
-    bottomSheetState: ModalBottomSheetState,
-    scope: CoroutineScope,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
+    navController: NavController
 ) {
-    MainScreenContent(
-        navController = navController,
-        bottomSheetScaffoldState = bottomSheetState,
-        coroutineScope = scope
-    )
+    MainScreenContent(navController = navController)
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun MainScreenContent(
-    navController: NavController,
-    bottomSheetScaffoldState: ModalBottomSheetState,
-    coroutineScope: CoroutineScope
-) {
+private fun MainScreenContent(navController: NavController) {
     val mainModifier = Modifier
         .fillMaxSize()
         .background(ScreenBackgroundColor)
@@ -82,7 +66,7 @@ private fun MainScreenContent(
         PasswordTextFieldLabelComposable()
         PasswordTextFieldComposable()
 
-        ForgotPasswordTextComposable(bottomSheetScaffoldState, coroutineScope)
+        ForgotPasswordTextComposable(navController)
         SpacerComposable()
         LoginButtonComposable(navController)
 
@@ -203,10 +187,7 @@ fun PasswordTextFieldComposable() {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ForgotPasswordTextComposable(
-    bottomSheetScaffoldState: ModalBottomSheetState,
-    coroutineScope: CoroutineScope
-) {
+fun ForgotPasswordTextComposable(navController: NavController) {
     Box(
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.CenterEnd,
@@ -220,23 +201,13 @@ fun ForgotPasswordTextComposable(
 
         Text(
             modifier = forgotPasswordTextModifier.clickable {
-                showBottomSheet(bottomSheetScaffoldState, coroutineScope)
+                navController.navigate(forgotPasswordBottomSheetRoute)
             },
             text = stringResource(R.string.text_forgot_password_label),
             style = typography.body1,
             color = DarkTextColor,
             textAlign = TextAlign.End
         )
-    }
-}
-
-@OptIn(ExperimentalMaterialApi::class)
-fun showBottomSheet(
-    bottomSheetScaffoldState: ModalBottomSheetState,
-    coroutineScope: CoroutineScope
-) {
-    coroutineScope.launch {
-        bottomSheetScaffoldState.animateTo(ModalBottomSheetValue.Expanded)
     }
 }
 

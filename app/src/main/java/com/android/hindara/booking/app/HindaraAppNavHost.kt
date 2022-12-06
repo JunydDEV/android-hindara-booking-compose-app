@@ -11,6 +11,9 @@ import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksGraph
 import com.android.hindara.booking.app.ui.appmenu.settings.settingsGraph
 import com.android.hindara.booking.app.ui.authentication.authenticationGraph
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.emailVerificationBottomSheetNavGraph
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.forgotPasswordBottomSheetNavGraph
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.resetPasswordNavGraph
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetNavGraph
@@ -69,6 +72,9 @@ fun HindaraAppNavHost(
             })
 
             // Bottom Sheet Screens
+            forgotPasswordBottomSheetNavGraph(navController)
+            emailVerificationBottomSheetNavGraph(navController)
+            resetPasswordNavGraph(navController)
             calendarBottomSheetNavGraph(navController, bookingSharedViewModel, homeViewModel)
             paymentSelectionBottomSheetNavGraph(navController, bookingSharedViewModel)
             paymentConfirmationBottomSheetNavGraph(navController, bookingSharedViewModel)
