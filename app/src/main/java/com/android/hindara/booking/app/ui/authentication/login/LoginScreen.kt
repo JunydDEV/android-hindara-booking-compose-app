@@ -337,7 +337,7 @@ private fun GoogleAuthButtonContentComposable() {
                 .height(10.dp)
         )
         Text(
-            text = stringResource(R.string.button_login_label),
+            text = stringResource(R.string.button_google_label),
             color = DarkTextColor
         )
     }

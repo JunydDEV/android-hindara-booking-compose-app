@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">هندارا</string>
+
+    <!--App Buttons-->
+    <string name="button_next_label">التالي</string>
+    <string name="button_get_started_label">البدء</string>
+    <string name="button_login_label">تسجيل الدخول</string>
+    <string name="button_signup_label">اشتراك</string>
+    <string name="button_facebook_label">فيسبوك</string>
+    <string name="button_google_label">جوجل</string>
+    <string name="button_book_now_label">احجز الآن</string>
+    <string name="button_back_to_home_label">العودة إلى المنزل</string>
+    <string name="button_cancel_booking_label">إلغاء الحجز</string>
+    <string name="button_done_label">فعله</string>
+    <string name="button_continue_label">يكمل</string>
+    <string name="button_login_now_label">تسجيل الدخول الآن</string>
+    <string name="button_try_again_label">حاول ثانية</string>
+    <string name="button_reset_password_label">إعادة تعيين كلمة المرور</string>
+    <string name="button_apply_filter_label">تطبيق عامل التصفية</string>
+
+    <!--App TextFields-->
+    <string name="textField_email_label">البريد الإلكتروني</string>
+    <string name="textField_email_placeholder">أدخل بريدك الإلكتروني</string>
+    <string name="textField_password_label">كلمة المرور</string>
+    <string name="textField_password_placeholder">ادخل رقمك السري</string>
+    <string name="textField_confirm_password_label">تأكيد كلمة المرور</string>
+    <string name="textField_confirm_password_placeholder">أكد رقمك السري</string>
+    <string name="textField_username_label">اسم المستخدم</string>
+    <string name="textField_username_placeholder">أدخل اسم المستخدم الخاص بك</string>
+    <string name="textField_find_hotels_placeholder">البحث عن مئات الفنادق</string>
+
+    <!--App Tab Titles-->
+    <string name="tab_login_label">تسجيل الدخول</string>
+    <string name="tab_signup_label">اشتراك</string>
+
+    <!--App Labels-->
+    <string name="label_travel_with_no_worry">السفر دون قلق</string>
+    <string name="label_travel_with_no_worry_description">يمكنك الآن تجربة المستوى التالي من تجربة السفر لحجوزات الفنادق.</string>
+    <string name="label_find_hundreds_hotels">البحث عن مئات الفنادق</string>
+    <string name="label_find_hundreds_hotels_description">اكتشف مئات الفنادق المنتشرة في جميع أنحاء العالم من أجلك</string>
+    <string name="label_discover_the_world">دعونا نكتشف العالم</string>
+    <string name="label_discover_the_world_description">احجز فندقك الآن لتجربة السفر من المستوى التالي ، واستمتع برحلتك!</string>
+    <string name="label_forgot_password_q">هل نسيت كلمة السر؟</string>
+    <string name="label_login_with">أو تسجيل الدخول باستخدام</string>
+    <string name="label_enter_digits">أدخل كود 4 أرقام</string>
+    <string name="label_enter_digits_description">يمكنك فقط إدخال الرمز المكون من 4 أرقام الذي تلقيته في بريدك الإلكتروني.</string>
+    <string name="label_reset_password">إعادة تعيين كلمة المرور</string>
+    <string name="label_reset_password_description">قم بتعيين كلمة المرور الجديدة لحسابك حتى تتمكن من تسجيل الدخول والوصول إلى جميع الميزات.</string>
+    <string name="label_reset_password_success">نجاح إعادة تعيين كلمة المرور</string>
+    <string name="label_reset_password_success_description">يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة والاستمتاع بتجربة المستوى التالي!</string>
+    <string name="label_reset_password_failure">فشل إعادة تعيين كلمة المرور</string>
+    <string name="label_reset_password_failure_description">تحقق من اتصالك بالإنترنت وحاول مرة أخرى إعادة تعيين كلمة المرور الخاصة بك. حظا طيبا وفقك الله!</string>
+    <string name="label_forgot_password">هل نسيت كلمة السر</string>
+    <string name="label_forgot_password_description">أدخل بريدك الإلكتروني لعملية التحقق ، وسنرسل رمزًا مكونًا من 4 أرقام إلى بريدك الإلكتروني.</string>
+    <string name="label_home">مسكن</string>
+    <string name="label_bookmarks">إشارات مرجعية</string>
+    <string name="label_my_bookings">حجوزاتي</string>
+    <string name="label_settings">إعدادات</string>
+    <string name="label_help">مساعدة</string>
+    <string name="label_logout">تسجيل خروج</string>
+    <string name="label_hotel_description">وصف</string>
+    <string name="label_read_more">اقرأ أكثر …</string>
+    <string name="label_reviews">المراجعات</string>
+    <string name="label_see_more_reviews">مشاهدة المزيد من المراجعات …</string>
+    <string name="label_per_night_price">سعر الليلة</string>
+    <string name="label_check_in">تحقق في</string>
+    <string name="label_check_out">الدفع</string>
+    <string name="label_payment_methods">طرق الدفع</string>
+    <string name="label_mastercard">ماستر كارد</string>
+    <string name="label_paypal">"باي بال "</string>
+    <string name="label_visa">فيزا</string>
+    <string name="label_confirm_payment">تأكيد الدفع</string>
+    <string name="label_change_payment_method">يتغيرون</string>
+    <string name="label_total_amount">المجموع</string>
+    <string name="label_payment_result_success">نجاح الصفقة</string>
+    <string name="label_payment_result_failure">فشل الاجراء</string>
+    <string name="label_booking_cancellation_success">نجاح الإلغاء</string>
+    <string name="label_cancellation_success_description">فعله! تم إلغاء حجزك بنجاح. أراك المرة القادمة!</string>
+    <string name="label_cancellation_failure">فشل الإلغاء</string>
+    <string name="label_cancellation_failure_description">يرجى التحقق من اتصالك بالإنترنت وحاول مرة أخرى بعد لحظات. حظا طيبا وفقك الله!</string>
+    <string name="label_booking_details">تفاصيل الحجز</string>
+    <string name="label_payment_status">حالة السداد</string>
+    <string name="label_payment_status_paid">مدفوع</string>
+    <string name="label_cancel_booking">إلغاء الحجز</string>
+    <string name="label_cancel_booking_description">هل أنت متأكد من إلغاء الحجوزات الخاصة بك؟ لن يكون هناك استرداد على الإطلاق.</string>
+    <string name="label_user_settings">إعدادات المستخدم</string>
+    <string name="label_notification">تنبيه</string>
+    <string name="label_contact_us">اتصل بنا</string>
+    <string name="label_payment_settings">إعدادات الدفع</string>
+    <string name="label_title_search">البحث عن الفنادق</string>
+    <string name="label_location">موقع</string>
+    <string name="label_price_range">نطاق السعر</string>
+    <string name="label_facilities">مرافق</string>
+    <string name="label_welcome_message">صباح الخير, ستيفاني،</string>
+
+    <!--Images Description-->
+    <string name="image_getting_started">Getting started image</string>
+    <string name="image_slider_dot">Slider dot image</string>
+    <string name="image_app_logo">Application logo image</string>
+    <string name="image_password_visibility">Password visibility image</string>
+    <string name="image_facebook">Facebook image</string>
+    <string name="image_google">Google image</string>
+    <string name="image_menu">Menu icon image</string>
+    <string name="image_notification">Notification image</string>
+    <string name="image_search">Search image</string>
+    <string name="image_star">Star image</string>
+    <string name="image_hotel">Hotel image</string>
+    <string name="image_profile">Profile image</string>
+    <string name="image_hotel_header">Hotel header image</string>
+    <string name="image_back">Back image</string>
+    <string name="image_review_person">Reviewer person image</string>
+    <string name="image_user">User image</string>
+    <string name="image_right_arrow">Right arrow image</string>
+    <string name="image_settings">Settings image</string>
+    <string name="image_search_hotel">Search hotel image</string>
+    <string name="image_result_alert">Result alert image</string>
+</resources>

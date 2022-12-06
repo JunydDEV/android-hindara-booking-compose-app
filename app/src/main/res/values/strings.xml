@@ -7,6 +7,7 @@
     <string name="button_login_label">Login</string>
     <string name="button_signup_label">Sign Up</string>
     <string name="button_facebook_label">Facebook</string>
+    <string name="button_google_label">Google</string>
     <string name="button_book_now_label">Book Now</string>
     <string name="button_back_to_home_label">Back To Home</string>
     <string name="button_cancel_booking_label">Cancel Booking</string>
@@ -93,24 +94,24 @@
     <string name="label_welcome_message">Good Morning,\nStephanie!</string>
 
     <!--Images Description-->
-    <string name="image_getting_started">Getting started image</string>
-    <string name="image_slider_dot">Slider dot image</string>
-    <string name="image_app_logo">Application logo image</string>
-    <string name="image_password_visibility">Password visibility image</string>
-    <string name="image_facebook">Facebook image</string>
-    <string name="image_google">Google image</string>
-    <string name="image_menu">Menu icon image</string>
-    <string name="image_notification">Notification image</string>
-    <string name="image_search">Search image</string>
-    <string name="image_star">Star image</string>
-    <string name="image_hotel">Hotel image</string>
-    <string name="image_profile">Profile image</string>
-    <string name="image_hotel_header">Hotel header image</string>
-    <string name="image_back">Back image</string>
-    <string name="image_review_person">Reviewer person image</string>
-    <string name="image_user">User image</string>
-    <string name="image_right_arrow">Right arrow image</string>
-    <string name="image_settings">Settings image</string>
-    <string name="image_search_hotel">Search hotel image</string>
-    <string name="image_result_alert">Result alert image</string>
+    <string name="image_getting_started" translatable="false">Getting started image</string>
+    <string name="image_slider_dot" translatable="false">Slider dot image</string>
+    <string name="image_app_logo" translatable="false">Application logo image</string>
+    <string name="image_password_visibility" translatable="false">Password visibility image</string>
+    <string name="image_facebook" translatable="false">Facebook image</string>
+    <string name="image_google" translatable="false">Google image</string>
+    <string name="image_menu" translatable="false">Menu icon image</string>
+    <string name="image_notification" translatable="false">Notification image</string>
+    <string name="image_search" translatable="false">Search image</string>
+    <string name="image_star" translatable="false">Star image</string>
+    <string name="image_hotel" translatable="false">Hotel image</string>
+    <string name="image_profile" translatable="false">Profile image</string>
+    <string name="image_hotel_header" translatable="false">Hotel header image</string>
+    <string name="image_back" translatable="false">Back image</string>
+    <string name="image_review_person" translatable="false">Reviewer person image</string>
+    <string name="image_user" translatable="false">User image</string>
+    <string name="image_right_arrow" translatable="false">Right arrow image</string>
+    <string name="image_settings" translatable="false">Settings image</string>
+    <string name="image_search_hotel" translatable="false">Search hotel image</string>
+    <string name="image_result_alert" translatable="false">Result alert image</string>
 </resources>
