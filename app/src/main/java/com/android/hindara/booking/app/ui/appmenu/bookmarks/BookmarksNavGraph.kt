@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.appmenu.mybookmarks
+package com.android.hindara.booking.app.ui.appmenu.bookmarks
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

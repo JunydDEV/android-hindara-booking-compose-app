@@ -82,7 +82,13 @@ fun SwipePagerView(navController: NavController) {
             }
         }
 
-        TabRowComposable(tabIndexState, pagerState, tabTitles)
+        TabRowComposable(
+            positionValue = tabIndexState.value,
+            onPositionChange = { tabIndexState.value = it },
+            pagerState = pagerState,
+            tabTitles = tabTitles
+        )
+
         HorizontalPagerComposable(
             navController = navController,
             tabTitles = tabTitles,
@@ -94,14 +100,15 @@ fun SwipePagerView(navController: NavController) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun TabRowComposable(
-    tabPosition: MutableState<Int>,
+    positionValue: Int,
+    onPositionChange: (Int) -> Unit,
     pagerState: PagerState,
     tabTitles: List<String>
 ) {
     val coroutineScope = rememberCoroutineScope()
 
     TabRow(
-        selectedTabIndex = tabPosition.value,
+        selectedTabIndex = positionValue,
         backgroundColor = TabBackgroundColor,
         indicator = { tabPositions ->
             TabIndicatorComposable(pagerState, tabPositions)
@@ -109,11 +116,11 @@ private fun TabRowComposable(
     ) {
         tabTitles.forEachIndexed { index, title ->
             Tab(
-                selected = tabPosition.value == index,
+                selected = positionValue == index,
                 selectedContentColor = SelectedContentContentColor,
                 unselectedContentColor = UnSelectedTabContentColor,
                 onClick = {
-                    tabPosition.value = index
+                    onPositionChange(index)
                     coroutineScope.launch {
                         pagerState.animateScrollToPage(index)
                     }

@@ -22,7 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsRoute
-import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksRoute
+import com.android.hindara.booking.app.ui.appmenu.bookmarks.bookmarksRoute
 import com.android.hindara.booking.app.ui.appmenu.settings.settingsRoute
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.home.homeRoute

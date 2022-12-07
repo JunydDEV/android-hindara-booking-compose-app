@@ -8,10 +8,9 @@ import com.android.hindara.booking.app.ui.appmenu.appMenuGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookings.MyBookingsViewModel
 import com.android.hindara.booking.app.ui.appmenu.mybookings.bottomsheets.details.bookingDetailsBottomSheetGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsGraph
-import com.android.hindara.booking.app.ui.appmenu.mybookmarks.bookmarksGraph
+import com.android.hindara.booking.app.ui.appmenu.bookmarks.bookmarksGraph
 import com.android.hindara.booking.app.ui.appmenu.settings.settingsGraph
 import com.android.hindara.booking.app.ui.authentication.authenticationGraph
-import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.emailVerificationBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.forgotPasswordBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.resetPasswordNavGraph
