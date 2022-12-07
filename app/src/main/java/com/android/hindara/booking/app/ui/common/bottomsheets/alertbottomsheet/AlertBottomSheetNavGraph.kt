@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult
+package com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

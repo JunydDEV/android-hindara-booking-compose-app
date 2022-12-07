@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.common.bottomsheets.states
+package com.android.hindara.booking.app.data
 
 class AlertType {
 

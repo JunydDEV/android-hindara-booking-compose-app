@@ -32,6 +32,10 @@
     <!--App Tab Titles-->
     <string name="tab_login_label">Log In</string>
     <string name="tab_signup_label">Sign Up</string>
+    <string name="tab_recommended_label">Recommended</string>
+    <string name="tab_popular_label">Popular</string>
+    <string name="tab_trending_label">Trending</string>
+
 
     <!--App Labels-->
     <string name="label_travel_with_no_worry">Travel With No Worry</string>
@@ -92,6 +96,9 @@
     <string name="label_price_range">Price Range</string>
     <string name="label_facilities">Facilities</string>
     <string name="label_welcome_message">Good Morning,\nStephanie!</string>
+    <string name="label_taxes_and_fees">Taxes &amp; Fees %s</string>
+    <string name="label_nights">Nights %s</string>
+
 
     <!--Images Description-->
     <string name="image_getting_started" translatable="false">Getting started image</string>

@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult
+package com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -19,7 +19,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsRoute
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
+import com.android.hindara.booking.app.data.AlertType
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 

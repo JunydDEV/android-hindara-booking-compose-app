@@ -16,8 +16,8 @@ import com.android.hindara.booking.app.ui.common.bottomsheets.composables.Bottom
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.appmenu.mybookings.MyBookingsViewModel
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
-import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
+import com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet.alertBottomSheetRoute
+import com.android.hindara.booking.app.data.AlertType
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.common.BookingDatesComposable
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelInfoComposable
@@ -50,7 +50,7 @@ fun BookingDetailsContent(
             BookingDatesComposable(checkInDate, checkOutDate)
             PaymentStatusComposable()
             CancelButtonComposable {
-                val destination = alertBottomSheetRoute.replace("{type}",AlertType.cancelBookingConfirmation)
+                val destination = alertBottomSheetRoute.replace("{type}", AlertType.cancelBookingConfirmation)
                 navController.navigate(destination){
                     popUpTo(bookingDetailsBottomSheetRoute){
                         inclusive = true

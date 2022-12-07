@@ -1,8 +1,8 @@
-package com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult
+package com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
+import com.android.hindara.booking.app.data.AlertType
 import javax.inject.Inject
 
 class AlertViewModel @Inject constructor() : ViewModel() {

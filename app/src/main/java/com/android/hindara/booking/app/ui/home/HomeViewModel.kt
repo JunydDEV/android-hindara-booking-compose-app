@@ -19,19 +19,19 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     fun getFeaturedCategories(): List<FeaturedCategory> {
         val list = mutableListOf<FeaturedCategory>()
 
-        val recommendedCategory = getCategory("Recommended")
+        val recommendedCategory = getCategory(R.string.tab_recommended_label)
         list.add(recommendedCategory)
 
-        val popularCategory = getCategory("Popular")
+        val popularCategory = getCategory(R.string.tab_popular_label)
         list.add(popularCategory)
 
-        val trendingCategory = getCategory("Trending")
+        val trendingCategory = getCategory(R.string.tab_trending_label)
         list.add(trendingCategory)
 
         return list
     }
 
-    private fun getCategory(name: String): FeaturedCategory {
+    private fun getCategory(name: Int): FeaturedCategory {
         val recommendedHotels = mutableListOf<Hotel>()
         recommendedHotels.add(
             Hotel(
@@ -146,7 +146,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 }
 
 data class FeaturedCategory(
-    val categoryName: String,
+    val categoryName: Int,
     val hotelsList: List<Hotel>
 )
 

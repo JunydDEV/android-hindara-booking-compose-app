@@ -32,6 +32,10 @@
     <!--App Tab Titles-->
     <string name="tab_login_label">تسجيل الدخول</string>
     <string name="tab_signup_label">اشتراك</string>
+    <string name="tab_recommended_label">مستحسن</string>
+    <string name="tab_popular_label">جمع</string>
+    <string name="tab_trending_label">الشائع</string>
+
 
     <!--App Labels-->
     <string name="label_travel_with_no_worry">السفر دون قلق</string>
@@ -91,7 +95,9 @@
     <string name="label_location">موقع</string>
     <string name="label_price_range">نطاق السعر</string>
     <string name="label_facilities">مرافق</string>
-    <string name="label_welcome_message">صباح الخير, ستيفاني،</string>
+    <string name="label_welcome_message">صباح الخير ستيفاني،</string>
+    <string name="label_taxes_and_fees">الضرائب والرسوم %s</string>
+    <string name="label_nights">ليالي %s</string>
 
     <!--Images Description-->
     <string name="image_getting_started">Getting started image</string>

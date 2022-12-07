@@ -10,12 +10,12 @@ import androidx.compose.ui.unit.sp
 import com.android.hindara.booking.app.R
 
 val fonts = FontFamily(
-    Font(R.font.baloo_regular),
-    Font(R.font.baloo_bold, weight = FontWeight.Bold),
-    Font(R.font.baloo_semibold, weight = FontWeight.SemiBold),
-    Font(R.font.baloo_medium, weight = FontWeight.Medium),
-    Font(R.font.baloo_regular, weight = FontWeight.Thin),
-    Font(R.font.baloo_regular, weight = FontWeight.Normal, style = FontStyle.Italic),
+    Font(R.font.app_font_regular),
+    Font(R.font.app_font_bold, weight = FontWeight.Bold),
+    Font(R.font.app_font_semibold, weight = FontWeight.SemiBold),
+    Font(R.font.app_font_medium, weight = FontWeight.Medium),
+    Font(R.font.app_font_regular, weight = FontWeight.Thin),
+    Font(R.font.app_font_regular, weight = FontWeight.Normal, style = FontStyle.Italic),
 )
 
 // Set of Material typography styles to start with

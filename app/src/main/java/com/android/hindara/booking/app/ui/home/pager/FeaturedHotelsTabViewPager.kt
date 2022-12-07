@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.FeaturedCategory
@@ -73,7 +74,7 @@ private fun TabRowComposable(
                 },
                 text = {
                     Text(
-                        text = category.categoryName,
+                        text = stringResource(id = category.categoryName),
                         style = MaterialTheme.typography.body1
                     )
                 },

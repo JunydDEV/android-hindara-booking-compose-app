@@ -20,8 +20,8 @@ import com.android.hindara.booking.app.ui.common.bottomsheets.composables.Bottom
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
-import com.android.hindara.booking.app.ui.common.bottomsheets.jobflowresult.alertBottomSheetRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.states.AlertType
+import com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet.alertBottomSheetRoute
+import com.android.hindara.booking.app.data.AlertType
 import com.android.hindara.booking.app.ui.hoteldetails.common.*
 import com.android.hindara.booking.app.ui.theme.*
 
@@ -104,17 +104,19 @@ private fun HorizontalLineComposable() {
 
 @Composable
 fun TaxesAndFeesComposable(viewModel: BookingSharedViewModel) {
-    val tax = viewModel.chosenHotel.tax
+    val taxFormatter = stringResource(id = R.string.label_taxes_and_fees)
+    val tax = taxFormatter.format(viewModel.chosenHotel.tax)
     val taxTotal = viewModel.getTaxTotal()
-    HindaraCommonRow(label = "Taxes & Fees ($tax%)", value = "$$taxTotal")
+    HindaraCommonRow(label = tax, value = "$$taxTotal")
 }
 
 @Composable
 fun BookedNightsComposable(viewModel: BookingSharedViewModel) {
-    val nightsCount = viewModel.getReservedNightsCount()
+    val nightsCountFormatter = stringResource(id = R.string.label_nights)
+    val nightsCount = nightsCountFormatter.format(viewModel.getReservedNightsCount())
     val totalOfReservedNights = viewModel.getTotalOfReservedNights()
 
-    HindaraCommonRow(label = "$nightsCount Nights", value = "$$totalOfReservedNights")
+    HindaraCommonRow(label = nightsCount, value = "$$totalOfReservedNights")
 }
 
 @Composable

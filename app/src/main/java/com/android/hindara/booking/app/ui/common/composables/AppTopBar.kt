@@ -57,6 +57,7 @@ fun AppTopBar(
             )
         }
 
+
         menuItemToShow?.let {
             Image(
                 modifier = Modifier.clickable {
@@ -66,7 +67,7 @@ fun AppTopBar(
                 contentDescription = null,
                 colorFilter = ColorFilter.tint(DarkTextColor)
             )
-        }
+        } ?: Spacer(modifier = Modifier.wrapContentSize())
     }
 }
 
