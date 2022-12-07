@@ -17,7 +17,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -72,12 +74,21 @@ private fun SpacerComposable() {
 
 @Composable
 private fun OnboardingImageComposable(selectedImage: OnboardingImage) {
-    val onBoardingImageModifier = Modifier.size(
-        width = getOnBoardingImageSizeInDp().first,
-        height = getOnBoardingImageSizeInDp().second
-    )
+    val onBoardingImageModifier = Modifier
+        .clip(
+            RoundedCornerShape(
+                topEnd = dimensionResource(id = R.dimen.hotel_content_corners_size),
+                bottomEnd = dimensionResource(id = R.dimen.hotel_content_corners_size)
+            )
+        )
+        .size(
+            width = getOnBoardingImageSizeInDp().first,
+            height = getOnBoardingImageSizeInDp().second
+        )
+
     Image(
         modifier = onBoardingImageModifier,
+        contentScale = ContentScale.Crop,
         painter = painterResource(id = selectedImage.imageDrawable),
         contentDescription = stringResource(R.string.image_getting_started)
     )

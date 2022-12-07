@@ -28,6 +28,7 @@ import com.android.hindara.booking.app.ui.home.homeNavGraph
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
+import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
 import com.android.hindara.booking.app.ui.reviews.reviewsGraph
 import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.search.searchScreenNavGraph
@@ -53,7 +54,7 @@ fun HindaraAppNavHost(
         bottomSheetNavigator = bottomSheetNavigator
     ) {
 
-        NavHost(navController = navController, startDestination = authenticationRoute) {
+        NavHost(navController = navController, startDestination = onboardingRoute) {
             // Main Screens
             onboardingGraph(navController)
             authenticationGraph(navController)
