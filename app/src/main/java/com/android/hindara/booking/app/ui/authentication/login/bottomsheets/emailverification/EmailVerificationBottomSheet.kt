@@ -8,7 +8,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -25,9 +24,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
-import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.forgotPasswordBottomSheetRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.resetPasswordBottomSheetRoute
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 
@@ -88,7 +86,7 @@ private fun DigitsLazyRowComposable() {
 
 @Composable
 fun DigitFieldComposable(isLastField: Boolean, isFirsField: Boolean) {
-    val focus = LocalFocusManager.current
+    val focusManager = LocalFocusManager.current
     val fieldState = remember {
         mutableStateOf("")
     }
@@ -103,73 +101,79 @@ fun DigitFieldComposable(isLastField: Boolean, isFirsField: Boolean) {
         shape = RoundedCornerShape(dimensionResource(id = R.dimen.digit_field_corners_size)),
         singleLine = true,
         textStyle = TextStyle(textAlign = TextAlign.Center).plus(MaterialTheme.typography.h1),
-        keyboardActions = onKeyboardAction(focus),
+        keyboardActions = onKeyboardAction(focusManager),
         keyboardOptions = getKeyboardOptions(isLastField),
         colors = getTextFieldColors(),
         onValueChange = {
             handleDigitsFieldFocus(
-                text = it,
-                fieldState = fieldState,
+                digit = it,
+                onDigitChange = { fieldState.value = it },
                 isFirsField = isFirsField,
                 isLastField = isLastField,
-                focus = focus
+                focusManager = focusManager
             )
         },
     )
 }
 
 private fun handleDigitsFieldFocus(
-    text: String,
-    fieldState: MutableState<String>,
+    digit: String,
+    onDigitChange: (String) -> Unit,
     isFirsField: Boolean,
     isLastField: Boolean,
-    focus: FocusManager
+    focusManager: FocusManager
 ) {
-    if (text.isEmpty()) {
-        removeDigitAndMoveFocusBack(fieldState, text, isFirsField, focus)
-    } else if (text.length == 1) {
-        insertDigitAndMoveFocusNext(fieldState, text, isLastField, focus)
+    if (digit.isEmpty()) {
+        removeDigitAndMoveFocusBack(
+            digit = digit,
+            onDigitChange = onDigitChange,
+            isFirsField =  isFirsField,
+            focusManager = focusManager)
+    } else if (digit.length == 1) {
+        insertDigitAndMoveFocusNext(digit, onDigitChange, isLastField, focusManager)
     }
 }
 
 private fun insertDigitAndMoveFocusNext(
-    fieldState: MutableState<String>,
-    text: String,
+    digit: String,
+    onDigitChange: (String) -> Unit,
     isLastField: Boolean,
-    focus: FocusManager
+    focusManager: FocusManager
 ) {
-    fieldState.value = text
+    onDigitChange(digit)
+
     if (isLastField) {
-        focus.clearFocus()
+        focusManager.clearFocus()
     } else {
-        focus.moveFocus(FocusDirection.Next)
+        focusManager.moveFocus(FocusDirection.Next)
     }
 }
 
 private fun removeDigitAndMoveFocusBack(
-    fieldState: MutableState<String>,
-    text: String,
+    digit: String,
+    onDigitChange: (String) -> Unit,
     isFirsField: Boolean,
-    focus: FocusManager
+    focusManager: FocusManager
 ) {
-    fieldState.value = text
+    onDigitChange(digit)
+
     if (isFirsField) {
-        focus.clearFocus()
+        focusManager.clearFocus()
     } else {
-        focus.moveFocus(FocusDirection.Previous)
+        focusManager.moveFocus(FocusDirection.Previous)
     }
 }
 
 @Composable
 private fun onKeyboardAction(
-    focus: FocusManager
+    focusManager: FocusManager
 ) = KeyboardActions(
-    onNext = { focus.moveFocus(FocusDirection.Next) },
+    onNext = { focusManager.moveFocus(FocusDirection.Next) },
     onDone = {
-        focus.clearFocus()
+        focusManager.clearFocus()
     },
     onPrevious = {
-        focus.moveFocus(FocusDirection.Previous)
+        focusManager.moveFocus(FocusDirection.Previous)
     }
 )
 

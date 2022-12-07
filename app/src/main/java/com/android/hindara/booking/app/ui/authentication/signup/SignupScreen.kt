@@ -13,7 +13,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -33,6 +32,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.PasswordTextFieldComposable
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.getTextFieldColors
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
 
@@ -201,38 +202,6 @@ private fun PasswordTextFieldLabelComposable() {
 }
 
 @Composable
-fun PasswordTextFieldComposable() {
-    val focus = LocalFocusManager.current
-    val textFieldPasswordState = remember { mutableStateOf("") }
-    val showPasswordState = remember { mutableStateOf(false) }
-
-    val passwordTextFieldModifier = Modifier
-        .fillMaxWidth()
-        .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
-        )
-
-    TextField(
-        modifier = passwordTextFieldModifier,
-        value = textFieldPasswordState.value,
-        onValueChange = { textFieldPasswordState.value = it },
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
-        colors = getTextFieldColors(),
-        singleLine = true,
-        textStyle = MaterialTheme.typography.body1,
-        keyboardOptions = getPasswordKeyboardOptions(),
-        keyboardActions = onKeyboardAction(focus),
-        placeholder = { PasswordPlaceholderContent(MaterialTheme.typography) },
-        visualTransformation = getPasswordTransformation(showPasswordState),
-        trailingIcon = {
-            val (icon, iconColor) = getVisibilitySelectionPair(showPasswordState)
-            PasswordVisibilityTrailingIcon(showPasswordState, icon, iconColor)
-        }
-    )
-}
-
-@Composable
 private fun PasswordPlaceholderContent(typography: Typography) {
     Text(
         text = stringResource(R.string.textField_password_placeholder),
@@ -262,10 +231,9 @@ private fun SignupButtonComposable(navController: NavController) {
 }
 
 @Composable
-private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
-    backgroundColor = FieldBackgroundColor,
-    focusedIndicatorColor = Color.Transparent,
-    unfocusedIndicatorColor = Color.Transparent
+private fun getKeyboardOptions(imeAction: ImeAction, keyboardType: KeyboardType) = KeyboardOptions(
+    imeAction = imeAction,
+    keyboardType = keyboardType
 )
 
 @Composable
@@ -273,45 +241,6 @@ private fun onKeyboardAction(focus: FocusManager) = KeyboardActions(
     onNext = { focus.moveFocus(FocusDirection.Down) },
     onDone = { focus.clearFocus() }
 )
-
-@Composable
-private fun getKeyboardOptions(imeAction: ImeAction, keyboardType: KeyboardType) = KeyboardOptions(
-    imeAction = imeAction,
-    keyboardType = keyboardType
-)
-
-@Composable
-private fun getPasswordKeyboardOptions() = KeyboardOptions(
-    imeAction = ImeAction.Done,
-    keyboardType = KeyboardType.Password
-)
-
-@Composable
-private fun getVisibilitySelectionPair(showPasswordState: MutableState<Boolean>) =
-    if (showPasswordState.value) {
-        Pair(Icons.Filled.Visibility, PrimaryColor)
-    } else {
-        Pair(Icons.Filled.VisibilityOff, DarkTextColor)
-    }
-
-@Composable
-private fun getPasswordTransformation(showPasswordState: MutableState<Boolean>) =
-    if (showPasswordState.value) VisualTransformation.None else PasswordVisualTransformation()
-
-@Composable
-private fun PasswordVisibilityTrailingIcon(
-    showPasswordState: MutableState<Boolean>,
-    icon: ImageVector,
-    iconColor: Color
-) {
-    IconButton(onClick = { showPasswordState.value = !showPasswordState.value }) {
-        Icon(
-            imageVector = icon,
-            tint = iconColor,
-            contentDescription = stringResource(R.string.image_password_visibility),
-        )
-    }
-}
 
 private fun navigationToHomeScreen(navController: NavController) {
     navController.navigate(homeRoute) {

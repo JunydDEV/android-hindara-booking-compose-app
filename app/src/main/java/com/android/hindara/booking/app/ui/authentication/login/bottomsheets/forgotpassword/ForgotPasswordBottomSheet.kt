@@ -1,16 +1,18 @@
 package com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -20,9 +22,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.emailVerificationBottomSheetRoute
-import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.getTextFieldColors
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
 
 @Composable
 fun ForgotPasswordBottomSheet(
@@ -91,13 +95,6 @@ fun ForgotPasswordEmailTextFieldComposable() {
         },
     )
 }
-
-@Composable
-private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
-    backgroundColor = FieldBackgroundColor,
-    focusedIndicatorColor = Color.Transparent,
-    unfocusedIndicatorColor = Color.Transparent
-)
 
 @Composable
 private fun onKeyboardAction(focus: FocusManager) =

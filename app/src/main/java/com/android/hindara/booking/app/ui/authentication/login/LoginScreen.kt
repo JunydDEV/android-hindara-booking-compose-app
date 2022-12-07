@@ -33,7 +33,10 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.utils.getHalfScreenWidth
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.PasswordTextFieldComposable
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.forgotpassword.forgotPasswordBottomSheetRoute
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.getTextFieldColors
+import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.onKeyboardAction
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
 
@@ -50,6 +53,10 @@ private fun MainScreenContent(navController: NavController) {
     val mainModifier = Modifier
         .fillMaxSize()
         .background(ScreenBackgroundColor)
+        .padding(
+            start = dimensionResource(id = R.dimen.default_spacing),
+            end = dimensionResource(id = R.dimen.default_spacing)
+        )
         .verticalScroll(rememberScrollState())
 
     Column(modifier = mainModifier) {
@@ -74,7 +81,7 @@ private fun MainScreenContent(navController: NavController) {
 fun SocialAuthLoginButtonsComposable() {
     val rowContentModifier = Modifier
         .fillMaxWidth()
-        .padding(dimensionResource(id = R.dimen.default_spacing))
+        .padding(top = dimensionResource(id = R.dimen.default_spacing))
     Row(
         modifier = rowContentModifier,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -90,8 +97,8 @@ private fun EmailTextFieldLabelComposable() {
         .fillMaxWidth()
         .padding(
             top = dimensionResource(id = R.dimen.default_spacing),
-            start = dimensionResource(id = R.dimen.large_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.small_spacing),
+            end = dimensionResource(id = R.dimen.small_spacing),
         )
     Text(
         modifier = emailLabelModifier,
@@ -108,12 +115,7 @@ fun EmailTextFieldComposable() {
         mutableStateOf("")
     }
 
-    val emailTextFieldModifier = Modifier
-        .fillMaxWidth()
-        .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
-        )
+    val emailTextFieldModifier = Modifier.fillMaxWidth()
 
     TextField(
         modifier = emailTextFieldModifier,
@@ -137,8 +139,8 @@ private fun PasswordTextFieldLabelComposable() {
         .fillMaxWidth()
         .padding(
             top = dimensionResource(id = R.dimen.default_spacing),
-            start = dimensionResource(id = R.dimen.large_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.small_spacing),
+            end = dimensionResource(id = R.dimen.small_spacing),
         )
     Text(
         modifier = passwordLabelModifier,
@@ -149,49 +151,12 @@ private fun PasswordTextFieldLabelComposable() {
 }
 
 @Composable
-fun PasswordTextFieldComposable() {
-    val focus = LocalFocusManager.current
-    val textFieldPasswordState = remember { mutableStateOf("") }
-    val showPasswordState = remember { mutableStateOf(false) }
-
-    val passwordTextFieldModifier = Modifier
-        .fillMaxWidth()
-        .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
-        )
-
-    TextField(
-        modifier = passwordTextFieldModifier,
-        value = textFieldPasswordState.value,
-        onValueChange = { textFieldPasswordState.value = it },
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
-        colors = getTextFieldColors(),
-        singleLine = true,
-        textStyle = typography.body1,
-        keyboardOptions = getPasswordKeyboardOptions(),
-        keyboardActions = onKeyboardAction(focus),
-        placeholder = { PasswordPlaceholderContent(typography) },
-        visualTransformation = getPasswordTransformation(showPasswordState),
-        trailingIcon = {
-            val (icon, iconColor) = getVisibilitySelectionPair(showPasswordState)
-            PasswordVisibilityTrailingIcon(showPasswordState, icon, iconColor)
-        }
-    )
-}
-
-@Composable
 fun ForgotPasswordTextComposable(navController: NavController) {
     Box(
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.CenterEnd,
     ) {
-        val forgotPasswordTextModifier = Modifier
-            .padding(
-                top = dimensionResource(id = R.dimen.default_spacing),
-                start = dimensionResource(id = R.dimen.large_spacing),
-                end = dimensionResource(id = R.dimen.default_spacing),
-            )
+        val forgotPasswordTextModifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing))
 
         Text(
             modifier = forgotPasswordTextModifier.clickable {
@@ -216,7 +181,7 @@ fun HorizontalLineComposable() {
         .wrapContentWidth()
         .background(ScreenBackgroundColor)
         .padding(
-            start = dimensionResource(id = R.dimen.large_spacing),
+            start = dimensionResource(id = R.dimen.default_spacing),
             end = dimensionResource(id = R.dimen.default_spacing),
         )
 
@@ -246,12 +211,7 @@ fun HorizontalLineComposable() {
 
 @Composable
 private fun LoginButtonComposable(navController: NavController) {
-    val loginButtonModifier = Modifier
-        .fillMaxWidth()
-        .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
-        )
+    val loginButtonModifier = Modifier.fillMaxWidth()
     Button(
         modifier = loginButtonModifier,
         shape = RoundedCornerShape(CornerSize(100.dp)),
@@ -294,9 +254,7 @@ private fun FacebookAuthButtonContentComposable() {
             modifier = Modifier.size(ButtonDefaults.IconSize)
         )
         Spacer(
-            modifier = Modifier
-                .width(10.dp)
-                .height(10.dp)
+            modifier = Modifier.width(10.dp).height(10.dp)
         )
         Text(
             text = stringResource(R.string.button_facebook_label),
@@ -366,59 +324,4 @@ private fun getEmailKeyboardOptions() = KeyboardOptions(
     imeAction = ImeAction.Next,
     keyboardType = KeyboardType.Email
 )
-
-@Composable
-private fun PasswordPlaceholderContent(typography: Typography) {
-    Text(
-        text = stringResource(R.string.textField_password_placeholder),
-        style = typography.body1,
-        color = FieldPlaceholderColor
-    )
-}
-
-@Composable
-private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
-    backgroundColor = FieldBackgroundColor,
-    focusedIndicatorColor = Color.Transparent,
-    unfocusedIndicatorColor = Color.Transparent
-)
-
-@Composable
-private fun onKeyboardAction(focus: FocusManager) = KeyboardActions(
-    onNext = { focus.moveFocus(FocusDirection.Down) },
-    onDone = { focus.clearFocus() }
-)
-
-@Composable
-private fun getPasswordKeyboardOptions() = KeyboardOptions(
-    imeAction = ImeAction.Done,
-    keyboardType = KeyboardType.Password
-)
-
-@Composable
-private fun getPasswordTransformation(showPasswordState: MutableState<Boolean>) =
-    if (showPasswordState.value) VisualTransformation.None else PasswordVisualTransformation()
-
-@Composable
-private fun PasswordVisibilityTrailingIcon(
-    showPasswordState: MutableState<Boolean>,
-    icon: ImageVector,
-    iconColor: Color
-) {
-    IconButton(onClick = { showPasswordState.value = !showPasswordState.value }) {
-        Icon(
-            imageVector = icon,
-            tint = iconColor,
-            contentDescription = stringResource(R.string.image_password_visibility),
-        )
-    }
-}
-
-@Composable
-private fun getVisibilitySelectionPair(showPasswordState: MutableState<Boolean>) =
-    if (showPasswordState.value) {
-        Pair(Icons.Filled.Visibility, PrimaryColor)
-    } else {
-        Pair(Icons.Filled.VisibilityOff, DarkTextColor)
-    }
 
