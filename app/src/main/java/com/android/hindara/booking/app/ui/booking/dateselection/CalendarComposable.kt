@@ -35,11 +35,17 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.utils.toTitleCase
 
 @Composable
-fun CalendarComposable(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
-    CalendarContent(selectionState)
+fun CalendarComposable(
+    selectedDate: Pair<LocalDate?, LocalDate?>,
+    onSelectDateValue: (Pair<LocalDate?, LocalDate?>) -> Unit,
+) {
+    CalendarContent(selectedDate, onSelectDateValue)
 }
 @Composable
-fun CalendarContent(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
+fun CalendarContent(
+    selectedDate: Pair<LocalDate?, LocalDate?>,
+    onSelectDateValue: (Pair<LocalDate?, LocalDate?>) -> Unit
+) {
     val currentMonth = remember { YearMonth.now() }
     val startMonth = remember { currentMonth.minusMonths(100) }
     val endMonth = remember { currentMonth.plusMonths(100) }
@@ -53,7 +59,7 @@ fun CalendarContent(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) 
     )
 
     HorizontalCalendar(state = state, dayContent = {
-        Day(it, selectionState)
+        Day(it, selectedDate, onSelectDateValue)
     }, monthHeader = { month ->
         val daysOfWeek = month.weekDays.first().map { it.date.dayOfWeek }
         MonthHeader(daysOfWeek = daysOfWeek, month = month)
@@ -99,12 +105,16 @@ fun CalendarTitle(month: CalendarMonth) {
 
 
 @Composable
-fun Day(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
+fun Day(
+    day: CalendarDay,
+    selectedDate: Pair<LocalDate?, LocalDate?>,
+    onSelectDateValue: (Pair<LocalDate?, LocalDate?>) -> Unit
+) {
 
-    val backgroundShape = getCalendarDayBackgroundShape(day, selectionState)
-    val backgroundColor = getCalendarDayBackgroundColor(day, selectionState)
-    val selectedTextColor = getSelectionTextColor(day, selectionState)
-    val rangeBackgroundColor = getRangeSelectionBackgroundColor(day, selectionState)
+    val backgroundShape = getCalendarDayBackgroundShape(day, selectedDate)
+    val backgroundColor = getCalendarDayBackgroundColor(day, selectedDate)
+    val selectedTextColor = getSelectionTextColor(day, selectedDate)
+    val rangeBackgroundColor = getRangeSelectionBackgroundColor(day, selectedDate)
 
     val calendarDayModifier = Modifier
         .aspectRatio(1f)
@@ -112,11 +122,11 @@ fun Day(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDat
             if (isSelectionInvalid(day)) {
                 return@clickable
             }
-            onDaySelection(day, selectionState)
+            onDaySelection(day, selectedDate, onSelectDateValue)
         }
     Box(modifier = calendarDayModifier, contentAlignment = Alignment.Center) {
         val rangeSelectionModifier =
-            getRangeSelectionModifier(day, selectionState, rangeBackgroundColor)
+            getRangeSelectionModifier(day, selectedDate, rangeBackgroundColor)
 
         val daySelectionModifier = Modifier
             .clip(backgroundShape)
@@ -132,10 +142,10 @@ fun Day(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDat
 @Composable
 private fun getRangeSelectionModifier(
     day: CalendarDay,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>,
+    selectedDate: Pair<LocalDate?, LocalDate?>,
     backgroundColor: Color
-) = if (isSelectedDay(day, selectionState)) {
-    val shape = if (isStartSelectedDay(day, selectionState)) {
+) = if (isSelectedDay(day, selectedDate)) {
+    val shape = if (isStartSelectedDay(day, selectedDate)) {
         RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp)
     } else {
         RoundedCornerShape(topEnd = 20.dp, bottomEnd = 20.dp)
@@ -154,11 +164,11 @@ private fun getRangeSelectionModifier(
 }
 
 fun getRangeSelectionBackgroundColor(
-    day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+    day: CalendarDay,
+    selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
-    val currentSelectionState = selectionState.value
-    val startDate = currentSelectionState.first
-    val endDate = currentSelectionState.second
+    val startDate = selectedDate.first
+    val endDate = selectedDate.second
 
     if (startDate == null || endDate == null) {
         return WhiteColor
@@ -175,9 +185,10 @@ fun getRangeSelectionBackgroundColor(
 }
 
 fun getSelectionTextColor(
-    day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+    day: CalendarDay,
+    selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
-    return if (isSelectedDay(day, selectionState)) {
+    return if (isSelectedDay(day, selectedDate)) {
         WhiteColor
     } else {
         getCalendarDayTextColor(day)
@@ -186,21 +197,19 @@ fun getSelectionTextColor(
 
 private fun isSelectedDay(
     day: CalendarDay,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+    selectedDate: Pair<LocalDate?, LocalDate?>
 ): Boolean {
-    val currentSelectionState = selectionState.value
-    val startDate = currentSelectionState.first
-    val endDate = currentSelectionState.second
+    val startDate = selectedDate.first
+    val endDate = selectedDate.second
 
     return startDate == day.date || endDate == day.date
 }
 
 private fun isStartSelectedDay(
     day: CalendarDay,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+    selectedDate: Pair<LocalDate?, LocalDate?>
 ): Boolean {
-    val currentSelectionState = selectionState.value
-    val startDate = currentSelectionState.first
+    val startDate = selectedDate.first
 
     return startDate?.dayOfMonth == day.date.dayOfMonth
 }
@@ -223,10 +232,9 @@ private fun getCalendarDayTextColor(day: CalendarDay) = when (day.position) {
 @Composable
 fun getCalendarDayBackgroundShape(
     day: CalendarDay,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+    selectedDate: Pair<LocalDate?, LocalDate?>
 ): Shape {
-    val currentSelectionState = selectionState.value
-    return if (isCalendarDayEqualsSelectedDay(day, currentSelectionState)) {
+    return if (isCalendarDayEqualsSelectedDay(day, selectedDate)) {
         CircleShape
     } else {
         RectangleShape
@@ -236,10 +244,9 @@ fun getCalendarDayBackgroundShape(
 @Composable
 fun getCalendarDayBackgroundColor(
     day: CalendarDay,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>
+    selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
-    val currentSelectionState = selectionState.value
-    return if (isCalendarDayEqualsSelectedDay(day, currentSelectionState)) {
+    return if (isCalendarDayEqualsSelectedDay(day, selectedDate)) {
         PrimaryColor
     } else {
         Color.Transparent
@@ -258,11 +265,14 @@ fun isSelectionInvalid(day: CalendarDay): Boolean {
     return dayPosition == DayPosition.InDate || dayPosition == DayPosition.OutDate
 }
 
-fun onDaySelection(day: CalendarDay, selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
-    val previousPair = selectionState.value
+fun onDaySelection(
+    day: CalendarDay,
+    selectedDate: Pair<LocalDate?, LocalDate?>,
+    onSelectDateValue: (Pair<LocalDate?, LocalDate?>) -> Unit
+) {
 
-    var startDate = previousPair.component1()
-    var endDate = previousPair.component2()
+    var startDate = selectedDate.component1()
+    var endDate = selectedDate.component2()
 
     if (!isSelected(startDate)) {
         startDate = day.date
@@ -278,7 +288,7 @@ fun onDaySelection(day: CalendarDay, selectionState: MutableState<Pair<LocalDate
     }
 
     val newPair = Pair(startDate, endDate)
-    selectionState.value = newPair
+    onSelectDateValue(newPair)
 }
 
 private fun isSelected(startDaySelection: LocalDate?) = startDaySelection != null

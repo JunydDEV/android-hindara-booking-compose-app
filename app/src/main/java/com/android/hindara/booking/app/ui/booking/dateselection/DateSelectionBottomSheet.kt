@@ -7,7 +7,6 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,14 +37,21 @@ fun DateSelectionBottomSheet(
     val selectionState = remember {
         mutableStateOf(Pair<LocalDate?, LocalDate?>(null, null))
     }
-    DateSelectionContentComposable(navController, viewModel, selectionState, homeViewModel)
+    DateSelectionContentComposable(
+        navController = navController,
+        viewModel = viewModel,
+        selectedDate = selectionState.value,
+        onSelectDateValue = { selectionState.value = it },
+        homeViewModel = homeViewModel
+    )
 }
 
 @Composable
 private fun DateSelectionContentComposable(
     navController: NavController,
     viewModel: BookingSharedViewModel,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>,
+    selectedDate: Pair<LocalDate?, LocalDate?>,
+    onSelectDateValue: (Pair<LocalDate?, LocalDate?>) -> Unit,
     homeViewModel: HomeViewModel
 ) {
     val mainModifier = Modifier
@@ -53,23 +59,22 @@ private fun DateSelectionContentComposable(
         .padding(dimensionResource(id = R.dimen.default_spacing))
 
     Column(modifier = mainModifier) {
-        CalendarComposable(selectionState)
-        SelectedDaysComposable(selectionState)
-        if (hasBookingDatesChosen(selectionState)) {
-            ContinueButtonComposable(navController, viewModel, selectionState, homeViewModel)
+        CalendarComposable(selectedDate, onSelectDateValue)
+        SelectedDaysComposable(selectedDate)
+        if (hasBookingDatesChosen(selectedDate)) {
+            ContinueButtonComposable(navController, viewModel, selectedDate, homeViewModel)
         }
     }
 }
 
 @Composable
-private fun hasBookingDatesChosen(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) =
-    selectionState.value.first != null && selectionState.value.second != null
+private fun hasBookingDatesChosen(selectedDate: Pair<LocalDate?, LocalDate?>) =
+    selectedDate.first != null && selectedDate.second != null
 
 @Composable
-fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDate?>>) {
-    val currentSelectionState = selectionState.value
-    val checkInDate = currentSelectionState.first
-    val checkOutDate = currentSelectionState.second
+fun SelectedDaysComposable(selectedDate: Pair<LocalDate?, LocalDate?>) {
+    val checkInDate = selectedDate.first
+    val checkOutDate = selectedDate.second
 
     if (checkInDate == null || checkOutDate == null)
         return
@@ -119,7 +124,7 @@ fun SelectedDaysComposable(selectionState: MutableState<Pair<LocalDate?, LocalDa
 private fun ContinueButtonComposable(
     navController: NavController,
     viewModel: BookingSharedViewModel,
-    selectionState: MutableState<Pair<LocalDate?, LocalDate?>>,
+    selectedDate: Pair<LocalDate?, LocalDate?>,
     homeViewModel: HomeViewModel
 ) {
     val buttonModifier = Modifier
@@ -132,8 +137,8 @@ private fun ContinueButtonComposable(
         modifier = buttonModifier,
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),
         onClick = {
-            val checkInDate = selectionState.value.first!!
-            val checkOutDate = selectionState.value.second!!
+            val checkInDate = selectedDate.first!!
+            val checkOutDate = selectedDate.second!!
             viewModel.checkInDate = checkInDate
             viewModel.checkOutDate = checkOutDate
             viewModel.chosenHotel = homeViewModel.getSelectedHotel()
