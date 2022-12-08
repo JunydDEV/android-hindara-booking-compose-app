@@ -8,25 +8,21 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -35,7 +31,9 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.PasswordTextFieldComposable
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.getTextFieldColors
 import com.android.hindara.booking.app.ui.home.homeRoute
-import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 
 @Composable
 fun SignupScreen(
@@ -45,35 +43,42 @@ fun SignupScreen(
     val parentColumnModifier = Modifier
         .fillMaxSize()
         .background(ScreenBackgroundColor)
+        .padding(dimensionResource(id = R.dimen.default_spacing))
         .verticalScroll(rememberScrollState())
     Column(
-        modifier = parentColumnModifier
+        modifier = parentColumnModifier,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.large_spacing))
     ) {
-        SpacerComposable()
-        UsernameTextFieldLabelComposable()
-        UsernameFieldComposable()
-
-        SpacerComposable()
-        EmailTextFieldLabelComposable()
-        EmailTextFieldComposable()
-
-        SpacerComposable()
-        PasswordTextFieldLabelComposable()
-        PasswordTextFieldComposable()
-
-        SpacerComposable()
+        UserNameComposable()
+        EmailComposable()
+        PasswordComposable()
         SignupButtonComposable(navController)
     }
 }
 
 @Composable
-private fun SpacerComposable() {
-    val height = dimensionResource(id = R.dimen.default_spacing)
-    Spacer(
-        Modifier
-            .fillMaxWidth()
-            .height(height)
-    )
+private fun UserNameComposable() {
+    Column(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing))) {
+        UsernameTextFieldLabelComposable()
+        UsernameFieldComposable()
+    }
+}
+
+@Composable
+private fun EmailComposable() {
+    Column {
+        EmailTextFieldLabelComposable()
+        EmailTextFieldComposable()
+    }
+}
+
+
+@Composable
+private fun PasswordComposable() {
+    Column {
+        PasswordTextFieldLabelComposable()
+        PasswordTextFieldComposable()
+    }
 }
 
 @Composable
@@ -81,9 +86,8 @@ private fun UsernameTextFieldLabelComposable() {
     val emailLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.default_spacing),
-            start = dimensionResource(id = R.dimen.large_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.small_spacing),
+            end = dimensionResource(id = R.dimen.small_spacing),
         )
     Text(
         modifier = emailLabelModifier,
@@ -100,12 +104,7 @@ fun UsernameFieldComposable() {
         mutableStateOf("")
     }
 
-    val emailTextFieldModifier = Modifier
-        .fillMaxWidth()
-        .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
-        )
+    val emailTextFieldModifier = Modifier.fillMaxWidth()
 
     TextField(
         modifier = emailTextFieldModifier,
@@ -135,9 +134,7 @@ private fun EmailTextFieldLabelComposable() {
     val emailLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.default_spacing),
-            start = dimensionResource(id = R.dimen.large_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.small_spacing),
         )
     Text(
         modifier = emailLabelModifier,
@@ -154,12 +151,7 @@ fun EmailTextFieldComposable() {
         mutableStateOf("")
     }
 
-    val emailTextFieldModifier = Modifier
-        .fillMaxWidth()
-        .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
-        )
+    val emailTextFieldModifier = Modifier.fillMaxWidth()
 
     TextField(
         modifier = emailTextFieldModifier,
@@ -189,9 +181,7 @@ private fun PasswordTextFieldLabelComposable() {
     val passwordLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.default_spacing),
-            start = dimensionResource(id = R.dimen.large_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
+            start = dimensionResource(id = R.dimen.small_spacing),
         )
     Text(
         modifier = passwordLabelModifier,
@@ -202,21 +192,11 @@ private fun PasswordTextFieldLabelComposable() {
 }
 
 @Composable
-private fun PasswordPlaceholderContent(typography: Typography) {
-    Text(
-        text = stringResource(R.string.textField_password_placeholder),
-        style = typography.body1,
-        color = FieldPlaceholderColor
-    )
-}
-
-@Composable
 private fun SignupButtonComposable(navController: NavController) {
     val loginButtonModifier = Modifier
         .fillMaxWidth()
         .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
+            top = dimensionResource(id = R.dimen.default_spacing),
             bottom = dimensionResource(id = R.dimen.default_spacing)
         )
     Button(

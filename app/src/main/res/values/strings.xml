@@ -32,7 +32,7 @@
     <!--App Tab Titles-->
     <string name="tab_login_label">Log In</string>
     <string name="tab_signup_label">Sign Up</string>
-    <string name="tab_recommended_label">Recommended</string>
+    <string name="tab_recommended_label">Best</string>
     <string name="tab_popular_label">Popular</string>
     <string name="tab_trending_label">Trending</string>
 
@@ -98,6 +98,9 @@
     <string name="label_welcome_message">Good Morning,\nStephanie!</string>
     <string name="label_taxes_and_fees">Taxes &amp; Fees %s</string>
     <string name="label_nights">Nights %s</string>
+    <string name="label_profile_name">Stephanie</string>
+    <string name="label_profile_country">United Kingdom</string>
+    <string name="label_profile_address">London Street</string>
 
 
     <!--Images Description-->

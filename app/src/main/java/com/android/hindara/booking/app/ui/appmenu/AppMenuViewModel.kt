@@ -1,5 +1,7 @@
 package com.android.hindara.booking.app.ui.appmenu
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
 import javax.inject.Inject
@@ -8,10 +10,10 @@ class AppMenuViewModel @Inject constructor() : ViewModel() {
 
     fun getProfileInfo(): ProfileInfo {
         return ProfileInfo(
-            name = "Ahmad Ali",
-            country = "United Arab Emirates",
+            name = R.string.label_profile_name,
+            country = R.string.label_profile_country,
             picture = R.drawable.ic_profile_picture,
-            address = "NA",
+            address = R.string.label_profile_address,
             phoneNumber = "NA",
             bookingHistory = BookingHistory(
                 totalBookings = 2,
@@ -33,10 +35,10 @@ class AppMenuViewModel @Inject constructor() : ViewModel() {
 }
 
 data class ProfileInfo(
-    val name: String,
-    val picture: Int,
-    val country: String,
-    val address: String,
+    @StringRes val name: Int,
+    @DrawableRes val picture: Int,
+    @StringRes val country: Int,
+    @StringRes val address: Int,
     val phoneNumber: String,
     val bookingHistory: BookingHistory,
 

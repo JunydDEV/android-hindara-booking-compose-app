@@ -95,9 +95,12 @@
     <string name="label_location">موقع</string>
     <string name="label_price_range">نطاق السعر</string>
     <string name="label_facilities">مرافق</string>
-    <string name="label_welcome_message">صباح الخير ستيفاني،</string>
+    <string name="label_welcome_message">صباح الخير، أحمد</string>
     <string name="label_taxes_and_fees">الضرائب والرسوم %s</string>
     <string name="label_nights">ليالي %s</string>
+    <string name="label_profile_name">أحمد</string>
+    <string name="label_profile_country">الامارات العربية المتحدة</string>
+    <string name="label_profile_address">جزيرة الريم</string>
 
     <!--Images Description-->
     <string name="image_getting_started">Getting started image</string>
@@ -120,4 +123,5 @@
     <string name="image_settings">Settings image</string>
     <string name="image_search_hotel">Search hotel image</string>
     <string name="image_result_alert">Result alert image</string>
+
 </resources>

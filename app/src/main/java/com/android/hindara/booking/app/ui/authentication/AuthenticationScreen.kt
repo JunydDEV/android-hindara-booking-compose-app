@@ -1,5 +1,6 @@
 package com.android.hindara.booking.app.ui.authentication
 
+import android.util.LayoutDirection
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -7,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -16,6 +18,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.authentication.login.*
 import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
 import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.utils.isRtlLayout
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
@@ -111,7 +114,13 @@ private fun TabRowComposable(
         selectedTabIndex = positionValue,
         backgroundColor = TabBackgroundColor,
         indicator = { tabPositions ->
-            TabIndicatorComposable(pagerState, tabPositions)
+            val rtlTabsPosition =
+                if (isRtlLayout()) {
+                    tabPositions.reversed()
+                } else {
+                    tabPositions
+                }
+            TabIndicatorComposable(pagerState, rtlTabsPosition)
         }
     ) {
         tabTitles.forEachIndexed { index, title ->

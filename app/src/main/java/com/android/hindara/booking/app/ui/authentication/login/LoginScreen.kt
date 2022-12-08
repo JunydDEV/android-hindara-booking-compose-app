@@ -53,25 +53,40 @@ private fun MainScreenContent(navController: NavController) {
     val mainModifier = Modifier
         .fillMaxSize()
         .background(ScreenBackgroundColor)
-        .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing)
-        )
+        .padding(dimensionResource(id = R.dimen.default_spacing))
         .verticalScroll(rememberScrollState())
 
-    Column(modifier = mainModifier) {
-        SpacerComposable()
+    Column(
+        modifier = mainModifier,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.large_spacing))
+    ) {
+        EmailComposable()
+        PasswordComposable()
+        ForgotPasswordTextComposable(navController)
+        BottomButtonAreaComposable(navController)
+    }
+}
+
+@Composable
+private fun EmailComposable() {
+    Column {
         EmailTextFieldLabelComposable()
         EmailTextFieldComposable()
+    }
+}
 
-        SpacerComposable()
+@Composable
+private fun PasswordComposable() {
+    Column {
         PasswordTextFieldLabelComposable()
         PasswordTextFieldComposable()
+    }
+}
 
-        ForgotPasswordTextComposable(navController)
-        SpacerComposable()
+@Composable
+private fun BottomButtonAreaComposable(navController: NavController) {
+    Column {
         LoginButtonComposable(navController)
-
         HorizontalLineComposable()
         SocialAuthLoginButtonsComposable()
     }
@@ -81,7 +96,10 @@ private fun MainScreenContent(navController: NavController) {
 fun SocialAuthLoginButtonsComposable() {
     val rowContentModifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.default_spacing))
+        .padding(
+            top = dimensionResource(id = R.dimen.default_spacing),
+            bottom = dimensionResource(id = R.dimen.default_spacing)
+        )
     Row(
         modifier = rowContentModifier,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -96,7 +114,6 @@ private fun EmailTextFieldLabelComposable() {
     val emailLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.default_spacing),
             start = dimensionResource(id = R.dimen.small_spacing),
             end = dimensionResource(id = R.dimen.small_spacing),
         )
@@ -138,7 +155,6 @@ private fun PasswordTextFieldLabelComposable() {
     val passwordLabelModifier = Modifier
         .fillMaxWidth()
         .padding(
-            top = dimensionResource(id = R.dimen.default_spacing),
             start = dimensionResource(id = R.dimen.small_spacing),
             end = dimensionResource(id = R.dimen.small_spacing),
         )
@@ -156,10 +172,8 @@ fun ForgotPasswordTextComposable(navController: NavController) {
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.CenterEnd,
     ) {
-        val forgotPasswordTextModifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing))
-
         Text(
-            modifier = forgotPasswordTextModifier.clickable {
+            modifier = Modifier.clickable {
                 navController.navigate(forgotPasswordBottomSheetRoute)
             },
             text = stringResource(R.string.label_forgot_password_q),
@@ -254,7 +268,9 @@ private fun FacebookAuthButtonContentComposable() {
             modifier = Modifier.size(ButtonDefaults.IconSize)
         )
         Spacer(
-            modifier = Modifier.width(10.dp).height(10.dp)
+            modifier = Modifier
+                .width(10.dp)
+                .height(10.dp)
         )
         Text(
             text = stringResource(R.string.button_facebook_label),

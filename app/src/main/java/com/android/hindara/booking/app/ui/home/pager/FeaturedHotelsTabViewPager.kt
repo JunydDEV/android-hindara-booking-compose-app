@@ -1,11 +1,13 @@
 package com.android.hindara.booking.app.ui.home.pager
 
+import android.util.LayoutDirection
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
@@ -13,6 +15,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.FeaturedCategory
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.utils.isRtlLayout
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
@@ -50,15 +53,20 @@ private fun TabRowComposable(
     tabTitles: List<FeaturedCategory>
 ) {
     val coroutineScope = rememberCoroutineScope()
-    ScrollableTabRow(
+    TabRow(
         selectedTabIndex = tabPosition.value,
         backgroundColor = ScreenBackgroundColor,
-        edgePadding = dimensionResource(id = R.dimen.default_spacing),
         divider = {
             TabRowDefaults.Divider(color = Color.Transparent)
         },
         indicator = { tabPositions ->
-            TabIndicatorComposable(pagerState, tabPositions)
+            val rtlTabsPosition =
+                if (isRtlLayout()) {
+                    tabPositions.reversed()
+                } else {
+                    tabPositions
+                }
+            TabIndicatorComposable(pagerState, rtlTabsPosition)
         }
     ) {
         tabTitles.forEachIndexed { index, category ->

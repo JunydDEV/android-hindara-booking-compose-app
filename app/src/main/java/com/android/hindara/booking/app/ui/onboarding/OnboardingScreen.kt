@@ -134,6 +134,7 @@ private fun OnboardingBottomNavigationComposable(
         .padding(
             start = dimensionResource(id = R.dimen.default_spacing),
             end = dimensionResource(id = R.dimen.default_spacing),
+            top = dimensionResource(id = R.dimen.default_spacing)
         )
     OnboardingNavigationComposable(
         onboardingNavigationModifier,

@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -82,6 +83,7 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
             }
         Image(
             modifier = profilePictureModifier,
+            contentScale = ContentScale.Crop,
             painter = painterResource(id = profileInfo.picture),
             contentDescription = stringResource(R.string.image_profile)
         )
@@ -93,7 +95,7 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
         }
         Text(
             modifier = nameModifier,
-            text = profileInfo.name,
+            text = stringResource(id = profileInfo.name),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.h1,
@@ -107,7 +109,7 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
         }
         Text(
             modifier = countryModifier,
-            text = profileInfo.country,
+            text = stringResource(id = profileInfo.country),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.body1,
@@ -132,7 +134,7 @@ fun MenuItemsComposable(navController: NavController, viewModel: AppMenuViewMode
         SpacerComposable()
         SpacerComposable()
         MenuItemRow(items[MenuList.HELP]) {
-
+            // TODO: needs to be implemented
         }
         MenuItemRow(items[MenuList.LOGOUT]) {
             navController.navigate(authenticationRoute) {

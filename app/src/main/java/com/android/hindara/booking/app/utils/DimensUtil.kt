@@ -1,5 +1,6 @@
 package com.android.hindara.booking.app.utils
 
+import android.util.LayoutDirection
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
@@ -50,3 +51,7 @@ fun getHalfScreenWidth(): Dp {
     val configuration = LocalConfiguration.current
     return configuration.screenWidthDp.div(2.5).dp
 }
+
+@Composable
+fun isRtlLayout() = LocalConfiguration.current.layoutDirection == LayoutDirection.RTL
+
