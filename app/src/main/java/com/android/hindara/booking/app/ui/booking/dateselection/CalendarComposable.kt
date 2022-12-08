@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.ui.theme.PrimaryColor
 import com.android.hindara.booking.app.ui.theme.RangeBackgroundColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
@@ -146,20 +145,25 @@ private fun getRangeSelectionModifier(
     backgroundColor: Color
 ) = if (isSelectedDay(day, selectedDate)) {
     val shape = if (isStartSelectedDay(day, selectedDate)) {
-        RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp)
+        RoundedCornerShape(
+            topStart = dimensionResource(id = R.dimen.hotel_content_corners_size),
+            bottomStart = dimensionResource(id = R.dimen.hotel_content_corners_size))
     } else {
-        RoundedCornerShape(topEnd = 20.dp, bottomEnd = 20.dp)
+        RoundedCornerShape(
+            topEnd = dimensionResource(id = R.dimen.hotel_content_corners_size),
+            bottomEnd = dimensionResource(id = R.dimen.hotel_content_corners_size)
+        )
 
     }
     Modifier
         .fillMaxWidth()
         .clip(shape)
-        .height(30.dp)
+        .height(dimensionResource(id = R.dimen.range_selection_shape_size))
         .background(backgroundColor)
 } else {
     Modifier
         .fillMaxWidth()
-        .height(30.dp)
+        .height(dimensionResource(id = R.dimen.range_selection_shape_size))
         .background(backgroundColor)
 }
 

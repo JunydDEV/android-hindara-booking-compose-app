@@ -23,7 +23,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
@@ -201,7 +200,9 @@ private fun SignupButtonComposable(navController: NavController) {
         )
     Button(
         modifier = loginButtonModifier,
-        shape = RoundedCornerShape(CornerSize(100.dp)),
+        shape = RoundedCornerShape(
+            CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))
+        ),
         onClick = {
             navigationToHomeScreen(navController)
         },

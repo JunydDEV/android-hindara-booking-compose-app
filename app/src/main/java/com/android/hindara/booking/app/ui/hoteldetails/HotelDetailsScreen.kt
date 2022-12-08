@@ -16,7 +16,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintLayoutScope
@@ -32,6 +31,9 @@ import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
 import com.google.android.gms.maps.model.*
 import com.google.maps.android.compose.*
+
+const val DESCRIPTION_MAX_LIMIT = 150
+const val REVIEWS_MAX_LIMIT = 150
 
 @Composable
 fun HotelDetailsScreen(
@@ -95,8 +97,11 @@ fun ConstraintLayoutScope.BackButtonComposable(
     val extraLargeSpacing = dimensionResource(id = R.dimen.extra_large_spacing)
     val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
     val backButtonBoxModifier = Modifier
-        .size(50.dp, 50.dp)
-        .clip(RoundedCornerShape(10.dp))
+        .size(
+            width = dimensionResource(id = R.dimen.details_screen_nav_button_size),
+            height = dimensionResource(id = R.dimen.details_screen_nav_button_size)
+        )
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.details_screen_nav_button_corners_size)))
         .background(BlackGradientColor)
         .padding(dimensionResource(id = R.dimen.tiny_spacing))
         .constrainAs(backButton) {
@@ -123,8 +128,11 @@ fun ConstraintLayoutScope.BookmarkButtonComposable(bookmarkButton: ConstrainedLa
     val extraLargeSpacing = dimensionResource(id = R.dimen.extra_large_spacing)
     val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
     val bookMarkButtonBoxModifier = Modifier
-        .size(50.dp, 50.dp)
-        .clip(RoundedCornerShape(10.dp))
+        .size(
+            width = dimensionResource(id = R.dimen.details_screen_nav_button_size),
+            height = dimensionResource(id = R.dimen.details_screen_nav_button_size)
+        )
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.details_screen_nav_button_corners_size)))
         .background(BlackGradientColor)
         .padding(dimensionResource(id = R.dimen.tiny_spacing))
         .constrainAs(bookmarkButton) {
@@ -191,7 +199,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             overflow = TextOverflow.Ellipsis,
             color = DarkTextColor
         )
-        if (hotel.description.length > 150) {
+        if (hotel.description.length > DESCRIPTION_MAX_LIMIT) {
             Text(
                 modifier = Modifier
                     .wrapContentWidth()
@@ -211,11 +219,11 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             style = MaterialTheme.typography.h1,
             color = DarkTextColor
         )
-        repeat(2) {
+        repeat(REVIEWS_MAX_LIMIT) {
             ReviewItemComposable(review = hotel.reviewsList[it])
         }
 
-        if (hotel.reviewsList.size > 2) {
+        if (hotel.reviewsList.size > REVIEWS_MAX_LIMIT) {
             Text(
                 modifier = Modifier
                     .wrapContentWidth()

@@ -17,7 +17,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.Reviews
@@ -72,7 +71,10 @@ fun ReviewItemComposable(
             items(5) {
                 Image(
                     modifier = Modifier
-                        .size(18.dp, 18.dp)
+                        .size(
+                            width = dimensionResource(id = R.dimen.rating_star_size),
+                            height = dimensionResource(id = R.dimen.rating_star_size)
+                        )
                         .padding(end = dimensionResource(id = R.dimen.tiny_spacing)),
                     painter = painterResource(id = R.drawable.ic_star), contentDescription = null
                 )

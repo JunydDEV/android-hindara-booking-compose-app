@@ -220,7 +220,9 @@ private fun LoginButtonComposable(navController: NavController) {
     val loginButtonModifier = Modifier.fillMaxWidth()
     Button(
         modifier = loginButtonModifier,
-        shape = RoundedCornerShape(CornerSize(100.dp)),
+        shape = RoundedCornerShape(
+            CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))
+        ),
         onClick = {
             navigationToHomeScreen(navController)
         },
@@ -243,7 +245,9 @@ private fun FacebookAuthButtonComposable() {
         .width(getHalfScreenWidth())
     Button(
         modifier = facebookButtonModifier,
-        shape = RoundedCornerShape(CornerSize(100.dp)),
+        shape = RoundedCornerShape(
+            CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))
+        ),
         colors = ButtonDefaults.buttonColors(backgroundColor = FacebookColor),
         onClick = { /*TODO*/ },
     ) {
@@ -277,7 +281,9 @@ private fun GoogleAuthButtonComposable() {
         .width(getHalfScreenWidth())
     Button(
         modifier = googleButtonModifier,
-        shape = RoundedCornerShape(CornerSize(100.dp)),
+        shape = RoundedCornerShape(
+            CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))
+        ),
         colors = ButtonDefaults.buttonColors(backgroundColor = WhiteColor),
         onClick = { /*TODO*/ },
     ) {
