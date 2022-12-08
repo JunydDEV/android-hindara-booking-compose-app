@@ -34,7 +34,12 @@ fun FeaturedOnHomeScreenListing(viewModel: HomeViewModel, navController: NavCont
             }
         }
 
-        TabRowComposable(tabIndexState, pagerState, categories)
+        TabRowComposable(
+            tabPosition = tabIndexState.value,
+            onTabPositionChange = { tabIndexState.value = it },
+            pagerState = pagerState,
+            tabTitles = categories
+        )
         HorizontalPagerComposable(
             homeViewModel = viewModel,
             navController = navController,
@@ -48,13 +53,14 @@ fun FeaturedOnHomeScreenListing(viewModel: HomeViewModel, navController: NavCont
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun TabRowComposable(
-    tabPosition: MutableState<Int>,
+    tabPosition: Int,
+    onTabPositionChange: (Int) -> Unit,
     pagerState: PagerState,
     tabTitles: List<FeaturedCategory>
 ) {
     val coroutineScope = rememberCoroutineScope()
     TabRow(
-        selectedTabIndex = tabPosition.value,
+        selectedTabIndex = tabPosition,
         backgroundColor = ScreenBackgroundColor,
         divider = {
             TabRowDefaults.Divider(color = Color.Transparent)
@@ -71,11 +77,11 @@ private fun TabRowComposable(
     ) {
         tabTitles.forEachIndexed { index, category ->
             Tab(
-                selected = tabPosition.value == index,
+                selected = tabPosition == index,
                 selectedContentColor = SelectedContentContentColor,
                 unselectedContentColor = UnSelectedTabContentColor,
                 onClick = {
-                    tabPosition.value = index
+                    onTabPositionChange(index)
                     coroutineScope.launch {
                         pagerState.animateScrollToPage(index)
                     }
