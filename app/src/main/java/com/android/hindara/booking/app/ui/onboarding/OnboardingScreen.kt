@@ -27,12 +27,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.OnboardingImage
-import com.android.hindara.booking.app.utils.getOnBoardingImageSizeInDp
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
 import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 import com.android.hindara.booking.app.ui.theme.SelectedDotTintColor
 import com.android.hindara.booking.app.ui.theme.UnSelectedDotTintColor
+import com.android.hindara.booking.app.utils.OnboardingContentSlideAnimation
+import com.android.hindara.booking.app.utils.getOnBoardingImageSizeInDp
 
 
 @Composable
@@ -44,7 +45,6 @@ fun OnboardingScreen(
     val imageSelectionState = remember {
         mutableStateOf(0)
     }
-    val selectedImage = onboardingImagesList[imageSelectionState.value]
 
     val parentColumnModifier = Modifier
         .fillMaxSize()
@@ -52,14 +52,24 @@ fun OnboardingScreen(
         .verticalScroll(rememberScrollState())
     Column(modifier = parentColumnModifier) {
         SpacerComposable()
-        OnboardingImageComposable(selectedImage)
-        OnboardingTitleComposable(selectedImage)
-        OnboardingDescriptionComposable(selectedImage)
+        OnboardingContentSlideAnimation(imageSelectionState.value) {
+            val selectedImage = onboardingImagesList[it]
+            OnboardingSlide(selectedImage)
+        }
         OnboardingBottomNavigationComposable(
             navHostController,
             onboardingImagesList,
             imageSelectionState
         )
+    }
+}
+
+@Composable
+private fun OnboardingSlide(selectedImage: OnboardingImage) {
+    Column {
+        OnboardingImageComposable(selectedImage)
+        OnboardingTitleComposable(selectedImage)
+        OnboardingDescriptionComposable(selectedImage)
     }
 }
 

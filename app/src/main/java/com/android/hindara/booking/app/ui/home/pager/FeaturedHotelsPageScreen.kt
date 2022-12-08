@@ -2,7 +2,6 @@ package com.android.hindara.booking.app.ui.home.pager
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,6 +24,7 @@ import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.BlackGradientColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
+import com.android.hindara.booking.app.utils.noRippleClickable
 
 @Composable
 fun FeaturedHotelsPageScreen(
@@ -51,7 +51,7 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
 
     val constrainLayoutModifier = Modifier
         .wrapContentSize()
-        .clickable {
+        .noRippleClickable {
             homeViewModel.onHotelSelect(hotel)
             navController.navigate(hotelDetailsRoute)
         }

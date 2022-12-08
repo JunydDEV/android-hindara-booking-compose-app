@@ -1,10 +1,13 @@
 package com.android.hindara.booking.app.ui.authentication.login
 
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.runtime.Composable
@@ -31,6 +34,7 @@ import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.onKe
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getHalfScreenWidth
+import com.android.hindara.booking.app.utils.noRippleClickable
 
 @Composable
 fun LoginScreen(
@@ -165,7 +169,7 @@ fun ForgotPasswordTextComposable(navController: NavController) {
         contentAlignment = Alignment.CenterEnd,
     ) {
         Text(
-            modifier = Modifier.clickable {
+            modifier = Modifier.noRippleClickable {
                 navController.navigate(forgotPasswordBottomSheetRoute)
             },
             text = stringResource(R.string.label_forgot_password_q),

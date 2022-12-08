@@ -1,7 +1,6 @@
 package com.android.hindara.booking.app.ui.common.composables
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -14,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.utils.noRippleClickable
 
 @Composable
 fun AppTopBar(
@@ -37,7 +37,7 @@ fun AppTopBar(
 
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
-                modifier = Modifier.clickable {
+                modifier = Modifier.noRippleClickable {
                     navController.popBackStack()
                 },
                 painter = painterResource(id = R.drawable.ic_back),
@@ -60,7 +60,7 @@ fun AppTopBar(
 
         menuItemToShow?.let {
             Image(
-                modifier = Modifier.clickable {
+                modifier = Modifier.noRippleClickable {
                     menuItemClick?.invoke()
                 },
                 painter = painterResource(id = getMenuItemIcon(menuItemToShow)),

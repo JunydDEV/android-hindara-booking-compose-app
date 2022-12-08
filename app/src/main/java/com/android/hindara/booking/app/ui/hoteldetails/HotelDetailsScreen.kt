@@ -29,11 +29,14 @@ import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposab
 import com.android.hindara.booking.app.ui.reviews.reviewsRoute
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
-import com.google.android.gms.maps.model.*
+import com.android.hindara.booking.app.utils.noRippleClickable
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
 
-const val DESCRIPTION_MAX_LIMIT = 150
-const val REVIEWS_MAX_LIMIT = 150
+private const val DESCRIPTION_MAX_LIMIT = 150
+private const val REVIEWS_MAX_LIMIT = 2
 
 @Composable
 fun HotelDetailsScreen(
@@ -203,7 +206,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             Text(
                 modifier = Modifier
                     .wrapContentWidth()
-                    .clickable {
+                    .noRippleClickable {
                         navController.navigate(moreDescriptionRoute)
                     },
                 text = stringResource(R.string.label_read_more),
@@ -227,7 +230,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             Text(
                 modifier = Modifier
                     .wrapContentWidth()
-                    .clickable {
+                    .noRippleClickable {
                         navController.navigate(reviewsRoute)
                     },
                 text = stringResource(R.string.label_see_more_reviews),
@@ -237,11 +240,6 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
         }
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.large_spacing)))
     }
-}
-
-@Composable
-private fun SmallSpacer() {
-    Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)))
 }
 
 @Composable

@@ -1,7 +1,6 @@
 package com.android.hindara.booking.app.ui.booking.dateselection
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,20 +17,21 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
+import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.PrimaryColor
 import com.android.hindara.booking.app.ui.theme.RangeBackgroundColor
 import com.android.hindara.booking.app.ui.theme.WhiteColor
+import com.android.hindara.booking.app.utils.noRippleClickable
+import com.android.hindara.booking.app.utils.toTitleCase
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.core.CalendarDay
+import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
-import com.kizitonwose.calendar.core.CalendarMonth
-import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.utils.toTitleCase
 
 @Composable
 fun CalendarComposable(
@@ -117,9 +117,9 @@ fun Day(
 
     val calendarDayModifier = Modifier
         .aspectRatio(1f)
-        .clickable {
+        .noRippleClickable {
             if (isSelectionInvalid(day)) {
-                return@clickable
+                return@noRippleClickable
             }
             onDaySelection(day, selectedDate, onSelectDateValue)
         }

@@ -51,7 +51,3 @@ fun getHalfScreenWidth(): Dp {
     val configuration = LocalConfiguration.current
     return configuration.screenWidthDp.div(2.5).dp
 }
-
-@Composable
-fun isRtlLayout() = LocalConfiguration.current.layoutDirection == LayoutDirection.RTL
-
