@@ -7,7 +7,6 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -42,8 +41,9 @@ fun PaymentMethodsBottomSheet(
     PaymentSelectionContentComposable(
         navController = navController,
         viewModel = viewModel,
-        paymentMethods = paymentMethods,
-        paymentMethodSelectionState = paymentMethodSelectionState,
+        paymentMethodsList = paymentMethods,
+        paymentMethod = paymentMethodSelectionState.value,
+        onPaymentSelection = { paymentMethodSelectionState.value = it }
     )
 }
 
@@ -51,16 +51,22 @@ fun PaymentMethodsBottomSheet(
 private fun PaymentSelectionContentComposable(
     navController: NavController,
     viewModel: BookingSharedViewModel,
-    paymentMethods: List<PaymentMethod>,
-    paymentMethodSelectionState: MutableState<PaymentMethod?>,
+    paymentMethodsList: List<PaymentMethod>,
+    paymentMethod: PaymentMethod?,
+    onPaymentSelection: (PaymentMethod?) -> Unit,
 ) {
     BottomSheetContentWithTitle(stringResource(R.string.label_payment_methods)) {
-        PaymentMethodsListComposable(viewModel, paymentMethods, paymentMethodSelectionState)
-        if (paymentMethodSelectionState.value != null) {
+        PaymentMethodsListComposable(
+            viewModel = viewModel,
+            paymentMethods = paymentMethodsList,
+            paymentMethod = paymentMethod,
+            onPaymentSelection = onPaymentSelection
+        )
+        if (paymentMethod != null) {
             ContinueButtonComposable(
                 sharedViewModel = viewModel,
                 navController = navController,
-                paymentMethod =  paymentMethodSelectionState.value!!
+                paymentMethod =  paymentMethod
             )
         }
     }
@@ -70,7 +76,8 @@ private fun PaymentSelectionContentComposable(
 fun PaymentMethodsListComposable(
     viewModel: BookingSharedViewModel,
     paymentMethods: List<PaymentMethod>,
-    paymentMethodSelectionState: MutableState<PaymentMethod?>
+    paymentMethod: PaymentMethod?,
+    onPaymentSelection: (PaymentMethod?) -> Unit
 ) {
     val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
     LazyColumn(
@@ -78,14 +85,16 @@ fun PaymentMethodsListComposable(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         items(paymentMethods.size) {
-            PaymentMethodComposable(paymentMethods[it], paymentMethodSelectionState)
+            PaymentMethodComposable(paymentMethods[it], paymentMethod, onPaymentSelection)
         }
     }
 }
 
 @Composable
 fun PaymentMethodComposable(
-    paymentMethod: PaymentMethod, paymentMethodSelectionState: MutableState<PaymentMethod?>
+    newSelectedPaymentMethod: PaymentMethod,
+    lastSelectedPaymentMethod: PaymentMethod?,
+    onPaymentSelection: (PaymentMethod?) -> Unit
 ) {
     ApplicationCard {
         Row(
@@ -94,13 +103,13 @@ fun PaymentMethodComposable(
             verticalAlignment = Alignment.CenterVertically
         ) {
             val selectionState =
-                paymentMethodSelectionState.value != null && paymentMethodSelectionState.value!!.name == paymentMethod.name
+                lastSelectedPaymentMethod != null && lastSelectedPaymentMethod.name == newSelectedPaymentMethod.name
 
-            Image(painter = painterResource(id = paymentMethod.icon), contentDescription = null)
-            Text(text = stringResource(id = paymentMethod.name))
+            Image(painter = painterResource(id = newSelectedPaymentMethod.icon), contentDescription = null)
+            Text(text = stringResource(id = newSelectedPaymentMethod.name))
             RadioButton(selected = selectionState, enabled = true, onClick = {
-                val item = paymentMethod.copy(isSelected = !paymentMethod.isSelected)
-                paymentMethodSelectionState.value = item
+                val item = newSelectedPaymentMethod.copy(isSelected = !newSelectedPaymentMethod.isSelected)
+                onPaymentSelection(item)
             })
         }
     }
