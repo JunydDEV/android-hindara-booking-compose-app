@@ -1,5 +1,6 @@
 package com.android.hindara.booking.app
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -32,11 +33,12 @@ import com.android.hindara.booking.app.ui.reviews.reviewsGraph
 import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.search.searchScreenNavGraph
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 
-@OptIn(ExperimentalMaterialNavigationApi::class)
+@OptIn(ExperimentalMaterialNavigationApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun AppNavHost(
     navController: NavHostController,
@@ -53,7 +55,7 @@ fun AppNavHost(
         bottomSheetNavigator = bottomSheetNavigator
     ) {
 
-        NavHost(navController = navController, startDestination = onboardingRoute) {
+        AnimatedNavHost(navController = navController, startDestination = onboardingRoute) {
             // Main Screens
             onboardingGraph(navController)
             authenticationGraph(navController)

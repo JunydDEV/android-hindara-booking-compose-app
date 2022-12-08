@@ -74,6 +74,9 @@ dependencies {
     // BottomSheet Navigation
     implementation "com.google.accompanist:accompanist-navigation-material:$accompaniest_version"
 
+    // Navigation Animation
+    implementation "com.google.accompanist:accompanist-navigation-animation:$accompaniest_version"
+
     // Maps
     implementation 'com.google.maps.android:maps-compose:2.7.2'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
