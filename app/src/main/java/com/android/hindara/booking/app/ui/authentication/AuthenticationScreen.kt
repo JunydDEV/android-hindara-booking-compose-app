@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.authentication.login.*
 import com.android.hindara.booking.app.ui.authentication.signup.SignupScreen
+import com.android.hindara.booking.app.ui.common.composables.SafeArea
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.isRtlLayout
 import com.google.accompanist.pager.*
@@ -36,23 +37,25 @@ fun AuthenticationScreen(
 
 @Composable
 private fun MainScreenContentComposable(navController: NavController) {
-    val mainColumnModifier = Modifier
-        .background(ScreenBackgroundColor)
-        .fillMaxSize()
-    Column(
-        modifier = mainColumnModifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.extra_large_spacing))
-    ) {
-        AppLogoComposable()
-        SwipePagerView(navController)
+    SafeArea {
+        val mainColumnModifier = Modifier
+            .background(ScreenBackgroundColor)
+            .fillMaxSize()
+
+        Column(
+            modifier = mainColumnModifier,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.extra_large_spacing))
+        ) {
+            AppLogoComposable()
+            SwipePagerView(navController)
+        }
     }
 }
 
 @Composable
 private fun AppLogoComposable() {
     Image(
-        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.extra_large_spacing)),
         painter = painterResource(id = R.drawable.ic_hindara),
         contentDescription = stringResource(R.string.image_app_logo)
     )

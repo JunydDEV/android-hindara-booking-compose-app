@@ -26,26 +26,21 @@ import com.android.hindara.booking.app.ui.appmenu.mybookings.myBookingsRoute
 import com.android.hindara.booking.app.ui.appmenu.bookmarks.bookmarksRoute
 import com.android.hindara.booking.app.ui.appmenu.settings.settingsRoute
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
+import com.android.hindara.booking.app.ui.common.composables.SafeArea
 import com.android.hindara.booking.app.ui.home.homeRoute
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
-import com.android.hindara.booking.app.ui.theme.SelectedContentContentColor
-import com.android.hindara.booking.app.ui.theme.WhiteColor
+import com.android.hindara.booking.app.ui.theme.*
 
 @Composable
 fun AppMenuScreen(
     viewModel: AppMenuViewModel = hiltViewModel(),
     navController: NavController
 ) {
-    val parentColumnModifier = Modifier
-        .fillMaxSize()
-        .background(ScreenBackgroundColor)
-    Column(modifier = parentColumnModifier) {
-        SpacerComposable()
-        SpacerComposable()
-        ProfileInfoComposable(viewModel)
-        SpacerComposable()
-        MenuItemsComposable(navController, viewModel)
+    SafeArea {
+        Column {
+            ProfileInfoComposable(viewModel)
+            SpacerComposable()
+            MenuItemsComposable(navController, viewModel)
+        }
     }
 }
 
