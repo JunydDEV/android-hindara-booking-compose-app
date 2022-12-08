@@ -34,25 +34,25 @@ fun SettingsScreen(
             .padding(dimensionResource(id = R.dimen.default_spacing))
             .fillMaxSize()
 
-        Column(modifier) {
+        Column(
+            modifier = modifier,
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.default_spacing))
+        ) {
             SettingsItemComposable(
                 icon = R.drawable.ic_user,
                 label = R.string.label_user_settings,
                 onClick = {}
             )
-            DefaultSpacer()
             SettingsItemComposable(
                 icon = R.drawable.ic_notification,
                 label = R.string.label_notification,
                 onClick = {}
             )
-            DefaultSpacer()
             SettingsItemComposable(
                 icon = R.drawable.ic_phone,
                 label = R.string.label_contact_us,
                 onClick = {}
             )
-            DefaultSpacer()
             SettingsItemComposable(
                 icon = R.drawable.ic_credit_card,
                 label = R.string.label_payment_settings,
@@ -60,11 +60,6 @@ fun SettingsScreen(
             )
         }
     }
-}
-
-@Composable
-private fun DefaultSpacer() {
-    Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing)))
 }
 
 @Composable

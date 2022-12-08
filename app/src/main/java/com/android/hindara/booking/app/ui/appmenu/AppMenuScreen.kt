@@ -36,9 +36,10 @@ fun AppMenuScreen(
     navController: NavController
 ) {
     SafeArea {
-        Column {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.large_spacing))
+        ) {
             ProfileInfoComposable(viewModel)
-            SpacerComposable()
             MenuItemsComposable(navController, viewModel)
         }
     }

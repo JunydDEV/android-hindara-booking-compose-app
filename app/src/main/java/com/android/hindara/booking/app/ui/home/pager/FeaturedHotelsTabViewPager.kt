@@ -83,7 +83,6 @@ private fun TabRowComposable(
                 text = {
                     Text(
                         text = stringResource(id = category.categoryName),
-                        style = MaterialTheme.typography.body1
                     )
                 },
             )

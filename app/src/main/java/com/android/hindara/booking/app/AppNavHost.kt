@@ -38,7 +38,7 @@ import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 
 @OptIn(ExperimentalMaterialNavigationApi::class)
 @Composable
-fun HindaraAppNavHost(
+fun AppNavHost(
     navController: NavHostController,
     bottomSheetNavigator: BottomSheetNavigator,
 ) {

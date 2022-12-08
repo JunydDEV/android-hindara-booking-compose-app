@@ -1,5 +1,6 @@
 package com.android.hindara.booking.app.ui.reviews
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -28,17 +29,17 @@ fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
         }
     ) {
         Column(
-            Modifier
+            modifier = Modifier
                 .padding(it)
                 .padding(dimensionResource(id = R.dimen.default_spacing))
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.small_spacing))
         ) {
             HotelCardComposable(hotel = hotel)
-            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.large_spacing)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)))
             repeat(hotel.reviewsList.size) { index ->
                 ReviewItemComposable(review = hotel.reviewsList[index])
             }
-            Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing)))
         }
     }
 }

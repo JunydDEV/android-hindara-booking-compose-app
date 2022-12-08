@@ -24,13 +24,11 @@ fun HomeScreenContent(
     navController: NavController
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.default_spacing))
     ) {
-        SpacerComposable()
         TitleComposable()
-        SpacerComposable()
         SearchComposable(navController)
-        SpacerComposable()
         FeaturedOnHomeScreenListing(viewModel, navController)
     }
 }
@@ -50,22 +48,14 @@ private fun SearchComposable(navController: NavController) {
 }
 
 @Composable
-private fun SpacerComposable() {
-    Spacer(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.default_spacing))
-    )
-}
-
-@Composable
 private fun TitleComposable() {
     Text(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
                 start = dimensionResource(id = R.dimen.default_spacing),
-                end = dimensionResource(id = R.dimen.default_spacing)
+                end = dimensionResource(id = R.dimen.default_spacing),
+                top = dimensionResource(id = R.dimen.default_spacing)
             ),
         text = stringResource(R.string.label_welcome_message),
         style = MaterialTheme.typography.h1.copy(fontSize = 28.sp),

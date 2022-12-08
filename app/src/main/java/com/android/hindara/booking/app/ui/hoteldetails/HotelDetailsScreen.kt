@@ -171,15 +171,18 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             end.linkTo(parent.end)
         }
 
-    Column(modifier = modifier) {
-        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.half_height_of_banner_layout)))
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.small_spacing))
+    ) {
         Text(
-            modifier = Modifier.wrapContentWidth(),
+            modifier = Modifier
+                .wrapContentWidth()
+                .padding(top = dimensionResource(id = R.dimen.half_height_of_banner_layout)),
             text = stringResource(R.string.label_hotel_description),
             style = MaterialTheme.typography.h1,
             color = DarkTextColor
         )
-        SmallSpacer()
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = hotel.description,
@@ -188,7 +191,6 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             overflow = TextOverflow.Ellipsis,
             color = DarkTextColor
         )
-        SmallSpacer()
         if (hotel.description.length > 150) {
             Text(
                 modifier = Modifier
@@ -200,17 +202,15 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                 style = MaterialTheme.typography.body1,
                 color = SuccessColor
             )
-            SmallSpacer()
         }
         GoogleMapsComposable(hotel)
-        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.large_spacing)))
+        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing)))
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = stringResource(R.string.label_reviews),
             style = MaterialTheme.typography.h1,
             color = DarkTextColor
         )
-        SmallSpacer()
         repeat(2) {
             ReviewItemComposable(review = hotel.reviewsList[it])
         }

@@ -21,7 +21,7 @@ fun HindaraApp() {
             val bottomSheetNavigator = rememberBottomSheetNavigator()
             val navController = rememberNavController(bottomSheetNavigator)
 
-            HindaraAppNavHost(
+            AppNavHost(
                 navController = navController,
                 bottomSheetNavigator = bottomSheetNavigator
             )
