@@ -1,6 +1,5 @@
 package com.android.hindara.booking.app.ui.authentication
 
-import android.util.LayoutDirection
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,7 +7,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -43,26 +41,18 @@ private fun MainScreenContentComposable(navController: NavController) {
         .fillMaxSize()
     Column(
         modifier = mainColumnModifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.extra_large_spacing))
     ) {
-        SpacerComposable()
         AppLogoComposable()
-        SpacerComposable()
         SwipePagerView(navController)
     }
 }
 
 @Composable
-private fun SpacerComposable() {
-    val topSpacerModifier = Modifier
-        .fillMaxWidth()
-        .height(dimensionResource(id = R.dimen.extra_large_spacing))
-    Spacer(modifier = topSpacerModifier)
-}
-
-@Composable
 private fun AppLogoComposable() {
     Image(
+        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.extra_large_spacing)),
         painter = painterResource(id = R.drawable.ic_hindara),
         contentDescription = stringResource(R.string.image_app_logo)
     )
