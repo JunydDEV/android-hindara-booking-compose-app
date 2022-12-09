@@ -1,6 +1,7 @@
 package com.android.hindara.booking.app.ui.booking.paymentselection
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CornerSize
@@ -21,6 +22,7 @@ import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.PaymentMethod
 import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
+import com.android.hindara.booking.app.utils.noRippleClickable
 
 /**
  * Bottom sheet to choose the payment method.
@@ -96,9 +98,15 @@ fun PaymentMethodComposable(
     lastSelectedPaymentMethod: PaymentMethod?,
     onPaymentSelection: (PaymentMethod?) -> Unit
 ) {
+    val modifier = Modifier
+        .clickable {
+            onPaymentSelection(newSelectedPaymentMethod)
+        }
+        .padding(dimensionResource(id = R.dimen.default_spacing))
+
     ApplicationCard {
         Row(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing)),
+            modifier = modifier,
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

@@ -2,6 +2,7 @@ package com.android.hindara.booking.app.ui.home.pager
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,8 +34,7 @@ fun FeaturedHotelsPageScreen(
     category: FeaturedCategory
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         LazyRow {
             items(category.hotelsList.size) {
@@ -51,10 +51,6 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
 
     val constrainLayoutModifier = Modifier
         .wrapContentSize()
-        .noRippleClickable {
-            homeViewModel.onHotelSelect(hotel)
-            navController.navigate(hotelDetailsRoute)
-        }
         .padding(top = defaultSpacing, bottom = defaultSpacing)
 
     ConstraintLayout(modifier = constrainLayoutModifier) {
@@ -63,6 +59,10 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
 
         val featuredImageModifier = Modifier
             .clip(RoundedCornerShape(dimensionResource(id = R.dimen.home_screen_hotel_image_corners_size)))
+            .clickable {
+                homeViewModel.onHotelSelect(hotel)
+                navController.navigate(hotelDetailsRoute)
+            }
             .width(dimensionResource(id = R.dimen.home_screen_hotel_image_width))
             .height(dimensionResource(id = R.dimen.home_screen_hotel_image_height))
             .constrainAs(image) {

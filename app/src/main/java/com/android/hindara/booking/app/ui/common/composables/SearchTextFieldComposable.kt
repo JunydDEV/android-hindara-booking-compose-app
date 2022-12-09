@@ -14,6 +14,7 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
@@ -40,11 +41,8 @@ fun SearchTextFieldComposable(
 
     val searchTextFieldModifier = Modifier
         .fillMaxWidth()
-        .padding(
-            start = dimensionResource(id = R.dimen.default_spacing),
-            end = dimensionResource(id = R.dimen.default_spacing),
-        )
-        .noRippleClickable {
+        .clip(RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))))
+        .clickable {
             if (isClickable) {
                 onClick?.invoke()
             }
@@ -53,7 +51,6 @@ fun SearchTextFieldComposable(
     TextField(
         modifier = searchTextFieldModifier,
         value = value,
-        shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.textField_corners_size))),
         singleLine = true,
         enabled = !readyOnly,
         textStyle = MaterialTheme.typography.body1,

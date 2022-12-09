@@ -62,7 +62,11 @@ fun SearchScreen(
     ) {
         val modifier = Modifier
             .padding(it)
-            .padding(top = dimensionResource(id = R.dimen.default_spacing))
+            .padding(
+                top = dimensionResource(id = R.dimen.default_spacing),
+                start = dimensionResource(id = R.dimen.default_spacing),
+                end = dimensionResource(id = R.dimen.default_spacing)
+            )
         Column(modifier) {
             SearchComposable(viewModel)
             SearchResultsGridComposable(
@@ -75,7 +79,6 @@ fun SearchScreen(
 
 @Composable
 private fun SearchComposable(viewModel: SearchViewModel) {
-
     val searchFieldState = remember {
         mutableStateOf("")
     }
@@ -90,12 +93,17 @@ private fun SearchComposable(viewModel: SearchViewModel) {
 
 @Composable
 fun SearchResultsGridComposable(hotels: List<Hotel>?, onHotelSelect: (Hotel) -> Unit) {
-    if(hotels == null)
+    if (hotels == null)
         return
 
     LazyVerticalGrid(
+        modifier = Modifier.padding(
+            top = dimensionResource(id = R.dimen.default_spacing),
+            bottom = dimensionResource(id = R.dimen.default_spacing)
+        ),
         columns = GridCells.Fixed(COLUMNS_COUNT),
-        contentPadding = PaddingValues(dimensionResource(id = R.dimen.small_spacing))
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.default_spacing)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.default_spacing))
     ) {
         items(hotels.size) {
             HotelCard(hotels[it], onHotelSelect)
@@ -108,7 +116,6 @@ fun HotelCard(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
     val modifier = Modifier
         .wrapContentWidth()
         .wrapContentHeight()
-        .padding(dimensionResource(id = R.dimen.small_spacing))
 
     Card(
         modifier = modifier,
