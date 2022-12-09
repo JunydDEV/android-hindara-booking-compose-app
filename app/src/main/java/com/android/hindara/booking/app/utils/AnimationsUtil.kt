@@ -4,6 +4,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraphBuilder
 import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
 import com.google.accompanist.navigation.animation.composable
@@ -45,16 +46,32 @@ fun NavGraphBuilder.animatedComposable(
     composable(
         route = route,
         enterTransition = {
-            slideInHorizontally(initialOffsetX = { 1000 })
+            if (targetState.destination.hierarchy.any { it.route == route }) {
+                slideInHorizontally(initialOffsetX = { 2000 })
+            } else {
+                null
+            }
         },
         exitTransition = {
-            slideOutHorizontally(targetOffsetX = { -1000 })
+            if (targetState.destination.hierarchy.any { it.route == route }) {
+                slideOutHorizontally(targetOffsetX = { -2000 })
+            } else {
+                null
+            }
         },
         popEnterTransition = {
-            slideInHorizontally(initialOffsetX = { -1000 })
+            if (targetState.destination.hierarchy.any { it.route == route }) {
+                slideInHorizontally(initialOffsetX = { -2000 })
+            } else {
+                null
+            }
         },
         popExitTransition = {
-            slideOutHorizontally(targetOffsetX = { 1000 })
+            if (targetState.destination.hierarchy.any { it.route == route }) {
+                slideOutHorizontally(targetOffsetX = { 2000 })
+            } else {
+                null
+            }
         }
     ) {
         content(it)
