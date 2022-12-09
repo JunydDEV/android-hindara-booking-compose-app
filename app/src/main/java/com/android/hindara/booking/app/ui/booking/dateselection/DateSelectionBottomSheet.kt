@@ -96,7 +96,7 @@ fun SelectedDaysComposable(selectedDate: Pair<LocalDate?, LocalDate?>) {
                 modifier = Modifier.wrapContentWidth(),
                 text = checkInDate.getFormattedDate(),
                 style = MaterialTheme.typography.h1,
-                color = DarkTextColor
+                color = TextColorLight
             )
         }
 
@@ -114,7 +114,7 @@ fun SelectedDaysComposable(selectedDate: Pair<LocalDate?, LocalDate?>) {
                 modifier = Modifier.wrapContentWidth(),
                 text = checkOutDate.getFormattedDate(),
                 style = MaterialTheme.typography.h1,
-                color = DarkTextColor
+                color = TextColorLight
             )
         }
     }

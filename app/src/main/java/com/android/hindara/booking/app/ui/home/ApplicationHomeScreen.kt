@@ -2,17 +2,18 @@ package com.android.hindara.booking.app.ui.home
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun ApplicationHomeScreen(homeViewModel: HomeViewModel, navController: NavController) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        backgroundColor = ScreenBackgroundColor,
+        backgroundColor = MaterialTheme.colors.background,
         topBar = { HomeScreenTopBar(navController) }
     ) {
         val modifier = Modifier.padding(it)

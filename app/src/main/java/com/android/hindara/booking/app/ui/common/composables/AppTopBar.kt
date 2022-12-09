@@ -12,7 +12,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.TextColorLight
 import com.android.hindara.booking.app.utils.noRippleClickable
 
 @Composable
@@ -42,7 +42,7 @@ fun AppTopBar(
                 },
                 painter = painterResource(id = R.drawable.ic_back),
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(DarkTextColor)
+                colorFilter = ColorFilter.tint(TextColorLight)
             )
             Spacer(
                 modifier = Modifier
@@ -53,7 +53,7 @@ fun AppTopBar(
                 modifier = Modifier.wrapContentWidth(),
                 text = title,
                 style = MaterialTheme.typography.h1,
-                color = DarkTextColor
+                color = TextColorLight
             )
         }
 
@@ -65,7 +65,7 @@ fun AppTopBar(
                 },
                 painter = painterResource(id = getMenuItemIcon(menuItemToShow)),
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(DarkTextColor)
+                colorFilter = ColorFilter.tint(TextColorLight)
             )
         } ?: Spacer(modifier = Modifier.wrapContentSize())
     }

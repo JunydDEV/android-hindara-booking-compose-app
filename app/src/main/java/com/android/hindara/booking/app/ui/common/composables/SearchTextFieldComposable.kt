@@ -8,10 +8,7 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -68,11 +65,10 @@ fun SearchTextFieldComposable(
 }
 
 @Composable
-private fun SearchIconComposable() = Image(
+private fun SearchIconComposable() = Icon(
     painter = painterResource(id = R.drawable.ic_search),
-    contentDescription = stringResource(
-        R.string.image_search
-    )
+    tint = MaterialTheme.colors.onSurface,
+    contentDescription = stringResource(R.string.image_search)
 )
 
 
@@ -86,7 +82,7 @@ private fun SearchFieldPlaceholderContent() = Text(
 
 @Composable
 private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
-    backgroundColor = FieldBackgroundColor,
+    backgroundColor = MaterialTheme.colors.surface,
     focusedIndicatorColor = Color.Transparent,
     unfocusedIndicatorColor = Color.Transparent,
     disabledIndicatorColor = Color.Transparent,

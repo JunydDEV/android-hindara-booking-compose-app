@@ -173,7 +173,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                 topEnd = dimensionResource(id = R.dimen.hotel_content_corners_size)
             )
         )
-        .background(ScreenBackgroundColor)
+        .background(ScreenBackgroundColorLight)
         .fillMaxSize()
         .padding(dimensionResource(id = R.dimen.default_spacing))
         .constrainAs(contentSection) {
@@ -192,7 +192,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                 .padding(top = dimensionResource(id = R.dimen.half_height_of_banner_layout)),
             text = stringResource(R.string.label_hotel_description),
             style = MaterialTheme.typography.h1,
-            color = DarkTextColor
+            color = TextColorLight
         )
         Text(
             modifier = Modifier.wrapContentWidth(),
@@ -200,7 +200,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             style = MaterialTheme.typography.body1,
             maxLines = 3,
             overflow = TextOverflow.Ellipsis,
-            color = DarkTextColor
+            color = TextColorLight
         )
         if (hotel.description.length > DESCRIPTION_MAX_LIMIT) {
             Text(
@@ -220,7 +220,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
             modifier = Modifier.wrapContentWidth(),
             text = stringResource(R.string.label_reviews),
             style = MaterialTheme.typography.h1,
-            color = DarkTextColor
+            color = TextColorLight
         )
         repeat(REVIEWS_MAX_LIMIT) {
             ReviewItemComposable(review = hotel.reviewsList[it])
@@ -316,7 +316,7 @@ private fun HotelNameComposable(hotel: Hotel) {
         modifier = Modifier.wrapContentWidth(),
         text = hotel.name,
         style = MaterialTheme.typography.h1,
-        color = DarkTextColor
+        color = TextColorLight
     )
 }
 
@@ -436,7 +436,7 @@ fun BookingBottomBar(
             text = "$ ${hotel.pricePerNight}",
             style = MaterialTheme.typography.h1,
             maxLines = 1,
-            color = DarkTextColor
+            color = TextColorLight
         )
 
         val bookNowButton = Modifier

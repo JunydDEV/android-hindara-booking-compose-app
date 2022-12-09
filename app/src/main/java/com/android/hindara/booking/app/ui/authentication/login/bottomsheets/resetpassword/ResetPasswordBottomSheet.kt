@@ -19,7 +19,7 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.PasswordTextFieldComposable
 import com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet.alertBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.TextColorLight
 
 
 @Composable
@@ -49,8 +49,7 @@ private fun ResetPasswordDescriptionComposable() {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(R.string.label_reset_password_description),
-        style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -65,8 +64,7 @@ private fun NewPasswordTextFieldLabelComposable() {
     Text(
         modifier = passwordLabelModifier,
         text = stringResource(id = R.string.textField_password_label),
-        style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -81,8 +79,7 @@ private fun ConfirmPasswordTextFieldLabelComposable() {
     Text(
         modifier = passwordLabelModifier,
         text = stringResource(R.string.textField_confirm_password_label),
-        style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 

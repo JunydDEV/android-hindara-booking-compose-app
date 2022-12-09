@@ -2,11 +2,12 @@ package com.android.hindara.booking.app.ui.common.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun SafeArea(content: @Composable ColumnScope.(PaddingValues) -> Unit) {
@@ -17,7 +18,7 @@ fun SafeArea(content: @Composable ColumnScope.(PaddingValues) -> Unit) {
 
     val parentColumnModifier = Modifier
         .fillMaxSize()
-        .background(ScreenBackgroundColor)
+        .background(MaterialTheme.colors.background)
         .padding(paddingValues)
 
     Column(parentColumnModifier) {

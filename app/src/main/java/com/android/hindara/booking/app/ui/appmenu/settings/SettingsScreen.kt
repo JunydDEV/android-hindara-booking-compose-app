@@ -16,7 +16,7 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun SettingsScreen(
@@ -24,7 +24,7 @@ fun SettingsScreen(
     navController: NavController,
 ) {
     Scaffold(
-        backgroundColor = ScreenBackgroundColor,
+        backgroundColor = ScreenBackgroundColorLight,
         topBar = {
             AppTopBar(navController, stringResource(id = R.string.label_settings))
         }

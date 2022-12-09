@@ -1,17 +1,13 @@
 package com.android.hindara.booking.app.ui.home.pager
 
-import android.util.LayoutDirection
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.FeaturedCategory
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.theme.*
@@ -61,7 +57,7 @@ private fun TabRowComposable(
     val coroutineScope = rememberCoroutineScope()
     TabRow(
         selectedTabIndex = tabPosition,
-        backgroundColor = ScreenBackgroundColor,
+        backgroundColor = MaterialTheme.colors.surface,
         divider = {
             TabRowDefaults.Divider(color = Color.Transparent)
         },
@@ -78,8 +74,6 @@ private fun TabRowComposable(
         tabTitles.forEachIndexed { index, category ->
             Tab(
                 selected = tabPosition == index,
-                selectedContentColor = SelectedContentContentColor,
-                unselectedContentColor = UnSelectedTabContentColor,
                 onClick = {
                     onTabPositionChange(index)
                     coroutineScope.launch {

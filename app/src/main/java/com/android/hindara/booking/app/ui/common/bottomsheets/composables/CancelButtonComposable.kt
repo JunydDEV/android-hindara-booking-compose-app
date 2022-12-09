@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.CancelButtonColor
 import com.android.hindara.booking.app.ui.theme.LightTextColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun CancelButtonComposable(onClick: ()->Unit) {
@@ -35,7 +35,7 @@ fun CancelButtonComposable(onClick: ()->Unit) {
             brush = SolidColor(CancelButtonColor)
         ),
         colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = ScreenBackgroundColor,
+            backgroundColor = ScreenBackgroundColorLight,
             contentColor = CancelButtonColor,
             disabledContentColor = LightTextColor
         ),

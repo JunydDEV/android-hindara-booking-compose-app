@@ -48,7 +48,7 @@ fun LoginScreen(
 private fun MainScreenContent(navController: NavController) {
     val mainModifier = Modifier
         .fillMaxSize()
-        .background(ScreenBackgroundColor)
+        .background(MaterialTheme.colors.background)
         .padding(dimensionResource(id = R.dimen.default_spacing))
         .verticalScroll(rememberScrollState())
 
@@ -116,8 +116,7 @@ private fun EmailTextFieldLabelComposable() {
     Text(
         modifier = emailLabelModifier,
         text = stringResource(R.string.textField_email_label),
-        style = typography.body1,
-        color = DarkTextColor
+        style = typography.body1
     )
 }
 
@@ -157,8 +156,7 @@ private fun PasswordTextFieldLabelComposable() {
     Text(
         modifier = passwordLabelModifier,
         text = stringResource(R.string.textField_password_label),
-        style = typography.body1,
-        color = DarkTextColor
+        style = typography.body1
     )
 }
 
@@ -174,7 +172,6 @@ fun ForgotPasswordTextComposable(navController: NavController) {
             },
             text = stringResource(R.string.label_forgot_password_q),
             style = typography.body1,
-            color = DarkTextColor,
             textAlign = TextAlign.End
         )
     }
@@ -189,7 +186,7 @@ fun HorizontalLineComposable() {
 
     val alternateLoginWithTextModifier = Modifier
         .wrapContentWidth()
-        .background(ScreenBackgroundColor)
+        .background(MaterialTheme.colors.background)
         .padding(
             start = dimensionResource(id = R.dimen.default_spacing),
             end = dimensionResource(id = R.dimen.default_spacing),
@@ -212,7 +209,6 @@ fun HorizontalLineComposable() {
             modifier = alternateLoginWithTextModifier,
             text = stringResource(R.string.label_login_with),
             style = typography.body1,
-            color = DarkTextColor,
             textAlign = TextAlign.Center
         )
     }
@@ -314,7 +310,7 @@ private fun GoogleAuthButtonContentComposable() {
         )
         Text(
             text = stringResource(R.string.button_google_label),
-            color = DarkTextColor
+            color = TextColorLight
         )
     }
 }
@@ -323,8 +319,7 @@ private fun GoogleAuthButtonContentComposable() {
 private fun EmailPlaceholderContent(typography: Typography) {
     Text(
         text = stringResource(R.string.textField_email_placeholder),
-        style = typography.body1,
-        color = FieldPlaceholderColor
+        style = typography.body1
     )
 }
 

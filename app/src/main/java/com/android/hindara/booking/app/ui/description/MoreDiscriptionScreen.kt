@@ -18,14 +18,14 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.TextColorLight
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeViewModel) {
     val hotel = homeViewModel.getSelectedHotel()
     Scaffold(
-        backgroundColor = ScreenBackgroundColor,
+        backgroundColor = ScreenBackgroundColorLight,
         topBar = {
             AppTopBar(navController, stringResource(id = R.string.label_hotel_description))
         }
@@ -42,7 +42,7 @@ fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeV
                 modifier = Modifier.wrapContentWidth(),
                 text = hotel.description,
                 style = MaterialTheme.typography.body1,
-                color = DarkTextColor
+                color = TextColorLight
             )
         }
     }

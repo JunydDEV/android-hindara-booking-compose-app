@@ -26,7 +26,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.resetPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.TextColorLight
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 
 
@@ -52,8 +52,7 @@ private fun VerifyEmailDescriptionComposable() {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(R.string.label_enter_digits_description),
-        style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -185,7 +184,7 @@ private fun getKeyboardOptions(isLastField: Boolean) = KeyboardOptions(
 
 @Composable
 private fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
-    backgroundColor = FieldBackgroundColor,
+    backgroundColor = MaterialTheme.colors.surface,
 )
 
 @Composable

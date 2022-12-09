@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -94,8 +95,7 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
             text = stringResource(id = profileInfo.name),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.h1,
-            color = DarkTextColor
+            style = MaterialTheme.typography.h1
         )
 
         val countryModifier = Modifier.constrainAs(country) {
@@ -108,8 +108,7 @@ fun ProfileInfoComposable(viewModel: AppMenuViewModel) {
             text = stringResource(id = profileInfo.country),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.body1,
-            color = DarkTextColor
+            style = MaterialTheme.typography.body1
         )
     }
 }
@@ -145,7 +144,7 @@ private fun MenuItemRow(item: MenuItem, onClick: ()-> Unit) {
     val itemRowModifier = Modifier
         .fillMaxWidth()
         .height(dimensionResource(id = R.dimen.menu_screen_horizontal_line_width))
-        .background(WhiteColor)
+        .background(MaterialTheme.colors.surface)
 
     Row(
         modifier = itemRowModifier.clickable {
@@ -175,11 +174,11 @@ private fun MenuIconComposable(item: MenuItem) {
             height = dimensionResource(id = R.dimen.menu_item_size)
         )
 
-    Image(
+    Icon(
         modifier = iconModifier,
         painter = painterResource(id = item.icon),
+        tint = MaterialTheme.colors.onSurface,
         contentDescription = null,
-        colorFilter = ColorFilter.tint(SelectedContentContentColor)
     )
 }
 

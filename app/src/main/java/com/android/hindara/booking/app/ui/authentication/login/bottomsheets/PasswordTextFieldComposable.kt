@@ -1,7 +1,6 @@
 package com.android.hindara.booking.app.ui.authentication.login.bottomsheets
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -27,8 +26,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
 import com.android.hindara.booking.app.ui.theme.PrimaryColor
 
@@ -66,7 +63,7 @@ fun PasswordTextFieldComposable(placeholder: String = stringResource(id = R.stri
 
 @Composable
 fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
-    backgroundColor = FieldBackgroundColor,
+    backgroundColor = MaterialTheme.colors.surface,
     focusedIndicatorColor = Color.Transparent,
     unfocusedIndicatorColor = Color.Transparent
 )
@@ -102,7 +99,7 @@ private fun getVisibilitySelectionPair(showPassword: Boolean) =
     if (showPassword) {
         Pair(Icons.Filled.Visibility, PrimaryColor)
     } else {
-        Pair(Icons.Filled.VisibilityOff, DarkTextColor)
+        Pair(Icons.Filled.VisibilityOff, MaterialTheme.colors.onSurface)
     }
 
 @Composable

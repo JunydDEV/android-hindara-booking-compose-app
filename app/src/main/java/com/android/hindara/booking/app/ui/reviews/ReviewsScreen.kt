@@ -17,13 +17,13 @@ import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
     val hotel = homeViewModel.getSelectedHotel()
     Scaffold(
-        backgroundColor = ScreenBackgroundColor,
+        backgroundColor = ScreenBackgroundColorLight,
         topBar = {
             AppTopBar(navController, stringResource(id = R.string.label_reviews))
         }

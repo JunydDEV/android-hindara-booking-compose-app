@@ -28,8 +28,6 @@ import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.OnboardingImage
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
 import com.android.hindara.booking.app.ui.theme.SelectedDotTintColor
 import com.android.hindara.booking.app.ui.theme.UnSelectedDotTintColor
 import com.android.hindara.booking.app.utils.OnboardingContentSlideAnimation
@@ -48,7 +46,7 @@ fun OnboardingScreen(
 
     val parentColumnModifier = Modifier
         .fillMaxSize()
-        .background(ScreenBackgroundColor)
+        .background(MaterialTheme.colors.background)
         .verticalScroll(rememberScrollState())
     Column(modifier = parentColumnModifier) {
         SpacerComposable()
@@ -114,8 +112,7 @@ private fun OnboardingTitleComposable(selectedImage: OnboardingImage) {
     Text(
         modifier = onBoardingTitleModifier,
         text = stringResource(id = selectedImage.title),
-        style = MaterialTheme.typography.h1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.h1
     )
 }
 
@@ -128,8 +125,7 @@ private fun OnboardingDescriptionComposable(selectedImage: OnboardingImage) {
     Text(
         modifier = onBoardingDescriptionModifier,
         text = stringResource(id = selectedImage.description),
-        style = MaterialTheme.typography.body2,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body2
     )
 }
 

@@ -126,7 +126,7 @@ private fun TitleComposable(title: String) {
         modifier = modifier,
         text = title,
         style = MaterialTheme.typography.h1,
-        color = DarkTextColor
+        color = TextColorLight
     )
 }
 
@@ -203,7 +203,7 @@ private fun getBorderStroke(
 @OptIn(ExperimentalMaterialApi::class)
 private fun chipColors() = ChipDefaults.filterChipColors(
     backgroundColor = WhiteColor,
-    contentColor = DarkTextColor,
+    contentColor = TextColorLight,
     selectedBackgroundColor = SelectedChipBackgroundColor,
     selectedContentColor = PrimaryColor
 

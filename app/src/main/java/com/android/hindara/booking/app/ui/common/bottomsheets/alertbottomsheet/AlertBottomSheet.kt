@@ -21,7 +21,7 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
 import com.android.hindara.booking.app.data.AlertType
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.TextColorLight
 
 @Composable
 fun AlertBottomSheet(
@@ -99,8 +99,7 @@ private fun AlertTitleComposable(title: Int) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(title),
-        style = MaterialTheme.typography.h1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.h1
     )
 }
 
@@ -109,8 +108,7 @@ private fun AlertDescriptionComposable(description: Int) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(description),
-        style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 

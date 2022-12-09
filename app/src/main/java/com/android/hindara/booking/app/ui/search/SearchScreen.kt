@@ -32,7 +32,7 @@ import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComp
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetRoute
 import com.android.hindara.booking.app.ui.theme.LightTextColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 import com.android.hindara.booking.app.ui.theme.WhiteColor
 import com.android.hindara.booking.app.ui.theme.YellowColor
 
@@ -48,7 +48,7 @@ fun SearchScreen(
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        backgroundColor = ScreenBackgroundColor,
+        backgroundColor = ScreenBackgroundColorLight,
         topBar = {
             AppTopBar(
                 navController = navController,

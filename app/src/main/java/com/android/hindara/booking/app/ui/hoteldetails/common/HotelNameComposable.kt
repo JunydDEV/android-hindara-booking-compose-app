@@ -6,7 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.android.hindara.booking.app.ui.home.Hotel
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.TextColorLight
 
 @Composable
 fun HotelNameComposable(hotel: Hotel) {
@@ -14,6 +14,6 @@ fun HotelNameComposable(hotel: Hotel) {
         modifier = Modifier.wrapContentWidth(),
         text = hotel.name,
         style = MaterialTheme.typography.h1,
-        color = DarkTextColor
+        color = TextColorLight
     )
 }

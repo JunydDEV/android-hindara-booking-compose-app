@@ -11,8 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 /**
  * Bottom sheet composable that has title and some body.
@@ -29,7 +27,7 @@ fun BottomSheetContentWithTitle(
     val largeSpacing = dimensionResource(id = R.dimen.extra_large_spacing)
 
     val modifier = Modifier
-        .background(BottomSheetBackgroundColor)
+        .background(MaterialTheme.colors.background)
         .padding(
             start = defaultSpacing,
             end = defaultSpacing,
@@ -58,7 +56,6 @@ fun TitleComposable(title: String) {
     Text(
         modifier = modifier,
         text = title,
-        style = MaterialTheme.typography.h1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.h1
     )
 }

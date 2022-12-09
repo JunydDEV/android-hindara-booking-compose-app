@@ -30,9 +30,9 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.PasswordTextFieldComposable
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.getTextFieldColors
 import com.android.hindara.booking.app.ui.home.homeRoute
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.TextColorLight
 import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun SignupScreen(
@@ -41,7 +41,7 @@ fun SignupScreen(
 ) {
     val parentColumnModifier = Modifier
         .fillMaxSize()
-        .background(ScreenBackgroundColor)
+        .background(MaterialTheme.colors.background)
         .padding(dimensionResource(id = R.dimen.default_spacing))
         .verticalScroll(rememberScrollState())
     Column(
@@ -91,8 +91,7 @@ private fun UsernameTextFieldLabelComposable() {
     Text(
         modifier = emailLabelModifier,
         text = stringResource(R.string.textField_username_label),
-        style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -138,8 +137,7 @@ private fun EmailTextFieldLabelComposable() {
     Text(
         modifier = emailLabelModifier,
         text = stringResource(R.string.textField_email_label),
-        style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -185,8 +183,7 @@ private fun PasswordTextFieldLabelComposable() {
     Text(
         modifier = passwordLabelModifier,
         text = stringResource(R.string.textField_password_label),
-        style = MaterialTheme.typography.body1,
-        color = DarkTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 

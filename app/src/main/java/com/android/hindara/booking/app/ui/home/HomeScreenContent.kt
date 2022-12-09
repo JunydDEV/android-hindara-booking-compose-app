@@ -15,7 +15,6 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComposable
 import com.android.hindara.booking.app.ui.home.pager.FeaturedOnHomeScreenListing
 import com.android.hindara.booking.app.ui.search.searchRoute
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
 
 @Composable
 fun HomeScreenContent(
@@ -46,7 +45,7 @@ private fun SearchComposable(navController: NavController) {
         mutableStateOf("")
     }
     SearchTextFieldComposable(
-        searchFieldState.value,
+        value = searchFieldState.value,
         readyOnly = true,
         isClickable = true,
         onValueChange = { searchFieldState.value = it },
@@ -64,7 +63,6 @@ private fun TitleComposable() {
                 bottom = dimensionResource(id = R.dimen.default_spacing)
             ),
         text = stringResource(R.string.label_welcome_message),
-        style = MaterialTheme.typography.h1.copy(fontSize = 28.sp),
-        color = DarkTextColor
+        style = MaterialTheme.typography.h1.copy(fontSize = 28.sp)
     )
 }

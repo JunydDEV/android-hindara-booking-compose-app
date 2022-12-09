@@ -39,7 +39,7 @@ fun AuthenticationScreen(
 private fun MainScreenContentComposable(navController: NavController) {
     SafeArea {
         val mainColumnModifier = Modifier
-            .background(ScreenBackgroundColor)
+            .background(MaterialTheme.colors.background)
             .fillMaxSize()
 
         Column(
@@ -105,7 +105,7 @@ private fun TabRowComposable(
 
     TabRow(
         selectedTabIndex = positionValue,
-        backgroundColor = TabBackgroundColor,
+        backgroundColor = MaterialTheme.colors.surface,
         indicator = { tabPositions ->
             val rtlTabsPosition =
                 if (isRtlLayout()) {
@@ -119,8 +119,6 @@ private fun TabRowComposable(
         tabTitles.forEachIndexed { index, title ->
             Tab(
                 selected = positionValue == index,
-                selectedContentColor = SelectedContentContentColor,
-                unselectedContentColor = UnSelectedTabContentColor,
                 onClick = {
                     onPositionChange(index)
                     coroutineScope.launch {

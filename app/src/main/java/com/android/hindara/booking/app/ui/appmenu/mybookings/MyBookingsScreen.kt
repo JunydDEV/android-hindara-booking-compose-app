@@ -13,14 +13,14 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.mybookings.bottomsheets.details.bookingDetailsBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.hoteldetails.common.BookedHotelCardComposable
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColor
+import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun MyBookingsScreen(
     viewModel: MyBookingsViewModel,
     navController: NavController) {
     Scaffold(
-        backgroundColor = ScreenBackgroundColor,
+        backgroundColor = ScreenBackgroundColorLight,
         topBar = {
             AppTopBar(navController, stringResource(id = R.string.label_my_bookings))
         }

@@ -1,6 +1,7 @@
 package com.android.hindara.booking.app
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -25,6 +26,7 @@ import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
+import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
@@ -51,7 +53,7 @@ fun AppNavHost(
 
     ModalBottomSheetLayout(
         sheetShape = BottomSheetLayoutConfig.sheetShape(),
-        sheetBackgroundColor = BottomSheetBackgroundColor,
+        sheetBackgroundColor = MaterialTheme.colors.background,
         bottomSheetNavigator = bottomSheetNavigator
     ) {
 

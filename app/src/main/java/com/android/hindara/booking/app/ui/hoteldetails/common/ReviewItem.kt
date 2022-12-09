@@ -20,7 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.Reviews
-import com.android.hindara.booking.app.ui.theme.DarkTextColor
+import com.android.hindara.booking.app.ui.theme.TextColorLight
 
 @Composable
 fun ReviewItemComposable(
@@ -57,7 +57,7 @@ fun ReviewItemComposable(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.h2,
-            color = DarkTextColor
+            color = TextColorLight
         )
 
         val ratingModifier = Modifier.constrainAs(rating) {
@@ -94,7 +94,7 @@ fun ReviewItemComposable(
             modifier = reviewCommentModifier,
             text = review.comment,
             style = MaterialTheme.typography.body1,
-            color = DarkTextColor
+            color = TextColorLight
         )
     }
 }
