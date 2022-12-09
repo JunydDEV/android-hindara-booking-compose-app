@@ -26,6 +26,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
+import com.android.hindara.booking.app.utils.noRippleClickable
 
 @Composable
 fun SearchTextFieldComposable(
@@ -43,7 +44,7 @@ fun SearchTextFieldComposable(
             start = dimensionResource(id = R.dimen.default_spacing),
             end = dimensionResource(id = R.dimen.default_spacing),
         )
-        .clickable {
+        .noRippleClickable {
             if (isClickable) {
                 onClick?.invoke()
             }
