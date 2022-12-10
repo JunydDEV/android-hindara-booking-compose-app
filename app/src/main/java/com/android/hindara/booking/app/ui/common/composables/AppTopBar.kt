@@ -1,6 +1,5 @@
 package com.android.hindara.booking.app.ui.common.composables
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -19,7 +18,7 @@ import com.android.hindara.booking.app.R
 fun AppTopBar(
     navController: NavController,
     title: String,
-    menuItemToShow: AppBarMenuItem? = null,
+    menuItem: AppBarMenuItem? = null,
     menuItemClick: (() -> Unit)? = null
 ) {
     Row(
@@ -56,10 +55,10 @@ fun AppTopBar(
         }
 
 
-        menuItemToShow?.let {
+        menuItem?.let {
             IconButton(onClick = { menuItemClick?.invoke() }) {
                 Icon(
-                    painter = painterResource(id = getMenuItemIcon(menuItemToShow)),
+                    painter = painterResource(id = getMenuItemIcon(menuItem)),
                     contentDescription = stringResource(id = R.string.image_filter_button),
                     tint = MaterialTheme.colors.onSurface
                 )

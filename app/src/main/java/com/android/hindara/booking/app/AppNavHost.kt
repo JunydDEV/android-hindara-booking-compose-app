@@ -35,6 +35,7 @@ import com.android.hindara.booking.app.ui.reviews.reviewsGraph
 import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.search.searchScreenNavGraph
 import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
+import com.android.hindara.booking.app.utils.isRtlLayout
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
@@ -56,7 +57,6 @@ fun AppNavHost(
         sheetBackgroundColor = MaterialTheme.colors.background,
         bottomSheetNavigator = bottomSheetNavigator
     ) {
-
         AnimatedNavHost(navController = navController, startDestination = onboardingRoute) {
             // Main Screens
             onboardingGraph(navController)

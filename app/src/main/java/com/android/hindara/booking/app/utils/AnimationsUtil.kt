@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraphBuilder
+import com.android.hindara.booking.app.App
 import com.google.accompanist.navigation.animation.composable
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -44,34 +45,46 @@ fun NavGraphBuilder.animatedComposable(
     composable(
         route = route,
         enterTransition = {
-            if (targetState.destination.hierarchy.any { it.route == route }) {
-                slideInHorizontally(initialOffsetX = { 2000 })
-            } else {
-                null
-            }
+            getEnterTransitionAnimation()
         },
         exitTransition = {
-            if (targetState.destination.hierarchy.any { it.route == route }) {
-                slideOutHorizontally(targetOffsetX = { -2000 })
-            } else {
-                null
-            }
+            exitTransitionAnimation()
         },
         popEnterTransition = {
-            if (targetState.destination.hierarchy.any { it.route == route }) {
-                slideInHorizontally(initialOffsetX = { -2000 })
-            } else {
-                null
-            }
+            getPopEnterTransitionAnimation()
         },
         popExitTransition = {
-            if (targetState.destination.hierarchy.any { it.route == route }) {
-                slideOutHorizontally(targetOffsetX = { 2000 })
-            } else {
-                null
-            }
+            getPopExitTransitionAnimation()
         }
     ) {
         content(it)
     }
 }
+
+private fun exitTransitionAnimation() =
+    if (App.IS_RTL) {
+        slideOutHorizontally(targetOffsetX = { 2000 })
+    }else{
+        slideOutHorizontally(targetOffsetX = { -2000 })
+    }
+
+private fun getEnterTransitionAnimation() =
+    if (App.IS_RTL) {
+        slideInHorizontally(initialOffsetX = { -2000 })
+    } else {
+        slideInHorizontally(initialOffsetX = { 2000 })
+    }
+
+private fun getPopEnterTransitionAnimation() =
+    if (App.IS_RTL) {
+        slideInHorizontally(initialOffsetX = { 2000 })
+    } else {
+        slideInHorizontally(initialOffsetX = { -2000 })
+    }
+
+private fun getPopExitTransitionAnimation() =
+    if (App.IS_RTL) {
+        slideOutHorizontally(targetOffsetX = { -2000 })
+    } else {
+        slideOutHorizontally(targetOffsetX = { 2000 })
+    }
