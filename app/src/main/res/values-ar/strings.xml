@@ -123,5 +123,6 @@
     <string name="image_settings">Settings image</string>
     <string name="image_search_hotel">Search hotel image</string>
     <string name="image_result_alert">Result alert image</string>
-
+    <string name="image_back_button">Back button</string>
+    <string name="image_filter_button">Filter button</string>
 </resources>

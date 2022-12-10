@@ -1,21 +1,19 @@
 package com.android.hindara.booking.app.ui.common.composables
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.TextColorLight
-import com.android.hindara.booking.app.utils.noRippleClickable
 
 @Composable
 fun AppTopBar(
@@ -38,14 +36,13 @@ fun AppTopBar(
     ) {
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                modifier = Modifier.clickable {
-                    navController.popBackStack()
-                },
-                painter = painterResource(id = R.drawable.ic_back),
-                contentDescription = null,
-                tint = MaterialTheme.colors.onSurface
-            )
+            IconButton(onClick = { navController.popBackStack() }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_back),
+                    contentDescription = stringResource(R.string.image_back_button),
+                    tint = MaterialTheme.colors.onSurface
+                )
+            }
             Spacer(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -60,14 +57,13 @@ fun AppTopBar(
 
 
         menuItemToShow?.let {
-            Icon(
-                modifier = Modifier.clickable {
-                    menuItemClick?.invoke()
-                },
-                painter = painterResource(id = getMenuItemIcon(menuItemToShow)),
-                contentDescription = null,
-                tint = MaterialTheme.colors.onSurface
-            )
+            IconButton(onClick = { menuItemClick?.invoke() }) {
+                Icon(
+                    painter = painterResource(id = getMenuItemIcon(menuItemToShow)),
+                    contentDescription = stringResource(id = R.string.image_filter_button),
+                    tint = MaterialTheme.colors.onSurface
+                )
+            }
         } ?: Spacer(modifier = Modifier.wrapContentSize())
     }
 }

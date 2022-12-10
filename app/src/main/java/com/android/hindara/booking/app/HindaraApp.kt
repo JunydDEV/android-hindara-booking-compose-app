@@ -15,7 +15,7 @@ import com.google.accompanist.navigation.material.ExperimentalMaterialNavigation
 @OptIn(ExperimentalMaterialNavigationApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun HindaraApp() {
-    HindaraBookingApp(darkTheme = true) {
+    HindaraBookingApp {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background

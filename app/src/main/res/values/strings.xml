@@ -124,4 +124,7 @@
     <string name="image_settings" translatable="false">Settings image</string>
     <string name="image_search_hotel" translatable="false">Search hotel image</string>
     <string name="image_result_alert" translatable="false">Result alert image</string>
+    <string name="image_back_button">Back button</string>
+    <string name="image_filter_button">Filter button</string>
+
 </resources>

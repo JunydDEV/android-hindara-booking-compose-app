@@ -111,16 +111,15 @@ fun ConstraintLayoutScope.BackButtonComposable(
             top.linkTo(parent.top, margin = extraLargeSpacing)
             start.linkTo(parent.start, margin = defaultSpacing)
         }
-    Box(
+    IconButton(
         modifier = backButtonBoxModifier,
-        contentAlignment = Alignment.Center
+        onClick = {
+            navController.popBackStack()
+        }
     ) {
-        Image(
-            modifier = Modifier.clickable {
-                navController.popBackStack()
-            },
+        Icon(
             painter = painterResource(id = R.drawable.ic_back),
-            colorFilter = tint(WhiteColor),
+            tint = WhiteColor,
             contentDescription = stringResource(R.string.image_back)
         )
     }
@@ -142,13 +141,15 @@ fun ConstraintLayoutScope.BookmarkButtonComposable(bookmarkButton: ConstrainedLa
             top.linkTo(parent.top, margin = extraLargeSpacing)
             end.linkTo(parent.end, margin = defaultSpacing)
         }
-    Box(
+    IconButton(
         modifier = bookMarkButtonBoxModifier,
-        contentAlignment = Alignment.Center
+        onClick = {
+
+        }
     ) {
-        Image(
+        Icon(
             painter = painterResource(id = R.drawable.ic_bookmark),
-            colorFilter = tint(WhiteColor),
+            tint = WhiteColor,
             contentDescription = stringResource(R.string.image_back)
         )
     }
