@@ -23,9 +23,8 @@ import com.android.hindara.booking.app.ui.home.FeaturedCategory
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
-import com.android.hindara.booking.app.ui.theme.BlackGradientColor
-import com.android.hindara.booking.app.ui.theme.WhiteColor
-import com.android.hindara.booking.app.utils.noRippleClickable
+import com.android.hindara.booking.app.ui.theme.black_transparent_color
+import com.android.hindara.booking.app.ui.theme.white_color
 
 @Composable
 fun FeaturedHotelsPageScreen(
@@ -83,7 +82,7 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
                 .clip(RoundedCornerShape(dimensionResource(id = R.dimen.home_screen_hotel_image_corners_size)))
                 .width(dimensionResource(id = R.dimen.home_screen_hotel_image_width))
                 .height(dimensionResource(id = R.dimen.home_screen_hotel_image_height))
-                .background(BlackGradientColor)
+                .background(black_transparent_color)
                 .constrainAs(gradientLayer) {
                     top.linkTo(parent.top, margin = defaultSpacing)
                     start.linkTo(parent.start, margin = defaultSpacing)
@@ -102,7 +101,7 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
             modifier = hotelNameTextModifier,
             text = hotel.name,
             style = MaterialTheme.typography.h2,
-            color = WhiteColor
+            color = white_color
         )
 
         val hotelAddressTextModifier = Modifier
@@ -115,12 +114,12 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
             modifier = hotelAddressTextModifier,
             text = hotel.address.locationTitle,
             style = MaterialTheme.typography.body2,
-            color = WhiteColor
+            color = white_color
         )
 
         val ratingViewModifier = Modifier
             .clip(RoundedCornerShape(dimensionResource(id = R.dimen.rating_bar_corners_size)))
-            .background(BlackGradientColor)
+            .background(black_transparent_color)
             .padding(
                 start = dimensionResource(id = R.dimen.small_spacing),
                 end = dimensionResource(id = R.dimen.small_spacing),
@@ -152,6 +151,6 @@ private fun RatingContentComposable(hotel: Hotel) {
         modifier = Modifier.wrapContentSize(),
         text = hotel.rating.toString(),
         style = MaterialTheme.typography.body2,
-        color = WhiteColor
+        color = white_color
     )
 }

@@ -1,9 +1,7 @@
 package com.android.hindara.booking.app.ui.common.composables
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -22,9 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
-import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
-import com.android.hindara.booking.app.utils.noRippleClickable
+import com.android.hindara.booking.app.ui.theme.field_placeholder_color
 
 @Composable
 fun SearchTextFieldComposable(
@@ -76,7 +72,7 @@ private fun SearchIconComposable() = Icon(
 private fun SearchFieldPlaceholderContent() = Text(
     text = stringResource(R.string.textField_find_hotels_placeholder),
     style = MaterialTheme.typography.body1,
-    color = FieldPlaceholderColor
+    color = field_placeholder_color
 )
 
 

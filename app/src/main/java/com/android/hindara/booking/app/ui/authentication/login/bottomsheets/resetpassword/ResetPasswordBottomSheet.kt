@@ -19,7 +19,6 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.PasswordTextFieldComposable
 import com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet.alertBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.theme.TextColorLight
 
 
 @Composable

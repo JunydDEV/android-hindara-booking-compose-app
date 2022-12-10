@@ -18,9 +18,9 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.PrimaryColor
-import com.android.hindara.booking.app.ui.theme.RangeBackgroundColor
-import com.android.hindara.booking.app.ui.theme.WhiteColor
+import com.android.hindara.booking.app.ui.theme.primary_color
+import com.android.hindara.booking.app.ui.theme.date_range_background_color
+import com.android.hindara.booking.app.ui.theme.white_color
 import com.android.hindara.booking.app.utils.noRippleClickable
 import com.android.hindara.booking.app.utils.toTitleCase
 import com.kizitonwose.calendar.compose.HorizontalCalendar
@@ -183,7 +183,7 @@ fun getRangeSelectionBackgroundColor(
         (day.date == startDate || day.date == endDate) ||
         (day.date.isAfter(startDate) && day.date.isBefore(endDate))
     ) {
-        RangeBackgroundColor
+        date_range_background_color
     } else {
         Color.Transparent
     }
@@ -195,7 +195,7 @@ fun getSelectionTextColor(
     selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
     return if (isSelectedDay(day, selectedDate)) {
-        WhiteColor
+        white_color
     } else {
         getCalendarDayTextColor(day)
     }
@@ -254,7 +254,7 @@ fun getCalendarDayBackgroundColor(
     selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
     return if (isCalendarDayEqualsSelectedDay(day, selectedDate)) {
-        PrimaryColor
+        primary_color
     } else {
         Color.Transparent
     }

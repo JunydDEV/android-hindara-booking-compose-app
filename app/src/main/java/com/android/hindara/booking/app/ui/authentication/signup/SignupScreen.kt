@@ -30,9 +30,7 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.PasswordTextFieldComposable
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.getTextFieldColors
 import com.android.hindara.booking.app.ui.home.homeRoute
-import com.android.hindara.booking.app.ui.theme.TextColorLight
-import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
+import com.android.hindara.booking.app.ui.theme.field_placeholder_color
 
 @Composable
 fun SignupScreen(
@@ -124,7 +122,7 @@ fun UsernameFieldComposable() {
 private fun UsernamePlaceholderContent() = Text(
     text = stringResource(R.string.textField_username_placeholder),
     style = MaterialTheme.typography.body1,
-    color = FieldPlaceholderColor
+    color = field_placeholder_color
 )
 
 @Composable
@@ -170,7 +168,7 @@ fun EmailTextFieldComposable() {
 private fun EmailPlaceholderContent() = Text(
     text = stringResource(R.string.textField_email_placeholder),
     style = MaterialTheme.typography.body1,
-    color = FieldPlaceholderColor
+    color = field_placeholder_color
 )
 
 @Composable

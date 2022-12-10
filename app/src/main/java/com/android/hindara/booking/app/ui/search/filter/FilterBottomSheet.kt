@@ -200,8 +200,8 @@ private fun getBorderStroke(
 private fun chipColors() = ChipDefaults.filterChipColors(
     backgroundColor = MaterialTheme.colors.surface,
     contentColor = MaterialTheme.colors.onSurface,
-    selectedBackgroundColor = SelectedChipBackgroundColor,
-    selectedContentColor = PrimaryColor
+    selectedBackgroundColor = selected_chip_background_color,
+    selectedContentColor = primary_color
 
 )
 
@@ -216,9 +216,9 @@ fun getBordersColor(
     currentChipInfo: ChipInfo
 ): Brush {
     return if (isChipSelected(selectedChipInfo, currentChipInfo)) {
-        SolidColor(PrimaryColor)
+        SolidColor(primary_color)
     } else {
-        SolidColor(LightTextColor)
+        SolidColor(light_text_color)
     }
 }
 
@@ -231,9 +231,9 @@ fun getTextColor(
             currentChip = currentChipInfo
         )
     ) {
-        PrimaryColor
+        primary_color
     } else {
-        LightTextColor
+        light_text_color
     }
 }
 

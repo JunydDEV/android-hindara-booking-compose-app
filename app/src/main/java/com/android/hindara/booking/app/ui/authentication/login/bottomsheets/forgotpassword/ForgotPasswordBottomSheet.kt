@@ -25,8 +25,7 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.emailverification.emailVerificationBottomSheetRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.getTextFieldColors
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.theme.TextColorLight
-import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
+import com.android.hindara.booking.app.ui.theme.field_placeholder_color
 
 @Composable
 fun ForgotPasswordBottomSheet(
@@ -108,7 +107,7 @@ private fun EmailPlaceholderContent(typography: Typography) {
     Text(
         text = stringResource(R.string.textField_email_placeholder),
         style = typography.body1,
-        color = FieldPlaceholderColor
+        color = field_placeholder_color
     )
 }
 

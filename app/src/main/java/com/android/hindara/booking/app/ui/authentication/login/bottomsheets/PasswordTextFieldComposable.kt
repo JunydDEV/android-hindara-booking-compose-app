@@ -26,8 +26,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.FieldPlaceholderColor
-import com.android.hindara.booking.app.ui.theme.PrimaryColor
+import com.android.hindara.booking.app.ui.theme.field_placeholder_color
+import com.android.hindara.booking.app.ui.theme.primary_color
 
 @Composable
 fun PasswordTextFieldComposable(placeholder: String = stringResource(id = R.string.textField_password_placeholder)) {
@@ -97,7 +97,7 @@ private fun PasswordVisibilityTrailingIcon(
 @Composable
 private fun getVisibilitySelectionPair(showPassword: Boolean) =
     if (showPassword) {
-        Pair(Icons.Filled.Visibility, PrimaryColor)
+        Pair(Icons.Filled.Visibility, primary_color)
     } else {
         Pair(Icons.Filled.VisibilityOff, MaterialTheme.colors.onSurface)
     }
@@ -107,7 +107,7 @@ private fun PasswordPlaceholderContent(placeholder: String, typography: Typograp
     Text(
         text = placeholder,
         style = typography.body1,
-        color = FieldPlaceholderColor
+        color = field_placeholder_color
     )
 }
 

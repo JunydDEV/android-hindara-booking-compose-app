@@ -16,9 +16,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.CancelButtonColor
-import com.android.hindara.booking.app.ui.theme.LightTextColor
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
+import com.android.hindara.booking.app.ui.theme.cancel_button_color
 
 @Composable
 fun CancelButtonComposable(onClick: ()->Unit) {
@@ -33,11 +31,11 @@ fun CancelButtonComposable(onClick: ()->Unit) {
         modifier = buttonModifier,
         border = BorderStroke(
             width = dimensionResource(id = R.dimen.primary_button_borders_width),
-            brush = SolidColor(CancelButtonColor)
+            brush = SolidColor(cancel_button_color)
         ),
         colors = ButtonDefaults.outlinedButtonColors(
             backgroundColor = MaterialTheme.colors.background,
-            contentColor = CancelButtonColor,
+            contentColor = cancel_button_color,
         ),
         elevation = ButtonDefaults.elevation(defaultElevation = 0.dp),
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),

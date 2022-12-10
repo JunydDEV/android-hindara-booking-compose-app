@@ -10,7 +10,7 @@ import androidx.compose.ui.res.dimensionResource
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.home.Hotel
-import com.android.hindara.booking.app.ui.theme.PrimaryColor
+import com.android.hindara.booking.app.ui.theme.primary_color
 import com.android.hindara.booking.app.utils.getFormattedDate
 import java.time.LocalDate
 
@@ -48,6 +48,6 @@ fun BookingDatesComposable(checkInDate: LocalDate) {
         modifier = Modifier.wrapContentWidth(),
         text = checkInDate.getFormattedDate(),
         style = MaterialTheme.typography.h2,
-        color = PrimaryColor
+        color = primary_color
     )
 }

@@ -26,8 +26,6 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.authentication.login.bottomsheets.resetpassword.resetPasswordBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.theme.TextColorLight
-import com.android.hindara.booking.app.ui.theme.FieldBackgroundColor
 
 
 @Composable

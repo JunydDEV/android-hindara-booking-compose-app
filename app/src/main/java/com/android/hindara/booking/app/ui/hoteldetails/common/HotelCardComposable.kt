@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.home.Hotel
-import com.android.hindara.booking.app.ui.theme.YellowColor
+import com.android.hindara.booking.app.ui.theme.yellow_color
 
 @Composable
 fun HotelCardComposable(hotel: Hotel, onHotelSelect: ((Hotel) -> Unit)? = null) {
@@ -71,7 +71,7 @@ fun RatingTextComposable(hotel: Hotel) {
         modifier = modifier,
         text = hotel.rating.toString(),
         style = MaterialTheme.typography.body1,
-        color = YellowColor
+        color = yellow_color
     )
 }
 

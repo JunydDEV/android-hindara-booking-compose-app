@@ -182,7 +182,7 @@ fun HorizontalLineComposable() {
     val horizontalLineModifier = Modifier
         .width(dimensionResource(id = R.dimen.login_with_line_width))
         .height(dimensionResource(id = R.dimen.login_with_line_height))
-        .background(LineColor)
+        .background(line_color)
 
     val alternateLoginWithTextModifier = Modifier
         .wrapContentWidth()
@@ -248,7 +248,7 @@ private fun FacebookAuthButtonComposable() {
         shape = RoundedCornerShape(
             CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))
         ),
-        colors = ButtonDefaults.buttonColors(backgroundColor = FacebookColor),
+        colors = ButtonDefaults.buttonColors(backgroundColor = facebook_color),
         onClick = { /*TODO*/ },
     ) {
         FacebookAuthButtonContentComposable()
@@ -270,7 +270,7 @@ private fun FacebookAuthButtonContentComposable() {
         )
         Text(
             text = stringResource(R.string.button_facebook_label),
-            color = WhiteColor
+            color = white_color
         )
     }
 }
@@ -284,7 +284,7 @@ private fun GoogleAuthButtonComposable() {
         shape = RoundedCornerShape(
             CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))
         ),
-        colors = ButtonDefaults.buttonColors(backgroundColor = WhiteColor),
+        colors = ButtonDefaults.buttonColors(backgroundColor = white_color),
         onClick = { /*TODO*/ },
     ) {
         GoogleAuthButtonContentComposable()
@@ -310,7 +310,7 @@ private fun GoogleAuthButtonContentComposable() {
         )
         Text(
             text = stringResource(R.string.button_google_label),
-            color = TextColorLight
+            color = text_color_light
         )
     }
 }

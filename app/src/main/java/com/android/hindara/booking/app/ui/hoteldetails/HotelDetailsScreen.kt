@@ -9,8 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter.Companion.tint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -105,7 +103,7 @@ fun ConstraintLayoutScope.BackButtonComposable(
             height = dimensionResource(id = R.dimen.details_screen_nav_button_size)
         )
         .clip(RoundedCornerShape(dimensionResource(id = R.dimen.details_screen_nav_button_corners_size)))
-        .background(BlackGradientColor)
+        .background(black_transparent_color)
         .padding(dimensionResource(id = R.dimen.tiny_spacing))
         .constrainAs(backButton) {
             top.linkTo(parent.top, margin = extraLargeSpacing)
@@ -119,7 +117,7 @@ fun ConstraintLayoutScope.BackButtonComposable(
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_back),
-            tint = WhiteColor,
+            tint = white_color,
             contentDescription = stringResource(R.string.image_back)
         )
     }
@@ -135,7 +133,7 @@ fun ConstraintLayoutScope.BookmarkButtonComposable(bookmarkButton: ConstrainedLa
             height = dimensionResource(id = R.dimen.details_screen_nav_button_size)
         )
         .clip(RoundedCornerShape(dimensionResource(id = R.dimen.details_screen_nav_button_corners_size)))
-        .background(BlackGradientColor)
+        .background(black_transparent_color)
         .padding(dimensionResource(id = R.dimen.tiny_spacing))
         .constrainAs(bookmarkButton) {
             top.linkTo(parent.top, margin = extraLargeSpacing)
@@ -149,7 +147,7 @@ fun ConstraintLayoutScope.BookmarkButtonComposable(bookmarkButton: ConstrainedLa
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_bookmark),
-            tint = WhiteColor,
+            tint = white_color,
             contentDescription = stringResource(R.string.image_back)
         )
     }
@@ -210,7 +208,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                     },
                 text = stringResource(R.string.label_read_more),
                 style = MaterialTheme.typography.body1,
-                color = SuccessColor
+                color = success_color
             )
         }
         GoogleMapsComposable(hotel)
@@ -233,7 +231,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                     },
                 text = stringResource(R.string.label_see_more_reviews),
                 style = MaterialTheme.typography.body1,
-                color = SuccessColor
+                color = success_color
             )
         }
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.large_spacing)))
@@ -368,7 +366,7 @@ fun RatingTextComposable(hotel: Hotel) {
         modifier = modifier,
         text = hotel.rating.toString(),
         style = MaterialTheme.typography.body1,
-        color = YellowColor
+        color = yellow_color
     )
 }
 

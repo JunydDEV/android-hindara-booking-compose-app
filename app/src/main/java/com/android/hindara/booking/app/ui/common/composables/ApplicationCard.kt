@@ -13,7 +13,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.BordersColor
+import com.android.hindara.booking.app.ui.theme.borders_color
+import com.android.hindara.booking.app.utils.isRtlLayout
 
 @Composable
 fun ApplicationCard(
@@ -29,7 +30,7 @@ fun ApplicationCard(
         modifier = cardModifier,
         backgroundColor = MaterialTheme.colors.surface,
         elevation = 0.dp,
-        border = if (showBorders) borderStroke() else null,
+        border = if (showBorders && !isRtlLayout()) borderStroke() else null,
         shape = RoundedCornerShape(cornersSize),
         content = { content() }
     )
@@ -38,6 +39,6 @@ fun ApplicationCard(
 @Composable
 private fun borderStroke() = BorderStroke(
     dimensionResource(id = R.dimen.card_default_borders_width), brush = SolidColor(
-        BordersColor
+        borders_color
     )
 )

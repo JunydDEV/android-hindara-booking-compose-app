@@ -21,7 +21,6 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
 import com.android.hindara.booking.app.data.AlertType
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
-import com.android.hindara.booking.app.ui.theme.TextColorLight
 
 @Composable
 fun AlertBottomSheet(

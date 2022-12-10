@@ -28,8 +28,8 @@ import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.data.OnboardingImage
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
-import com.android.hindara.booking.app.ui.theme.SelectedDotTintColor
-import com.android.hindara.booking.app.ui.theme.UnSelectedDotTintColor
+import com.android.hindara.booking.app.ui.theme.selected_dot_tint_color
+import com.android.hindara.booking.app.ui.theme.unselected_dot_tint_color
 import com.android.hindara.booking.app.utils.OnboardingContentSlideAnimation
 import com.android.hindara.booking.app.utils.getOnBoardingImageSizeInDp
 
@@ -241,9 +241,9 @@ private fun DotView(onboardingImage: OnboardingImage) {
 
 fun getTintColor(onboardingImage: OnboardingImage) =
     if(onboardingImage.isSelected) {
-        SelectedDotTintColor
+        selected_dot_tint_color
     } else {
-        UnSelectedDotTintColor
+        unselected_dot_tint_color
     }
 
 

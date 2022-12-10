@@ -8,8 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.theme.TextColorLight
-import com.android.hindara.booking.app.ui.theme.LightTextColor
 
 @Composable
 fun HindaraCommonRow(label: String, value: String) {

@@ -78,7 +78,7 @@ private fun PaymentStatusComposable() {
             Text(
                 text = stringResource(R.string.label_payment_status_paid),
                 style = MaterialTheme.typography.h2,
-                color = SuccessColor
+                color = success_color
             )
         }
     }

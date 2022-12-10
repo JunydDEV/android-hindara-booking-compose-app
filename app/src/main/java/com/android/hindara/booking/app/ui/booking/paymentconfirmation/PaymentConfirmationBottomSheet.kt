@@ -96,7 +96,7 @@ private fun HorizontalLineComposable() {
         modifier = Modifier
             .fillMaxWidth()
             .height(dimensionResource(id = R.dimen.menu_screen_horizontal_line_thickness))
-            .background(BordersColor)
+            .background(borders_color)
     )
 }
 
@@ -135,7 +135,7 @@ private fun SelectedPaymentMethodComposable(paymentMethod: PaymentMethod) {
             Text(
                 text = stringResource(R.string.label_change_payment_method),
                 style = MaterialTheme.typography.h2,
-                color = SuccessColor
+                color = success_color
             )
         }
     }

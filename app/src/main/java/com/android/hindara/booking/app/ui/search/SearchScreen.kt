@@ -31,7 +31,7 @@ import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComposable
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetRoute
-import com.android.hindara.booking.app.ui.theme.YellowColor
+import com.android.hindara.booking.app.ui.theme.yellow_color
 
 const val COLUMNS_COUNT = 2
 
@@ -180,7 +180,7 @@ private fun HotelRatingComposable(hotel: Hotel) {
             modifier = Modifier.padding(start = dimensionResource(id = R.dimen.small_spacing)),
             text = hotel.rating.toString(),
             style = MaterialTheme.typography.body2,
-            color = YellowColor
+            color = yellow_color
         )
     }
 }

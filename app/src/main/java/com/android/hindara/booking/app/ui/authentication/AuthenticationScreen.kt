@@ -136,7 +136,7 @@ private fun TabRowComposable(
 private fun TabIndicatorComposable(pagerState: PagerState, tabPositions: List<TabPosition>) {
     TabRowDefaults.Indicator(
         modifier = Modifier.pagerTabIndicatorOffset(pagerState, tabPositions),
-        color = TabIndicatorColor
+        color = tab_indicator_color
     )
 }
 
