@@ -3,6 +3,7 @@ package com.android.hindara.booking.app.ui.appmenu.mybookings
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,7 +21,7 @@ fun MyBookingsScreen(
     viewModel: MyBookingsViewModel,
     navController: NavController) {
     Scaffold(
-        backgroundColor = ScreenBackgroundColorLight,
+        backgroundColor = MaterialTheme.colors.background,
         topBar = {
             AppTopBar(navController, stringResource(id = R.string.label_my_bookings))
         }

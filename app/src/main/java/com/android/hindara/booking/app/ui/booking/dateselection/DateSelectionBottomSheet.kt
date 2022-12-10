@@ -55,7 +55,7 @@ private fun DateSelectionContentComposable(
     homeViewModel: HomeViewModel
 ) {
     val mainModifier = Modifier
-        .background(WhiteColor)
+        .background(MaterialTheme.colors.background)
         .padding(dimensionResource(id = R.dimen.default_spacing))
 
     Column(modifier = mainModifier) {
@@ -88,15 +88,13 @@ fun SelectedDaysComposable(selectedDate: Pair<LocalDate?, LocalDate?>) {
             Text(
                 modifier = Modifier.wrapContentWidth(),
                 text = stringResource(R.string.label_check_in),
-                style = MaterialTheme.typography.body1,
-                color = LightTextColor
+                style = MaterialTheme.typography.body1
             )
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
                 text = checkInDate.getFormattedDate(),
-                style = MaterialTheme.typography.h1,
-                color = TextColorLight
+                style = MaterialTheme.typography.h1
             )
         }
 
@@ -106,15 +104,13 @@ fun SelectedDaysComposable(selectedDate: Pair<LocalDate?, LocalDate?>) {
             Text(
                 modifier = Modifier.wrapContentWidth(),
                 text = stringResource(R.string.label_check_out),
-                style = MaterialTheme.typography.body1,
-                color = LightTextColor
+                style = MaterialTheme.typography.body1
             )
 
             Text(
                 modifier = Modifier.wrapContentWidth(),
                 text = checkOutDate.getFormattedDate(),
-                style = MaterialTheme.typography.h1,
-                color = TextColorLight
+                style = MaterialTheme.typography.h1
             )
         }
     }

@@ -173,7 +173,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                 topEnd = dimensionResource(id = R.dimen.hotel_content_corners_size)
             )
         )
-        .background(ScreenBackgroundColorLight)
+        .background(MaterialTheme.colors.background)
         .fillMaxSize()
         .padding(dimensionResource(id = R.dimen.default_spacing))
         .constrainAs(contentSection) {
@@ -191,16 +191,14 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
                 .wrapContentWidth()
                 .padding(top = dimensionResource(id = R.dimen.half_height_of_banner_layout)),
             text = stringResource(R.string.label_hotel_description),
-            style = MaterialTheme.typography.h1,
-            color = TextColorLight
+            style = MaterialTheme.typography.h1
         )
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = hotel.description,
             style = MaterialTheme.typography.body1,
             maxLines = 3,
-            overflow = TextOverflow.Ellipsis,
-            color = TextColorLight
+            overflow = TextOverflow.Ellipsis
         )
         if (hotel.description.length > DESCRIPTION_MAX_LIMIT) {
             Text(
@@ -219,8 +217,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = stringResource(R.string.label_reviews),
-            style = MaterialTheme.typography.h1,
-            color = TextColorLight
+            style = MaterialTheme.typography.h1
         )
         repeat(REVIEWS_MAX_LIMIT) {
             ReviewItemComposable(review = hotel.reviewsList[it])
@@ -295,7 +292,7 @@ fun ConstraintLayoutScope.HotelBannerComposable(
         }
     Card(
         modifier = modifier,
-        backgroundColor = WhiteColor,
+        backgroundColor = MaterialTheme.colors.surface,
         elevation = dimensionResource(id = R.dimen.card_default_elevation),
         shape = RoundedCornerShape(dimensionResource(id = R.dimen.hotel_content_corners_size))
     ) {
@@ -315,8 +312,7 @@ private fun HotelNameComposable(hotel: Hotel) {
     Text(
         modifier = Modifier.wrapContentWidth(),
         text = hotel.name,
-        style = MaterialTheme.typography.h1,
-        color = TextColorLight
+        style = MaterialTheme.typography.h1
     )
 }
 
@@ -328,8 +324,7 @@ fun HotelAddressComposable(hotel: Hotel) {
     Text(
         modifier = modifier,
         text = hotel.address.locationTitle,
-        style = MaterialTheme.typography.body1,
-        color = LightTextColor
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -385,8 +380,7 @@ fun ReviewsCount(hotel: Hotel) {
     Text(
         modifier = modifier,
         text = "(${hotel.reviewsList.size} ${stringResource(id = R.string.label_reviews)})",
-        style = MaterialTheme.typography.body1,
-        color = Color.LightGray
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -405,7 +399,7 @@ fun BookingBottomBar(
             )
         )
         .fillMaxWidth()
-        .background(WhiteColor)
+        .background(MaterialTheme.colors.surface)
         .padding(dimensionResource(id = R.dimen.default_spacing))
 
     ConstraintLayout(
@@ -421,8 +415,7 @@ fun BookingBottomBar(
         Text(
             modifier = priceLabelModifier,
             text = stringResource(R.string.label_per_night_price),
-            style = MaterialTheme.typography.body1,
-            color = LightTextColor
+            style = MaterialTheme.typography.body1
         )
 
         val priceModifier = Modifier
@@ -435,8 +428,7 @@ fun BookingBottomBar(
             modifier = priceModifier,
             text = "$ ${hotel.pricePerNight}",
             style = MaterialTheme.typography.h1,
-            maxLines = 1,
-            color = TextColorLight
+            maxLines = 1
         )
 
         val bookNowButton = Modifier

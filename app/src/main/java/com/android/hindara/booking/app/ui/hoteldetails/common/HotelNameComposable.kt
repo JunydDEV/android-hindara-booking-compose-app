@@ -13,7 +13,6 @@ fun HotelNameComposable(hotel: Hotel) {
     Text(
         modifier = Modifier.wrapContentWidth(),
         text = hotel.name,
-        style = MaterialTheme.typography.h1,
-        color = TextColorLight
+        style = MaterialTheme.typography.h1
     )
 }

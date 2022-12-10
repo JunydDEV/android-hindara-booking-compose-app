@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,7 +24,7 @@ import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
     val hotel = homeViewModel.getSelectedHotel()
     Scaffold(
-        backgroundColor = ScreenBackgroundColorLight,
+        backgroundColor = MaterialTheme.colors.background,
         topBar = {
             AppTopBar(navController, stringResource(id = R.string.label_reviews))
         }

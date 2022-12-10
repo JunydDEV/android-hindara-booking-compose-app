@@ -80,14 +80,12 @@ fun TotalBillComposable(viewModel: BookingSharedViewModel) {
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = stringResource(R.string.label_total_amount),
-            style = MaterialTheme.typography.h2,
-            color = TextColorLight
+            style = MaterialTheme.typography.h2
         )
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = "$${viewModel.getTotalBill()}",
-            style = MaterialTheme.typography.h2,
-            color = TextColorLight
+            style = MaterialTheme.typography.h2
         )
     }
 }
@@ -132,8 +130,7 @@ private fun SelectedPaymentMethodComposable(paymentMethod: PaymentMethod) {
             Image(painter = painterResource(id = paymentMethod.icon), contentDescription = null)
             Text(
                 text = stringResource(id = paymentMethod.name),
-                style = MaterialTheme.typography.h2,
-                color = TextColorLight
+                style = MaterialTheme.typography.h2
             )
             Text(
                 text = stringResource(R.string.label_change_payment_method),

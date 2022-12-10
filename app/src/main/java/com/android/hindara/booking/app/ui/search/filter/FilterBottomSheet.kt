@@ -42,7 +42,7 @@ fun FilterBottomSheetScreen(
     val largeSpacing = dimensionResource(id = R.dimen.extra_large_spacing)
 
     val modifier = Modifier
-        .background(BottomSheetBackgroundColor)
+        .background(MaterialTheme.colors.background)
         .padding(
             start = defaultSpacing, end = defaultSpacing, top = largeSpacing, bottom = largeSpacing
         )
@@ -95,12 +95,11 @@ private fun PriceRangeSliderComposable(
             Text(
                 text = "$${value.start.roundToInt()}",
                 style = MaterialTheme.typography.h2,
-                color = LightTextColor)
+            )
 
             Text(
                 text = "$${value.endInclusive.roundToInt()}",
                 style = MaterialTheme.typography.h2,
-                color = LightTextColor
             )
         }
     }
@@ -125,8 +124,7 @@ private fun TitleComposable(title: String) {
     Text(
         modifier = modifier,
         text = title,
-        style = MaterialTheme.typography.h1,
-        color = TextColorLight
+        style = MaterialTheme.typography.h1
     )
 }
 
@@ -171,21 +169,19 @@ private fun ChipComposable(
             onLocationSelection(locations[index])
         }
     ) {
-        ChipLabelComposable(locations, index, selectedChipInfo)
+        ChipLabelComposable(locations, index)
     }
 }
 
 @Composable
 private fun ChipLabelComposable(
     locations: List<ChipInfo>,
-    index: Int,
-    selectedChipInfo: ChipInfo?
+    index: Int
 ) {
     Text(
         modifier = Modifier.padding(dimensionResource(id = R.dimen.small_spacing)),
         text = locations[index].label,
-        style = MaterialTheme.typography.h2,
-        color = getTextColor(selectedChipInfo, locations[index])
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -202,8 +198,8 @@ private fun getBorderStroke(
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
 private fun chipColors() = ChipDefaults.filterChipColors(
-    backgroundColor = WhiteColor,
-    contentColor = TextColorLight,
+    backgroundColor = MaterialTheme.colors.surface,
+    contentColor = MaterialTheme.colors.onSurface,
     selectedBackgroundColor = SelectedChipBackgroundColor,
     selectedContentColor = PrimaryColor
 

@@ -20,7 +20,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.Reviews
-import com.android.hindara.booking.app.ui.theme.TextColorLight
 
 @Composable
 fun ReviewItemComposable(
@@ -29,7 +28,8 @@ fun ReviewItemComposable(
     ConstraintLayout {
         val (reviewerImage, reviewerName, rating, reviewComment) = createRefs()
 
-        val spacing = dimensionResource(id = R.dimen.default_spacing)
+        val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
+        val smallSpacing = dimensionResource(id = R.dimen.small_spacing)
         val reviewerImageModifier = Modifier
             .clip(CircleShape)
             .size(
@@ -48,7 +48,7 @@ fun ReviewItemComposable(
         )
 
         val nameModifier = Modifier.constrainAs(reviewerName) {
-            start.linkTo(reviewerImage.end, margin = spacing)
+            start.linkTo(reviewerImage.end, margin = defaultSpacing)
             top.linkTo(reviewerImage.top)
         }
         Text(
@@ -56,12 +56,11 @@ fun ReviewItemComposable(
             text = review.reviewerName,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.h2,
-            color = TextColorLight
+            style = MaterialTheme.typography.h2
         )
 
         val ratingModifier = Modifier.constrainAs(rating) {
-            start.linkTo(reviewerImage.end, margin = spacing)
+            start.linkTo(reviewerImage.end, margin = defaultSpacing)
             top.linkTo(reviewerName.bottom)
         }
         LazyRow(
@@ -83,18 +82,17 @@ fun ReviewItemComposable(
 
         val reviewCommentModifier = Modifier
             .constrainAs(reviewComment) {
-                start.linkTo(parent.start, margin = spacing)
-                top.linkTo(rating.bottom, margin = spacing)
-                end.linkTo(parent.end, margin = spacing)
-                bottom.linkTo(parent.bottom, margin = spacing)
+                start.linkTo(parent.start, margin = defaultSpacing)
+                top.linkTo(rating.bottom, margin = smallSpacing)
+                end.linkTo(parent.end, margin = defaultSpacing)
+                bottom.linkTo(parent.bottom, margin = smallSpacing)
             }
             .fillMaxWidth()
 
         Text(
             modifier = reviewCommentModifier,
             text = review.comment,
-            style = MaterialTheme.typography.body1,
-            color = TextColorLight
+            style = MaterialTheme.typography.body1
         )
     }
 }

@@ -48,7 +48,7 @@ fun SearchScreen(
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        backgroundColor = ScreenBackgroundColorLight,
+        backgroundColor = MaterialTheme.colors.background,
         topBar = {
             AppTopBar(
                 navController = navController,
@@ -116,10 +116,13 @@ fun HotelCard(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
     val modifier = Modifier
         .wrapContentWidth()
         .wrapContentHeight()
+        .clickable {
+            onHotelSelect(hotel)
+        }
 
     Card(
         modifier = modifier,
-        backgroundColor = WhiteColor,
+        backgroundColor = MaterialTheme.colors.surface,
         elevation = 0.dp,
         shape = RoundedCornerShape(dimensionResource(id = R.dimen.app_card_corners_size))
     ) {
@@ -136,9 +139,6 @@ private fun HotelImageComposable(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
     val hotelImageModifier = Modifier
         .height(dimensionResource(id = R.dimen.hotel_small_image_height))
         .clip(RoundedCornerShape(dimensionResource(id = R.dimen.app_card_corners_size)))
-        .clickable {
-            onHotelSelect(hotel)
-        }
     Image(
         modifier = hotelImageModifier,
         painter = painterResource(id = hotel.image),
@@ -160,8 +160,7 @@ private fun HotelNameAndAddressComposable(hotel: Hotel) {
         text = hotel.address.locationTitle,
         style = MaterialTheme.typography.body1,
         maxLines = 1,
-        overflow = TextOverflow.Ellipsis,
-        color = LightTextColor
+        overflow = TextOverflow.Ellipsis
     )
 }
 

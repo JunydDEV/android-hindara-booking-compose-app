@@ -25,14 +25,12 @@ fun HindaraCommonRow(label: String, value: String) {
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = label,
-            style = MaterialTheme.typography.body1,
-            color = LightTextColor
+            style = MaterialTheme.typography.body1
         )
         Text(
             modifier = Modifier.wrapContentWidth(),
             text = value,
-            style = MaterialTheme.typography.h2,
-            color = TextColorLight
+            style = MaterialTheme.typography.h2
         )
     }
 }

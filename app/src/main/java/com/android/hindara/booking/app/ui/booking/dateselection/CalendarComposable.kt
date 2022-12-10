@@ -188,12 +188,13 @@ fun getRangeSelectionBackgroundColor(
     }
 }
 
+@Composable
 fun getSelectionTextColor(
     day: CalendarDay,
     selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
     return if (isSelectedDay(day, selectedDate)) {
-        WhiteColor
+        MaterialTheme.colors.onSurface
     } else {
         getCalendarDayTextColor(day)
     }
@@ -228,9 +229,10 @@ private fun isEndSelectedDay(
     return endDate?.dayOfMonth == day.date.dayOfMonth
 }
 
+@Composable
 private fun getCalendarDayTextColor(day: CalendarDay) = when (day.position) {
     DayPosition.MonthDate -> Color.Unspecified
-    DayPosition.InDate, DayPosition.OutDate -> Color.LightGray
+    DayPosition.InDate, DayPosition.OutDate -> MaterialTheme.colors.onSurface
 }
 
 @Composable
@@ -251,9 +253,9 @@ fun getCalendarDayBackgroundColor(
     selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
     return if (isCalendarDayEqualsSelectedDay(day, selectedDate)) {
-        PrimaryColor
+        MaterialTheme.colors.surface
     } else {
-        Color.Transparent
+        MaterialTheme.colors.background
     }
 }
 

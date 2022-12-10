@@ -1,7 +1,9 @@
 package com.android.hindara.booking.app.ui.common.composables
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -36,13 +38,13 @@ fun AppTopBar(
     ) {
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Image(
-                modifier = Modifier.noRippleClickable {
+            Icon(
+                modifier = Modifier.clickable {
                     navController.popBackStack()
                 },
                 painter = painterResource(id = R.drawable.ic_back),
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(TextColorLight)
+                tint = MaterialTheme.colors.onSurface
             )
             Spacer(
                 modifier = Modifier
@@ -52,20 +54,19 @@ fun AppTopBar(
             Text(
                 modifier = Modifier.wrapContentWidth(),
                 text = title,
-                style = MaterialTheme.typography.h1,
-                color = TextColorLight
+                style = MaterialTheme.typography.h1
             )
         }
 
 
         menuItemToShow?.let {
-            Image(
-                modifier = Modifier.noRippleClickable {
+            Icon(
+                modifier = Modifier.clickable {
                     menuItemClick?.invoke()
                 },
                 painter = painterResource(id = getMenuItemIcon(menuItemToShow)),
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(TextColorLight)
+                tint = MaterialTheme.colors.onSurface
             )
         } ?: Spacer(modifier = Modifier.wrapContentSize())
     }

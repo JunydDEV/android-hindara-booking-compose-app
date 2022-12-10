@@ -25,7 +25,7 @@ import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeViewModel) {
     val hotel = homeViewModel.getSelectedHotel()
     Scaffold(
-        backgroundColor = ScreenBackgroundColorLight,
+        backgroundColor = MaterialTheme.colors.background,
         topBar = {
             AppTopBar(navController, stringResource(id = R.string.label_hotel_description))
         }
@@ -41,8 +41,7 @@ fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeV
             Text(
                 modifier = Modifier.wrapContentWidth(),
                 text = hotel.description,
-                style = MaterialTheme.typography.body1,
-                color = TextColorLight
+                style = MaterialTheme.typography.body1
             )
         }
     }

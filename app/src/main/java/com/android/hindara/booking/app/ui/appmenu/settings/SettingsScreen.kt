@@ -24,7 +24,7 @@ fun SettingsScreen(
     navController: NavController,
 ) {
     Scaffold(
-        backgroundColor = ScreenBackgroundColorLight,
+        backgroundColor = MaterialTheme.colors.background,
         topBar = {
             AppTopBar(navController, stringResource(id = R.string.label_settings))
         }
