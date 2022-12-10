@@ -17,7 +17,6 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun SettingsScreen(

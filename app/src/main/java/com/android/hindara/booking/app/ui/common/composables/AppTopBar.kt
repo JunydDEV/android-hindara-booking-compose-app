@@ -27,8 +27,8 @@ fun AppTopBar(
             .fillMaxWidth()
             .padding(
                 top = dimensionResource(id = R.dimen.large_spacing),
-                start = dimensionResource(id = R.dimen.default_spacing),
-                end = dimensionResource(id = R.dimen.default_spacing)
+                start = dimensionResource(id = R.dimen.tiny_spacing),
+                end = dimensionResource(id = R.dimen.tiny_spacing)
             )
             .height(dimensionResource(id = R.dimen.application_bar_height)),
         verticalAlignment = Alignment.CenterVertically,

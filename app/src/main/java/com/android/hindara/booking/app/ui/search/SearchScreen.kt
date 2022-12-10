@@ -116,6 +116,7 @@ fun HotelCard(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
     val modifier = Modifier
         .wrapContentWidth()
         .wrapContentHeight()
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.app_card_corners_size)))
         .clickable {
             onHotelSelect(hotel)
         }
@@ -124,7 +125,6 @@ fun HotelCard(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
         modifier = modifier,
         backgroundColor = MaterialTheme.colors.surface,
         elevation = 0.dp,
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.app_card_corners_size))
     ) {
         Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.small_spacing))) {
             HotelImageComposable(hotel, onHotelSelect)

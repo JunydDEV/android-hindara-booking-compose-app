@@ -24,8 +24,16 @@ fun HomeScreenTopBar(navController: NavController) {
         val topBarModifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colors.background)
-            .padding(dimensionResource(id = R.dimen.default_spacing))
-        Row(modifier = topBarModifier, horizontalArrangement = Arrangement.SpaceBetween) {
+            .padding(
+                top = dimensionResource(id = R.dimen.default_spacing),
+                bottom = dimensionResource(id = R.dimen.default_spacing),
+                start = dimensionResource(id = R.dimen.tiny_spacing),
+                end = dimensionResource(id = R.dimen.tiny_spacing)
+            )
+        Row(
+            modifier = topBarModifier,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             IconButton(onClick = { navController.navigate(appMenuRoute) }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_menu),

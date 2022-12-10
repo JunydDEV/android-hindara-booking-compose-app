@@ -1,13 +1,13 @@
 package com.android.hindara.booking.app.ui.hoteldetails.common
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -21,12 +21,11 @@ fun HotelCardComposable(hotel: Hotel, onHotelSelect: ((Hotel) -> Unit)? = null) 
     ApplicationCard(
         showBorders = false,
         cornersSize = dimensionResource(id = R.dimen.app_card_corners_size),
-        onCardClick = {
-            onHotelSelect?.invoke(hotel)
-        }
     ) {
         Row(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing))
+            modifier = Modifier
+                .clickable { onHotelSelect?.invoke(hotel) }
+                .padding(dimensionResource(id = R.dimen.default_spacing))
         ) {
             HotelImageComposable(hotel)
             Column(

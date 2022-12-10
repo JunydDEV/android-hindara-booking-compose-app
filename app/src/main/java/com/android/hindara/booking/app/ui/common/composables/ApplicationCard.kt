@@ -14,24 +14,16 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.BordersColor
-import com.android.hindara.booking.app.utils.noRippleClickable
 
 @Composable
 fun ApplicationCard(
     showBorders: Boolean = true,
     cornersSize: Dp = dimensionResource(id = R.dimen.app_card_corners_size),
-    onCardClick: (() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
     val cardModifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.default_spacing))
-
-    if (onCardClick != null) {
-        cardModifier.noRippleClickable {
-            onCardClick.invoke()
-        }
-    }
 
     Card(
         modifier = cardModifier,

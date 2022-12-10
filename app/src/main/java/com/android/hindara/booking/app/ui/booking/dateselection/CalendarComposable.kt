@@ -167,6 +167,7 @@ private fun getRangeSelectionModifier(
         .background(backgroundColor)
 }
 
+@Composable
 fun getRangeSelectionBackgroundColor(
     day: CalendarDay,
     selectedDate: Pair<LocalDate?, LocalDate?>
@@ -175,7 +176,7 @@ fun getRangeSelectionBackgroundColor(
     val endDate = selectedDate.second
 
     if (startDate == null || endDate == null) {
-        return WhiteColor
+        return Color.Transparent
     }
 
     return if (
@@ -194,7 +195,7 @@ fun getSelectionTextColor(
     selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
     return if (isSelectedDay(day, selectedDate)) {
-        MaterialTheme.colors.onSurface
+        WhiteColor
     } else {
         getCalendarDayTextColor(day)
     }
@@ -232,7 +233,7 @@ private fun isEndSelectedDay(
 @Composable
 private fun getCalendarDayTextColor(day: CalendarDay) = when (day.position) {
     DayPosition.MonthDate -> Color.Unspecified
-    DayPosition.InDate, DayPosition.OutDate -> MaterialTheme.colors.onSurface
+    DayPosition.InDate, DayPosition.OutDate -> Color.LightGray
 }
 
 @Composable
@@ -253,9 +254,9 @@ fun getCalendarDayBackgroundColor(
     selectedDate: Pair<LocalDate?, LocalDate?>
 ): Color {
     return if (isCalendarDayEqualsSelectedDay(day, selectedDate)) {
-        MaterialTheme.colors.surface
+        PrimaryColor
     } else {
-        MaterialTheme.colors.background
+        Color.Transparent
     }
 }
 

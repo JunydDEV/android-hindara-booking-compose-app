@@ -25,9 +25,9 @@ fun BookedHotelCardComposable(
         cornersSize = dimensionResource(id = R.dimen.app_card_corners_size),
     ) {
         Row(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.default_spacing)).clickable {
-                onClick()
-            }
+            modifier = Modifier
+                .clickable { onClick() }
+                .padding(dimensionResource(id = R.dimen.default_spacing))
         ) {
             HotelImageComposable(hotel)
             Column(

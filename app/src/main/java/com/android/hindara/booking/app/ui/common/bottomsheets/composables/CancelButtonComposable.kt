@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -35,9 +36,8 @@ fun CancelButtonComposable(onClick: ()->Unit) {
             brush = SolidColor(CancelButtonColor)
         ),
         colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = ScreenBackgroundColorLight,
+            backgroundColor = MaterialTheme.colors.background,
             contentColor = CancelButtonColor,
-            disabledContentColor = LightTextColor
         ),
         elevation = ButtonDefaults.elevation(defaultElevation = 0.dp),
         shape = RoundedCornerShape(CornerSize(dimensionResource(id = R.dimen.primary_button_corners_size))),

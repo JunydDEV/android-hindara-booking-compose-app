@@ -17,8 +17,8 @@
     <dimen name="primary_bottom_sheet_corners_size">15dp</dimen>
     <dimen name="home_screen_hotel_image_corners_size">20dp</dimen>
     <dimen name="rating_bar_corners_size">20dp</dimen>
-    <dimen name="digit_field_width">50dp</dimen>
-    <dimen name="digit_field_height">60dp</dimen>
+    <dimen name="digit_field_width">60dp</dimen>
+    <dimen name="digit_field_height">70dp</dimen>
     <dimen name="digit_field_corners_size">10dp</dimen>
     <dimen name="home_screen_hotel_image_width">252dp</dimen>
     <dimen name="home_screen_hotel_image_height">374dp</dimen>
@@ -42,7 +42,7 @@
     <dimen name="hotel_small_image_height">150dp</dimen>
     <dimen name="hotel_info_banner_height">80dp</dimen>
     <dimen name="rating_star_size">15dp</dimen>
-    <dimen name="range_selection_shape_size">20dp</dimen>
+    <dimen name="range_selection_shape_size">40dp</dimen>
     <dimen name="details_screen_nav_button_size">50dp</dimen>
     <dimen name="details_screen_nav_button_corners_size">10dp</dimen>
 
