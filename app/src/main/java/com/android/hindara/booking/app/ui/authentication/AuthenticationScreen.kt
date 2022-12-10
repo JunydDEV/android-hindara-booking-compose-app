@@ -105,7 +105,7 @@ private fun TabRowComposable(
 
     TabRow(
         selectedTabIndex = positionValue,
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = MaterialTheme.colors.background,
         indicator = { tabPositions ->
             val rtlTabsPosition =
                 if (isRtlLayout()) {

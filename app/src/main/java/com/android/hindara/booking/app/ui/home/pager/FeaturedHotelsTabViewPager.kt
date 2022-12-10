@@ -57,7 +57,7 @@ private fun TabRowComposable(
     val coroutineScope = rememberCoroutineScope()
     TabRow(
         selectedTabIndex = tabPosition,
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = MaterialTheme.colors.background,
         divider = {
             TabRowDefaults.Divider(color = Color.Transparent)
         },

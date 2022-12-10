@@ -14,7 +14,6 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.appmenu.mybookings.bottomsheets.details.bookingDetailsBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.hoteldetails.common.BookedHotelCardComposable
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun MyBookingsScreen(

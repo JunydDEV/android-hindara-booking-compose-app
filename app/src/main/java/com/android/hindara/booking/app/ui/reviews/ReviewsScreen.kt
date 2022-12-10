@@ -18,7 +18,6 @@ import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {

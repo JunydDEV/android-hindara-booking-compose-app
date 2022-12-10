@@ -5,7 +5,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 import com.android.hindara.booking.app.ui.appmenu.appMenuGraph
 import com.android.hindara.booking.app.ui.appmenu.mybookings.MyBookingsViewModel
 import com.android.hindara.booking.app.ui.appmenu.mybookings.bottomsheets.details.bookingDetailsBottomSheetGraph
@@ -26,7 +25,6 @@ import com.android.hindara.booking.app.ui.description.moreDescriptionGraph
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.home.homeNavGraph
-import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsGraph
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.onboarding.onboardingGraph
@@ -34,8 +32,6 @@ import com.android.hindara.booking.app.ui.onboarding.onboardingRoute
 import com.android.hindara.booking.app.ui.reviews.reviewsGraph
 import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetNavGraph
 import com.android.hindara.booking.app.ui.search.searchScreenNavGraph
-import com.android.hindara.booking.app.ui.theme.BottomSheetBackgroundColor
-import com.android.hindara.booking.app.utils.isRtlLayout
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi

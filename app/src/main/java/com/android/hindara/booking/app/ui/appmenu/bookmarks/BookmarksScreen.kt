@@ -15,7 +15,6 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
-import com.android.hindara.booking.app.ui.theme.ScreenBackgroundColorLight
 
 @Composable
 fun BookmarksScreen(
