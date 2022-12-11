@@ -12,16 +12,16 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
-import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.appmenu.mybookings.MyBookingsViewModel
-import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
 import com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet.alertBottomSheetRoute
-import com.android.hindara.booking.app.data.AlertType
-import com.android.hindara.booking.app.ui.home.Hotel
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
+import com.android.hindara.booking.app.ui.common.bottomsheets.composables.CancelButtonComposable
+import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.hoteldetails.common.BookingDatesComposable
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelInfoComposable
-import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.ui.theme.success_color
+import com.core.model.alert_bottomsheet.AlertType
+import com.core.model.hotel_details.Hotel
 import java.time.LocalDate
 
 @Composable

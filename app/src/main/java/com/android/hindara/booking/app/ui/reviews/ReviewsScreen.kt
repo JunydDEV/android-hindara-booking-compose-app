@@ -14,10 +14,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
-import com.android.hindara.booking.app.ui.home.Hotel
+import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
+import com.core.model.hotel_details.Hotel
 
 @Composable
 fun ReviewsScreen(navController: NavController, selectedHotel: Hotel) {

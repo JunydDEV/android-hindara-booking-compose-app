@@ -2,9 +2,9 @@ package com.android.hindara.booking.app.ui.appmenu.bookmarks
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.home.Address
-import com.android.hindara.booking.app.ui.home.Hotel
-import com.android.hindara.booking.app.ui.home.Reviews
+import com.core.model.hotel_details.Address
+import com.core.model.hotel_details.Hotel
+import com.core.model.hotel_details.Reviews
 import javax.inject.Inject
 
 class BookmarksViewModel @Inject constructor() : ViewModel() {

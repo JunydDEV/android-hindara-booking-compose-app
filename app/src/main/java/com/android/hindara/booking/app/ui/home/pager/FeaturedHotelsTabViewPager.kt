@@ -8,11 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import com.android.hindara.booking.app.ui.home.FeaturedCategory
 import com.android.hindara.booking.app.ui.home.HomeViewModel
-import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.isRtlLayout
+import com.core.model.hotel_details.FeaturedCategory
+import com.core.model.hotel_details.Hotel
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 

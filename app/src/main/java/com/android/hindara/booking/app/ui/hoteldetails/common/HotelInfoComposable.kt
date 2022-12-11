@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
-import com.android.hindara.booking.app.ui.home.Hotel
+import com.core.model.hotel_details.Hotel
 
 @Composable
 fun HotelInfoComposable(hotel: Hotel) {

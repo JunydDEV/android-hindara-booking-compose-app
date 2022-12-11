@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -26,12 +25,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.OnboardingImage
 import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.theme.selected_dot_tint_color
 import com.android.hindara.booking.app.ui.theme.unselected_dot_tint_color
 import com.android.hindara.booking.app.utils.OnboardingContentSlideAnimation
 import com.android.hindara.booking.app.utils.getOnBoardingImageSizeInDp
+import com.core.model.alert_bottomsheet.OnboardingImage
 
 
 @Composable
@@ -177,8 +176,8 @@ private fun ImageIndicatorsComposable(
         item.isSelected = (index == imageSelectionState.value)
     }
     LazyRow(content = {
-        items(onboardingImagesList) {
-            DotView(it)
+        items(onboardingImagesList.size) {
+            DotView(onboardingImagesList[it])
         }
     })
 }
@@ -240,7 +239,7 @@ private fun DotView(onboardingImage: OnboardingImage) {
 }
 
 fun getTintColor(onboardingImage: OnboardingImage) =
-    if(onboardingImage.isSelected) {
+    if (onboardingImage.isSelected) {
         selected_dot_tint_color
     } else {
         unselected_dot_tint_color

@@ -1,9 +1,12 @@
 package com.android.hindara.booking.app.ui.hoteldetails
 
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,13 +24,15 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetRoute
 import com.android.hindara.booking.app.ui.description.moreDescriptionRoute
-import com.android.hindara.booking.app.ui.home.HomeViewModel
-import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
 import com.android.hindara.booking.app.ui.reviews.reviewsRoute
-import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.ui.theme.black_transparent_color
+import com.android.hindara.booking.app.ui.theme.success_color
+import com.android.hindara.booking.app.ui.theme.white_color
+import com.android.hindara.booking.app.ui.theme.yellow_color
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
 import com.android.hindara.booking.app.utils.noRippleClickable
+import com.core.model.hotel_details.Hotel
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng

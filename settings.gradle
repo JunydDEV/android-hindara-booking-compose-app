@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "android-hindara-booking-app"
 include ':app'
+include ':core-data'
+include ':core-model'

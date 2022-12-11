@@ -18,10 +18,8 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.paymentselection.paymentSelectionBottomSheetRoute
-import com.android.hindara.booking.app.ui.home.HomeViewModel
-import com.android.hindara.booking.app.ui.home.Hotel
-import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getFormattedDate
+import com.core.model.hotel_details.Hotel
 import java.time.LocalDate
 
 /**

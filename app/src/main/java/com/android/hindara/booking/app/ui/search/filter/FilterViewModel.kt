@@ -1,7 +1,7 @@
 package com.android.hindara.booking.app.ui.search.filter
 
-import android.util.Range
 import androidx.lifecycle.ViewModel
+import com.core.model.search.ChipInfo
 import javax.inject.Inject
 
 class FilterViewModel @Inject constructor(): ViewModel() {
@@ -27,5 +27,3 @@ class FilterViewModel @Inject constructor(): ViewModel() {
     }
 
 }
-
-data class ChipInfo(val label: String, var isSelected: Boolean)

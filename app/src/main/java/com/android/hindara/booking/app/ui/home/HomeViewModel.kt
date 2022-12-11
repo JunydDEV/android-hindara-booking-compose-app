@@ -2,6 +2,10 @@ package com.android.hindara.booking.app.ui.home
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
+import com.core.model.hotel_details.Address
+import com.core.model.hotel_details.FeaturedCategory
+import com.core.model.hotel_details.Hotel
+import com.core.model.hotel_details.Reviews
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor() : ViewModel() {
@@ -10,10 +14,6 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 
     fun onHotelSelect(hotel: Hotel) {
         selectedHotel = hotel
-    }
-
-    fun getSelectedHotel(): Hotel {
-        return selectedHotel
     }
 
     fun getFeaturedCategories(): List<FeaturedCategory> {
@@ -144,32 +144,3 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         return FeaturedCategory(name, recommendedHotels)
     }
 }
-
-data class FeaturedCategory(
-    val categoryName: Int,
-    val hotelsList: List<Hotel>
-)
-
-data class Hotel(
-    val name: String,
-    val image: Int,
-    val address: Address,
-    val rating: Float,
-    val description: String,
-    val tax: Double,
-    val pricePerNight: Double,
-    val reviewsList: List<Reviews>
-)
-
-data class Reviews(
-    val reviewerName: String,
-    val reviewImage: Int,
-    val rating: Float,
-    val comment: String
-)
-
-data class Address(
-    val latitude: Double,
-    val longitude: Double,
-    val locationTitle: String,
-)

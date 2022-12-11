@@ -2,10 +2,11 @@ package com.android.hindara.booking.app.ui.appmenu.mybookings
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.booking.PaymentMethod
-import com.android.hindara.booking.app.ui.home.Address
-import com.android.hindara.booking.app.ui.home.Hotel
-import com.android.hindara.booking.app.ui.home.Reviews
+import com.core.model.booking.MyBooking
+import com.core.model.booking.PaymentMethod
+import com.core.model.hotel_details.Address
+import com.core.model.hotel_details.Hotel
+import com.core.model.hotel_details.Reviews
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -92,10 +93,3 @@ class MyBookingsViewModel @Inject constructor() : ViewModel() {
         return LocalDate.now().plusDays(5)
     }
 }
-
-data class MyBooking(
-    val hotel: Hotel,
-    val checkInDate: LocalDate,
-    val checkOutDate: LocalDate,
-    val paymentMethod: PaymentMethod
-)

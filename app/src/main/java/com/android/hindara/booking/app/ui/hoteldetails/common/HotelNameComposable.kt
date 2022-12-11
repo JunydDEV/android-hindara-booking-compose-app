@@ -5,7 +5,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.android.hindara.booking.app.ui.home.Hotel
+import com.core.model.hotel_details.Hotel
 
 @Composable
 fun HotelNameComposable(hotel: Hotel) {

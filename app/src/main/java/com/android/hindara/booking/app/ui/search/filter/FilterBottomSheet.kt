@@ -19,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.theme.*
+import com.core.model.search.ChipInfo
 import kotlin.math.roundToInt
 
 @Composable

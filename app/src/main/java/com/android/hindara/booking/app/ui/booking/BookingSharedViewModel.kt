@@ -2,7 +2,8 @@ package com.android.hindara.booking.app.ui.booking
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.home.Hotel
+import com.core.model.booking.PaymentMethod
+import com.core.model.hotel_details.Hotel
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 import javax.inject.Inject
@@ -42,5 +43,3 @@ class BookingSharedViewModel @Inject constructor(): ViewModel() {
     }
 
 }
-
-data class PaymentMethod(val icon: Int, val name: Int, var isSelected: Boolean)

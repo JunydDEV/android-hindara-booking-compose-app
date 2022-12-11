@@ -19,7 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.home.Reviews
+import com.core.model.hotel_details.Reviews
 
 @Composable
 fun ReviewItemComposable(

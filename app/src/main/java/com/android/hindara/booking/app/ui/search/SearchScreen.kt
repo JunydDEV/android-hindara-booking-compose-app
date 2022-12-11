@@ -29,9 +29,9 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.AppBarMenuItem
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComposable
-import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetRoute
 import com.android.hindara.booking.app.ui.theme.yellow_color
+import com.core.model.hotel_details.Hotel
 
 const val COLUMNS_COUNT = 2
 

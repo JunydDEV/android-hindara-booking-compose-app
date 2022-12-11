@@ -2,7 +2,8 @@ package com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.AlertType
+import com.core.model.alert_bottomsheet.AlertType
+import com.core.model.alert_bottomsheet.BottomSheetContent
 import javax.inject.Inject
 
 class AlertViewModel @Inject constructor() : ViewModel() {
@@ -105,10 +106,3 @@ class AlertViewModel @Inject constructor() : ViewModel() {
                 || type == AlertType.cancellationCompleted
     }
 }
-
-data class BottomSheetContent(
-    val icon: Int,
-    val title: Int,
-    val description: Int,
-    val buttonText: Int
-)

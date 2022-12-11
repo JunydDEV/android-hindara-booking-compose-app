@@ -11,7 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.home.Hotel
+import com.core.model.hotel_details.Hotel
 
 @Composable
 fun HotelImageComposable(hotel: Hotel) {

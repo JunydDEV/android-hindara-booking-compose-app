@@ -1,9 +1,10 @@
 package com.android.hindara.booking.app.ui.appmenu
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
+import com.core.model.profile_info.BookingHistory
+import com.core.model.profile_info.MenuItem
+import com.core.model.profile_info.ProfileInfo
 import javax.inject.Inject
 
 class AppMenuViewModel @Inject constructor() : ViewModel() {
@@ -33,25 +34,4 @@ class AppMenuViewModel @Inject constructor() : ViewModel() {
         )
     }
 }
-
-data class ProfileInfo(
-    @StringRes val name: Int,
-    @DrawableRes val picture: Int,
-    @StringRes val country: Int,
-    @StringRes val address: Int,
-    val phoneNumber: String,
-    val bookingHistory: BookingHistory,
-
-)
-
-data class BookingHistory(
-    val totalReviews: Int,
-    val totalTransactions: Int,
-    val totalBookings: Int
-)
-
-data class MenuItem(
-    val title: Int,
-    val icon: Int
-)
 

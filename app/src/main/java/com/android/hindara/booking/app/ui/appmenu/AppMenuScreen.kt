@@ -30,6 +30,7 @@ import com.android.hindara.booking.app.ui.authentication.authenticationRoute
 import com.android.hindara.booking.app.ui.common.composables.SafeArea
 import com.android.hindara.booking.app.ui.home.homeRoute
 import com.android.hindara.booking.app.ui.theme.*
+import com.core.model.profile_info.MenuItem
 
 @Composable
 fun AppMenuScreen(

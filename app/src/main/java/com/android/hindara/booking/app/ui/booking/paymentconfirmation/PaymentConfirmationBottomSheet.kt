@@ -7,7 +7,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,14 +18,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
+import com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet.alertBottomSheetRoute
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
-import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
-import com.android.hindara.booking.app.ui.booking.PaymentMethod
-import com.android.hindara.booking.app.ui.common.bottomsheets.alertbottomsheet.alertBottomSheetRoute
-import com.android.hindara.booking.app.data.AlertType
-import com.android.hindara.booking.app.ui.hoteldetails.common.*
-import com.android.hindara.booking.app.ui.theme.*
+import com.android.hindara.booking.app.ui.hoteldetails.common.BookingDatesComposable
+import com.android.hindara.booking.app.ui.hoteldetails.common.HindaraCommonRow
+import com.android.hindara.booking.app.ui.hoteldetails.common.HotelInfoComposable
+import com.android.hindara.booking.app.ui.theme.borders_color
+import com.android.hindara.booking.app.ui.theme.success_color
+import com.core.model.alert_bottomsheet.AlertType
+import com.core.model.booking.PaymentMethod
 
 /**
  * Bottom sheet to select the booking dates.

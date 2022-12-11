@@ -19,12 +19,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.home.FeaturedCategory
-import com.android.hindara.booking.app.ui.home.HomeViewModel
-import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.black_transparent_color
 import com.android.hindara.booking.app.ui.theme.white_color
+import com.core.model.hotel_details.FeaturedCategory
+import com.core.model.hotel_details.Hotel
 
 @Composable
 fun FeaturedHotelsPageScreen(

@@ -13,8 +13,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
-import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.yellow_color
+import com.core.model.hotel_details.Hotel
 
 @Composable
 fun HotelCardComposable(hotel: Hotel, onHotelSelect: ((Hotel) -> Unit)? = null) {

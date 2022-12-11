@@ -20,9 +20,8 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.bottomsheets.composables.BottomSheetContentWithTitle
 import com.android.hindara.booking.app.ui.common.composables.ApplicationCard
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
-import com.android.hindara.booking.app.ui.booking.PaymentMethod
 import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
-import com.android.hindara.booking.app.utils.noRippleClickable
+import com.core.model.booking.PaymentMethod
 
 /**
  * Bottom sheet to choose the payment method.

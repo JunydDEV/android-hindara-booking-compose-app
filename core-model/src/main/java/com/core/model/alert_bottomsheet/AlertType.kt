@@ -1,7 +1,6 @@
-package com.android.hindara.booking.app.data
+package com.core.model.alert_bottomsheet
 
 class AlertType {
-
     companion object {
         const val resetPasswordSuccess = "ResetPasswordSuccess"
         const val resetPasswordFailure = "ResetPasswordFailure"
@@ -16,5 +15,4 @@ class AlertType {
         const val cancelBookingFailure = "CancelBookingFailure"
         const val cancellationCompleted = "CancellationCompleted"
     }
-
 }

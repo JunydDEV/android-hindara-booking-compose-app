@@ -1,4 +1,4 @@
-package com.android.hindara.booking.app.data
+package com.core.model.alert_bottomsheet
 
 data class OnboardingImage(
     val imageDrawable: Int,

@@ -2,7 +2,7 @@ package com.android.hindara.booking.app.ui.onboarding
 
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.data.OnboardingImage
+import com.core.model.alert_bottomsheet.OnboardingImage
 import javax.inject.Inject
 
 class OnboardingViewModel @Inject constructor() : ViewModel() {

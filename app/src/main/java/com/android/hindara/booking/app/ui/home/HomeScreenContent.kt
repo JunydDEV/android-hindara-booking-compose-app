@@ -1,6 +1,9 @@
 package com.android.hindara.booking.app.ui.home
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +18,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComposable
 import com.android.hindara.booking.app.ui.home.pager.FeaturedOnHomeScreenListing
 import com.android.hindara.booking.app.ui.search.searchRoute
+import com.core.model.hotel_details.Hotel
 
 @Composable
 fun HomeScreenContent(
