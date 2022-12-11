@@ -37,6 +37,7 @@ import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 
+
 @OptIn(ExperimentalMaterialNavigationApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun AppNavHost(
@@ -47,6 +48,9 @@ fun AppNavHost(
     val homeViewModel: HomeViewModel = hiltViewModel()
     val myBookingsViewModel: MyBookingsViewModel = hiltViewModel()
     val bookingSharedViewModel: BookingSharedViewModel = hiltViewModel()
+    val selectedHotel = remember {
+        mutableStateOf<Hotel?>(null)
+    }
 
     ModalBottomSheetLayout(
         sheetShape = BottomSheetLayoutConfig.sheetShape(),
@@ -57,11 +61,13 @@ fun AppNavHost(
             // Main Screens
             onboardingGraph(navController)
             authenticationGraph(navController)
-            homeNavGraph(homeViewModel, navController)
+            homeNavGraph(navController, homeViewModel, onHotelSelect = {
+                selectedHotel.value = it
+            })
             appMenuGraph(navController)
-            hotelDetailsGraph(homeViewModel, navController)
-            moreDescriptionGraph(navController, homeViewModel)
-            reviewsGraph(navController, homeViewModel)
+            hotelDetailsGraph(navController, selectedHotel)
+            moreDescriptionGraph(navController, selectedHotel)
+            reviewsGraph(navController, selectedHotel)
             bookmarksGraph(navController, onHotelSelect = {
                 navigateToHotelDetailsScreen(homeViewModel, it, navController)
             })
@@ -75,7 +81,7 @@ fun AppNavHost(
             forgotPasswordBottomSheetNavGraph(navController)
             emailVerificationBottomSheetNavGraph(navController)
             resetPasswordNavGraph(navController)
-            calendarBottomSheetNavGraph(navController, bookingSharedViewModel, homeViewModel)
+            calendarBottomSheetNavGraph(navController, bookingSharedViewModel, selectedHotel)
             paymentSelectionBottomSheetNavGraph(navController, bookingSharedViewModel)
             paymentConfirmationBottomSheetNavGraph(navController, bookingSharedViewModel)
             bookingDetailsBottomSheetGraph(navController, myBookingsViewModel)

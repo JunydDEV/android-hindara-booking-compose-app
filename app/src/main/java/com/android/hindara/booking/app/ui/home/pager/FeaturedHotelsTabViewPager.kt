@@ -10,6 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.ui.home.FeaturedCategory
 import com.android.hindara.booking.app.ui.home.HomeViewModel
+import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.isRtlLayout
 import com.google.accompanist.pager.*
@@ -18,7 +19,11 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun FeaturedOnHomeScreenListing(viewModel: HomeViewModel, navController: NavController) {
+fun FeaturedOnHomeScreenListing(
+    viewModel: HomeViewModel,
+    navController: NavController,
+    onHotelSelect: (Hotel) -> Unit
+) {
 
     Column(Modifier.fillMaxSize()) {
         val tabIndexState = remember { mutableStateOf(0) }
@@ -37,10 +42,10 @@ fun FeaturedOnHomeScreenListing(viewModel: HomeViewModel, navController: NavCont
             tabTitles = categories
         )
         HorizontalPagerComposable(
-            homeViewModel = viewModel,
             navController = navController,
             list = categories,
             pagerState = pagerState,
+            onHotelSelect = onHotelSelect
         )
     }
 
@@ -102,16 +107,20 @@ private fun TabIndicatorComposable(pagerState: PagerState, tabPositions: List<Ta
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun HorizontalPagerComposable(
-    homeViewModel: HomeViewModel,
     navController: NavController,
     list: List<FeaturedCategory>,
     pagerState: PagerState,
+    onHotelSelect: (Hotel) -> Unit,
 ) {
 
     HorizontalPager(
         count = list.size,
         state = pagerState,
     ) { index ->
-        FeaturedHotelsPageScreen(homeViewModel, navController, list[index])
+        FeaturedHotelsPageScreen(
+            navController = navController,
+            category = list[index],
+            onHotelSelect = onHotelSelect
+        )
     }
 }

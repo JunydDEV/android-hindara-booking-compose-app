@@ -38,11 +38,10 @@ private const val REVIEWS_MAX_LIMIT = 2
 
 @Composable
 fun HotelDetailsScreen(
-    homeViewModel: HomeViewModel,
+    selectedHotel: Hotel,
     navController: NavController,
 ) {
-    val hotel = homeViewModel.getSelectedHotel()
-    HotelDetailsContent(navController, hotel)
+    HotelDetailsContent(navController, selectedHotel)
 }
 
 @Composable

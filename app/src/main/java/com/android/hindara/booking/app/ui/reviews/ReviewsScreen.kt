@@ -14,14 +14,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
-import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
+import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
 
 @Composable
-fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
-    val hotel = homeViewModel.getSelectedHotel()
+fun ReviewsScreen(navController: NavController, selectedHotel: Hotel) {
     Scaffold(
         backgroundColor = MaterialTheme.colors.background,
         topBar = {
@@ -35,10 +34,10 @@ fun ReviewsScreen(navController: NavController, homeViewModel: HomeViewModel) {
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.small_spacing))
         ) {
-            HotelCardComposable(hotel = hotel)
+            HotelCardComposable(hotel = selectedHotel)
             Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)))
-            repeat(hotel.reviewsList.size) { index ->
-                ReviewItemComposable(review = hotel.reviewsList[index])
+            repeat(selectedHotel.reviewsList.size) { index ->
+                ReviewItemComposable(review = selectedHotel.reviewsList[index])
             }
         }
     }

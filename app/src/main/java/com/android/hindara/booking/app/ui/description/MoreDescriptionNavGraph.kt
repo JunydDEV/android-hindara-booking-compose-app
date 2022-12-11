@@ -1,17 +1,21 @@
 package com.android.hindara.booking.app.ui.description
 
+import androidx.compose.runtime.MutableState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import com.android.hindara.booking.app.ui.home.HomeViewModel
+import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.utils.animatedComposable
 
 const val moreDescriptionRoute = "more_description_route"
 
 fun NavGraphBuilder.moreDescriptionGraph(
     navController: NavController,
-    homeViewModel: HomeViewModel
+    selectedHotel: MutableState<Hotel?>
 ) {
     animatedComposable(moreDescriptionRoute) {
-        MoreDescriptionComposable(navController = navController, homeViewModel = homeViewModel)
+        MoreDescriptionComposable(
+            navController = navController,
+            selectedHotel = selectedHotel.value!!
+        )
     }
 }

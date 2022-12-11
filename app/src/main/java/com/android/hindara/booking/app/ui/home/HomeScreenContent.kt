@@ -20,7 +20,8 @@ import com.android.hindara.booking.app.ui.search.searchRoute
 fun HomeScreenContent(
     viewModel: HomeViewModel,
     modifier: Modifier,
-    navController: NavController
+    navController: NavController,
+    onHotelSelect: (Hotel) -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -35,7 +36,11 @@ fun HomeScreenContent(
             TitleComposable()
             SearchComposable(navController)
         }
-        FeaturedOnHomeScreenListing(viewModel, navController)
+        FeaturedOnHomeScreenListing(
+            viewModel = viewModel,
+            navController = navController,
+            onHotelSelect = onHotelSelect
+        )
     }
 }
 

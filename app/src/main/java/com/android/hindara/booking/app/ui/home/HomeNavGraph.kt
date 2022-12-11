@@ -1,13 +1,21 @@
 package com.android.hindara.booking.app.ui.home
 
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
 import com.android.hindara.booking.app.utils.animatedComposable
 
 const val homeRoute = "home_route"
 
-fun NavGraphBuilder.homeNavGraph(homeViewModel: HomeViewModel, navHostController: NavHostController) {
+fun NavGraphBuilder.homeNavGraph(
+    navController: NavController,
+    homeViewModel: HomeViewModel,
+    onHotelSelect: (Hotel) -> Unit
+) {
     animatedComposable(homeRoute) {
-        ApplicationHomeScreen(homeViewModel,navHostController)
+        ApplicationHomeScreen(
+            homeViewModel = homeViewModel,
+            navController = navController,
+            onHotelSelect = onHotelSelect
+        )
     }
 }

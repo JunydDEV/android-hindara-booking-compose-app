@@ -18,10 +18,13 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.HotelCardComposable
 import com.android.hindara.booking.app.ui.common.composables.AppTopBar
+import com.android.hindara.booking.app.ui.home.Hotel
 
 @Composable
-fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeViewModel) {
-    val hotel = homeViewModel.getSelectedHotel()
+fun MoreDescriptionComposable(
+    navController: NavController,
+    selectedHotel: Hotel
+) {
     Scaffold(
         backgroundColor = MaterialTheme.colors.background,
         topBar = {
@@ -34,11 +37,11 @@ fun MoreDescriptionComposable(navController: NavController, homeViewModel: HomeV
             .verticalScroll(rememberScrollState())
 
         Column(modifier = modifier) {
-            HotelCardComposable(hotel = hotel)
+            HotelCardComposable(hotel = selectedHotel)
             Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.default_spacing)))
             Text(
                 modifier = Modifier.wrapContentWidth(),
-                text = hotel.description,
+                text = selectedHotel.description,
                 style = MaterialTheme.typography.body1
             )
         }

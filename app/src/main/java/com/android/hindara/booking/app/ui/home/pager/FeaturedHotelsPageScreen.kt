@@ -28,23 +28,31 @@ import com.android.hindara.booking.app.ui.theme.white_color
 
 @Composable
 fun FeaturedHotelsPageScreen(
-    homeViewModel: HomeViewModel,
     navController: NavController,
-    category: FeaturedCategory
+    category: FeaturedCategory,
+    onHotelSelect: (Hotel) -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         LazyRow {
             items(category.hotelsList.size) {
-                HotelItemComposable(homeViewModel, navController, category.hotelsList[it])
+                HotelItemComposable(
+                    navController = navController,
+                    hotel = category.hotelsList[it],
+                    onHotelSelect = onHotelSelect
+                )
             }
         }
     }
 }
 
 @Composable
-fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavController, hotel: Hotel) {
+fun HotelItemComposable(
+    navController: NavController,
+    hotel: Hotel,
+    onHotelSelect: (Hotel) -> Unit
+) {
     val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
     val largeSpacing = dimensionResource(id = R.dimen.large_spacing)
 
@@ -59,7 +67,7 @@ fun HotelItemComposable(homeViewModel: HomeViewModel, navController: NavControll
         val featuredImageModifier = Modifier
             .clip(RoundedCornerShape(dimensionResource(id = R.dimen.home_screen_hotel_image_corners_size)))
             .clickable {
-                homeViewModel.onHotelSelect(hotel)
+                onHotelSelect(hotel)
                 navController.navigate(hotelDetailsRoute)
             }
             .width(dimensionResource(id = R.dimen.home_screen_hotel_image_width))

@@ -9,7 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
 @Composable
-fun ApplicationHomeScreen(homeViewModel: HomeViewModel, navController: NavController) {
+fun ApplicationHomeScreen(
+    homeViewModel: HomeViewModel,
+    navController: NavController,
+    onHotelSelect: (Hotel) -> Unit
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         backgroundColor = MaterialTheme.colors.background,
@@ -19,7 +23,8 @@ fun ApplicationHomeScreen(homeViewModel: HomeViewModel, navController: NavContro
         HomeScreenContent(
             viewModel = homeViewModel,
             modifier = modifier,
-            navController = navController
+            navController = navController,
+            onHotelSelect = onHotelSelect
         )
     }
 }

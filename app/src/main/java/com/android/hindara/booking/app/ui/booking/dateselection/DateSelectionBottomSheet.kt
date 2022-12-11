@@ -19,6 +19,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.paymentselection.paymentSelectionBottomSheetRoute
 import com.android.hindara.booking.app.ui.home.HomeViewModel
+import com.android.hindara.booking.app.ui.home.Hotel
 import com.android.hindara.booking.app.ui.theme.*
 import com.android.hindara.booking.app.utils.getFormattedDate
 import java.time.LocalDate
@@ -32,7 +33,7 @@ import java.time.LocalDate
 fun DateSelectionBottomSheet(
     navController: NavController,
     viewModel: BookingSharedViewModel,
-    homeViewModel: HomeViewModel
+    hotel: Hotel
 ) {
     val selectionState = remember {
         mutableStateOf(Pair<LocalDate?, LocalDate?>(null, null))
@@ -42,7 +43,7 @@ fun DateSelectionBottomSheet(
         viewModel = viewModel,
         selectedDate = selectionState.value,
         onSelectDateValue = { selectionState.value = it },
-        homeViewModel = homeViewModel
+        hotel = hotel
     )
 }
 
@@ -52,7 +53,7 @@ private fun DateSelectionContentComposable(
     viewModel: BookingSharedViewModel,
     selectedDate: Pair<LocalDate?, LocalDate?>,
     onSelectDateValue: (Pair<LocalDate?, LocalDate?>) -> Unit,
-    homeViewModel: HomeViewModel
+    hotel: Hotel
 ) {
     val mainModifier = Modifier
         .background(MaterialTheme.colors.background)
@@ -62,7 +63,7 @@ private fun DateSelectionContentComposable(
         CalendarComposable(selectedDate, onSelectDateValue)
         SelectedDaysComposable(selectedDate)
         if (hasBookingDatesChosen(selectedDate)) {
-            ContinueButtonComposable(navController, viewModel, selectedDate, homeViewModel)
+            ContinueButtonComposable(navController, viewModel, selectedDate, hotel)
         }
     }
 }
@@ -121,7 +122,7 @@ private fun ContinueButtonComposable(
     navController: NavController,
     viewModel: BookingSharedViewModel,
     selectedDate: Pair<LocalDate?, LocalDate?>,
-    homeViewModel: HomeViewModel
+    hotel: Hotel
 ) {
     val buttonModifier = Modifier
         .fillMaxWidth()
@@ -137,7 +138,7 @@ private fun ContinueButtonComposable(
             val checkOutDate = selectedDate.second!!
             viewModel.checkInDate = checkInDate
             viewModel.checkOutDate = checkOutDate
-            viewModel.chosenHotel = homeViewModel.getSelectedHotel()
+            viewModel.chosenHotel = hotel
 
             navController.navigate(paymentSelectionBottomSheetRoute) {
                 this.popUpTo(calendarBottomSheetRoute) {
