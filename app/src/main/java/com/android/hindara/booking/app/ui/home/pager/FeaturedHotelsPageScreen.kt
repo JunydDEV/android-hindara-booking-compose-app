@@ -22,6 +22,7 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.black_transparent_color
 import com.android.hindara.booking.app.ui.theme.white_color
+import com.android.hindara.booking.app.utils.mapImageToDrawable
 import com.core.model.hotel_details.FeaturedCategory
 import com.core.model.hotel_details.Hotel
 
@@ -50,7 +51,7 @@ fun FeaturedHotelsPageScreen(
 fun HotelItemComposable(
     navController: NavController,
     hotel: Hotel,
-    onHotelSelect: (Hotel) -> Unit
+    onHotelSelect: (Hotel) -> Unit,
 ) {
     val defaultSpacing = dimensionResource(id = R.dimen.default_spacing)
     val largeSpacing = dimensionResource(id = R.dimen.large_spacing)
@@ -67,7 +68,6 @@ fun HotelItemComposable(
             .clip(RoundedCornerShape(dimensionResource(id = R.dimen.home_screen_hotel_image_corners_size)))
             .clickable {
                 onHotelSelect(hotel)
-                navController.navigate(hotelDetailsRoute)
             }
             .width(dimensionResource(id = R.dimen.home_screen_hotel_image_width))
             .height(dimensionResource(id = R.dimen.home_screen_hotel_image_height))
@@ -80,7 +80,9 @@ fun HotelItemComposable(
         Image(
             modifier = featuredImageModifier,
             contentScale = ContentScale.Crop,
-            painter = painterResource(id = hotel.image),
+            painter = painterResource(
+                id = mapImageToDrawable(hotel.image)
+            ),
             contentDescription = stringResource(R.string.image_hotel)
         )
 

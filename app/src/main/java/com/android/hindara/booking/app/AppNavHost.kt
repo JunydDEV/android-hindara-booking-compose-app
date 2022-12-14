@@ -65,18 +65,21 @@ fun AppNavHost(
             authenticationGraph(navController)
             homeNavGraph(navController, homeViewModel, onHotelSelect = {
                 selectedHotel.value = it
+                navController.navigate(hotelDetailsRoute)
             })
             appMenuGraph(navController)
             hotelDetailsGraph(navController, selectedHotel)
             moreDescriptionGraph(navController, selectedHotel)
             reviewsGraph(navController, selectedHotel)
             bookmarksGraph(navController, onHotelSelect = {
-                navigateToHotelDetailsScreen(homeViewModel, it, navController)
+                selectedHotel.value = it
+                navController.navigate(hotelDetailsRoute)
             })
             myBookingsGraph(navController, myBookingsViewModel)
             settingsGraph(navController)
             searchScreenNavGraph(navController, onHotelSelect = {
-                navigateToHotelDetailsScreen(homeViewModel, it, navController)
+                selectedHotel.value = it
+                navController.navigate(hotelDetailsRoute)
             })
 
             // Bottom Sheet Screens
@@ -94,10 +97,7 @@ fun AppNavHost(
 }
 
 private fun navigateToHotelDetailsScreen(
-    homeViewModel: HomeViewModel,
-    it: Hotel,
     navController: NavHostController
 ) {
-    homeViewModel.onHotelSelect(it)
     navController.navigate(hotelDetailsRoute)
 }

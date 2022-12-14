@@ -6,7 +6,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -22,6 +24,8 @@ fun BookmarksScreen(
     navController: NavController,
     onHotelSelect: (Hotel) -> Unit
 ) {
+    val hotelsState = viewModel.getBookmarkedHotelsList(LocalContext.current).collectAsState()
+
     Scaffold(
         backgroundColor = MaterialTheme.colors.background,
         topBar = {
@@ -32,9 +36,9 @@ fun BookmarksScreen(
             modifier = Modifier.padding(it),
             contentPadding = PaddingValues(dimensionResource(id = R.dimen.default_spacing))
         ){
-            val bookmarkList = viewModel.getBookmarkedHotelsList()
-            items(bookmarkList.size) { index ->
-                HotelCardComposable(hotel = bookmarkList[index], onHotelSelect = onHotelSelect)
+            val hotelsList = hotelsState.value
+            items(hotelsList.size) { index ->
+                HotelCardComposable(hotel = hotelsList[index], onHotelSelect = onHotelSelect)
             }
         }
     }

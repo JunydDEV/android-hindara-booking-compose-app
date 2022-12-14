@@ -31,6 +31,7 @@ import com.android.hindara.booking.app.ui.theme.success_color
 import com.android.hindara.booking.app.ui.theme.white_color
 import com.android.hindara.booking.app.ui.theme.yellow_color
 import com.android.hindara.booking.app.utils.getHeaderImageHeightInDp
+import com.android.hindara.booking.app.utils.mapImageToDrawable
 import com.android.hindara.booking.app.utils.noRippleClickable
 import com.core.model.hotel_details.Hotel
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -88,7 +89,7 @@ fun ConstraintLayoutScope.HeaderImageComposable(
         .height(getHeaderImageHeightInDp())
     Image(
         modifier = headerImageModifier,
-        painter = painterResource(id = hotel.image),
+        painter = painterResource(id = mapImageToDrawable(imageName = hotel.image)),
         contentScale = ContentScale.Crop,
         contentDescription = stringResource(R.string.image_hotel_header)
     )

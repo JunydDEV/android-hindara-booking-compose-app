@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,6 +32,7 @@ import com.android.hindara.booking.app.ui.common.composables.AppTopBar
 import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComposable
 import com.android.hindara.booking.app.ui.search.filter.filterBottomSheetRoute
 import com.android.hindara.booking.app.ui.theme.yellow_color
+import com.android.hindara.booking.app.utils.mapImageToDrawable
 import com.core.model.hotel_details.Hotel
 
 const val COLUMNS_COUNT = 2
@@ -41,6 +43,7 @@ fun SearchScreen(
     navController: NavController,
     onHotelSelect: (Hotel) -> Unit
 ) {
+    viewModel.setUpRepository(LocalContext.current)
     val searchResultsState = viewModel.searchResultsLiveData.collectAsState()
 
     Scaffold(
@@ -138,7 +141,7 @@ private fun HotelImageComposable(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
         .clip(RoundedCornerShape(dimensionResource(id = R.dimen.app_card_corners_size)))
     Image(
         modifier = hotelImageModifier,
-        painter = painterResource(id = hotel.image),
+        painter = painterResource(id = mapImageToDrawable(imageName = hotel.image)),
         contentScale = ContentScale.Crop,
         contentDescription = stringResource(R.string.image_search_hotel)
     )

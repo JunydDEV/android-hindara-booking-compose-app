@@ -1,123 +1,27 @@
 package com.android.hindara.booking.app.ui.appmenu.bookmarks
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.android.hindara.booking.app.R
-import com.core.model.hotel_details.Address
+import com.core.data.DataRepositoryImpl
 import com.core.model.hotel_details.Hotel
-import com.core.model.hotel_details.Reviews
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class BookmarksViewModel @Inject constructor() : ViewModel() {
 
-    fun getBookmarkedHotelsList(): List<Hotel> {
+    private val dataRepository = DataRepositoryImpl()
+
+    fun getBookmarkedHotelsList(context: Context): StateFlow<List<Hotel>> {
         val list = mutableListOf<Hotel>()
-        list.add(
-            Hotel(
-                name = "Tropicasa De Hotel",
-                image = R.drawable.ic_tropicasa_hotel,
-                address = Address(
-                    latitude = 52.1326,
-                    longitude = 5.2913,
-                    locationTitle = "Amsterdam, Netherlands"
-                ),
-                rating = 4.6f,
-                tax = 10.0,
-                description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
-                pricePerNight = 125.0,
-                reviewsList = listOf(
-                    Reviews(
-                        "Brad John",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "The bed was nice and comfortable, the service was on point. Good job!"
-                    ),
-                    Reviews(
-                        "Kate Rose",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
-                    ),
-                    Reviews(
-                        "Kate Rose",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
-                    ),
-                    Reviews(
-                        "Kate Rose",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
-                    ),
-                    Reviews(
-                        "Kate Rose",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
-                    ),
-                )
-
-            )
-        )
-        list.add(
-            Hotel(
-                name = "Luxe Hotel",
-                image = R.drawable.ic_luxe_hotel,
-                address = Address(
-                    latitude = 52.1326,
-                    longitude = 5.2913,
-                    locationTitle = "Amsterdam, Netherlands"
-                ),
-                rating = 4.6f,
-                tax = 10.0,
-                description = "Luxe Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
-                pricePerNight = 125.0,
-                reviewsList = listOf(
-                    Reviews(
-                        "Brad John",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "The bed was nice and comfortable, the service was on point. Good job!"
-                    ),
-                    Reviews(
-                        "Kate Rose",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
-                    ),
-                )
-            )
-        )
-
-        list.add(
-            Hotel(
-                name = "Tropicasa De Hotel",
-                image = R.drawable.ic_cleans_hotel,
-                address = Address(
-                    latitude = 52.1326,
-                    longitude = 5.2913,
-                    locationTitle = "Amsterdam, Netherlands"
-                ),
-                rating = 4.6f,
-                description = "Tropicasa De Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
-                pricePerNight = 125.0,
-                tax = 10.0,
-                reviewsList = listOf(
-                    Reviews(
-                        "Brad John",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "The bed was nice and comfortable, the service was on point. Good job!"
-                    ),
-                    Reviews(
-                        "Kate Rose",
-                        R.drawable.ic_profile_picture,
-                        4.5f,
-                        "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
-                    ),
-                )
-            )
-        )
-        return list
+        val stateFlow = MutableStateFlow(list)
+        CoroutineScope(Dispatchers.IO).launch {
+            list.addAll(dataRepository.provideMyBookmarkedHotels(context))
+            stateFlow.value = list
+        }
+        return stateFlow
     }
 }

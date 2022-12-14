@@ -6,6 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.ui.home.HomeViewModel
@@ -24,10 +25,12 @@ fun FeaturedOnHomeScreenListing(
     navController: NavController,
     onHotelSelect: (Hotel) -> Unit
 ) {
+    val categories = viewModel.getFeaturedCategories(LocalContext.current).collectAsState()
+    if(categories.value.isEmpty())
+        return
 
     Column(Modifier.fillMaxSize()) {
         val tabIndexState = remember { mutableStateOf(0) }
-        val categories = viewModel.getFeaturedCategories()
         val pagerState = rememberPagerState()
         LaunchedEffect(pagerState) {
             snapshotFlow { pagerState.currentPage }.collect { page ->
@@ -39,11 +42,11 @@ fun FeaturedOnHomeScreenListing(
             tabPosition = tabIndexState.value,
             onTabPositionChange = { tabIndexState.value = it },
             pagerState = pagerState,
-            tabTitles = categories
+            tabTitles = categories.value
         )
         HorizontalPagerComposable(
             navController = navController,
-            list = categories,
+            list = categories.value,
             pagerState = pagerState,
             onHotelSelect = onHotelSelect
         )

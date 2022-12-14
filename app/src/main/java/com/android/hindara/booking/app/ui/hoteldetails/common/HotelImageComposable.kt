@@ -11,6 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.android.hindara.booking.app.R
+import com.android.hindara.booking.app.utils.mapImageToDrawable
 import com.core.model.hotel_details.Hotel
 
 @Composable
@@ -23,6 +24,9 @@ fun HotelImageComposable(hotel: Hotel) {
     Image(
         modifier = modifier,
         contentScale = ContentScale.Crop,
-        painter = painterResource(id = hotel.image), contentDescription = null
+        painter = painterResource(
+            id = mapImageToDrawable(imageName = hotel.image)
+        ),
+        contentDescription = null
     )
 }

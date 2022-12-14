@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Flitwick Manor",
+    "image": "ic_flitwick_monar_hotel",
+    "address": {
+      "name": "Flitwick, Bedfordshire, England",
+      "latitude": 52.1326,
+      "longitude": 5.2913
+    },
+    "rating": 4.5,
+    "description": "Bedfordshire Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
+    "tax": 10.0,
+    "pricePerNight":125.0,
+    "reviewsList":[
+      {
+        "name": "Brad John",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "The bed was nice and comfortable, the service was on point. Good job!"
+      },
+      {
+        "name": "Kate Rose",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+      },
+      {
+        "name": "Brad John",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "The bed was nice and comfortable, the service was on point. Good job!"
+      },
+      {
+        "name": "Kate Rose",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+      }
+    ]
+  },
+  {
+    "name": "City of Bristol",
+    "image": "ic_city_of_bristol_hotel",
+    "address": {
+      "name": "Old Market convservation Area, England",
+      "latitude": 52.1326,
+      "longitude": 5.2913
+    },
+    "rating": 4.5,
+    "description": "City of Bristol is high rated hotels with 1000+ reviews and we are always maintaining the quality for better rating and high attitude service for you",
+    "tax": 10.0,
+    "pricePerNight":125.0,
+    "reviewsList":[
+      {
+        "name": "Brad John",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "The bed was nice and comfortable, the service was on point. Good job!"
+      },
+      {
+        "name": "Kate Rose",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+      },
+      {
+        "name": "Brad John",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "The bed was nice and comfortable, the service was on point. Good job!"
+      },
+      {
+        "name": "Kate Rose",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+      }
+    ]
+  },
+  {
+    "name": "Carbis Bay Hotel",
+    "image": "ic_carbis_bay_hotel",
+    "address": {
+      "name": "Carbis Bay, Cornwall, England",
+      "latitude": 52.1326,
+      "longitude": 5.2913
+    },
+    "rating": 4.5,
+    "description": "Carbis Bay Hotel is high rated hotels with 1000+ reviews and we are always maintaning the quality for better rating and high attitude service for you",
+    "tax": 10.0,
+    "pricePerNight":125.0,
+    "reviewsList":[
+      {
+        "name": "Brad John",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "The bed was nice and comfortable, the service was on point. Good job!"
+      },
+      {
+        "name": "Kate Rose",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+      },
+      {
+        "name": "Brad John",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "The bed was nice and comfortable, the service was on point. Good job!"
+      },
+      {
+        "name": "Kate Rose",
+        "image": "ic_profile_picture",
+        "rating": 4.5,
+        "review": "9/10 for me personally, no complain at all because it’s perfect. Thanks!"
+      }
+    ]
+  }
+]
