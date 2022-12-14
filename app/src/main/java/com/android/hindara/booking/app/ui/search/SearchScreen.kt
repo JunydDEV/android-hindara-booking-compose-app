@@ -150,17 +150,22 @@ private fun HotelImageComposable(hotel: Hotel, onHotelSelect: (Hotel) -> Unit) {
 @Composable
 private fun HotelNameAndAddressComposable(hotel: Hotel) {
     Text(
-        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)),
+        modifier = Modifier
+            .wrapContentWidth()
+            .padding(top = dimensionResource(id = R.dimen.default_spacing)),
+
         text = hotel.name,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
         style = MaterialTheme.typography.body1
     )
 
     Text(
-        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_spacing)),
+        modifier = Modifier.wrapContentWidth(),
         text = hotel.address.locationTitle,
-        style = MaterialTheme.typography.body1,
         maxLines = 1,
-        overflow = TextOverflow.Ellipsis
+        overflow = TextOverflow.Ellipsis,
+        style = MaterialTheme.typography.body1
     )
 }
 
@@ -182,7 +187,7 @@ private fun HotelRatingComposable(hotel: Hotel) {
         Text(
             modifier = Modifier.padding(start = dimensionResource(id = R.dimen.small_spacing)),
             text = hotel.rating.toString(),
-            style = MaterialTheme.typography.body2,
+            style = MaterialTheme.typography.body1,
             color = yellow_color
         )
     }
