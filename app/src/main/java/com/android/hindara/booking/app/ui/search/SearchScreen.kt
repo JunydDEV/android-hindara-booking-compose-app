@@ -157,7 +157,7 @@ private fun HotelNameAndAddressComposable(hotel: Hotel) {
         text = hotel.name,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
-        style = MaterialTheme.typography.body1
+        style = MaterialTheme.typography.h2
     )
 
     Text(

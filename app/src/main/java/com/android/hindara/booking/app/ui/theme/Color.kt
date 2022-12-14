@@ -29,7 +29,7 @@ val md_theme_light_onError = Color(0xFFFFFFFF)
 val md_theme_light_background = Color(0xFFF3F3F3)
 val md_theme_light_onBackground = Color(0xFF201A1A)
 val md_theme_light_surface = Color(0xFFFFFFFF)
-val md_theme_light_onSurface = Color(0xFF775656)
+val md_theme_light_onSurface = Color(0xFF000000)
 
 val md_theme_dark_primary = Color(0xFF00A76E)
 val md_theme_dark_onPrimary = Color(0xFF000000)
