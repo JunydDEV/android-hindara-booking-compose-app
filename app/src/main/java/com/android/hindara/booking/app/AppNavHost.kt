@@ -3,6 +3,7 @@ package com.android.hindara.booking.app
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -64,24 +65,20 @@ fun AppNavHost(
             onboardingGraph(navController)
             authenticationGraph(navController)
             homeNavGraph(navController, homeViewModel, onHotelSelect = {
-                selectedHotel.value = it
-                navController.navigate(hotelDetailsRoute)
+                navigateToHotelDetails(homeViewModel, it, selectedHotel, navController)
             })
             appMenuGraph(navController)
-            hotelDetailsGraph(navController, selectedHotel)
+            hotelDetailsGraph(navController, homeViewModel)
             moreDescriptionGraph(navController, selectedHotel)
             reviewsGraph(navController, selectedHotel)
             bookmarksGraph(navController, onHotelSelect = {
-                selectedHotel.value = it
-                navController.navigate(hotelDetailsRoute)
+                navigateToHotelDetails(homeViewModel, it, selectedHotel, navController)
             })
             myBookingsGraph(navController, myBookingsViewModel)
             settingsGraph(navController)
             searchScreenNavGraph(navController, onHotelSelect = {
-                selectedHotel.value = it
-                navController.navigate(hotelDetailsRoute)
+                navigateToHotelDetails(homeViewModel, it, selectedHotel, navController)
             })
-
             // Bottom Sheet Screens
             forgotPasswordBottomSheetNavGraph(navController)
             emailVerificationBottomSheetNavGraph(navController)
@@ -96,8 +93,13 @@ fun AppNavHost(
     }
 }
 
-private fun navigateToHotelDetailsScreen(
+private fun navigateToHotelDetails(
+    homeViewModel: HomeViewModel,
+    it: Hotel,
+    selectedHotel: MutableState<Hotel?>,
     navController: NavHostController
 ) {
+    homeViewModel.onHotelSelect(it)
+    selectedHotel.value = it
     navController.navigate(hotelDetailsRoute)
 }

@@ -6,7 +6,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.ui.home.HomeViewModel
@@ -21,13 +20,10 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun FeaturedOnHomeScreenListing(
-    viewModel: HomeViewModel,
     navController: NavController,
-    onHotelSelect: (Hotel) -> Unit
+    onHotelSelect: (Hotel) -> Unit,
+    categories: MutableList<FeaturedCategory>
 ) {
-    val categories = viewModel.getFeaturedCategories(LocalContext.current).collectAsState()
-    if(categories.value.isEmpty())
-        return
 
     Column(Modifier.fillMaxSize()) {
         val tabIndexState = remember { mutableStateOf(0) }
@@ -42,11 +38,11 @@ fun FeaturedOnHomeScreenListing(
             tabPosition = tabIndexState.value,
             onTabPositionChange = { tabIndexState.value = it },
             pagerState = pagerState,
-            tabTitles = categories.value
+            tabTitles = categories
         )
         HorizontalPagerComposable(
             navController = navController,
-            list = categories.value,
+            list = categories,
             pagerState = pagerState,
             onHotelSelect = onHotelSelect
         )

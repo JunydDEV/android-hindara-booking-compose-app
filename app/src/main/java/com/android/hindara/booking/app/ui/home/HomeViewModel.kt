@@ -16,7 +16,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor() : ViewModel() {
 
     private val dataRepository = DataRepositoryImpl()
-    private lateinit var selectedHotel: Hotel
+    lateinit var selectedHotel: Hotel
 
     fun onHotelSelect(hotel: Hotel) {
         selectedHotel = hotel

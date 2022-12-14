@@ -18,14 +18,15 @@ import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.common.composables.SearchTextFieldComposable
 import com.android.hindara.booking.app.ui.home.pager.FeaturedOnHomeScreenListing
 import com.android.hindara.booking.app.ui.search.searchRoute
+import com.core.model.hotel_details.FeaturedCategory
 import com.core.model.hotel_details.Hotel
 
 @Composable
 fun HomeScreenContent(
-    viewModel: HomeViewModel,
     modifier: Modifier,
     navController: NavController,
-    onHotelSelect: (Hotel) -> Unit
+    onHotelSelect: (Hotel) -> Unit,
+    categories: MutableList<FeaturedCategory>
 ) {
     Column(
         modifier = modifier,
@@ -41,9 +42,9 @@ fun HomeScreenContent(
             SearchComposable(navController)
         }
         FeaturedOnHomeScreenListing(
-            viewModel = viewModel,
             navController = navController,
-            onHotelSelect = onHotelSelect
+            onHotelSelect = onHotelSelect,
+            categories = categories
         )
     }
 }

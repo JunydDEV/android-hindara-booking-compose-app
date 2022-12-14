@@ -24,6 +24,7 @@ import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.booking.dateselection.calendarBottomSheetRoute
 import com.android.hindara.booking.app.ui.description.moreDescriptionRoute
+import com.android.hindara.booking.app.ui.home.HomeViewModel
 import com.android.hindara.booking.app.ui.hoteldetails.common.ReviewItemComposable
 import com.android.hindara.booking.app.ui.reviews.reviewsRoute
 import com.android.hindara.booking.app.ui.theme.black_transparent_color
@@ -44,10 +45,10 @@ private const val REVIEWS_MAX_LIMIT = 2
 
 @Composable
 fun HotelDetailsScreen(
-    selectedHotel: Hotel,
+    homeViewModel: HomeViewModel,
     navController: NavController,
 ) {
-    HotelDetailsContent(navController, selectedHotel)
+    HotelDetailsContent(navController, homeViewModel.selectedHotel)
 }
 
 @Composable

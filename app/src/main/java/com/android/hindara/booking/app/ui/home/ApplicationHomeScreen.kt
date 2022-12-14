@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.core.model.hotel_details.Hotel
 
@@ -15,6 +17,9 @@ fun ApplicationHomeScreen(
     navController: NavController,
     onHotelSelect: (Hotel) -> Unit
 ) {
+
+    val categories = homeViewModel.getFeaturedCategories(LocalContext.current).collectAsState()
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         backgroundColor = MaterialTheme.colors.background,
@@ -22,10 +27,10 @@ fun ApplicationHomeScreen(
     ) {
         val modifier = Modifier.padding(it)
         HomeScreenContent(
-            viewModel = homeViewModel,
             modifier = modifier,
             navController = navController,
-            onHotelSelect = onHotelSelect
+            onHotelSelect = onHotelSelect,
+            categories = categories.value
         )
     }
 }
