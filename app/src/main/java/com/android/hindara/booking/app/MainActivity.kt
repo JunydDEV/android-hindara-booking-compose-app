@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen()
         setContent {
-            App.IS_RTL = isRtlLayout()
+            App.IS_RTL_LAYOUT = isRtlLayout()
             HindaraApp()
         }
     }

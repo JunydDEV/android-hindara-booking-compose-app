@@ -63,30 +63,30 @@ fun NavGraphBuilder.animatedComposable(
     }
 }
 
-private fun exitTransitionAnimation() = if (App.IS_RTL) {
+private fun exitTransitionAnimation() = if (App.IS_RTL_LAYOUT) {
     slideOutHorizontally(targetOffsetX = { POSITIVE_OFFSET })
 } else {
     slideOutHorizontally(targetOffsetX = { NEGATIVE_OFFSET })
 }
 
-private fun getEnterTransitionAnimation() = if (App.IS_RTL) {
+private fun getEnterTransitionAnimation() = if (App.IS_RTL_LAYOUT) {
     slideInHorizontally(initialOffsetX = { NEGATIVE_OFFSET })
 } else {
     slideInHorizontally(initialOffsetX = { POSITIVE_OFFSET })
 }
 
-private fun getPopEnterTransitionAnimation() = if (App.IS_RTL) {
+private fun getPopEnterTransitionAnimation() = if (App.IS_RTL_LAYOUT) {
     slideInHorizontally(initialOffsetX = { POSITIVE_OFFSET })
 } else {
     slideInHorizontally(initialOffsetX = { NEGATIVE_OFFSET })
 }
 
-private fun getPopExitTransitionAnimation() = if (App.IS_RTL) {
+private fun getPopExitTransitionAnimation() = if (App.IS_RTL_LAYOUT) {
     slideOutHorizontally(targetOffsetX = { NEGATIVE_OFFSET })
 } else {
     slideOutHorizontally(targetOffsetX = { POSITIVE_OFFSET })
 }
 
-private fun getExitTransitionOffset(offset: Int) = if (App.IS_RTL) { offset } else { -offset }
+private fun getExitTransitionOffset(offset: Int) = if (App.IS_RTL_LAYOUT) { offset } else { -offset }
 
-private fun getEnterTransitionOffset(offset: Int) = if (App.IS_RTL) { -offset } else { offset }
+private fun getEnterTransitionOffset(offset: Int) = if (App.IS_RTL_LAYOUT) { -offset } else { offset }

@@ -6,6 +6,6 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class App : Application() {
     companion object {
-        var IS_RTL: Boolean = false
+        var IS_RTL_LAYOUT: Boolean = false
     }
 }
