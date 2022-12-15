@@ -22,11 +22,6 @@ import com.android.hindara.booking.app.utils.getFormattedDate
 import com.core.model.hotel_details.Hotel
 import java.time.LocalDate
 
-/**
- * Bottom sheet to select the booking dates.
- *
- * @param viewModel provides data to UI from outside.
- * */
 @Composable
 fun DateSelectionBottomSheet(
     navController: NavController,

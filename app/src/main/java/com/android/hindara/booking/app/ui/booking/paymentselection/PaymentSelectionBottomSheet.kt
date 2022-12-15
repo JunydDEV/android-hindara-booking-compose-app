@@ -23,11 +23,6 @@ import com.android.hindara.booking.app.ui.booking.BookingSharedViewModel
 import com.android.hindara.booking.app.ui.booking.paymentconfirmation.paymentConfirmationBottomSheetRoute
 import com.core.model.booking.PaymentMethod
 
-/**
- * Bottom sheet to choose the payment method.
- *
- * @param viewModel provides data to UI from outside.
- * */
 @Composable
 fun PaymentMethodsBottomSheet(
     navController: NavController,

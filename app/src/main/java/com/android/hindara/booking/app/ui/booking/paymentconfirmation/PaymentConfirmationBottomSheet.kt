@@ -30,11 +30,6 @@ import com.android.hindara.booking.app.ui.theme.success_color
 import com.core.model.alert_bottomsheet.AlertType
 import com.core.model.booking.PaymentMethod
 
-/**
- * Bottom sheet to select the booking dates.
- *
- * @param viewModel provides data to UI from outside.
-  * */
 @Composable
 fun PaymentConfirmationBottomSheet(
     navController: NavController,

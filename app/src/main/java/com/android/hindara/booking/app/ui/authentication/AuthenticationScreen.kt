@@ -21,12 +21,6 @@ import com.android.hindara.booking.app.utils.isRtlLayout
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
-/**
- * Container screen hosting login and signup.
- *
- * @param navController helps in navigation to other screen.
- * @param viewModel establishes communication between UI & data component.
- * */
 @Composable
 fun AuthenticationScreen(
     viewModel: AuthenticationViewModel = hiltViewModel(),

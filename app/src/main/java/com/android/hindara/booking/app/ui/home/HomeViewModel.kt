@@ -1,6 +1,5 @@
 package com.android.hindara.booking.app.ui.home
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.android.hindara.booking.app.R

@@ -12,12 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.android.hindara.booking.app.R
 
-/**
- * Bottom sheet composable that has title and some body.
- *
- * @param title bottom sheet main heading
- * @param content bottoms sheet content
- * */
 @Composable
 fun BottomSheetContentWithTitle(
     title: String,
