@@ -69,7 +69,6 @@ private fun TitleComposable() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                top = dimensionResource(id = R.dimen.default_spacing),
                 bottom = dimensionResource(id = R.dimen.default_spacing)
             ),
         text = stringResource(R.string.label_welcome_message),

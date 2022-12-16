@@ -18,13 +18,10 @@ import com.android.hindara.booking.app.ui.appmenu.appMenuRoute
 fun HomeScreenTopBar(navController: NavController) {
     Column(modifier = Modifier.fillMaxWidth()) {
         SpacerComposable()
-
         val topBarModifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colors.background)
             .padding(
-                top = dimensionResource(id = R.dimen.default_spacing),
-                bottom = dimensionResource(id = R.dimen.default_spacing),
                 start = dimensionResource(id = R.dimen.tiny_spacing),
                 end = dimensionResource(id = R.dimen.tiny_spacing)
             )
@@ -54,6 +51,6 @@ fun HomeScreenTopBar(navController: NavController) {
 private fun SpacerComposable() {
     val topSpacerModifier = Modifier
         .fillMaxWidth()
-        .height(dimensionResource(id = R.dimen.extra_large_spacing))
+        .height(dimensionResource(id = R.dimen.large_spacing))
     Spacer(modifier = topSpacerModifier)
 }
