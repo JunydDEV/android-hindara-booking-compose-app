@@ -16,11 +16,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import com.android.hindara.booking.app.R
 import com.android.hindara.booking.app.ui.hoteldetails.hotelDetailsRoute
 import com.android.hindara.booking.app.ui.theme.black_transparent_color
+import com.android.hindara.booking.app.ui.theme.primary_color
 import com.android.hindara.booking.app.ui.theme.white_color
 import com.android.hindara.booking.app.utils.mapImageToDrawable
 import com.core.model.hotel_details.FeaturedCategory
@@ -123,6 +126,9 @@ fun HotelItemComposable(
             modifier = hotelAddressTextModifier,
             text = hotel.address.locationTitle,
             style = MaterialTheme.typography.body2,
+            textAlign = TextAlign.Start,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
             color = white_color
         )
 
