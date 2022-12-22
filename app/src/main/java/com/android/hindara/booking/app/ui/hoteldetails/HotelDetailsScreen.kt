@@ -247,7 +247,7 @@ fun ConstraintLayoutScope.ContentfulSectionComposable(
 @Composable
 fun GoogleMapsComposable(hotel: Hotel) {
     val address = hotel.address
-    val singapore = LatLng(address.latitude, address.longitude)
+    val singapore = LatLng(address.latitude.toDouble(), address.longitude.toDouble())
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(singapore, 10f)
     }

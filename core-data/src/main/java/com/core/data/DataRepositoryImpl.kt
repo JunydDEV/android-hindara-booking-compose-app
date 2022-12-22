@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.LayoutDirection
 import com.core.model.hotel_details.Hotel
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class DataRepositoryImpl: DataRepository {
 

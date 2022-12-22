@@ -1,15 +1,15 @@
 package com.core.model.hotel_details
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 
+@Keep
 data class Hotel(
-    @SerializedName("name") @Expose val name: String,
-    @SerializedName("image") @Expose val image: String,
-    @SerializedName("address") @Expose val address: Address,
-    @SerializedName("rating") @Expose val rating: Float,
-    @SerializedName("description") @Expose val description: String,
-    @SerializedName("tax") @Expose val tax: Double,
-    @SerializedName("pricePerNight") @Expose val pricePerNight: Double,
-    @SerializedName("reviewsList") @Expose val reviewsList: List<Reviews>
+    @Expose val name: String,
+    @Expose val image: String,
+    @Expose val address: Address,
+    @Expose val rating: Float,
+    @Expose val description: String, val tax: Double,
+    @Expose val pricePerNight: Double,
+    @Expose val reviewsList: List<Reviews>
 )

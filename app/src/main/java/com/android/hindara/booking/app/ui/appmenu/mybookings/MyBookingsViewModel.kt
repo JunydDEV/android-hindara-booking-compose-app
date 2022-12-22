@@ -6,9 +6,6 @@ import com.android.hindara.booking.app.R
 import com.core.data.DataRepositoryImpl
 import com.core.model.booking.MyBooking
 import com.core.model.booking.PaymentMethod
-import com.core.model.hotel_details.Address
-import com.core.model.hotel_details.Hotel
-import com.core.model.hotel_details.Reviews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
