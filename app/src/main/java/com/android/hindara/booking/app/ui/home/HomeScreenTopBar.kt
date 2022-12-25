@@ -22,6 +22,7 @@ fun HomeScreenTopBar(navController: NavController) {
             .fillMaxWidth()
             .background(MaterialTheme.colors.background)
             .padding(
+                top = dimensionResource(id = R.dimen.default_spacing),
                 start = dimensionResource(id = R.dimen.tiny_spacing),
                 end = dimensionResource(id = R.dimen.tiny_spacing)
             )
